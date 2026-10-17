@@ -567,11 +567,36 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   justify-content: flex-end;
   padding: 1.4rem;
 }
+.facdeh-card__photo:not(.facdeh-card__photo--img) {
+  background: linear-gradient(135deg, #0053D5 0%, #06111f 100%);
+}
+.facdeh-card__photo:not(.facdeh-card__photo--img)::after {
+  content: attr(data-initials);
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+  background: rgba(223, 181, 75, 0.25);
+  border: 2px solid var(--gold-400);
+  color: var(--gold-400);
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
 .facdeh-card__photo::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(190deg, rgba(255,255,255,0) 35%, rgba(0, 63, 160, 0.92) 100%);
+}
+.facdeh-card__photo--img::before {
+  background: linear-gradient(190deg, rgba(255,255,255,0) 30%, rgba(6, 17, 31, 0.88) 100%);
 }
 .facdeh-card__overlay-text {
   position: relative;

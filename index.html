@@ -1600,21 +1600,28 @@
           </button>
         ` : '';
 
+        const canEditVisual = isEditorOrAdmin && (typeof visualEditingEnabled !== 'undefined' && visualEditingEnabled);
+        const attrEditBg = canEditVisual ? `data-editable="bg-img" data-edit-key="member-photo-${m.id}"` : '';
+        const attrEditName = canEditVisual ? `data-editable="text" data-edit-key="member-name-${m.id}"` : '';
+        const attrEditRole = canEditVisual ? `data-editable="text" data-edit-key="member-role-${m.id}"` : '';
+        const attrEditBadge = canEditVisual ? `data-editable="text" data-edit-key="member-badge-${m.id}"` : '';
+        const attrEditBio = canEditVisual ? `data-editable="text" data-edit-key="member-bio-${m.id}"` : '';
+
         return `
           <article class="facdeh-card" id="card-${m.id}">
-            <div class="${photoClass}" ${photoStyle} ${initialsAttr} data-editable="bg-img" data-edit-key="member-photo-${m.id}" onclick="${isEditorOrAdmin ? `editMemberPhoto('${m.id}')` : `openMemberCV('${m.id}')`}" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
+            <div class="${photoClass}" ${photoStyle} ${initialsAttr} ${attrEditBg} onclick="${canEditVisual ? `editMemberPhoto('${m.id}')` : `openMemberCV('${m.id}')`}" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
               <div class="facdeh-card__overlay-text">
-                <h3 data-editable="text" data-edit-key="member-name-${m.id}">${m.name}</h3>
-                <p data-editable="text" data-edit-key="member-role-${m.id}">${m.role}</p>
+                <h3 ${attrEditName}>${m.name}</h3>
+                <p ${attrEditRole}>${m.role}</p>
               </div>
-              ${isEditorOrAdmin ? '<div class="visual-image-overlay">📷 Cambiar Foto</div>' : ''}
+              ${canEditVisual ? '<div class="visual-image-overlay">📷 Cambiar Foto</div>' : ''}
             </div>
             <div class="facdeh-card__body">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem; margin-bottom:.3rem;">
-                <span class="facdeh-card__tag" data-editable="text" data-edit-key="member-badge-${m.id}">${m.badge}</span>
+                <span class="facdeh-card__tag" ${attrEditBadge}>${m.badge}</span>
                 ${articlesBadgeHtml}
               </div>
-              <p class="facdeh-card__bio" data-editable="text" data-edit-key="member-bio-${m.id}">${m.bio}</p>
+              <p class="facdeh-card__bio" ${attrEditBio}>${m.bio}</p>
               
               <div style="margin-top:.6rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem;">
                 <button type="button" class="facdeh-btn-perfil" onclick="openMemberCV('${m.id}')" style="background:none; border:none; padding:0; cursor:pointer; color:var(--blue-600); font-weight:700; font-size:.85rem; display:inline-flex; align-items:center; gap:.3rem;">
@@ -2218,6 +2225,30 @@
                 <span>📅 ${current.date}</span> · <span>⏱️ ${current.readTime || '5 min'}</span>
               </div>
             </div>
+
+            <!-- BOTONES PARA COMPARTIR LA COLUMNA DE OPINIÓN -->
+            <div class="article-share-bar" style="margin-top: 1rem; padding-top: .8rem; border-top: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem;">
+              <span style="font-size: .78rem; font-weight: 700; color: var(--navy-900); display: flex; align-items: center; gap: .35rem;">
+                🔗 Compartir esta columna:
+              </span>
+              <div style="display: flex; gap: .4rem; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn-share-item" onclick="shareArticleNative('${current.id}')" title="Compartir desde tu celular o computador" style="background: var(--navy-900); color: #fff; border: none; padding: .32rem .75rem; border-radius: 6px; font-size: .75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem;">
+                  📲 Compartir
+                </button>
+                <button type="button" class="btn-share-item" onclick="shareArticleWhatsApp('${current.id}')" title="Enviar por WhatsApp" style="background: #25D366; color: #fff; border: none; padding: .32rem .75rem; border-radius: 6px; font-size: .75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem;">
+                  WhatsApp
+                </button>
+                <button type="button" class="btn-share-item" onclick="shareArticleLinkedIn('${current.id}')" title="Compartir en LinkedIn" style="background: #0077b5; color: #fff; border: none; padding: .32rem .75rem; border-radius: 6px; font-size: .75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem;">
+                  LinkedIn
+                </button>
+                <button type="button" class="btn-share-item" onclick="shareArticleTwitter('${current.id}')" title="Compartir en X / Twitter" style="background: #000; color: #fff; border: none; padding: .32rem .75rem; border-radius: 6px; font-size: .75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem;">
+                  𝕏 Post
+                </button>
+                <button type="button" class="btn-share-item" onclick="copyArticleLink('${current.id}')" title="Copiar enlace directo" style="background: var(--gray-100); color: var(--navy-900); border: 1px solid var(--gray-300); padding: .32rem .75rem; border-radius: 6px; font-size: .75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem;">
+                  📋 Copiar Enlace
+                </button>
+              </div>
+            </div>
           </div>
           <div class="mrns-article__body" data-editable="html" data-edit-key="article-content-${current.id}">
             ${current.content}
@@ -2247,6 +2278,65 @@
 
       renderHomeDashboardPreviews();
     }
+
+    // Funciones globales para compartir artículos
+    window.getArticleShareUrl = function(artId) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('win', 'articulos');
+      url.searchParams.set('art', artId);
+      return url.toString();
+    };
+
+    window.shareArticleNative = function(artId) {
+      const art = getArticles().find(a => a.id === artId);
+      if (!art) return;
+      const shareUrl = getArticleShareUrl(artId);
+      const shareData = {
+        title: `${art.title} - Sociedad de Debates UCEN`,
+        text: `Lee la columna "${art.title}" por ${art.author} en la Tribuna de Debates UCEN:`,
+        url: shareUrl
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        copyArticleLink(artId);
+      }
+    };
+
+    window.shareArticleWhatsApp = function(artId) {
+      const art = getArticles().find(a => a.id === artId);
+      if (!art) return;
+      const shareUrl = getArticleShareUrl(artId);
+      const text = encodeURIComponent(`*${art.title}*\nPor ${art.author} - Tribuna de Debate UCEN\n${shareUrl}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank', 'noopener,noreferrer');
+    };
+
+    window.shareArticleLinkedIn = function(artId) {
+      const shareUrl = encodeURIComponent(getArticleShareUrl(artId));
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`, '_blank', 'noopener,noreferrer');
+    };
+
+    window.shareArticleTwitter = function(artId) {
+      const art = getArticles().find(a => a.id === artId);
+      if (!art) return;
+      const shareUrl = encodeURIComponent(getArticleShareUrl(artId));
+      const text = encodeURIComponent(`"${art.title}" por ${art.author} | Tribuna de Debate UCEN`);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${shareUrl}`, '_blank', 'noopener,noreferrer');
+    };
+
+    window.copyArticleLink = function(artId) {
+      const shareUrl = getArticleShareUrl(artId);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert('🔗 ¡Enlace de la columna copiado al portapapeles! Ya puedes compartirlo.');
+        }).catch(() => {
+          prompt('Copia este enlace para compartir la columna:', shareUrl);
+        });
+      } else {
+        prompt('Copia este enlace para compartir la columna:', shareUrl);
+      }
+    };
 
     window.selectArticle = function(id) {
       activeArticleId = id;
@@ -3902,6 +3992,11 @@
         floatingBar.classList.remove('visible');
         toggleVisualEditing(false);
       }
+
+      // Re-renderizar vistas para que los botones in-situ solo se muestren al autenticarse
+      renderFacdehTeam();
+      renderArticlesView();
+      renderHitosView();
     };
 
     // Botones del Modal para ir directo a la Edición Visual
@@ -3921,7 +4016,15 @@
       });
     }
 
-    // Al cerrar sesión, apagar la edición visual
+    // Al cerrar sesión, apagar la edición visual y re-renderizar la vista limpia
+    btnLogout.addEventListener('click', () => {
+      currentUser = null;
+      document.getElementById('floating-editor-bar').classList.remove('visible');
+      toggleVisualEditing(false);
+      renderFacdehTeam();
+      renderArticlesView();
+      renderHitosView();
+    });
     // ========================================================
     // SINCRONIZACIÓN Y PUBLICACIÓN GLOBAL (GITHUB API & DATA.JSON)
     // ========================================================
@@ -3960,11 +4063,12 @@
         const payload = getFullSiteExportPayload();
         const jsonString = JSON.stringify(payload, null, 2);
         
-        // Codificar UTF-8 en base64 de manera segura en el navegador
+        // Codificar UTF-8 en base64 de manera segura y 100% fiel con acentos
         const utf8Bytes = new TextEncoder().encode(jsonString);
         let binary = '';
-        for (let i = 0; i < utf8Bytes.byteLength; i++) {
-          binary += String.fromCharCode(utf8Bytes[i]);
+        const chunk = 8192;
+        for (let i = 0; i < utf8Bytes.length; i += chunk) {
+          binary += String.fromCharCode.apply(null, utf8Bytes.subarray(i, i + chunk));
         }
         const b64Content = btoa(binary);
 
@@ -4134,27 +4238,28 @@
         const res = await fetch('data.json?t=' + Date.now());
         if (res.ok) {
           const remoteData = await res.json();
-          // Solo si el usuario no tiene cambios locales pendientes o si es la primera carga/navegador limpio
-          const hasLocalMembers = localStorage.getItem('ucen_facdeh_members');
-          const hasLocalArticles = localStorage.getItem('ucen_articles');
-          const hasLocalHitos = localStorage.getItem('ucen_hitos');
-
-          // Si el visitante entra desde un navegador limpio (como celular o Safari), hidratar con data.json oficial
-          if (!hasLocalMembers && remoteData.members && Array.isArray(remoteData.members)) {
-            localStorage.setItem('ucen_facdeh_members', JSON.stringify(remoteData.members));
-          }
-          if (!hasLocalArticles && remoteData.articles && Array.isArray(remoteData.articles)) {
-            localStorage.setItem('ucen_articles', JSON.stringify(remoteData.articles));
-          }
-          if (!hasLocalHitos && remoteData.hitos && Array.isArray(remoteData.hitos)) {
-            localStorage.setItem('ucen_hitos', JSON.stringify(remoteData.hitos));
-          }
-          if (!localStorage.getItem('ucen_site_visual_content') && remoteData.visualContent) {
-            localStorage.setItem('ucen_site_visual_content', JSON.stringify(remoteData.visualContent));
+          // Actualizar datos si no hay sesión activa de edición, o si remoteData es más reciente
+          const isEditing = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+          if (!isEditing) {
+            if (remoteData.members && Array.isArray(remoteData.members)) {
+              localStorage.setItem('ucen_facdeh_members', JSON.stringify(remoteData.members));
+            }
+            if (remoteData.articles && Array.isArray(remoteData.articles)) {
+              localStorage.setItem('ucen_articles', JSON.stringify(remoteData.articles));
+            }
+            if (remoteData.hitos && Array.isArray(remoteData.hitos)) {
+              localStorage.setItem('ucen_hitos', JSON.stringify(remoteData.hitos));
+            }
+            if (remoteData.visualContent && typeof remoteData.visualContent === 'object') {
+              localStorage.setItem('ucen_site_visual_content', JSON.stringify(remoteData.visualContent));
+            }
+            if (remoteData.themeColors && typeof remoteData.themeColors === 'object') {
+              localStorage.setItem('ucen_site_theme_colors', JSON.stringify(remoteData.themeColors));
+            }
           }
         }
       } catch (e) {
-        console.log('Modo standalone local activo.');
+        console.log('Modo local activo.');
       }
     }
 
