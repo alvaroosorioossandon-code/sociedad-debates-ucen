@@ -1,0 +1,2429 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sociedad de Debates "Prof. Rodrigo Pica F." · Universidad Central de Chile</title>
+  <meta name="description" content="Portal oficial de la Sociedad de Debates Prof. Rodrigo Pica F. de la Facultad de Derecho y Humanidades (FACDEH) UCEN. Artículos dogmáticos, opinión constitucional, cuerpo académico y repositorio." />
+  <link rel="icon" href="img/logo.jpg" />
+
+  <!-- Tipografías Oficiales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR INFORMATIVA -->
+  <div class="top-ticker">
+    <div class="wrap top-ticker__inner">
+      <div style="display:flex; align-items:center; gap:.8rem; overflow:hidden;">
+        <span class="top-ticker__tag">Actualidad 2026</span>
+        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+          I Torneo de Debates Interfacultades UCEN · Sala de Litigación y Sala de Licenciatura (Torre C, FACDEH)
+        </span>
+      </div>
+      <div>
+        <button class="top-ticker__btn" id="open-editor-top-btn" type="button">
+          ✍️ Acceso Editor & CMS
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN PRINCIPAL: CRITERIO DE VENTANAS (SIN SCROLL INFINITO) -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="javascript:void(0)" onclick="navigateToWindow('inicio')">
+      <img src="img/logo.jpg" alt="Logo UCEN" width="42" height="42" />
+      <span>Sociedad de Debates <em>UCEN</em></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegación de Ventanas">
+      <button class="nav-tab-btn active" data-window="inicio" type="button">Inicio & Memoria</button>
+      <button class="nav-tab-btn" data-window="articulos" type="button">Artículos & Opinión</button>
+      <button class="nav-tab-btn" data-window="equipo" type="button">Cuerpo Académico & Equipo</button>
+      <button class="nav-tab-btn" data-window="archivos" type="button">Repositorio & Archivos</button>
+      <button class="nav-tab-btn" data-window="noticias" type="button">Hitos & Torneos</button>
+      <button class="nav__editor-pill" id="open-editor-nav-btn" type="button">
+        ✍️ Editor
+      </button>
+    </nav>
+  </header>
+
+  <!-- CONTENEDOR DE VENTANAS (SECCIONES INDEPENDIENTES) -->
+  <main id="main-view-container">
+
+    <!-- ========================================================
+         VENTANA 1: INICIO (DASHBOARD GENERAL EN 8 BLOQUES)
+         ======================================================== -->
+    <section class="window-view active" id="win-inicio">
+
+      <!-- BLOQUE 1: TÍTULO PRINCIPAL (INCLUYENDO ENCABEZADO Y MENCIÓN RODRIGO PICA) -->
+      <section class="hero">
+        <picture class="hero__bg" data-editable="bg-img" data-edit-key="hero-bg" data-img-target="img">
+          <source media="(max-width: 700px)" srcset="img/hero.jpg" />
+          <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" />
+          <div class="visual-image-overlay">📷 Cambiar Imagen de Fondo</div>
+        </picture>
+        <div class="hero__veil"></div>
+        <div class="hero__inner">
+          <div data-editable="img" data-edit-key="hero-logo" style="display:inline-block; position:relative; border-radius:50%;">
+            <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" />
+            <div class="visual-image-overlay">📷 Cambiar Logo</div>
+          </div>
+          <div class="hero__text">
+            <p class="eyebrow" style="color: var(--blue-200);" data-editable="text" data-edit-key="hero-sub">Facultad de Derecho y Humanidades · UCEN</p>
+            <h1 data-editable="text" data-edit-key="hero-title">Sociedad de Debates</h1>
+            <p class="hero__script" data-editable="text" data-edit-key="hero-script">Prof. Rodrigo Pica F.</p>
+            <p class="hero__lead" data-editable="text" data-edit-key="hero-lead">
+              Potenciando las competencias discursivas, la litigación estratégica, la argumentación jurídica y el pensamiento crítico de los y las estudiantes de Derecho de la Universidad Central de Chile, con el apoyo institucional de la DAVE y la Vicerrectoría Académica.
+            </p>
+            <div class="hero__contact">
+              <button class="btn btn--gold" onclick="navigateToWindow('articulos')" type="button">
+                Explorar Tribuna de Opinión
+              </button>
+              <button class="btn btn--light" onclick="navigateToWindow('equipo')" type="button">
+                Cuerpo Académico & Equipo
+              </button>
+              <a class="btn btn--ghost" href="mailto:socdebate@ucentral.cl" data-editable="text" data-edit-key="hero-email-btn">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                socdebate@ucentral.cl
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 2: ÚNETE A DEBATIR / CONOCE MÁS -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow eyebrow--dark">Comunidad & Formación Jurídica</p>
+              <h3 data-editable="text" data-edit-key="join-header-title">Únete a Debatir / Conoce Más</h3>
+            </div>
+            <button class="btn-more" onclick="navigateToWindow('equipo')" type="button">
+              Conoce a nuestros integrantes →
+            </button>
+          </div>
+
+          <div class="join-grid">
+            <div class="join-card">
+              <span class="eyebrow" style="color: var(--gold-400);" data-editable="text" data-edit-key="join-eyebrow">Convocatoria Abierta 2026</span>
+              <h4 data-editable="text" data-edit-key="join-title">Forja tu voz en los estrados</h4>
+              <p data-editable="text" data-edit-key="join-desc">
+                La Sociedad de Debates ofrece talleres formativos en contra-interrogatorio, detección de falacias lógicas, argumentación constitucional y alegatos de clausura. Representamos a la Universidad Central frente a los principales tribunales y escuelas de Derecho del país.
+              </p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a class="btn btn--gold" href="mailto:socdebate@ucentral.cl?subject=Postulacion%20Sociedad%20de%20Debates">
+                  Postular como Debatiente
+                </a>
+                <button class="btn btn--ghost" onclick="navigateToWindow('archivos')" type="button">
+                  Descargar Estatutos y Guías
+                </button>
+              </div>
+            </div>
+
+            <div class="join-stats">
+              <div class="stat-box">
+                <div class="stat-number" data-editable="text" data-edit-key="stat-1-num">+10</div>
+                <div class="stat-label" data-editable="text" data-edit-key="stat-1-lbl">Facultades en competencia nacional</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number" data-editable="text" data-edit-key="stat-2-num">100%</div>
+                <div class="stat-label" data-editable="text" data-edit-key="stat-2-lbl">Compromiso ético y dogmático</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number" data-editable="text" data-edit-key="stat-3-num">2024</div>
+                <div class="stat-label" data-editable="text" data-edit-key="stat-3-lbl">Re-impulso Fundacional UCEN</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number" data-editable="text" data-edit-key="stat-4-num">TC</div>
+                <div class="stat-label" data-editable="text" data-edit-key="stat-4-lbl">Sello formativo Rodrigo Pica F.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 3: NUESTRAS REDES Y CONTACTO (CON FEED INSTAGRAM Y CORREO) -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow eyebrow--wine">Comunidad Digital & Difusión</p>
+              <h3 data-editable="text" data-edit-key="social-block-title">Nuestras Redes y Contacto</h3>
+            </div>
+            <a class="btn-more" href="https://instagram.com/debate.ucentral" target="_blank" rel="noopener">
+              Seguir en @debate.ucentral →
+            </a>
+          </div>
+
+          <div class="social-contact-grid">
+            <!-- Feed / Previsualización Visual de Instagram -->
+            <div>
+              <h4 style="font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--navy-800); margin-bottom: 1rem; font-weight: 800;">
+                📸 Últimas Publicaciones en Instagram (@debate.ucentral)
+              </h4>
+              <div class="instagram-feed-mock">
+                <article class="ig-post-card">
+                  <div class="ig-post-img" id="ig-img-1" data-editable="bg-img" data-edit-key="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');">
+                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
+                  </div>
+                  <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-1">
+                    <strong>@debate.ucentral:</strong> Jornada de debate interuniversitario UCEN vs USACH sobre Secreto Bancario. ¡Tremendo desempeño!
+                  </p>
+                </article>
+                <article class="ig-post-card">
+                  <div class="ig-post-img" id="ig-img-2" data-editable="bg-img" data-edit-key="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');">
+                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
+                  </div>
+                  <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-2">
+                    <strong>@debate.ucentral:</strong> Felicitamos a nuestro consejero Jorge Legisos por su premio como Mejor Debatiente del encuentro.
+                  </p>
+                </article>
+                <article class="ig-post-card">
+                  <div class="ig-post-img" id="ig-img-3" data-editable="bg-img" data-edit-key="ig-img-3" style="background-image: url('img/hero.jpg');">
+                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
+                  </div>
+                  <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-3">
+                    <strong>@debate.ucentral:</strong> I Torneo de Debates Interfacultades en la FACDEH. ¡Sala de Litigación y Licenciatura listas!
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <!-- Contacto Directo -->
+            <div class="contact-direct-card">
+              <span class="eyebrow eyebrow--dark">Canal Oficial</span>
+              <h4 data-editable="text" data-edit-key="contact-box-title">Escríbenos directamente</h4>
+              <p style="font-size: .88rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 1.2rem;" data-editable="text" data-edit-key="contact-box-desc">
+                Para invitaciones a torneos, remisión de artículos doctrinarios o consultas de incorporación académica:
+              </p>
+              <div style="margin-bottom: 1.2rem;">
+                <strong style="display:block; font-size: .95rem; color: var(--navy-900);">Correo electrónico:</strong>
+                <a href="mailto:socdebate@ucentral.cl" style="color: var(--blue-600); font-weight: 700; text-decoration: underline;" data-editable="text" data-edit-key="contact-email">
+                  socdebate@ucentral.cl
+                </a>
+              </div>
+              <div style="margin-bottom: 1.4rem;">
+                <strong style="display:block; font-size: .95rem; color: var(--navy-900);">Ubicación:</strong>
+                <span style="font-size: .85rem; color: var(--gray-600);" data-editable="text" data-edit-key="contact-address">Facultad de Derecho y Humanidades UCEN · Lord Cochrane 417, Torre C, Santiago</span>
+              </div>
+              <a class="btn btn--gold" href="mailto:socdebate@ucentral.cl" style="justify-content: center;">
+                Enviar Mensaje por Correo
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 4: HOMENAJE (RESUMEN VISUAL CON ACCESO A PROFUNDIZACIÓN) -->
+      <section class="home-section-block" style="padding: 0;">
+        <div class="memoria">
+          <div class="memoria__photo" data-editable="img" data-edit-key="rodrigo-pica-img" style="position:relative;">
+            <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" />
+            <div class="visual-image-overlay">📷 Cambiar Foto Homenaje</div>
+          </div>
+          <div class="memoria__text">
+            <p class="eyebrow eyebrow--dark" data-editable="text" data-edit-key="memoria-eyebrow">Homenaje a la Excelencia Jurídica (1979 – 2023)</p>
+            <p class="script-name" data-editable="text" data-edit-key="memoria-script-name">Rodrigo Pica Flores</p>
+            <p class="memoria__quote" data-editable="text" data-edit-key="memoria-quote">
+              "En memoria del gran ex debatiente, profesor titular de Derecho Político y Constitucional, y ministro del Tribunal Constitucional de Chile, <strong>Rodrigo Pica Flores</strong>."
+            </p>
+            <p style="font-size: .85rem; color: var(--gray-600); margin: 1rem 0 1.5rem; line-height: 1.6;" data-editable="text" data-edit-key="memoria-desc">
+              Su legado permanece vivo en la FACDEH a través de su doctrina sobre el control concreto de inaplicabilidad, el debido proceso sancionador y el rigor dialéctico en las nuevas generaciones.
+            </p>
+            <div style="display: flex; gap: .8rem; flex-wrap: wrap;">
+              <a class="btn btn--outline" href="https://www1.tribunalconstitucional.cl/integracion/rodrigo-pica-flores/" target="_blank" rel="noopener">
+                Ficha Biográfica TC →
+              </a>
+              <a class="btn btn--outline" href="https://derecho.uchile.cl/agenda/216816/lanzamiento-de-libro-en-homenaje-al-profesor-rodrigo-pica-flores" target="_blank" rel="noopener">
+                Libro Homenaje 2024 →
+              </a>
+              <button class="btn btn--gold" onclick="navigateToWindow('noticias')" type="button">
+                Hitos y Torneo Homenaje 2026
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 5: ARTÍCULOS Y OPINIÓN (VISTA PREVIA DE PUBLICACIONES RECIENTES) -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow eyebrow--wine">Tribuna Periodística & Doctrinaria</p>
+              <h3>Artículos y Opinión</h3>
+            </div>
+            <button class="btn-more" onclick="navigateToWindow('articulos')" type="button">
+              Ver todos y leer completos en la Tribuna →
+            </button>
+          </div>
+
+          <div class="editorial-layout" style="grid-template-columns: 1.8fr 1.2fr;">
+            <!-- Destacado Principal en Home -->
+            <div id="home-featured-article-preview">
+              <!-- Renderizado dinámico -->
+            </div>
+
+            <!-- Listado breve de recientes -->
+            <div class="editorial-block">
+              <div class="editorial-block__title">
+                <span>Últimas Columnas</span>
+                <span style="font-size:.7rem; color:var(--gray-600);">Actualizado Octubre 2026</span>
+              </div>
+              <div id="home-recent-articles-preview">
+                <!-- Renderizado dinámico -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 6: RADIO UCEN (REPRODUCTOR Y RESUMEN DE EPISODIOS) -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow" style="color: var(--blue-600);">Difusión Institucional · Radio U.Central 107.1 FM</p>
+              <h3>Radio y Medios</h3>
+            </div>
+            <a class="btn-more" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
+              Ver canal oficial en YouTube →
+            </a>
+          </div>
+
+          <div class="radio-box">
+            <div>
+              <p class="eyebrow" style="color: var(--gold-400);">Entrevista Exclusiva · 5 de octubre de 2026</p>
+              <h4 style="font-family: var(--display); font-size: 2rem; text-transform: uppercase; margin: .5rem 0 .8rem; color: var(--white);">
+                Sociedad de Debates al Aire
+              </h4>
+              <p style="color: var(--blue-200); line-height: 1.6; margin-bottom: 1.4rem; font-size: .92rem;">
+                El equipo de la Sociedad de Debates "Prof. Rodrigo Pica F." analiza en Radio U.Central el re-impulso de la oratoria forense, la preparación ante el torneo interfacultades y la importancia del pensamiento crítico en la formación universitaria.
+              </p>
+              <a class="btn btn--gold" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
+                Reproducir en YouTube →
+              </a>
+            </div>
+            <div>
+              <iframe src="https://www.youtube-nocookie.com/embed/ri-sdSjdIjI" title="Entrevista a la Sociedad de Debates en Radio U.Central 107.1 FM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 7: ARCHIVOS: DOCUMENTOS Y GALERÍA -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow" style="color: var(--wine-700);">Repositorio & Registro Fotográfico</p>
+              <h3>Archivos: Documentos y Galería</h3>
+            </div>
+            <button class="btn-more" onclick="navigateToWindow('archivos')" type="button">
+              Abrir Repositorio Completo →
+            </button>
+          </div>
+
+          <div class="docs-gallery-grid">
+            <!-- Muestra de Documentos -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <h4 style="font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--navy-800); font-weight: 800;">
+                📄 Materiales Académicos Destacados
+              </h4>
+              <div id="home-materials-preview">
+                <!-- Renderizado dinámico -->
+              </div>
+            </div>
+
+            <!-- Muestra de Galería Fotográfica -->
+            <div>
+              <h4 style="font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--navy-800); font-weight: 800; margin-bottom: 1rem;">
+                📷 Momentos y Encuentros
+              </h4>
+              <div class="home-mini-gallery">
+                <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
+                  <img src="img/galeria/foto-01.jpg" alt="Encuentro de debate" />
+                </div>
+                <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
+                  <img src="img/galeria/foto-02.jpg" alt="Equipos en sala de litigación" />
+                </div>
+                <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
+                  <img src="img/galeria/foto-03.jpg" alt="Preparación de moción" />
+                </div>
+                <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
+                  <img src="img/galeria/foto-08.jpg" alt="UCEN vs USACH" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOQUE 8: CALENDARIO DE EVENTOS Y PRÓXIMAS REUNIONES -->
+      <section class="home-section-block">
+        <div class="wrap">
+          <div class="home-block-header">
+            <div>
+              <p class="eyebrow eyebrow--dark">Agenda Académica & Competitiva</p>
+              <h3>Calendario de Eventos y Próximas Reuniones</h3>
+            </div>
+            <button class="btn-more" onclick="navigateToWindow('noticias')" type="button">
+              Ver detalle de rondas y torneos →
+            </button>
+          </div>
+
+          <div class="calendar-timeline">
+            <div class="calendar-item">
+              <div class="cal-badge">
+                <b>14</b>
+                <span>OCT</span>
+              </div>
+              <div>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Cuartos de Final</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">I Torneo de Debates Interfacultades UCEN (Torre C, FACDEH).</p>
+              </div>
+            </div>
+
+            <div class="calendar-item">
+              <div class="cal-badge" style="background:var(--wine-700); color:var(--white);">
+                <b>19</b>
+                <span>OCT</span>
+              </div>
+              <div>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Semifinal Nacional</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Sala de Litigación (2° piso) y Sala de Licenciatura (4° piso).</p>
+              </div>
+            </div>
+
+            <div class="calendar-item">
+              <div class="cal-badge" style="background:var(--gold-400); color:var(--navy-950);">
+                <b>23</b>
+                <span>OCT</span>
+              </div>
+              <div>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Gran Final y Premiación</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Definición del campeonato y mejor orador individual.</p>
+              </div>
+            </div>
+
+            <div class="calendar-item">
+              <div class="cal-badge">
+                <b>VIER</b>
+                <span>17:00</span>
+              </div>
+              <div>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Reunión Ordinaria de Consejo</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Taller de contra-interrogatorio y preparación de mociones.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ========================================================
+         VENTANA 2: ARTÍCULOS & OPINIÓN (ESTILO EDITORIAL MRNS.CL)
+         ======================================================== -->
+    <section class="window-view view-articulos" id="win-articulos">
+      <div class="wrap">
+        <div class="section-title-bar">
+          <div>
+            <p class="eyebrow eyebrow--wine">Tribuna de Opinión y Doctrina Constitucional</p>
+            <h2>Artículos & Columnas</h2>
+          </div>
+          <button class="btn btn--gold" onclick="openEditorWithTab('art')" type="button">
+            + Publicar Artículo
+          </button>
+        </div>
+
+        <!-- FILTRO POR MATERIA Y ETIQUETAS (TAGS) -->
+        <div class="tags-filter-bar" id="articles-tags-bar">
+          <button class="facdeh-chip-btn active" data-tag="todos" type="button">Todas las Materias</button>
+          <button class="facdeh-chip-btn" data-tag="Derecho Constitucional" type="button">Derecho Constitucional</button>
+          <button class="facdeh-chip-btn" data-tag="Derecho Procesal Penal" type="button">Derecho Procesal Penal</button>
+          <button class="facdeh-chip-btn" data-tag="Litigación Oral" type="button">Litigación Oral & Retórica</button>
+          <button class="facdeh-chip-btn" data-tag="Delitos Informáticos" type="button">Ciberespacio & Tecnología</button>
+        </div>
+
+        <div class="editorial-layout">
+          <!-- VISOR EDITORIAL MRNS.CL -->
+          <article class="mrns-article-viewer" id="current-article-display">
+            <!-- Inyectado dinámicamente -->
+          </article>
+
+          <!-- BARRA LATERAL DE ARTÍCULOS Y COLUMNAS -->
+          <aside class="editorial-sidebar">
+            <div class="editorial-block">
+              <div class="editorial-block__title">
+                <span>Tribuna de Artículos</span>
+                <span id="articles-counter" style="color: var(--gray-600); font-size: .75rem;">(3)</span>
+              </div>
+              <div id="sidebar-articles-list">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="editorial-block" style="background: var(--blue-50); border-color: var(--blue-200);">
+              <h4 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .4rem; font-weight: 700;">
+                Convocatoria Permanente
+              </h4>
+              <p style="font-size: .82rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 1rem;">
+                Estudiantes y socios pueden redactar y enviar sus análisis jurídicos sobre derecho público, penal, ética procesal y jurisprudencia.
+              </p>
+              <button class="btn btn--outline" style="width: 100%; justify-content: center; font-size: .78rem;" onclick="openEditorWithTab('art')" type="button">
+                Escribir Opinión Ahora
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VENTANA 3: CUERPO ACADÉMICO & EQUIPO (ESTILO FACDEH.UCENTRAL.CL)
+         ======================================================== -->
+    <section class="window-view view-equipo" id="win-equipo">
+      <div class="wrap">
+        <div class="facdeh-header-hero">
+          <p class="eyebrow" style="color: var(--gold-400);">Facultad de Derecho y Humanidades · UCEN</p>
+          <h2>Cuerpo Académico & Equipo</h2>
+          <p>
+            Conoce a los docentes, coordinadores y estudiantes que conforman la Sociedad de Debates "Prof. Rodrigo Pica F.", estructurado bajo los estándares oficiales de la FACDEH.
+          </p>
+        </div>
+
+        <!-- Filtros al estilo FACDEH -->
+        <div class="facdeh-filters-bar">
+          <div class="facdeh-filter-chips">
+            <button class="facdeh-chip-btn active" data-filter="todos" type="button">Todos</button>
+            <button class="facdeh-chip-btn" data-filter="autoridad" type="button">Cuerpo Académico & Dirección</button>
+            <button class="facdeh-chip-btn" data-filter="estudiante" type="button">Consejo Estudiantil & Oradores</button>
+            <button class="facdeh-chip-btn" data-filter="asesor" type="button">Asesoría Externa</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <span style="font-size: .8rem; color: var(--gray-600); font-weight: 600;" id="members-count-label">9 Integrantes</span>
+            <button class="btn btn--gold editor-only-btn" id="btn-add-member-win" onclick="promptAddMember()" type="button" style="padding:.25rem .75rem; font-size:.74rem; display:none;">
+              + Agregar Integrante / Socio
+            </button>
+          </div>
+        </div>
+
+        <!-- Grilla de Tarjetas FACDEH -->
+        <div class="facdeh-grid" id="facdeh-team-grid">
+          <!-- Renderizado dinámico -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VENTANA 4: REPOSITORIO & ARCHIVOS
+         ======================================================== -->
+    <section class="window-view view-archivos" id="win-archivos">
+      <div class="wrap">
+        <div class="section-title-bar" style="border-bottom-color: rgba(196, 216, 238, .2);">
+          <div>
+            <p class="eyebrow" style="color: var(--gold-400);">Repositorio Académico y Documental</p>
+            <h2 style="color: var(--white);" data-editable="text" data-edit-key="archivos-title">Archivos y Materiales</h2>
+          </div>
+          <button class="btn btn--gold" onclick="openEditorWithTab('mat')" type="button">
+            + Subir Archivo
+          </button>
+        </div>
+        <p style="color: var(--blue-200); font-size: .95rem; max-width: 65ch;" data-editable="text" data-edit-key="archivos-lead">
+          Minutas dogmáticas, pautas de evaluación de oratoria, compendios de mociones preparadas y manuales técnicos de litigación.
+        </p>
+
+        <div class="materials-grid" id="materials-container">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VENTANA 5: HITOS, TORNEOS & NOTICIAS (2024-2026)
+         ======================================================== -->
+    <section class="window-view hitos-section" id="win-noticias">
+      <div class="wrap">
+        <div class="section-title-bar">
+          <div>
+            <p class="eyebrow eyebrow--dark">Trayectoria Competitiva (2024 – 2026)</p>
+            <h2>Hitos y Torneos de Debate</h2>
+          </div>
+        </div>
+
+        <!-- NOTICIA DESTACADA: UCEN VS USACH -->
+        <article class="hito-card" style="margin-bottom: 2.5rem; background: var(--white); border-color: var(--blue-400);">
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 280px;">
+              <span class="hito-card__badge">Octubre 2026 · Interuniversitario</span>
+              <h3 style="font-size: 1.4rem; color: var(--navy-900); margin: .4rem 0 .8rem; font-weight: 800;">
+                Sociedad de Debates UCEN vs Sociedad de Litigación USACH
+              </h3>
+              <p style="color: var(--gray-700); line-height: 1.6; font-size: .92rem; margin-bottom: 1rem;">
+                En el marco del I Torneo de Debates Interfacultades de la UCEN, el equipo compuesto por Antonia Vidal, Martín Castro, Jorge Legisos y Matías Gioia debatió contra el equipo de la Universidad de Santiago de Chile con la postura en contra de <strong>"Flexibilizar el Secreto Bancario"</strong>. Fueron distinguidos como mejores oradores Jorge Legisos Soto (UCEN) y Antonia Pinto (USACH).
+              </p>
+              <div style="background: var(--blue-50); border: 1px solid var(--blue-200); padding: .8rem; border-radius: 8px; font-size: .82rem;">
+                <strong>Cronograma Torneo Interfacultades:</strong><br/>
+                • Cuartos de Final: Miércoles 14 de octubre de 2026<br/>
+                • Semifinal: Lunes 19 de octubre de 2026<br/>
+                • Final y 3°/4° lugar: Viernes 23 de octubre de 2026<br/>
+                <em>(Lugar: Sala de Litigación, piso 2 y Sala de Licenciatura, piso 4, Torre C - FACDEH)</em>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- GRILLA DE HITOS HISTÓRICOS 2024-2026 -->
+        <div class="hitos-grid">
+          <div class="hito-card">
+            <span class="hito-card__badge">Octubre 2024</span>
+            <h4 class="hito-card__title">I Torneo de Debate Jurídico del Poder Judicial</h4>
+            <p class="hito-card__desc">
+              Organizado por la Corte de Apelaciones de San Miguel con ocho facultades de Derecho. En su reestreno, la UCEN alcanzó Cuartos de Final frente a la Universidad de Chile en rondas evaluadas por ministros de Corte.
+            </p>
+            <a class="hito-card__link" href="https://derecho.uchile.cl/noticias/222004/u-de-chile-gana-primer-torneo-de-debate-juridico-del-poder-judicial" target="_blank" rel="noopener">
+              Ver cobertura oficial U. de Chile →
+            </a>
+          </div>
+
+          <div class="hito-card">
+            <span class="hito-card__badge">Mayo 2025</span>
+            <h4 class="hito-card__title">I Torneo "Dr. Antonio Bascuñán Valdés"</h4>
+            <p class="hito-card__desc">
+              Colegio de Abogados de Chile y Asociación Chilena de Litigación. Participación de once universidades. La UCEN superó fase de grupos y cuartos de final instalándose en las Semifinales Nacionales.
+            </p>
+            <a class="hito-card__link" href="https://finis.cl/equipo-de-debate-de-la-facultad-de-derecho-gano-torneo-organizado-por-el-colegio-de-abogados-y-la-asociacion-chilena-de-litigacion/" target="_blank" rel="noopener">
+              Ver registro Semifinales →
+            </a>
+          </div>
+
+          <div class="hito-card">
+            <span class="hito-card__badge">Septiembre–Octubre 2025</span>
+            <h4 class="hito-card__title">II Torneo de Debate del Poder Judicial</h4>
+            <p class="hito-card__desc">
+              Convocatoria de diez facultades de Derecho (PUC, UCH, UCEN, USACH, UDP, UAH, UANDES, UDD, USS, UAUT). Incorporación de herramientas inmersivas en litigación penal y civil.
+            </p>
+            <a class="hito-card__link" href="https://www.diarioconstitucional.cl/2025/10/30/universidad-catolica-obtiene-el-primer-lugar-en-el-2-torneo-de-debate-juridico-organizado-por-la-corte-de-san-miguel/" target="_blank" rel="noopener">
+              Ver en Diario Constitucional →
+            </a>
+          </div>
+
+          <div class="hito-card">
+            <span class="hito-card__badge">Mayo–Junio 2026</span>
+            <h4 class="hito-card__title">II Torneo "Dr. Antonio Bascuñán Valdés"</h4>
+            <p class="hito-card__desc">
+              Participación oficial de la representación de la Universidad Central junto a las principales escuelas de Derecho del país en la sede del Colegio de Abogados de Chile A.G.
+            </p>
+            <a class="hito-card__link" href="https://actualidad.udla.cl/2026/05/estudiantes-de-derecho-udla-participan-en-el-segundo-torneo-de-debate-juridico-dr-antonio-bascunan-valdes/" target="_blank" rel="noopener">
+              Ver nómina oficial →
+            </a>
+          </div>
+
+          <div class="hito-card">
+            <span class="hito-card__badge">1 de Julio de 2026</span>
+            <h4 class="hito-card__title">Torneo FACDEH en Homenaje a la Excelencia</h4>
+            <p class="hito-card__desc">
+              Hito institucional clave con respaldo de Vicerrectoría Académica y DAVE, rindiendo tributo al legado del profesor Rodrigo Pica Flores y cimentando la plataforma actual.
+            </p>
+            <a class="hito-card__link" href="https://noticias.ucentral.cl/noticias/estudiantes-de-derecho-rindieron-homenaje-a-la-excelencia-juridica-en-torneo-de-debate-de-la-facdeh/" target="_blank" rel="noopener">
+              Ver noticia oficial UCEN →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL DE EDITOR / CMS (SIN CONTRASEÑAS SUGERIDAS)
+       ======================================================== -->
+  <dialog class="editor-modal" id="editor-dialog">
+    <div class="editor-modal__head">
+      <h3 class="editor-modal__title">✍️ Panel de Control & Editor</h3>
+      <button class="cv__close" id="editor-dialog-close" type="button" style="position:static; width:2rem; height:2rem; font-size:1.4rem;">×</button>
+    </div>
+
+    <!-- PANTALLA LOGIN: Campos limpios sin sugerencias -->
+    <div class="editor-modal__body" id="editor-login-sec">
+      <p style="font-size: .88rem; color: var(--gray-600); margin-bottom: 1.2rem;">
+        Introduce tu usuario y contraseña de <strong>Admin Central</strong>, <strong>Editor</strong> o <strong>Socio</strong>.
+      </p>
+
+      <form id="form-login-clean" autocomplete="off">
+        <div class="form-group">
+          <label for="login-username">Usuario</label>
+          <input type="text" id="login-username" autocomplete="off" placeholder="Ingresa tu usuario..." required />
+        </div>
+        <div class="form-group">
+          <label for="editor-password">Contraseña</label>
+          <input type="password" id="editor-password" autocomplete="new-password" placeholder="Ingresa tu contraseña..." required />
+        </div>
+        <button class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: .6rem;" type="submit">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+
+    <!-- PANTALLA PANEL (AUTENTICADO) -->
+    <div class="editor-modal__body" id="editor-workspace-sec" style="display: none;">
+      
+      <!-- BARRA DE ESTADO DEL USUARIO -->
+      <div class="user-status-bar">
+        <div>
+          <span>Conectado como: <strong id="logged-user-name">Admin Central</strong></span>
+          <span class="user-badge user-badge--admin" id="logged-user-role-badge">ADMIN</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:.8rem;">
+          <button id="btn-modal-launch-visual" type="button" class="btn btn--gold" style="padding:.3rem .8rem; font-size:.76rem; border-radius:20px;">
+            🎨 Ir a Edición Visual en Vivo
+          </button>
+          <button id="btn-logout" type="button" style="background:none; border:none; color: #c92a2a; font-weight:700; cursor:pointer; font-size:.78rem;">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+
+      <!-- BANNER EXPLICATIVO PARA EDITORES Y ADMIN -->
+      <div id="editor-visual-guide-banner" style="background: linear-gradient(135deg, rgba(0, 83, 213, .08), rgba(223, 181, 75, .1)); border: 1px solid var(--gold-400); border-radius: 8px; padding: .8rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+        <div>
+          <strong style="color: var(--navy-900); font-size: .86rem; display: block; margin-bottom: .2rem;">
+            ✨ Modo Visual "Estilo Wix" Habilitado
+          </strong>
+          <p style="font-size: .78rem; color: var(--gray-700); margin: 0; line-height: 1.4;">
+            Cierra este modal para editar la web directamente en pantalla: pincha sobre cualquier texto para escribirlo, o haz clic en cualquier foto para cambiarla.
+          </p>
+        </div>
+        <button class="btn btn--outline" id="btn-close-and-edit-visual" type="button" style="font-size: .75rem; white-space: nowrap; padding: .4rem .8rem;">
+          Cerrar e Iniciar Edición ✏️
+        </button>
+      </div>
+
+      <!-- TABS DEL PANEL -->
+      <div class="editor-tabs-bar">
+        <button class="editor-tab-btn active" id="tab-btn-art" type="button">Redactar</button>
+        <button class="editor-tab-btn" id="tab-btn-order" type="button">Ordenar Artículos</button>
+        <button class="editor-tab-btn" id="tab-btn-mat" type="button">Archivos</button>
+        <button class="editor-tab-btn" id="tab-btn-security" type="button">Mi Contraseña</button>
+        <button class="editor-tab-btn" id="tab-btn-users" type="button" style="display: inline-block;">Gestión Usuarios</button>
+      </div>
+
+      <!-- TAB 1: FORMULARIO ARTÍCULO CON ETIQUETAS, MATERIA Y BIBLIOGRAFÍA -->
+      <form id="form-add-article">
+        <div class="form-group">
+          <label>Título del Artículo</label>
+          <input type="text" id="input-art-title" required placeholder="Ej: Control de Convencionalidad y Debido Proceso" />
+        </div>
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+          <div>
+            <label>Categoría</label>
+            <select id="input-art-cat">
+              <option value="Doctrina & Debate Constitucional">Doctrina & Debate Constitucional</option>
+              <option value="Opinión & Columnas">Opinión & Columnas</option>
+              <option value="Jurisprudencia Comentada">Jurisprudencia Comentada</option>
+            </select>
+          </div>
+          <div>
+            <label>Materia / Especialidad</label>
+            <select id="input-art-materia">
+              <option value="Derecho Constitucional">Derecho Constitucional</option>
+              <option value="Derecho Procesal Penal">Derecho Procesal Penal</option>
+              <option value="Litigación Oral">Litigación Oral</option>
+              <option value="Delitos Informáticos">Delitos Informáticos</option>
+              <option value="Derecho Internacional">Derecho Internacional</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+          <div>
+            <label>Autor</label>
+            <input type="text" id="input-art-author" required placeholder="Nombre del autor o socio..." />
+          </div>
+          <div>
+            <label>Etiquetas / Tags (separadas por coma)</label>
+            <input type="text" id="input-art-tags" placeholder="Ej: TC, Derechos Fundamentales, GAFI" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Bajada / Lead (Destacado inicial)</label>
+          <textarea id="input-art-summary" required placeholder="Breve análisis en 2 o 3 líneas..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Cuerpo del Artículo (Párrafos completos)</label>
+          <textarea id="input-art-content" required style="min-height: 130px;" placeholder="Escribe el texto completo aquí..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Bibliografía y Enlaces de Referencia (un enlace o cita por línea)</label>
+          <textarea id="input-art-biblio" rows="3" placeholder="https://www.diarioconstitucional.cl/fallo-tc/&#10;Zúñiga Urbina, F. (2024). Justicia Constitucional y Democracia. Tirant Lo Blanch.&#10;https://www.tribunalconstitucional.cl"></textarea>
+        </div>
+        <button class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: .5rem;" type="submit">
+          Publicar Artículo
+        </button>
+      </form>
+
+      <!-- TAB 2: ORDENAR ARTÍCULOS DIRECTAMENTE EN INTERFAZ -->
+      <div id="sec-order-articles" style="display: none;">
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Reordenar y Fijar Artículos</h4>
+        <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: 1rem;">
+          Usa los controles de la interfaz para mover artículos arriba o abajo, o fijar el artículo principal que lidera la portada y la tribuna.
+        </p>
+        <div id="order-articles-list">
+          <!-- Renderizado dinámico de controles de orden -->
+        </div>
+      </div>
+
+      <!-- TAB 2: FORMULARIO MATERIAL -->
+      <form id="form-add-material" style="display: none;">
+        <div class="form-group">
+          <label>Nombre del Documento</label>
+          <input type="text" id="input-mat-title" required placeholder="Ej: Minuta: Flexibilización del Secreto Bancario" />
+        </div>
+        <div class="form-group">
+          <label>Categoría</label>
+          <select id="input-mat-cat">
+            <option value="Minutas de Debate">Minutas de Debate</option>
+            <option value="Mociones Oficiales">Mociones Oficiales</option>
+            <option value="Guías de Litigación">Guías de Litigación</option>
+            <option value="Estatutos">Estatutos</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Descripción pedagógica</label>
+          <textarea id="input-mat-desc" required placeholder="Resumen del material y argumentos incluidos..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Formato (PDF / DOCX)</label>
+          <input type="text" id="input-mat-format" value="PDF" placeholder="PDF" />
+        </div>
+        <div class="form-group">
+          <label>Enlace de Descarga (Google Drive / Enlace)</label>
+          <input type="text" id="input-mat-link" placeholder="https://drive.google.com/..." />
+        </div>
+        <button class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: .5rem;" type="submit">
+          Guardar Material
+        </button>
+      </form>
+
+      <!-- TAB 3: CAMBIO DE CONTRASEÑA -->
+      <form id="form-change-password" style="display: none;" autocomplete="off">
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .8rem;">Cambiar Mi Contraseña</h4>
+        <div class="form-group">
+          <label>Contraseña Actual</label>
+          <input type="password" id="input-curr-pwd" autocomplete="new-password" required placeholder="Ingresa tu clave actual..." />
+        </div>
+        <div class="form-group">
+          <label>Nueva Contraseña</label>
+          <input type="password" id="input-new-pwd" autocomplete="new-password" required placeholder="Ingresa tu nueva clave..." />
+        </div>
+        <div class="form-group">
+          <label>Confirmar Nueva Contraseña</label>
+          <input type="password" id="input-confirm-pwd" autocomplete="new-password" required placeholder="Repite la nueva clave..." />
+        </div>
+        <button class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: .5rem;" type="submit">
+          Actualizar Contraseña
+        </button>
+      </form>
+
+      <!-- TAB 4: GESTIÓN DE USUARIOS (CREAR EDITORES Y SOCIOS) -->
+      <div id="sec-users-management" style="display: none;">
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Crear Nuevo Usuario (Editor o Socio)</h4>
+        <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: 1rem;">
+          Como <strong>Admin Central</strong> puedes habilitar cuentas independientes para socios redactores y editores de contenido.
+        </p>
+
+        <form id="form-create-user" style="background: var(--gray-100); padding: 1rem; border-radius: 8px; border: 1px solid var(--gray-300);" autocomplete="off">
+          <div class="form-group">
+            <label>Nombre Completo / Socio</label>
+            <input type="text" id="new-user-fullname" required placeholder="Ej: Jorge Legisos" />
+          </div>
+          <div class="form-group">
+            <label>Nombre de Usuario (Login)</label>
+            <input type="text" id="new-user-username" required autocomplete="off" placeholder="Ej: jlegisos" />
+          </div>
+          <div class="form-group">
+            <label>Rol Asignado</label>
+            <select id="new-user-role">
+              <option value="editor">Editor (Publicar artículos y materiales)</option>
+              <option value="socio">Socio (Escribir columnas de opinión)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Contraseña Inicial</label>
+            <input type="password" id="new-user-pwd" autocomplete="new-password" required placeholder="Contraseña de acceso..." />
+          </div>
+          <button class="btn btn--gold" style="width: 100%; justify-content: center;" type="submit">
+            + Crear Usuario
+          </button>
+        </form>
+
+        <div style="margin-top: 1.5rem;">
+          <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .4rem;">Usuarios Existentes</h5>
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- ========================================================
+       BARRA FLOTANTE DE EDICIÓN VISUAL IN SITU ("ESTILO WIX")
+       (Solo visible para Administradores y Editores autenticados)
+       ======================================================== -->
+  <aside class="floating-editor-bar" id="floating-editor-bar" aria-label="Controles de Edición Visual">
+    <div class="floating-editor-bar__role">
+      <span>🎨 Modo Edición Visual</span>
+      <span class="user-badge" id="bar-user-badge">ADMIN</span>
+    </div>
+    <div class="floating-editor-bar__status" id="visual-edit-status">
+      Haz clic en cualquier texto para escribir, o en una imagen para cambiarla.
+    </div>
+    <div class="floating-editor-bar__actions">
+      <button class="btn-editor-action" id="btn-toggle-visual-edit" type="button">
+        ✏️ <span id="visual-toggle-text">Pausar Edición</span>
+      </button>
+      <button class="btn-editor-action" id="btn-open-palette-modal" type="button">
+        🎨 Colores Tema
+      </button>
+      <button class="btn-editor-action" onclick="openEditorModal()" type="button">
+        📋 Panel CMS
+      </button>
+      <button class="btn-editor-action btn-editor-action--save" id="btn-save-visual-changes" type="button">
+        💾 Guardar Cambios
+      </button>
+    </div>
+  </aside>
+
+  <!-- MODAL: CAMBIO DE IMAGEN VISUAL -->
+  <div class="inline-editor-modal" id="image-edit-modal">
+    <div class="inline-editor-modal__card">
+      <div class="inline-editor-modal__header">
+        <h3>🖼️ Cambiar Imagen</h3>
+        <button class="cv__close" style="position:static; width:1.8rem; height:1.8rem;" onclick="closeImageEditorModal()">×</button>
+      </div>
+      <div class="inline-editor-modal__body">
+        <p style="font-size: .84rem; color: var(--gray-600); margin-bottom: 1rem;">
+          Puedes ingresar la URL de una imagen en la web o seleccionar una imagen desde tu equipo (se cargará de forma automática).
+        </p>
+
+        <div class="form-group">
+          <label>URL de la imagen (o enlace web):</label>
+          <input type="text" id="img-editor-url" placeholder="https://ejemplo.com/foto.jpg o img/foto.jpg" />
+        </div>
+
+        <div class="form-group">
+          <label>O subir archivo desde tu computador:</label>
+          <input type="file" id="img-editor-file" accept="image/*" style="font-size:.82rem;" />
+        </div>
+
+        <div style="margin-top: 1rem; text-align: center;">
+          <img id="img-editor-preview" src="" alt="Vista previa" style="max-height: 140px; margin: 0 auto; border-radius: 6px; display: none; border: 1px solid var(--gray-300);" />
+        </div>
+
+        <div style="display: flex; gap: .8rem; margin-top: 1.2rem;">
+          <button class="btn btn--gold" style="flex: 1; justify-content: center;" id="btn-apply-image" type="button">
+            Aplicar Imagen
+          </button>
+          <button class="btn btn--outline" onclick="closeImageEditorModal()" type="button">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PERSONALIZADOR DE COLORES DEL SITIO -->
+  <div class="inline-editor-modal" id="theme-color-modal">
+    <div class="inline-editor-modal__card">
+      <div class="inline-editor-modal__header">
+        <h3>🎨 Personalizar Colores del Tema</h3>
+        <button class="cv__close" style="position:static; width:1.8rem; height:1.8rem;" onclick="closeColorModal()">×</button>
+      </div>
+      <div class="inline-editor-modal__body">
+        <p style="font-size: .84rem; color: var(--gray-600); margin-bottom: 1rem;">
+          Selecciona una paleta predefinida o ajusta los colores de acento institucional en tiempo real:
+        </p>
+
+        <div class="color-picker-grid">
+          <div class="color-picker-card" onclick="applyPresetPalette('ucen-classic')">
+            <div class="color-picker-sample" style="background: linear-gradient(135deg, #0053D5 50%, #dfb54b 50%);"></div>
+            <strong style="font-size:.78rem; display:block;">UCEN Clásico</strong>
+            <span style="font-size:.7rem; color:var(--gray-600);">Azul Real & Oro</span>
+          </div>
+
+          <div class="color-picker-card" onclick="applyPresetPalette('vino-forense')">
+            <div class="color-picker-sample" style="background: linear-gradient(135deg, #8c1d34 50%, #dfb54b 50%);"></div>
+            <strong style="font-size:.78rem; display:block;">Vino Forense</strong>
+            <span style="font-size:.7rem; color:var(--gray-600);">Burdeos & Oro</span>
+          </div>
+
+          <div class="color-picker-card" onclick="applyPresetPalette('tribunal-deep')">
+            <div class="color-picker-sample" style="background: linear-gradient(135deg, #0b1f3a 50%, #0053D5 50%);"></div>
+            <strong style="font-size:.78rem; display:block;">Corte Suprema</strong>
+            <span style="font-size:.7rem; color:var(--gray-600);">Azul Noche Profundo</span>
+          </div>
+
+          <div class="color-picker-card" onclick="applyPresetPalette('esmeralda-ley')">
+            <div class="color-picker-sample" style="background: linear-gradient(135deg, #0f5132 50%, #dfb54b 50%);"></div>
+            <strong style="font-size:.78rem; display:block;">Academia Verde</strong>
+            <span style="font-size:.7rem; color:var(--gray-600);">Bosque & Dorado</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.2rem; border-top: 1px solid var(--gray-200); padding-top: 1rem;">
+          <h4 style="font-size: .82rem; margin-bottom: .6rem; text-transform:uppercase; color:var(--navy-900);">Ajuste Manual Fino:</h4>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+            <div>
+              <label style="font-size:.75rem; font-weight:700;">Color Primario (Botones y Enlaces):</label>
+              <input type="color" id="picker-primary-color" value="#0053D5" style="width:100%; height:36px; border:none; cursor:pointer;" />
+            </div>
+            <div>
+              <label style="font-size:.75rem; font-weight:700;">Color Acento Dorado (Detalles):</label>
+              <input type="color" id="picker-gold-color" value="#dfb54b" style="width:100%; height:36px; border:none; cursor:pointer;" />
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: .8rem; margin-top: 1.2rem;">
+          <button class="btn btn--gold" style="flex: 1; justify-content: center;" onclick="saveCustomColors()" type="button">
+            Aplicar y Guardar Colores
+          </button>
+          <button class="btn btn--outline" onclick="closeColorModal()" type="button">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="img/logo.jpg" alt="" width="64" height="64" />
+    <p class="footer__name">Sociedad de Debates <span>Prof. Rodrigo Pica F.</span></p>
+    <p>Universidad Central de Chile · Facultad de Derecho y Humanidades (FACDEH)</p>
+    <p class="footer__links">
+      <a href="https://instagram.com/debate.ucentral" target="_blank" rel="noopener">Instagram @debate.ucentral</a>
+      <a href="mailto:socdebate@ucentral.cl">socdebate@ucentral.cl</a>
+      <a href="https://facdeh.ucentral.cl" target="_blank" rel="noopener">Portal FACDEH-UCEN</a>
+    </p>
+  </footer>
+
+  <!-- SCRIPT INTEGRAL (NAVEGACIÓN POR VENTANAS, DATOS REALES Y CMS) -->
+  <script>
+    // ==========================================
+    // NAVEGACIÓN POR VENTANAS (SIN SCROLL INFINITO)
+    // ==========================================
+    window.navigateToWindow = function(windowId) {
+      document.querySelectorAll('.window-view').forEach(win => win.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const targetWin = document.getElementById(`win-${windowId}`);
+      const targetBtn = document.querySelector(`.nav-tab-btn[data-window="${windowId}"]`);
+
+      if (targetWin) targetWin.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Si el modo edición visual está activo, habilitar en la ventana recién abierta
+      if (typeof visualEditingEnabled !== 'undefined' && visualEditingEnabled) {
+        setTimeout(enableContentEditable, 50);
+      }
+    };
+
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navigateToWindow(btn.dataset.window);
+      });
+    });
+
+    // ==========================================
+    // DATOS DE CUERPO ACADÉMICO & EQUIPO (FACDEH)
+    // ==========================================
+    const DEFAULT_MEMBERS = [
+      {
+        id: 'fac-1',
+        name: 'Macarena Fernández Undurraga',
+        role: 'Directora Depto. Derecho Público',
+        type: 'autoridad',
+        badge: 'Cuerpo Académico',
+        photo: 'img/equipo/jorge-legisos.jpg', // fondo institucional
+        bio: 'Licenciada en Derecho por la Pontificia Universidad Católica de Chile (PUC), Abogada y Máster en Tecnología Educativa por la UNED (España). Profesora de Derecho Internacional Público y Coordinadora de Vinculación con el Medio de la FACDEH-UCEN.',
+        links: [
+          { text: 'Perfil Oficial FACDEH', url: 'https://facdeh.ucentral.cl/perfil-academico/macarena-fernandez-undurraga/' },
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Macarena%20Fern%C3%A1ndez%20Undurraga' }
+        ]
+      },
+      {
+        id: 'fac-2',
+        name: 'María Luisa Sotomayor Duarte',
+        role: 'Directora Depto. Derecho Privado',
+        type: 'autoridad',
+        badge: 'Cuerpo Académico',
+        photo: '',
+        bio: 'Abogada y Licenciada en Ciencias Jurídicas y Sociales, con estudios de posgrado y amplia trayectoria docente y de gestión académica en la Universidad Central de Chile.',
+        links: [
+          { text: 'Autoridades FACDEH', url: 'https://facdeh.ucentral.cl/autoridades/' },
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mar%C3%ADa%20Luisa%20Sotomayor%20Duarte' }
+        ]
+      },
+      {
+        id: 'fac-3',
+        name: 'Héctor Vargas Ferrer',
+        role: 'Coordinador Sociedad de Debates',
+        type: 'autoridad',
+        badge: 'Coordinación',
+        photo: '',
+        bio: 'Licenciado en Filosofía por la Universidad de Chile, Egresado de Derecho de la Universidad Central de Chile y Mediador Familiar (UBO). Magíster en Gestión y Liderazgo Educacional con tres diplomados de postítulo por la UCEN.',
+        links: [
+          { text: 'Currículum Oficial', url: 'https://www.hectorvargasferrer.cl/experiencia-academica' },
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=H%C3%A9ctor%20Vargas%20Ferrer' }
+        ]
+      },
+      {
+        id: 'fac-4',
+        name: 'Álvaro Osorio Ossandón',
+        role: 'Asesor Externo',
+        type: 'asesor',
+        badge: 'Universidad de Leiden',
+        photo: '',
+        bio: 'Estudiante avanzado de Derecho en la FACDEH-UCEN y ex bombero voluntario. Beneficiario de la beca DRI de movilidad internacional cursando estudios en Leiden University (Países Bajos). Mejor orador del Torneo de Litigación ACHILIT (2024).',
+        links: [
+          { text: 'Beca Internacional UCEN', url: 'https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/' },
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=%C3%81lvaro%20Osorio%20Ossand%C3%B3n' }
+        ]
+      },
+      {
+        id: 'fac-5',
+        name: 'Jorge Legisos Soto',
+        role: 'Consejero & Articulista Doctrina',
+        type: 'estudiante',
+        badge: 'Mejor Orador 2026',
+        photo: 'img/equipo/jorge-legisos.jpg',
+        bio: 'Estudiante de Derecho UCEN, investigador en derecho procesal penal y garantías constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo "Prof. Rodrigo Pica".',
+        links: [
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto' }
+        ]
+      },
+      {
+        id: 'fac-6',
+        name: 'Antonia Vidal',
+        role: 'Consejera & Columnista de Opinión',
+        type: 'estudiante',
+        badge: 'Campeona Oratoria',
+        photo: 'img/equipo/antonia-vidal.jpg',
+        bio: 'Estudiante de Derecho UCEN, integrante del equipo titular de litigación y debate interfacultades. Campeona y mejor oradora del torneo de debate de la FACDEH, especializada en argumentación penal y ética procesal.',
+        links: [
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Antonia%20Vidal%20Universidad%20Central' }
+        ]
+      },
+      {
+        id: 'fac-7',
+        name: 'Martín Castro',
+        role: 'Consejero & Analista Jurisprudencia',
+        type: 'estudiante',
+        badge: 'Derecho Público',
+        photo: 'img/equipo/martin-castro.jpg',
+        bio: 'Estudiante de Derecho UCEN, ayudante del departamento de Derecho Público de la Universidad Central de Chile, desempeñándose en las áreas de Derecho Internacional Público y Derecho Procesal.',
+        links: [
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mart%C3%ADn%20Castro%20Universidad%20Central%20Derecho' }
+        ]
+      },
+      {
+        id: 'fac-8',
+        name: 'Camilo Gatica',
+        role: 'Consejero de Debates',
+        type: 'estudiante',
+        badge: 'Subcampeón 2026',
+        photo: 'img/equipo/camilo-gatica.jpg',
+        bio: 'Estudiante de Derecho UCEN e integrante activo del consejo organizador y de representación interuniversitaria.',
+        links: [
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Camilo%20Gatica%20Universidad%20Central' }
+        ]
+      },
+      {
+        id: 'fac-9',
+        name: 'Matías Gioia',
+        role: 'Consejero de Debates',
+        type: 'estudiante',
+        badge: 'Equipo Titular',
+        photo: 'img/equipo/matias-gioia.jpg',
+        bio: 'Estudiante de Derecho UCEN y miembro del equipo representativo que enfrentó a la Sociedad de Litigación de la USACH en octubre de 2026.',
+        links: [
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mat%C3%ADas%20Gioia%20Universidad%20Central' }
+        ]
+      }
+    ];
+
+    function getFacdehMembers() {
+      try {
+        const stored = localStorage.getItem('ucen_facdeh_members');
+        return stored ? JSON.parse(stored) : DEFAULT_MEMBERS;
+      } catch (e) {
+        return DEFAULT_MEMBERS;
+      }
+    }
+
+    function saveFacdehMembers(members) {
+      localStorage.setItem('ucen_facdeh_members', JSON.stringify(members));
+    }
+
+    function renderFacdehTeam(filter = 'todos') {
+      const grid = document.getElementById('facdeh-team-grid');
+      const allMembers = getFacdehMembers();
+      const filtered = filter === 'todos' ? allMembers : allMembers.filter(m => m.type === filter);
+
+      document.getElementById('members-count-label').textContent = `${filtered.length} Integrantes`;
+
+      const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+      const addBtnWin = document.getElementById('btn-add-member-win');
+      if (addBtnWin) addBtnWin.style.display = isEditorOrAdmin ? 'inline-block' : 'none';
+
+      grid.innerHTML = filtered.map(m => {
+        const photoStyle = m.photo ? `style="background-image: url('${m.photo}');"` : '';
+        const linkedinLink = m.links.find(l => l.text === 'LinkedIn');
+        const perfilLink = m.links.find(l => l.text !== 'LinkedIn');
+
+        // Controles de editor para cambiar foto o eliminar miembro
+        const editorControls = isEditorOrAdmin ? `
+          <div style="margin-top:.6rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center;">
+            <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
+            <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕ Borrar</button>
+          </div>
+        ` : '';
+
+        return `
+          <article class="facdeh-card">
+            <div class="facdeh-card__photo" ${photoStyle} data-editable="bg-img" data-edit-key="member-photo-${m.id}" onclick="${isEditorOrAdmin ? `editMemberPhoto('${m.id}')` : ''}">
+              <div class="facdeh-card__overlay-text">
+                <h3 data-editable="text" data-edit-key="member-name-${m.id}">${m.name}</h3>
+                <p data-editable="text" data-edit-key="member-role-${m.id}">${m.role}</p>
+              </div>
+              ${isEditorOrAdmin ? '<div class="visual-image-overlay">📷 Cambiar Foto</div>' : ''}
+            </div>
+            <div class="facdeh-card__body">
+              <span class="facdeh-card__tag" data-editable="text" data-edit-key="member-badge-${m.id}">${m.badge}</span>
+              <p class="facdeh-card__bio" data-editable="text" data-edit-key="member-bio-${m.id}">${m.bio}</p>
+              <div class="facdeh-card__footer">
+                ${perfilLink ? `<a class="facdeh-btn-perfil" href="${perfilLink.url}" target="_blank" rel="noopener">${perfilLink.text} →</a>` : '<span></span>'}
+                ${linkedinLink ? `
+                  <a class="facdeh-btn-linkedin" href="${linkedinLink.url}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                  </a>
+                ` : ''}
+              </div>
+              ${editorControls}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    window.editMemberPhoto = function(memberId) {
+      const members = getFacdehMembers();
+      const m = members.find(x => x.id === memberId);
+      if (!m) return;
+      const targetEl = document.querySelector(`[data-edit-key="member-photo-${memberId}"]`);
+      if (targetEl) {
+        openImageEditorModal(targetEl, `member-photo-${memberId}`);
+      }
+    };
+
+    window.deleteMember = function(memberId) {
+      if (!confirm('¿Deseas eliminar este integrante del equipo?')) return;
+      let members = getFacdehMembers().filter(m => m.id !== memberId);
+      saveFacdehMembers(members);
+      renderFacdehTeam();
+    };
+
+    window.promptAddMember = function() {
+      const name = prompt('Nombre completo del nuevo integrante:');
+      if (!name) return;
+      const role = prompt('Cargo o rol (ej: Consejero de Debates, Ayudante):', 'Consejero de Debates') || 'Consejero';
+      const badge = prompt('Insignia o mérito (ej: Mejor Orador 2026, Semifinalista):', 'Debatiente Titular') || 'Debatiente';
+      const bio = prompt('Breve reseña biográfica:', 'Estudiante de Derecho UCEN, integrante activo de la Sociedad de Debates.') || '';
+      const linkedin = prompt('Enlace a perfil de LinkedIn (opcional):', 'https://www.linkedin.com') || 'https://www.linkedin.com';
+
+      const newMember = {
+        id: 'fac-' + Date.now(),
+        name,
+        role,
+        type: 'estudiante',
+        badge,
+        photo: 'img/equipo/jorge-legisos.jpg',
+        bio,
+        links: [
+          { text: 'LinkedIn', url: linkedin }
+        ]
+      };
+
+      const members = getFacdehMembers();
+      members.push(newMember);
+      saveFacdehMembers(members);
+      renderFacdehTeam();
+      alert(`¡${name} agregado con éxito al equipo!`);
+    };
+
+    document.querySelectorAll('.facdeh-chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.facdeh-chip-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderFacdehTeam(btn.dataset.filter);
+      });
+    });
+
+    // ==========================================
+    // ARTÍCULOS EDITORIALES (CON TAGS, MATERIA Y BIBLIOGRAFÍA)
+    // ==========================================
+    const DEFAULT_ARTICLES = [
+      {
+        id: 'art-1',
+        title: 'Flexibilización del Secreto Bancario: Entre la eficacia persecutoria y las garantías de la vida privada',
+        category: 'Doctrina & Debate Constitucional',
+        materia: 'Derecho Constitucional',
+        tags: ['Derecho Constitucional', 'Debido Proceso', 'TC Chile', 'Crimen Organizado'],
+        author: 'Jorge Legisos Soto',
+        date: '14 de octubre de 2026',
+        readTime: '6 min',
+        isLead: true,
+        summary: 'Análisis dogmático a partir del debate interfacultades frente a la USACH. La tensión entre el deber estatal de persecución penal del crimen organizado y la protección constitucional de las comunicaciones y datos privados.',
+        content: `
+          <p>El debate en torno a la apertura o flexibilización del secreto bancario ha dejado de ser una simple discusión técnica de derecho financiero para convertirse en uno de los nudos más sensibles del derecho público contemporáneo.</p>
+          
+          <blockquote>"No se trata únicamente de facilitar la persecución de delitos económicos complejos, sino de ponderar si el umbral de control jurisdiccional previo constituye una garantía esencial del Estado de Derecho o un obstáculo procesal dispensable."</blockquote>
+
+          <p>En el marco de la reciente jornada de debates interfacultades de la Universidad Central frente a la Sociedad de Litigación de la USACH, se contrastaron los dos polos dogmáticos: por un lado, el deber de tutela estatal consagrado en el artículo 1° de la Constitución, que exige herramientas eficaces para desarticular el lavado de activos; por el otro, la inviolabilidad del hogar y de toda forma de comunicación privada (art. 19 N° 5 CPR).</p>
+
+          <p>La dogmática constitucional moderna nos enseña que ningún derecho fundamental es absoluto, pero cualquier restricción debe satisfacer con rigor los subprincipios de idoneidad, necesidad y proporcionalidad en sentido estricto. La mera agilización administrativa no puede erigirse como fundamento suficiente para sortear el escrutinio de un juez de garantía.</p>
+
+          <p>En conclusión, el fortalecimiento de las facultades de los órganos persecutores debe ir indefectiblemente de la mano de un estándar reforzado de debido proceso, trazabilidad algorítmica y responsabilidades funcionales estrictas ante eventuales filtraciones.</p>
+        `,
+        bibliography: [
+          'Tribunal Constitucional de Chile (2023). Sentencia Rol N° 12.450-22 sobre reserva de datos bancarios.',
+          'Pica Flores, R. (2018). El carácter concreto del control de inaplicabilidad por inconstitucionalidad en el sistema chileno. Revista de Derecho.',
+          'Grupo de Acción Financiera Internacional (GAFI). Estándares Internacionales sobre la Lucha contra el Lavado de Activos.',
+          'https://www.diarioconstitucional.cl/2026/10/14/debate-ucen-flexibilizacion-secreto-bancario/'
+        ]
+      },
+      {
+        id: 'art-2',
+        title: 'La litigación estratégica y el arte de la oratoria jurídica en las nuevas generaciones',
+        category: 'Opinión & Columnas',
+        materia: 'Litigación Oral',
+        tags: ['Litigación Oral', 'Retórica Forense', 'Ética Profesional'],
+        author: 'Antonia Vidal',
+        date: '11 de octubre de 2026',
+        readTime: '4 min',
+        isLead: false,
+        summary: 'Cómo los torneos de debates universitarios forman abogados preparados para los tribunales del siglo XXI, integrando dialéctica y ética procesal.',
+        content: `
+          <p>Tradicionalmente la enseñanza del derecho se enfocó en el aprendizaje memorístico de la norma positiva. No obstante, las reformas procesales orales —penal, laboral, de familia y las futuras reformas civiles— exigen una destreza discursiva muy superior.</p>
+          <p>Participar activamente en la Sociedad de Debates permite comprender que la oratoria no es mero adorno retórico; es la capacidad de ordenar el pensamiento bajo presión, someter las premisas al principio de no contradicción y defender la dignidad humana ante cualquier estrado.</p>
+        `,
+        bibliography: [
+          'Colegio de Abogados de Chile (2025). Manual de Ética y Litigación en Juicios Orales.',
+          'Baytelman, A. y Duce, M. (2004). Litigación Penal, Juicio Oral y Prueba. Editorial Jurídica de Chile.',
+          'https://facdeh.ucentral.cl/noticias/torneo-litigacion-oratoria-forense/'
+        ]
+      },
+      {
+        id: 'art-3',
+        title: 'El principio de legalidad penal frente a nuevas tipologías delictivas en el ciberespacio',
+        category: 'Jurisprudencia Comentada',
+        materia: 'Delitos Informáticos',
+        tags: ['Delitos Informáticos', 'Derecho Procesal Penal', 'Legalidad'],
+        author: 'Martín Castro',
+        date: '8 de octubre de 2026',
+        readTime: '5 min',
+        isLead: false,
+        summary: 'Comentario dogmático sobre las exigencias del mandato de determinación y tipicidad frente a la evolución digital en los tribunales chilenos.',
+        content: `
+          <p>La celeridad con que evolucionan los delitos informáticos colisiona permanentemente con el mandato de lex certa. ¿Hasta qué punto la interpretación judicial puede colmar lagunas sin infringir la prohibición de analogía in malam partem?</p>
+          <p>Analizamos las sentencias más recientes de las Cortes de Apelaciones y la necesidad de una actualización dogmática constante en las aulas universitarias.</p>
+        `,
+        bibliography: [
+          'Ley N° 21.459 sobre Delitos Informáticos y adecuación de normas del Código Procesal Penal.',
+          'Corte de Apelaciones de San Miguel (2025). Fallo Rol Penal N° 342-2025 sobre interceptación telemática.',
+          'https://www.diarioconstitucional.cl'
+        ]
+      }
+    ];
+
+    function getArticles() {
+      try {
+        const stored = localStorage.getItem('ucen_articles');
+        return stored ? JSON.parse(stored) : DEFAULT_ARTICLES;
+      } catch (e) {
+        return DEFAULT_ARTICLES;
+      }
+    }
+
+    function saveArticles(articles) {
+      localStorage.setItem('ucen_articles', JSON.stringify(articles));
+    }
+
+    let activeArticleId = 'art-1';
+    let currentMateriaFilter = 'todos';
+
+    // RENDERIZAR TRIBUNA DE ARTÍCULOS (MRNS.CL STYLE CON TAGS Y BIBLIOGRAFÍA)
+    function renderArticlesView() {
+      const articles = getArticles();
+      const filtered = currentMateriaFilter === 'todos' 
+        ? articles 
+        : articles.filter(a => (a.materia === currentMateriaFilter) || (a.tags && a.tags.includes(currentMateriaFilter)));
+
+      const current = filtered.find(a => a.id === activeArticleId) || filtered[0] || articles[0];
+      const display = document.getElementById('current-article-display');
+      const list = document.getElementById('sidebar-articles-list');
+
+      document.getElementById('articles-counter').textContent = `(${filtered.length})`;
+
+      // Renderizar el artículo activo estilo MRNS.CL
+      if (current) {
+        const initials = current.author.split(' ').map(n => n[0]).slice(0, 2).join('');
+        const tagsHtml = (current.tags || [current.materia || 'Doctrina']).map(t => `<span class="tag-badge">${t}</span>`).join(' ');
+
+        // Bibliografía formateada
+        let biblioHtml = '';
+        if (current.bibliography && current.bibliography.length > 0) {
+          biblioHtml = `
+            <div class="article-bibliography">
+              <h4>Fuentes Bibliográficas y Referencias</h4>
+              <ul>
+                ${current.bibliography.map(item => {
+                  if (item.startsWith('http')) {
+                    return `<li><a href="${item}" target="_blank" rel="noopener">${item}</a></li>`;
+                  }
+                  return `<li>${item}</li>`;
+                }).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+        const editArticleBtn = isEditorOrAdmin ? `
+          <div style="background:var(--blue-50); border:1px solid var(--blue-200); padding:.6rem .9rem; border-radius:8px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:.78rem; color:var(--navy-900); font-weight:700;">✏️ Puedes editar el título, la bajada y los párrafos pinchando sobre ellos directamente:</span>
+            <button class="order-btn" style="background:var(--gold-400); color:var(--navy-950);" onclick="saveActiveArticleInline('${current.id}')">💾 Guardar Este Artículo</button>
+          </div>
+        ` : '';
+
+        display.innerHTML = `
+          ${editArticleBtn}
+          <div class="mrns-article__header">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; margin-bottom:.6rem;">
+              <span class="mrns-article__cat">${current.category}</span>
+              <div>${tagsHtml}</div>
+            </div>
+            <h1 class="mrns-article__title" data-editable="text" data-edit-key="article-title-${current.id}">${current.title}</h1>
+            <p class="mrns-article__lead" data-editable="text" data-edit-key="article-summary-${current.id}">${current.summary}</p>
+            <div class="mrns-article__meta">
+              <div class="mrns-article__author-badge">
+                <div class="author-avatar-circle">${initials}</div>
+                <div>
+                  <strong style="color:var(--navy-900);">${current.author}</strong>
+                  <span style="display:block; font-size:.74rem;">Tribuna de Debate UCEN · ${current.materia || 'Derecho'}</span>
+                </div>
+              </div>
+              <div>
+                <span>📅 ${current.date}</span> · <span>⏱️ ${current.readTime || '5 min'}</span>
+              </div>
+            </div>
+          </div>
+          <div class="mrns-article__body" data-editable="html" data-edit-key="article-content-${current.id}">
+            ${current.content}
+          </div>
+          ${biblioHtml}
+        `;
+      } else {
+        display.innerHTML = `<p style="padding:2rem; color:var(--gray-600);">No hay artículos publicados en esta materia.</p>`;
+      }
+
+      // Renderizar lista lateral
+      list.innerHTML = filtered.map(a => `
+        <div class="article-nav-item ${a.id === (current ? current.id : '') ? 'active' : ''}" onclick="selectArticle('${a.id}')">
+          <p class="article-nav-item__tag">${a.category} · ${a.materia || 'General'}</p>
+          <h4 class="article-nav-item__title">${a.title}</h4>
+          <span class="article-nav-item__meta">Por <strong>${a.author}</strong> · ${a.date}</span>
+        </div>
+      `).join('');
+
+      renderHomeDashboardPreviews();
+    }
+
+    window.selectArticle = function(id) {
+      activeArticleId = id;
+      renderArticlesView();
+    };
+
+    // Filtros por Materia en Tribuna
+    document.querySelectorAll('#articles-tags-bar .facdeh-chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#articles-tags-bar .facdeh-chip-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMateriaFilter = btn.dataset.tag;
+        renderArticlesView();
+      });
+    });
+
+    // ==========================================
+    // RENDERIZADO DEL DASHBOARD EN EL INICIO (HOME)
+    // ==========================================
+    function renderHomeDashboardPreviews() {
+      const articles = getArticles();
+      const lead = articles.find(a => a.isLead) || articles[0];
+      const others = articles.filter(a => a.id !== (lead ? lead.id : null)).slice(0, 3);
+
+      // Bloque 5 Home: Artículo Principal
+      const homeFeatBox = document.getElementById('home-featured-article-preview');
+      if (homeFeatBox && lead) {
+        homeFeatBox.innerHTML = `
+          <div class="mrns-article-viewer" style="cursor:pointer;" onclick="selectArticle('${lead.id}'); navigateToWindow('articulos');">
+            <span class="mrns-article__cat">${lead.category}</span>
+            <h4 style="font-family:var(--serif); font-size:1.55rem; font-weight:700; color:var(--navy-900); margin:.5rem 0 .8rem; line-height:1.3;">
+              ${lead.title}
+            </h4>
+            <p style="font-size:.92rem; color:var(--gray-700); line-height:1.55; margin-bottom:1rem;">
+              ${lead.summary}
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gray-200); padding-top:.8rem; font-size:.78rem; color:var(--gray-600);">
+              <span>Por <strong>${lead.author}</strong></span>
+              <span class="btn btn--gold" style="padding:.25rem .75rem; font-size:.72rem;">Leer Completo →</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // Bloque 5 Home: Artículos Recientes
+      const homeRecentBox = document.getElementById('home-recent-articles-preview');
+      if (homeRecentBox) {
+        homeRecentBox.innerHTML = others.map(a => `
+          <div class="article-nav-item" onclick="selectArticle('${a.id}'); navigateToWindow('articulos');">
+            <p class="article-nav-item__tag">${a.category}</p>
+            <h5 style="font-family:var(--serif); font-size:.92rem; font-weight:700; color:var(--navy-900); margin:.2rem 0;">
+              ${a.title}
+            </h5>
+            <span style="font-size:.74rem; color:var(--gray-600);">Por ${a.author} · ${a.date}</span>
+          </div>
+        `).join('');
+      }
+
+      // Bloque 7 Home: Documentos Destacados
+      const homeMatBox = document.getElementById('home-materials-preview');
+      if (homeMatBox) {
+        const materials = getMaterials().slice(0, 2);
+        homeMatBox.innerHTML = materials.map(m => `
+          <div style="background:var(--white); border:1px solid var(--gray-300); border-radius:10px; padding:1.1rem; box-shadow:0 3px 10px rgba(0,0,0,.03);">
+            <span style="font-size:.68rem; font-weight:800; color:var(--wine-700); text-transform:uppercase;">${m.badge}</span>
+            <h5 style="font-size:.95rem; font-weight:700; color:var(--navy-900); margin:.3rem 0 .4rem;">${m.title}</h5>
+            <p style="font-size:.78rem; color:var(--gray-600); line-height:1.4; margin-bottom:.8rem;">${m.desc}</p>
+            <button class="btn btn--outline" style="padding:.25rem .65rem; font-size:.72rem;" onclick="handleDownload('${m.title}')">
+              Descargar Archivo
+            </button>
+          </div>
+        `).join('');
+      }
+    }
+
+    // ==========================================
+    // CONTROLES DE ORDENAMIENTO EN EL MODO EDITOR
+    // ==========================================
+    function renderOrderArticlesList() {
+      const container = document.getElementById('order-articles-list');
+      if (!container) return;
+      const articles = getArticles();
+
+      container.innerHTML = articles.map((art, idx) => `
+        <div class="order-controls-item">
+          <div>
+            <strong>${art.isLead ? '★ [FIJADO EN PORTADA] ' : `${idx + 1}. `}</strong>
+            <span style="color:var(--navy-900); font-weight:600;">${art.title}</span>
+            <div style="font-size:.72rem; color:var(--gray-600); margin-top:.2rem;">
+              Autor: ${art.author} · ${art.materia || 'Constitucional'}
+            </div>
+          </div>
+          <div class="order-btn-group">
+            <button class="order-btn" title="Subir orden" onclick="moveArticleOrder(${idx}, -1)">▲</button>
+            <button class="order-btn" title="Bajar orden" onclick="moveArticleOrder(${idx}, 1)">▼</button>
+            <button class="order-btn" style="background:${art.isLead ? 'var(--gold-400)' : 'var(--gray-100)'};" title="Fijar como portada" onclick="setLeadArticle('${art.id}')">
+              ${art.isLead ? '★ Fijado' : 'Fijar'}
+            </button>
+            <button class="order-btn" style="color:#c92a2a;" title="Eliminar artículo" onclick="deleteArticle('${art.id}')">✕</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.moveArticleOrder = function(index, delta) {
+      const articles = getArticles();
+      const newIndex = index + delta;
+      if (newIndex < 0 || newIndex >= articles.length) return;
+
+      const temp = articles[index];
+      articles[index] = articles[newIndex];
+      articles[newIndex] = temp;
+
+      saveArticles(articles);
+      renderOrderArticlesList();
+      renderArticlesView();
+    };
+
+    window.setLeadArticle = function(id) {
+      const articles = getArticles();
+      articles.forEach(a => {
+        a.isLead = (a.id === id);
+      });
+      // Mover el artículo fijado al primer puesto
+      const leadIdx = articles.findIndex(a => a.id === id);
+      if (leadIdx > 0) {
+        const lead = articles.splice(leadIdx, 1)[0];
+        articles.unshift(lead);
+      }
+      saveArticles(articles);
+      activeArticleId = id;
+      renderOrderArticlesList();
+      renderArticlesView();
+    };
+
+    window.deleteArticle = function(id) {
+      if (!confirm('¿Seguro que deseas eliminar este artículo?')) return;
+      let articles = getArticles().filter(a => a.id !== id);
+      saveArticles(articles);
+      if (activeArticleId === id && articles.length > 0) {
+        activeArticleId = articles[0].id;
+      }
+      renderOrderArticlesList();
+      renderArticlesView();
+    };
+
+    // ==========================================
+    // REPOSITORIO DE MATERIALES
+    // ==========================================
+    const DEFAULT_MATERIALS = [
+      {
+        id: 'mat-1',
+        title: 'Minuta Dogmática: Secreto Bancario',
+        badge: 'Minutas de Debate (PDF)',
+        desc: 'Esquema de argumentos de cargo y defensa, jurisprudencia del TC chileno y estándares internacionales del GAFI para torneos interuniversitarios.',
+        format: 'PDF',
+        link: '#'
+      },
+      {
+        id: 'mat-2',
+        title: 'Compendio de Mociones Torneo 2026',
+        badge: 'Mociones Oficiales (DOCX)',
+        desc: 'Listado oficial de mociones preparadas e improvisadas con tablas de evaluación de jueces, refutación y oratoria forense.',
+        format: 'DOCX',
+        link: '#'
+      },
+      {
+        id: 'mat-3',
+        title: 'Manual de Retórica y Contra-interrogatorio',
+        badge: 'Guías de Litigación (PDF)',
+        desc: 'Material de estudio para nuevos integrantes con técnicas de refutación cruzada, estructura de alegatos de clausura y control del tiempo.',
+        format: 'PDF',
+        link: '#'
+      }
+    ];
+
+    function getMaterials() {
+      try {
+        const stored = localStorage.getItem('ucen_materials');
+        return stored ? JSON.parse(stored) : DEFAULT_MATERIALS;
+      } catch (e) {
+        return DEFAULT_MATERIALS;
+      }
+    }
+
+    function saveMaterials(materials) {
+      localStorage.setItem('ucen_materials', JSON.stringify(materials));
+    }
+
+    window.saveActiveArticleInline = function(articleId) {
+      const articles = getArticles();
+      const art = articles.find(a => a.id === articleId);
+      if (!art) return;
+
+      const titleEl = document.querySelector(`[data-edit-key="article-title-${articleId}"]`);
+      const summaryEl = document.querySelector(`[data-edit-key="article-summary-${articleId}"]`);
+      const contentEl = document.querySelector(`[data-edit-key="article-content-${articleId}"]`);
+
+      if (titleEl) art.title = titleEl.innerText.trim();
+      if (summaryEl) art.summary = summaryEl.innerText.trim();
+      if (contentEl) art.content = contentEl.innerHTML.trim();
+
+      saveArticles(articles);
+      renderOrderArticlesList();
+      renderHomeDashboardPreviews();
+      alert(`¡Artículo "${art.title}" guardado y actualizado con éxito!`);
+    };
+
+    function renderMaterialsView() {
+      const container = document.getElementById('materials-container');
+      const materials = getMaterials();
+      const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+
+      container.innerHTML = materials.map((mat, idx) => `
+        <div class="material-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="material-card__badge" data-editable="text" data-edit-key="mat-badge-${mat.id}">${mat.badge}</span>
+            ${isEditorOrAdmin ? `
+              <button class="order-btn" style="color:#c92a2a; padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕ Borrar</button>
+            ` : ''}
+          </div>
+          <h3 class="material-card__title" data-editable="text" data-edit-key="mat-title-${mat.id}">${mat.title}</h3>
+          <p class="material-card__desc" data-editable="text" data-edit-key="mat-desc-${mat.id}">${mat.desc}</p>
+          <div class="material-card__footer">
+            <span>Formato: <strong>${mat.format}</strong></span>
+            <div style="display:flex; gap:.4rem;">
+              ${isEditorOrAdmin ? `
+                <button class="order-btn" onclick="saveMaterialInline('${mat.id}')" title="Guardar cambios">💾 Guardar</button>
+              ` : ''}
+              <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" onclick="handleDownload('${mat.title}')">
+                Descargar
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.deleteMaterial = function(matId) {
+      if (!confirm('¿Deseas eliminar este material del repositorio?')) return;
+      let materials = getMaterials().filter(m => m.id !== matId);
+      saveMaterials(materials);
+      renderMaterialsView();
+      renderHomeDashboardPreviews();
+    };
+
+    window.saveMaterialInline = function(matId) {
+      const materials = getMaterials();
+      const m = materials.find(x => x.id === matId);
+      if (!m) return;
+
+      const titleEl = document.querySelector(`[data-edit-key="mat-title-${matId}"]`);
+      const descEl = document.querySelector(`[data-edit-key="mat-desc-${matId}"]`);
+      const badgeEl = document.querySelector(`[data-edit-key="mat-badge-${matId}"]`);
+
+      if (titleEl) m.title = titleEl.innerText.trim();
+      if (descEl) m.desc = descEl.innerText.trim();
+      if (badgeEl) m.badge = badgeEl.innerText.trim();
+
+      saveMaterials(materials);
+      renderMaterialsView();
+      renderHomeDashboardPreviews();
+      alert(`¡Archivo "${m.title}" actualizado con éxito!`);
+    };
+
+    window.handleDownload = function(title) {
+      alert(`Documento: "${title}" listo para su estudio y descarga.`);
+    };
+
+    // ==========================================
+    // SISTEMA DE USUARIOS, ROLES Y AUTENTICACIÓN
+    // ==========================================
+    const DEFAULT_USERS = [
+      {
+        id: 'usr-admin',
+        fullname: 'Administrador Central',
+        username: 'admin',
+        password: 'debate2026',
+        role: 'admin'
+      },
+      {
+        id: 'usr-editor-1',
+        fullname: 'Editor General',
+        username: 'editor',
+        password: 'editor2026',
+        role: 'editor'
+      },
+      {
+        id: 'usr-socio-1',
+        fullname: 'Socio Redactor',
+        username: 'socio',
+        password: 'socio2026',
+        role: 'socio'
+      }
+    ];
+
+    function getUsers() {
+      try {
+        const stored = localStorage.getItem('ucen_users');
+        return stored ? JSON.parse(stored) : DEFAULT_USERS;
+      } catch (e) {
+        return DEFAULT_USERS;
+      }
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem('ucen_users', JSON.stringify(users));
+    }
+
+    let currentUser = null;
+
+    // Elementos del Modal Editor
+    const editorDialog = document.getElementById('editor-dialog');
+    const editorClose = document.getElementById('editor-dialog-close');
+    const openEditorTopBtn = document.getElementById('open-editor-top-btn');
+    const openEditorNavBtn = document.getElementById('open-editor-nav-btn');
+    const formLoginClean = document.getElementById('form-login-clean');
+    const btnLogout = document.getElementById('btn-logout');
+    const loginSec = document.getElementById('editor-login-sec');
+    const workSec = document.getElementById('editor-workspace-sec');
+
+    function openEditorModal() {
+      editorDialog.showModal();
+    }
+
+    window.openEditorWithTab = function(tabName) {
+      openEditorModal();
+      if (currentUser) {
+        switchEditorTab(tabName);
+      }
+    };
+
+    if (openEditorTopBtn) openEditorTopBtn.addEventListener('click', openEditorModal);
+    if (openEditorNavBtn) openEditorNavBtn.addEventListener('click', openEditorModal);
+    if (editorClose) editorClose.addEventListener('click', () => editorDialog.close());
+    editorDialog.addEventListener('click', (e) => { if (e.target === editorDialog) editorDialog.close(); });
+
+    formLoginClean.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const uName = document.getElementById('login-username').value.trim();
+      const pwd = document.getElementById('editor-password').value.trim();
+      const users = getUsers();
+      const match = users.find(u => u.username.toLowerCase() === uName.toLowerCase() && u.password === pwd);
+
+      if (match) {
+        currentUser = match;
+        setupUserSession();
+        loginSec.style.display = 'none';
+        workSec.style.display = 'block';
+        formLoginClean.reset();
+      } else {
+        alert('Credenciales incorrectas. Verifica tu usuario y contraseña.');
+      }
+    });
+
+    btnLogout.addEventListener('click', () => {
+      currentUser = null;
+      loginSec.style.display = 'block';
+      workSec.style.display = 'none';
+    });
+
+    function setupUserSession() {
+      if (!currentUser) return;
+      document.getElementById('logged-user-name').textContent = currentUser.fullname;
+      const badge = document.getElementById('logged-user-role-badge');
+      badge.textContent = currentUser.role.toUpperCase();
+      badge.className = `user-badge user-badge--${currentUser.role}`;
+
+      const tabUsers = document.getElementById('tab-btn-users');
+      const tabMat = document.getElementById('tab-btn-mat');
+      const tabOrder = document.getElementById('tab-btn-order');
+
+      if (currentUser.role === 'admin') {
+        tabUsers.style.display = 'inline-block';
+        tabMat.style.display = 'inline-block';
+        tabOrder.style.display = 'inline-block';
+      } else if (currentUser.role === 'editor') {
+        tabUsers.style.display = 'none';
+        tabMat.style.display = 'inline-block';
+        tabOrder.style.display = 'inline-block';
+      } else {
+        tabUsers.style.display = 'none';
+        tabMat.style.display = 'none';
+        tabOrder.style.display = 'none';
+      }
+
+      document.getElementById('input-art-author').value = currentUser.fullname;
+      switchEditorTab('art');
+      renderUsersTable();
+      renderOrderArticlesList();
+    }
+
+    // Pestañas del Editor
+    const tabArt = document.getElementById('tab-btn-art');
+    const tabOrder = document.getElementById('tab-btn-order');
+    const tabMat = document.getElementById('tab-btn-mat');
+    const tabSec = document.getElementById('tab-btn-security');
+    const tabUsers = document.getElementById('tab-btn-users');
+
+    const formArt = document.getElementById('form-add-article');
+    const secOrder = document.getElementById('sec-order-articles');
+    const formMat = document.getElementById('form-add-material');
+    const formSec = document.getElementById('form-change-password');
+    const secUsers = document.getElementById('sec-users-management');
+
+    function switchEditorTab(tab) {
+      [tabArt, tabOrder, tabMat, tabSec, tabUsers].forEach(t => t.classList.remove('active'));
+      [formArt, secOrder, formMat, formSec, secUsers].forEach(s => s.style.display = 'none');
+
+      if (tab === 'art') {
+        tabArt.classList.add('active');
+        formArt.style.display = 'block';
+      } else if (tab === 'order') {
+        tabOrder.classList.add('active');
+        secOrder.style.display = 'block';
+        renderOrderArticlesList();
+      } else if (tab === 'mat') {
+        tabMat.classList.add('active');
+        formMat.style.display = 'block';
+      } else if (tab === 'sec') {
+        tabSec.classList.add('active');
+        formSec.style.display = 'block';
+      } else if (tab === 'users') {
+        tabUsers.classList.add('active');
+        secUsers.style.display = 'block';
+      }
+    }
+
+    tabArt.addEventListener('click', () => switchEditorTab('art'));
+    tabOrder.addEventListener('click', () => switchEditorTab('order'));
+    tabMat.addEventListener('click', () => switchEditorTab('mat'));
+    tabSec.addEventListener('click', () => switchEditorTab('sec'));
+    tabUsers.addEventListener('click', () => switchEditorTab('users'));
+
+    // Cambio de contraseña
+    formSec.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!currentUser) return;
+
+      const currPwd = document.getElementById('input-curr-pwd').value.trim();
+      const newPwd = document.getElementById('input-new-pwd').value.trim();
+      const confirmPwd = document.getElementById('input-confirm-pwd').value.trim();
+
+      if (currPwd !== currentUser.password) {
+        alert('La contraseña actual es incorrecta.');
+        return;
+      }
+      if (newPwd.length < 4) {
+        alert('La nueva contraseña debe tener al menos 4 caracteres.');
+        return;
+      }
+      if (newPwd !== confirmPwd) {
+        alert('La confirmación de contraseña no coincide.');
+        return;
+      }
+
+      const users = getUsers();
+      const idx = users.findIndex(u => u.id === currentUser.id);
+      if (idx !== -1) {
+        users[idx].password = newPwd;
+        currentUser.password = newPwd;
+        saveUsers(users);
+        formSec.reset();
+        alert('¡Tu contraseña ha sido actualizada con éxito!');
+      }
+    });
+
+    // Crear usuarios (Admin Central)
+    const formCreateUser = document.getElementById('form-create-user');
+    formCreateUser.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!currentUser || currentUser.role !== 'admin') {
+        alert('Solo el Administrador Central puede crear usuarios.');
+        return;
+      }
+
+      const fullname = document.getElementById('new-user-fullname').value.trim();
+      const username = document.getElementById('new-user-username').value.trim();
+      const role = document.getElementById('new-user-role').value;
+      const pwd = document.getElementById('new-user-pwd').value.trim();
+
+      const users = getUsers();
+      if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+        alert('Ese nombre de usuario ya existe.');
+        return;
+      }
+
+      users.push({
+        id: 'usr-' + Date.now(),
+        fullname,
+        username,
+        password: pwd,
+        role
+      });
+
+      saveUsers(users);
+      renderUsersTable();
+      formCreateUser.reset();
+      alert(`¡Usuario "${fullname}" creado con rol de ${role.toUpperCase()}!`);
+    });
+
+    function renderUsersTable() {
+      const tbody = document.getElementById('users-table-body');
+      if (!tbody) return;
+      const users = getUsers();
+
+      tbody.innerHTML = users.map(u => `
+        <tr>
+          <td><strong>${u.fullname}</strong></td>
+          <td><code>${u.username}</code></td>
+          <td><span class="user-badge user-badge--${u.role}">${u.role.toUpperCase()}</span></td>
+          <td>
+            ${u.role === 'admin' 
+              ? '<span style="color:var(--gray-600); font-size:.7rem;">Principal</span>' 
+              : `<button class="btn-delete-user" onclick="deleteUser('${u.id}')">✕ Eliminar</button>`
+            }
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.deleteUser = function(id) {
+      if (!confirm('¿Seguro que deseas eliminar este usuario?')) return;
+      let users = getUsers().filter(u => u.id !== id);
+      saveUsers(users);
+      renderUsersTable();
+    };
+
+    // Publicar Artículo con Tags y Bibliografía
+    formArt.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('input-art-title').value.trim();
+      const category = document.getElementById('input-art-cat').value;
+      const materia = document.getElementById('input-art-materia').value;
+      const author = document.getElementById('input-art-author').value.trim();
+      const tagsRaw = document.getElementById('input-art-tags').value.trim();
+      const summary = document.getElementById('input-art-summary').value.trim();
+      const contentText = document.getElementById('input-art-content').value.trim();
+      const biblioRaw = document.getElementById('input-art-biblio').value.trim();
+
+      const tags = tagsRaw 
+        ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
+        : [materia];
+
+      const bibliography = biblioRaw 
+        ? biblioRaw.split('\n').map(b => b.trim()).filter(b => b.length > 0)
+        : [];
+
+      const newArticle = {
+        id: 'art-' + Date.now(),
+        title,
+        category,
+        materia,
+        tags,
+        author,
+        date: new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
+        readTime: `${Math.max(3, Math.ceil(contentText.split(' ').length / 160))} min`,
+        summary,
+        content: contentText.split('\n\n').map(p => `<p>${p}</p>`).join(''),
+        bibliography,
+        isLead: false
+      };
+
+      const articles = getArticles();
+      articles.unshift(newArticle);
+      saveArticles(articles);
+      activeArticleId = newArticle.id;
+      renderArticlesView();
+      renderOrderArticlesList();
+      formArt.reset();
+      editorDialog.close();
+      navigateToWindow('articulos');
+      alert('¡Artículo u opinión publicado exitosamente!');
+    });
+
+    // Guardar Material
+    formMat.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('input-mat-title').value.trim();
+      const badge = document.getElementById('input-mat-cat').value;
+      const desc = document.getElementById('input-mat-desc').value.trim();
+      const format = document.getElementById('input-mat-format').value.trim();
+      const link = document.getElementById('input-mat-link').value.trim() || '#';
+
+      const newMat = {
+        id: 'mat-' + Date.now(),
+        title,
+        badge: `${badge} (${format})`,
+        desc,
+        format,
+        link
+      };
+
+      const materials = getMaterials();
+      materials.unshift(newMat);
+      saveMaterials(materials);
+      renderMaterialsView();
+      formMat.reset();
+      editorDialog.close();
+      navigateToWindow('archivos');
+      alert('¡Material agregado con éxito al repositorio!');
+    });
+
+    // ========================================================
+    // MOTOR DE EDICIÓN VISUAL IN SITU ("ESTILO WIX / CMS ORGÁNICO")
+    // ========================================================
+    let visualEditingEnabled = false;
+    let currentImageTargetElement = null;
+    let currentImageKey = null;
+
+    // Obtener y guardar configuraciones visuales del sitio (textos e imágenes)
+    function getVisualContent() {
+      try {
+        const stored = localStorage.getItem('ucen_site_visual_content');
+        return stored ? JSON.parse(stored) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveVisualContent(content) {
+      localStorage.setItem('ucen_site_visual_content', JSON.stringify(content));
+    }
+
+    // Cargar contenido visual guardado al DOM
+    function applySavedVisualContent() {
+      const visualData = getVisualContent();
+      Object.keys(visualData).forEach(key => {
+        const data = visualData[key];
+        const el = document.querySelector(`[data-edit-key="${key}"]`);
+        if (!el) return;
+
+        if (data.type === 'text') {
+          el.innerText = data.value;
+        } else if (data.type === 'html') {
+          el.innerHTML = data.value;
+        } else if (data.type === 'img') {
+          const imgEl = el.tagName === 'IMG' ? el : el.querySelector('img');
+          if (imgEl && data.value) imgEl.src = data.value;
+        } else if (data.type === 'bg-img') {
+          if (data.value) {
+            el.style.backgroundImage = `url('${data.value}')`;
+            const innerImg = el.querySelector('img');
+            if (innerImg) innerImg.src = data.value;
+          }
+        }
+      });
+
+      // Cargar colores personalizados si existen
+      applySavedThemeColors();
+    }
+
+    // Activar o desactivar el modo de edición visual
+    function toggleVisualEditing(forceState) {
+      if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'editor')) {
+        visualEditingEnabled = false;
+        document.body.classList.remove('visual-editing-active');
+        disableContentEditable();
+        return;
+      }
+
+      visualEditingEnabled = typeof forceState === 'boolean' ? forceState : !visualEditingEnabled;
+      const toggleBtn = document.getElementById('btn-toggle-visual-edit');
+      const toggleText = document.getElementById('visual-toggle-text');
+      const statusEl = document.getElementById('visual-edit-status');
+
+      if (visualEditingEnabled) {
+        document.body.classList.add('visual-editing-active');
+        if (toggleBtn) toggleBtn.classList.add('btn-editor-action--active');
+        if (toggleText) toggleText.textContent = 'Pausar Edición';
+        if (statusEl) statusEl.textContent = 'Modo Edición ACTIVO: Pincha y escribe directamente sobre los textos o cambia imágenes.';
+        enableContentEditable();
+      } else {
+        document.body.classList.remove('visual-editing-active');
+        if (toggleBtn) toggleBtn.classList.remove('btn-editor-action--active');
+        if (toggleText) toggleText.textContent = 'Activar Edición';
+        if (statusEl) statusEl.textContent = 'Modo Edición en pausa. Haz clic en "Activar Edición" para continuar.';
+        disableContentEditable();
+      }
+    }
+
+    function enableContentEditable() {
+      document.querySelectorAll('[data-editable="text"], [data-editable="html"]').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'true');
+      });
+    }
+
+    function disableContentEditable() {
+      document.querySelectorAll('[data-editable="text"], [data-editable="html"]').forEach(el => {
+        el.removeAttribute('contenteditable');
+      });
+    }
+
+    // Guardar cambios visuales en el almacenamiento persistente
+    function saveAllVisualChanges() {
+      const visualData = getVisualContent();
+      let changedCount = 0;
+
+      document.querySelectorAll('[data-editable]').forEach(el => {
+        const key = el.getAttribute('data-edit-key');
+        const type = el.getAttribute('data-editable');
+        if (!key) return;
+
+        if (type === 'text') {
+          visualData[key] = { type: 'text', value: el.innerText.trim() };
+          changedCount++;
+        } else if (type === 'html') {
+          visualData[key] = { type: 'html', value: el.innerHTML.trim() };
+          changedCount++;
+        }
+      });
+
+      saveVisualContent(visualData);
+      
+      const statusEl = document.getElementById('visual-edit-status');
+      if (statusEl) {
+        statusEl.innerHTML = `✅ <strong>¡Cambios guardados con éxito!</strong> Todos los textos y fotos han quedado actualizados.`;
+        setTimeout(() => {
+          if (visualEditingEnabled) {
+            statusEl.textContent = 'Modo Edición ACTIVO: Pincha y escribe directamente sobre los textos o cambia imágenes.';
+          }
+        }, 4000);
+      }
+      alert('¡Excelente! Todos los cambios visuales, textos y fotos han sido guardados y sincronizados.');
+    }
+
+    // ========================================================
+    // MODAL DE CAMBIO DE IMÁGENES
+    // ========================================================
+    const imageEditModal = document.getElementById('image-edit-modal');
+    const imgEditorUrl = document.getElementById('img-editor-url');
+    const imgEditorFile = document.getElementById('img-editor-file');
+    const imgEditorPreview = document.getElementById('img-editor-preview');
+    const btnApplyImage = document.getElementById('btn-apply-image');
+
+    function openImageEditorModal(targetElement, editKey) {
+      if (!visualEditingEnabled) return;
+      currentImageTargetElement = targetElement;
+      currentImageKey = editKey;
+
+      imgEditorFile.value = '';
+      let initialSrc = '';
+      if (targetElement.tagName === 'IMG') {
+        initialSrc = targetElement.src;
+      } else {
+        const innerImg = targetElement.querySelector('img');
+        if (innerImg) initialSrc = innerImg.src;
+        else {
+          const bg = targetElement.style.backgroundImage;
+          if (bg && bg.includes('url(')) {
+            initialSrc = bg.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+          }
+        }
+      }
+
+      imgEditorUrl.value = initialSrc;
+      if (initialSrc) {
+        imgEditorPreview.src = initialSrc;
+        imgEditorPreview.style.display = 'block';
+      } else {
+        imgEditorPreview.style.display = 'none';
+      }
+
+      imageEditModal.classList.add('active');
+    }
+
+    window.closeImageEditorModal = function() {
+      imageEditModal.classList.remove('active');
+      currentImageTargetElement = null;
+      currentImageKey = null;
+    };
+
+    imgEditorUrl.addEventListener('input', () => {
+      const val = imgEditorUrl.value.trim();
+      if (val) {
+        imgEditorPreview.src = val;
+        imgEditorPreview.style.display = 'block';
+      } else {
+        imgEditorPreview.style.display = 'none';
+      }
+    });
+
+    imgEditorFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          imgEditorUrl.value = evt.target.result;
+          imgEditorPreview.src = evt.target.result;
+          imgEditorPreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    btnApplyImage.addEventListener('click', () => {
+      const newUrl = imgEditorUrl.value.trim();
+      if (!newUrl) {
+        alert('Por favor introduce una URL válida o selecciona una imagen.');
+        return;
+      }
+
+      if (currentImageTargetElement) {
+        const type = currentImageTargetElement.getAttribute('data-editable');
+        if (type === 'img') {
+          const imgEl = currentImageTargetElement.tagName === 'IMG' 
+            ? currentImageTargetElement 
+            : currentImageTargetElement.querySelector('img');
+          if (imgEl) imgEl.src = newUrl;
+        } else if (type === 'bg-img') {
+          currentImageTargetElement.style.backgroundImage = `url('${newUrl}')`;
+          const innerImg = currentImageTargetElement.querySelector('img');
+          if (innerImg) innerImg.src = newUrl;
+        }
+
+        // Guardar inmediatamente
+        if (currentImageKey) {
+          const visualData = getVisualContent();
+          visualData[currentImageKey] = { type, value: newUrl };
+          saveVisualContent(visualData);
+        }
+      }
+
+      closeImageEditorModal();
+    });
+
+    // Delegación de clic para imágenes editables
+    document.addEventListener('click', (e) => {
+      if (!visualEditingEnabled) return;
+      const target = e.target.closest('[data-editable="img"], [data-editable="bg-img"]');
+      if (target) {
+        e.preventDefault();
+        e.stopPropagation();
+        const editKey = target.getAttribute('data-edit-key') || 'img-' + Date.now();
+        openImageEditorModal(target, editKey);
+      }
+    });
+
+    // ========================================================
+    // PERSONALIZADOR DE COLORES DEL TEMA
+    // ========================================================
+    const themeColorModal = document.getElementById('theme-color-modal');
+    const pickerPrimary = document.getElementById('picker-primary-color');
+    const pickerGold = document.getElementById('picker-gold-color');
+
+    window.closeColorModal = function() {
+      themeColorModal.classList.remove('active');
+    };
+
+    document.getElementById('btn-open-palette-modal').addEventListener('click', () => {
+      themeColorModal.classList.add('active');
+    });
+
+    const COLOR_PALETTES = {
+      'ucen-classic': { primary: '#0053D5', gold: '#dfb54b', dark: '#06111f' },
+      'vino-forense': { primary: '#8c1d34', gold: '#dfb54b', dark: '#1e070e' },
+      'tribunal-deep': { primary: '#0b1f3a', gold: '#c29b38', dark: '#040b15' },
+      'esmeralda-ley': { primary: '#0f5132', gold: '#dfb54b', dark: '#082517' }
+    };
+
+    window.applyPresetPalette = function(presetKey) {
+      const palette = COLOR_PALETTES[presetKey];
+      if (!palette) return;
+
+      document.documentElement.style.setProperty('--blue-600', palette.primary);
+      document.documentElement.style.setProperty('--gold-400', palette.gold);
+      pickerPrimary.value = palette.primary;
+      pickerGold.value = palette.gold;
+
+      localStorage.setItem('ucen_site_theme_colors', JSON.stringify(palette));
+      closeColorModal();
+    };
+
+    window.saveCustomColors = function() {
+      const primary = pickerPrimary.value;
+      const gold = pickerGold.value;
+
+      document.documentElement.style.setProperty('--blue-600', primary);
+      document.documentElement.style.setProperty('--gold-400', gold);
+
+      localStorage.setItem('ucen_site_theme_colors', JSON.stringify({
+        primary,
+        gold
+      }));
+      closeColorModal();
+    };
+
+    function applySavedThemeColors() {
+      try {
+        const stored = localStorage.getItem('ucen_site_theme_colors');
+        if (stored) {
+          const palette = JSON.parse(stored);
+          if (palette.primary) document.documentElement.style.setProperty('--blue-600', palette.primary);
+          if (palette.gold) document.documentElement.style.setProperty('--gold-400', palette.gold);
+          if (pickerPrimary) pickerPrimary.value = palette.primary;
+          if (pickerGold) pickerGold.value = palette.gold;
+        }
+      } catch (e) {}
+    }
+
+    // Botones de la barra flotante
+    document.getElementById('btn-toggle-visual-edit').addEventListener('click', () => toggleVisualEditing());
+    document.getElementById('btn-save-visual-changes').addEventListener('click', saveAllVisualChanges);
+
+    // Integración en setupUserSession para mostrar/ocultar la barra de edición visual
+    const origSetupUserSession = setupUserSession;
+    setupUserSession = function() {
+      origSetupUserSession();
+      const floatingBar = document.getElementById('floating-editor-bar');
+      const barBadge = document.getElementById('bar-user-badge');
+
+      if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor')) {
+        // Mostrar barra flotante de edición visual estilo Wix
+        floatingBar.classList.add('visible');
+        barBadge.textContent = currentUser.role.toUpperCase();
+        barBadge.className = `user-badge user-badge--${currentUser.role}`;
+        toggleVisualEditing(true);
+      } else {
+        // Socios o no autenticados: Sin acceso al editor visual del sitio
+        floatingBar.classList.remove('visible');
+        toggleVisualEditing(false);
+      }
+    };
+
+    // Botones del Modal para ir directo a la Edición Visual
+    const btnLaunchVisual = document.getElementById('btn-modal-launch-visual');
+    if (btnLaunchVisual) {
+      btnLaunchVisual.addEventListener('click', () => {
+        editorDialog.close();
+        toggleVisualEditing(true);
+      });
+    }
+
+    const btnCloseAndEdit = document.getElementById('btn-close-and-edit-visual');
+    if (btnCloseAndEdit) {
+      btnCloseAndEdit.addEventListener('click', () => {
+        editorDialog.close();
+        toggleVisualEditing(true);
+      });
+    }
+
+    // Al cerrar sesión, apagar la edición visual
+    const origBtnLogout = btnLogout.onclick;
+    btnLogout.addEventListener('click', () => {
+      document.getElementById('floating-editor-bar').classList.remove('visible');
+      toggleVisualEditing(false);
+    });
+
+    // Iniciar vistas y aplicar contenido visual guardado
+    applySavedVisualContent();
+    renderFacdehTeam('todos');
+    renderArticlesView();
+    renderMaterialsView();
+    renderHomeDashboardPreviews();
+  </script>
+</body>
+</html>
