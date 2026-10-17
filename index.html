@@ -642,6 +642,21 @@
   </main>
 
   <!-- ========================================================
+       MODAL DE CURRÍCULUM & FICHA ACADÉMICA (ORIGINAL PRECIOUS-HUMMINGBIRD)
+       ======================================================== -->
+  <dialog class="cv" id="cv-modal" aria-labelledby="cv-name">
+    <button class="cv__close" id="cv-modal-close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="cv__photo" id="cv-modal-photo"></div>
+    <div class="cv__body">
+      <p class="eyebrow eyebrow--dark">Currículum & Trayectoria</p>
+      <h3 id="cv-name"></h3>
+      <p class="member__role" id="cv-role"></p>
+      <ul id="cv-list"></ul>
+      <div id="cv-links" style="margin-top: 1.5rem; display: flex; gap: .8rem; flex-wrap: wrap;"></div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================
        MODAL DE EDITOR / CMS (SIN CONTRASEÑAS SUGERIDAS)
        ======================================================== -->
   <dialog class="editor-modal" id="editor-dialog">
@@ -709,6 +724,7 @@
       <div class="editor-tabs-bar">
         <button class="editor-tab-btn active" id="tab-btn-art" type="button">Redactar</button>
         <button class="editor-tab-btn" id="tab-btn-order" type="button">Ordenar Artículos</button>
+        <button class="editor-tab-btn" id="tab-btn-team" type="button">Equipo</button>
         <button class="editor-tab-btn" id="tab-btn-mat" type="button">Archivos</button>
         <button class="editor-tab-btn" id="tab-btn-security" type="button">Mi Contraseña</button>
         <button class="editor-tab-btn" id="tab-btn-users" type="button" style="display: inline-block;">Gestión Usuarios</button>
@@ -809,6 +825,106 @@
           Guardar Material
         </button>
       </form>
+
+      <!-- TAB: GESTIÓN DE EQUIPO Y CUERPO ACADÉMICO -->
+      <div id="sec-team-management" style="display: none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <h4 style="font-size: .95rem; color: var(--navy-900); margin:0;">Gestión de Integrantes del Equipo</h4>
+            <p style="font-size: .8rem; color: var(--gray-600); margin:.2rem 0 0;">Agrega o actualiza académicos, consejeros, fotos y reseñas curriculares.</p>
+          </div>
+          <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" type="button" onclick="resetMemberForm()">+ Nuevo Integrante</button>
+        </div>
+
+        <form id="form-manage-member" style="background: var(--gray-100); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--gray-300); margin-bottom: 1.5rem;" autocomplete="off">
+          <input type="hidden" id="input-member-id" value="" />
+          <div class="form-group" style="display: grid; grid-template-columns: 2fr 1fr; gap: .8rem;">
+            <div>
+              <label>Nombre Completo</label>
+              <input type="text" id="input-member-name" required placeholder="Ej: Jorge Legisos Soto" />
+            </div>
+            <div>
+              <label>Tipo / Estamento</label>
+              <select id="input-member-type">
+                <option value="estudiante">Consejo Estudiantil & Oradores</option>
+                <option value="autoridad">Cuerpo Académico & Dirección</option>
+                <option value="asesor">Asesoría Externa</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+            <div>
+              <label>Cargo o Rol Institucional</label>
+              <input type="text" id="input-member-role" required placeholder="Ej: Consejero de Debates" />
+            </div>
+            <div>
+              <label>Distinción / Badge</label>
+              <input type="text" id="input-member-badge" required placeholder="Ej: Mejor Orador 2026" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Foto de Perfil (URL o seleccionar archivo local)</label>
+            <div style="display:flex; gap:.6rem; align-items:center;">
+              <input type="text" id="input-member-photo-url" placeholder="img/equipo/... o https://..." style="flex:1;" />
+              <input type="file" id="input-member-photo-file" accept="image/*" style="font-size:.76rem; width:190px;" />
+            </div>
+            <div id="member-photo-preview-wrap" style="margin-top:.4rem; display:none; align-items:center; gap:.6rem;">
+              <img id="member-photo-preview" src="" alt="Vista previa" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid var(--gray-300);" />
+              <span style="font-size:.75rem; color:var(--gray-600);">Vista previa de la foto</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Reseña Biográfica (Breve resumen para la tarjeta)</label>
+            <textarea id="input-member-bio" rows="2" placeholder="Estudiante de Derecho UCEN, ayudante..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Currículum & Puntos Clave (Un punto por línea para el visor de currículum)</label>
+            <textarea id="input-member-bullets" rows="3" placeholder="• Estudiante de 3° año de Derecho UCEN.&#10;• Ayudante de cátedra...&#10;• Mejor orador..."></textarea>
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+            <div>
+              <label>Enlace Perfil Oficial / Web</label>
+              <input type="text" id="input-member-link-official" placeholder="https://facdeh.ucentral.cl/..." />
+            </div>
+            <div>
+              <label>Enlace LinkedIn</label>
+              <input type="text" id="input-member-link-linkedin" placeholder="https://www.linkedin.com/in/..." />
+            </div>
+          </div>
+
+          <div style="display:flex; gap:.6rem;">
+            <button class="btn btn--gold" style="flex:1; justify-content:center;" type="submit" id="btn-save-member-submit">
+              Guardar Integrante
+            </button>
+            <button class="btn btn--outline" style="padding:.4rem 1rem;" type="button" onclick="resetMemberForm()">
+              Cancelar
+            </button>
+          </div>
+        </form>
+
+        <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .6rem;">Integrantes Registrados</h5>
+        <div style="max-height: 280px; overflow-y: auto; border: 1px solid var(--gray-300); border-radius: 8px;">
+          <table class="users-table" style="margin:0;">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Tipo</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="team-table-body">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- TAB 3: CAMBIO DE CONTRASEÑA -->
       <form id="form-change-password" style="display: none;" autocomplete="off">
@@ -1064,8 +1180,15 @@
         role: 'Directora Depto. Derecho Público',
         type: 'autoridad',
         badge: 'Cuerpo Académico',
-        photo: 'img/equipo/jorge-legisos.jpg', // fondo institucional
-        bio: 'Licenciada en Derecho por la Pontificia Universidad Católica de Chile (PUC), Abogada y Máster en Tecnología Educativa por la UNED (España). Profesora de Derecho Internacional Público y Coordinadora de Vinculación con el Medio de la FACDEH-UCEN.',
+        initials: 'MF',
+        photo: '',
+        bio: 'Licenciada en Derecho por la PUC, Máster en Tecnología Educativa (UNED). Profesora de Derecho Internacional Público y Coordinadora de Vinculación con el Medio FACDEH-UCEN.',
+        bulletPoints: [
+          'Licenciada en Derecho por la Pontificia Universidad Católica de Chile (PUC).',
+          'Máster en Tecnología Educativa por la UNED (España).',
+          'Profesora de Derecho Internacional Público en la Universidad Central de Chile.',
+          'Directora del Departamento de Derecho Público y Coordinadora de Vinculación con el Medio de la FACDEH.'
+        ],
         links: [
           { text: 'Perfil Oficial FACDEH', url: 'https://facdeh.ucentral.cl/perfil-academico/macarena-fernandez-undurraga/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Macarena%20Fern%C3%A1ndez%20Undurraga' }
@@ -1077,8 +1200,14 @@
         role: 'Directora Depto. Derecho Privado',
         type: 'autoridad',
         badge: 'Cuerpo Académico',
+        initials: 'MS',
         photo: '',
         bio: 'Abogada y Licenciada en Ciencias Jurídicas y Sociales, con estudios de posgrado y amplia trayectoria docente y de gestión académica en la Universidad Central de Chile.',
+        bulletPoints: [
+          'Abogada y Licenciada en Ciencias Jurídicas y Sociales.',
+          'Directora del Departamento de Derecho Privado de la Facultad de Derecho y Humanidades (FACDEH).',
+          'Extensa trayectoria docente e investigativa en derecho civil y patrimonial.'
+        ],
         links: [
           { text: 'Autoridades FACDEH', url: 'https://facdeh.ucentral.cl/autoridades/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mar%C3%ADa%20Luisa%20Sotomayor%20Duarte' }
@@ -1090,8 +1219,15 @@
         role: 'Coordinador Sociedad de Debates',
         type: 'autoridad',
         badge: 'Coordinación',
+        initials: 'HV',
         photo: '',
         bio: 'Licenciado en Filosofía por la Universidad de Chile, Egresado de Derecho de la Universidad Central de Chile y Mediador Familiar (UBO). Magíster en Gestión y Liderazgo Educacional con tres diplomados de postítulo por la UCEN.',
+        bulletPoints: [
+          'Egresado de Derecho, Universidad Central de Chile.',
+          'Licenciado en Filosofía, Universidad de Chile.',
+          'Mediador Familiar (UBO).',
+          'Magíster en Gestión y Liderazgo Educacional con postítulos por la UCEN.'
+        ],
         links: [
           { text: 'Currículum Oficial', url: 'https://www.hectorvargasferrer.cl/experiencia-academica' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=H%C3%A9ctor%20Vargas%20Ferrer' }
@@ -1103,8 +1239,15 @@
         role: 'Asesor Externo',
         type: 'asesor',
         badge: 'Universidad de Leiden',
+        initials: 'ÁO',
         photo: '',
         bio: 'Estudiante avanzado de Derecho en la FACDEH-UCEN y ex bombero voluntario. Beneficiario de la beca DRI de movilidad internacional cursando estudios en Leiden University (Países Bajos). Mejor orador del Torneo de Litigación ACHILIT (2024).',
+        bulletPoints: [
+          'Estudiante avanzado de Derecho, Universidad Central de Chile.',
+          'Actualmente cursando estudios internacionales en Leiden University, Países Bajos (Beca DRI).',
+          'Mejor orador del Torneo de Litigación de la Asociación Chilena de Litigación - ACHILIT (2024).',
+          'Ex bombero voluntario y asesor estratégico en oratoria y litigación forense.'
+        ],
         links: [
           { text: 'Beca Internacional UCEN', url: 'https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=%C3%81lvaro%20Osorio%20Ossand%C3%B3n' }
@@ -1116,8 +1259,16 @@
         role: 'Consejero & Articulista Doctrina',
         type: 'estudiante',
         badge: 'Mejor Orador 2026',
+        initials: 'JL',
         photo: 'img/equipo/jorge-legisos.jpg',
         bio: 'Estudiante de Derecho UCEN, investigador en derecho procesal penal y garantías constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo "Prof. Rodrigo Pica".',
+        bulletPoints: [
+          'Estudiante de 3° año de Derecho, Universidad Central de Chile.',
+          'Cuenta con especialización en Propiedad Intelectual por la Universidad del Desarrollo.',
+          'Ayudante del Electivo de Propiedad Industrial y en las cátedras de Derecho Penal en la Universidad Central de Chile.',
+          'Mejor orador y subcampeón del Torneo de debates jurídicos "Prof. Rodrigo Pica" (2026).',
+          'Mejor orador interuniversitario vs Sociedad de Litigación USACH (octubre 2026).'
+        ],
         links: [
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto' }
         ]
@@ -1128,8 +1279,15 @@
         role: 'Consejera & Columnista de Opinión',
         type: 'estudiante',
         badge: 'Campeona Oratoria',
+        initials: 'AV',
         photo: 'img/equipo/antonia-vidal.jpg',
         bio: 'Estudiante de Derecho UCEN, integrante del equipo titular de litigación y debate interfacultades. Campeona y mejor oradora del torneo de debate de la FACDEH, especializada en argumentación penal y ética procesal.',
+        bulletPoints: [
+          'Estudiante de 3° año de Derecho, Universidad Central de Chile.',
+          'Campeona y mejor oradora del Torneo de debates jurídicos "Prof. Rodrigo Pica" (2026).',
+          'Vasta experiencia en representación en torneos de debates y litigación en materias penales y éticas.',
+          'Integrante del equipo representativo en el I Torneo Interfacultades e interuniversitario vs USACH.'
+        ],
         links: [
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Antonia%20Vidal%20Universidad%20Central' }
         ]
@@ -1140,8 +1298,15 @@
         role: 'Consejero & Analista Jurisprudencia',
         type: 'estudiante',
         badge: 'Derecho Público',
+        initials: 'MC',
         photo: 'img/equipo/martin-castro.jpg',
         bio: 'Estudiante de Derecho UCEN, ayudante del departamento de Derecho Público de la Universidad Central de Chile, desempeñándose en las áreas de Derecho Internacional Público y Derecho Procesal.',
+        bulletPoints: [
+          'Estudiante de 3° año de Derecho, Universidad Central de Chile.',
+          'Ayudante del Departamento de Derecho Público de la Universidad Central de Chile.',
+          'Especialista en Derecho Internacional Público y Derecho Procesal.',
+          'Miembro del equipo titular en el encuentro de debate contra la USACH (2026).'
+        ],
         links: [
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mart%C3%ADn%20Castro%20Universidad%20Central%20Derecho' }
         ]
@@ -1152,8 +1317,14 @@
         role: 'Consejero de Debates',
         type: 'estudiante',
         badge: 'Subcampeón 2026',
+        initials: 'CG',
         photo: 'img/equipo/camilo-gatica.jpg',
         bio: 'Estudiante de Derecho UCEN e integrante activo del consejo organizador y de representación interuniversitaria.',
+        bulletPoints: [
+          'Estudiante de 2° año de Derecho, Universidad Central de Chile.',
+          'Subcampeón del Torneo de debates jurídicos "Prof. Rodrigo Pica" (2026).',
+          'Consejero activo en organización de torneos y vinculación estudiantil.'
+        ],
         links: [
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Camilo%20Gatica%20Universidad%20Central' }
         ]
@@ -1164,8 +1335,14 @@
         role: 'Consejero de Debates',
         type: 'estudiante',
         badge: 'Equipo Titular',
+        initials: 'MG',
         photo: 'img/equipo/matias-gioia.jpg',
         bio: 'Estudiante de Derecho UCEN y miembro del equipo representativo que enfrentó a la Sociedad de Litigación de la USACH en octubre de 2026.',
+        bulletPoints: [
+          'Estudiante de 3° año de Derecho, Universidad Central de Chile.',
+          'Miembro del equipo representativo en el encuentro interuniversitario UCEN vs USACH (octubre 2026).',
+          'Orador titular en mociones de derecho bancario, tributario y garantías individuales.'
+        ],
         links: [
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mat%C3%ADas%20Gioia%20Universidad%20Central' }
         ]
@@ -1198,20 +1375,28 @@
 
       grid.innerHTML = filtered.map(m => {
         const photoStyle = m.photo ? `style="background-image: url('${m.photo}');"` : '';
-        const linkedinLink = m.links.find(l => l.text === 'LinkedIn');
-        const perfilLink = m.links.find(l => l.text !== 'LinkedIn');
+        const linkedinLink = m.links ? m.links.find(l => l.text === 'LinkedIn') : null;
+        const perfilLink = m.links ? m.links.find(l => l.text !== 'LinkedIn') : null;
+        const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${m.name.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
+        const photoClass = m.photo ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
 
-        // Controles de editor para cambiar foto o eliminar miembro
+        // Controles de editor para cambiar foto, guardar cambios in-situ o eliminar miembro
         const editorControls = isEditorOrAdmin ? `
-          <div style="margin-top:.6rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center;">
-            <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
-            <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕ Borrar</button>
+          <div style="margin-top:.7rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center; gap:.4rem; flex-wrap:wrap;">
+            <div style="display:flex; gap:.3rem;">
+              <button class="order-btn" onclick="saveMemberInline('${m.id}')" title="Guardar cambios de texto de este integrante">💾 Guardar</button>
+              <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
+            </div>
+            <div style="display:flex; gap:.3rem;">
+              <button class="order-btn" onclick="openMemberInCMS('${m.id}')" title="Editar en formulario">✏️ Ficha</button>
+              <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕ Borrar</button>
+            </div>
           </div>
         ` : '';
 
         return `
-          <article class="facdeh-card">
-            <div class="facdeh-card__photo" ${photoStyle} data-editable="bg-img" data-edit-key="member-photo-${m.id}" onclick="${isEditorOrAdmin ? `editMemberPhoto('${m.id}')` : ''}">
+          <article class="facdeh-card" id="card-${m.id}">
+            <div class="${photoClass}" ${photoStyle} ${initialsAttr} data-editable="bg-img" data-edit-key="member-photo-${m.id}" onclick="${isEditorOrAdmin ? `editMemberPhoto('${m.id}')` : `openMemberCV('${m.id}')`}" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
               <div class="facdeh-card__overlay-text">
                 <h3 data-editable="text" data-edit-key="member-name-${m.id}">${m.name}</h3>
                 <p data-editable="text" data-edit-key="member-role-${m.id}">${m.role}</p>
@@ -1221,8 +1406,15 @@
             <div class="facdeh-card__body">
               <span class="facdeh-card__tag" data-editable="text" data-edit-key="member-badge-${m.id}">${m.badge}</span>
               <p class="facdeh-card__bio" data-editable="text" data-edit-key="member-bio-${m.id}">${m.bio}</p>
-              <div class="facdeh-card__footer">
-                ${perfilLink ? `<a class="facdeh-btn-perfil" href="${perfilLink.url}" target="_blank" rel="noopener">${perfilLink.text} →</a>` : '<span></span>'}
+              
+              <div style="margin-top:.6rem;">
+                <button type="button" class="facdeh-btn-perfil" onclick="openMemberCV('${m.id}')" style="background:none; border:none; padding:0; cursor:pointer; color:var(--blue-600); font-weight:700; font-size:.85rem; display:inline-flex; align-items:center; gap:.3rem;">
+                  Ver currículum completo →
+                </button>
+              </div>
+
+              <div class="facdeh-card__footer" style="margin-top:.8rem;">
+                ${perfilLink ? `<a class="facdeh-btn-perfil" href="${perfilLink.url}" target="_blank" rel="noopener">${perfilLink.text} ↗</a>` : '<span></span>'}
                 ${linkedinLink ? `
                   <a class="facdeh-btn-linkedin" href="${linkedinLink.url}" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -1235,7 +1427,97 @@
           </article>
         `;
       }).join('');
+
+      // Si el modo edición está activo, habilitar contenteditable en las tarjetas renderizadas
+      if (typeof visualEditingEnabled !== 'undefined' && visualEditingEnabled) {
+        setTimeout(enableContentEditable, 30);
+      }
     }
+
+    // ==========================================
+    // MODAL DE CURRÍCULUM (VISOR DE FOTOS Y BIO)
+    // ==========================================
+    const cvModal = document.getElementById('cv-modal');
+    const cvModalClose = document.getElementById('cv-modal-close');
+    const cvModalPhoto = document.getElementById('cv-modal-photo');
+    const cvModalName = document.getElementById('cv-name');
+    const cvModalRole = document.getElementById('cv-role');
+    const cvModalList = document.getElementById('cv-list');
+    const cvModalLinks = document.getElementById('cv-links');
+
+    window.openMemberCV = function(memberId) {
+      const members = getFacdehMembers();
+      const m = members.find(x => x.id === memberId);
+      if (!m) return;
+
+      if (m.photo) {
+        cvModalPhoto.style.backgroundImage = `url('${m.photo}')`;
+        cvModalPhoto.classList.add('cv__photo--img');
+      } else {
+        cvModalPhoto.style.backgroundImage = 'none';
+        cvModalPhoto.classList.remove('cv__photo--img');
+      }
+
+      const initials = m.initials || m.name.split(' ').map(n=>n[0]).join('').slice(0,2);
+      cvModalPhoto.setAttribute('data-initials', initials);
+
+      cvModalName.textContent = m.name;
+      cvModalRole.textContent = `${m.role} · ${m.badge || ''}`;
+
+      // Puntos del currículum (si tiene bulletPoints o parsear bio)
+      let bullets = m.bulletPoints || [];
+      if ((!bullets || bullets.length === 0) && m.bio) {
+        bullets = m.bio.split('. ').filter(b => b.trim().length > 0).map(b => b.endsWith('.') ? b : b + '.');
+      }
+
+      cvModalList.innerHTML = bullets.map(b => `<li>${b.replace(/^[•\-\*]\s*/, '')}</li>`).join('');
+
+      // Enlaces
+      if (m.links && m.links.length > 0) {
+        cvModalLinks.innerHTML = m.links.map(l => `
+          <a href="${l.url}" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:.78rem; padding:.3rem .75rem;">
+            ${l.text} ↗
+          </a>
+        `).join('');
+      } else {
+        cvModalLinks.innerHTML = '';
+      }
+
+      cvModal.showModal();
+    };
+
+    if (cvModalClose) {
+      cvModalClose.addEventListener('click', () => cvModal.close());
+    }
+    if (cvModal) {
+      cvModal.addEventListener('click', (e) => {
+        if (e.target === cvModal) cvModal.close();
+      });
+    }
+
+    // ==========================================
+    // EDICIÓN IN SITU DE MIEMBROS DEL EQUIPO
+    // ==========================================
+    window.saveMemberInline = function(memberId) {
+      const members = getFacdehMembers();
+      const m = members.find(x => x.id === memberId);
+      if (!m) return;
+
+      const nameEl = document.querySelector(`[data-edit-key="member-name-${memberId}"]`);
+      const roleEl = document.querySelector(`[data-edit-key="member-role-${memberId}"]`);
+      const badgeEl = document.querySelector(`[data-edit-key="member-badge-${memberId}"]`);
+      const bioEl = document.querySelector(`[data-edit-key="member-bio-${memberId}"]`);
+
+      if (nameEl) m.name = nameEl.innerText.trim();
+      if (roleEl) m.role = roleEl.innerText.trim();
+      if (badgeEl) m.badge = badgeEl.innerText.trim();
+      if (bioEl) m.bio = bioEl.innerText.trim();
+
+      saveFacdehMembers(members);
+      renderFacdehTeam();
+      renderTeamManagerTable();
+      alert(`¡Información de ${m.name} actualizada y guardada con éxito!`);
+    };
 
     window.editMemberPhoto = function(memberId) {
       const members = getFacdehMembers();
@@ -1252,34 +1534,178 @@
       let members = getFacdehMembers().filter(m => m.id !== memberId);
       saveFacdehMembers(members);
       renderFacdehTeam();
+      renderTeamManagerTable();
     };
 
-    window.promptAddMember = function() {
-      const name = prompt('Nombre completo del nuevo integrante:');
-      if (!name) return;
-      const role = prompt('Cargo o rol (ej: Consejero de Debates, Ayudante):', 'Consejero de Debates') || 'Consejero';
-      const badge = prompt('Insignia o mérito (ej: Mejor Orador 2026, Semifinalista):', 'Debatiente Titular') || 'Debatiente';
-      const bio = prompt('Breve reseña biográfica:', 'Estudiante de Derecho UCEN, integrante activo de la Sociedad de Debates.') || '';
-      const linkedin = prompt('Enlace a perfil de LinkedIn (opcional):', 'https://www.linkedin.com') || 'https://www.linkedin.com';
+    // ==========================================
+    // GESTOR DE EQUIPO EN PANEL CMS (AÑADIR / EDITAR / FOTOS)
+    // ==========================================
+    const formManageMember = document.getElementById('form-manage-member');
+    const inputMemberPhotoFile = document.getElementById('input-member-photo-file');
+    const inputMemberPhotoUrl = document.getElementById('input-member-photo-url');
+    const memberPhotoPreviewWrap = document.getElementById('member-photo-preview-wrap');
+    const memberPhotoPreview = document.getElementById('member-photo-preview');
 
-      const newMember = {
-        id: 'fac-' + Date.now(),
-        name,
-        role,
-        type: 'estudiante',
-        badge,
-        photo: 'img/equipo/jorge-legisos.jpg',
-        bio,
-        links: [
-          { text: 'LinkedIn', url: linkedin }
-        ]
-      };
+    if (inputMemberPhotoUrl) {
+      inputMemberPhotoUrl.addEventListener('input', () => {
+        const val = inputMemberPhotoUrl.value.trim();
+        if (val) {
+          memberPhotoPreview.src = val;
+          memberPhotoPreviewWrap.style.display = 'flex';
+        } else {
+          memberPhotoPreviewWrap.style.display = 'none';
+        }
+      });
+    }
 
+    if (inputMemberPhotoFile) {
+      inputMemberPhotoFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            inputMemberPhotoUrl.value = evt.target.result;
+            memberPhotoPreview.src = evt.target.result;
+            memberPhotoPreviewWrap.style.display = 'flex';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    window.resetMemberForm = function() {
+      if (!formManageMember) return;
+      formManageMember.reset();
+      document.getElementById('input-member-id').value = '';
+      document.getElementById('btn-save-member-submit').textContent = 'Guardar Nuevo Integrante';
+      if (memberPhotoPreviewWrap) memberPhotoPreviewWrap.style.display = 'none';
+    };
+
+    window.openMemberInCMS = function(memberId) {
+      openEditorWithTab('team');
       const members = getFacdehMembers();
-      members.push(newMember);
-      saveFacdehMembers(members);
-      renderFacdehTeam();
-      alert(`¡${name} agregado con éxito al equipo!`);
+      const m = members.find(x => x.id === memberId);
+      if (!m) return;
+
+      document.getElementById('input-member-id').value = m.id;
+      document.getElementById('input-member-name').value = m.name;
+      document.getElementById('input-member-type').value = m.type || 'estudiante';
+      document.getElementById('input-member-role').value = m.role;
+      document.getElementById('input-member-badge').value = m.badge;
+      document.getElementById('input-member-photo-url').value = m.photo || '';
+      document.getElementById('input-member-bio').value = m.bio || '';
+
+      const bullets = m.bulletPoints ? m.bulletPoints.join('\n') : '';
+      document.getElementById('input-member-bullets').value = bullets;
+
+      const offLink = m.links ? m.links.find(l => l.text !== 'LinkedIn') : null;
+      const inLink = m.links ? m.links.find(l => l.text === 'LinkedIn') : null;
+      document.getElementById('input-member-link-official').value = offLink ? offLink.url : '';
+      document.getElementById('input-member-link-linkedin').value = inLink ? inLink.url : '';
+
+      if (m.photo) {
+        memberPhotoPreview.src = m.photo;
+        memberPhotoPreviewWrap.style.display = 'flex';
+      } else {
+        memberPhotoPreviewWrap.style.display = 'none';
+      }
+
+      document.getElementById('btn-save-member-submit').textContent = 'Actualizar Integrante';
+      document.getElementById('sec-team-management').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (formManageMember) {
+      formManageMember.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const memberId = document.getElementById('input-member-id').value.trim();
+        const name = document.getElementById('input-member-name').value.trim();
+        const type = document.getElementById('input-member-type').value;
+        const role = document.getElementById('input-member-role').value.trim();
+        const badge = document.getElementById('input-member-badge').value.trim();
+        const photo = document.getElementById('input-member-photo-url').value.trim();
+        const bio = document.getElementById('input-member-bio').value.trim();
+        const bulletsRaw = document.getElementById('input-member-bullets').value.trim();
+        const linkOff = document.getElementById('input-member-link-official').value.trim();
+        const linkIn = document.getElementById('input-member-link-linkedin').value.trim();
+
+        const bulletPoints = bulletsRaw ? bulletsRaw.split('\n').map(l => l.trim()).filter(l => l.length > 0) : [];
+        const links = [];
+        if (linkOff) links.push({ text: 'Perfil Oficial', url: linkOff });
+        if (linkIn) links.push({ text: 'LinkedIn', url: linkIn });
+
+        const initials = name.split(' ').map(n=>n[0]).join('').slice(0,2);
+        const members = getFacdehMembers();
+
+        if (memberId) {
+          // Actualizar existente
+          const idx = members.findIndex(m => m.id === memberId);
+          if (idx !== -1) {
+            members[idx] = {
+              ...members[idx],
+              name,
+              type,
+              role,
+              badge,
+              photo,
+              bio,
+              bulletPoints,
+              links,
+              initials
+            };
+          }
+        } else {
+          // Crear nuevo
+          members.push({
+            id: 'fac-' + Date.now(),
+            name,
+            type,
+            role,
+            badge,
+            photo,
+            bio,
+            bulletPoints,
+            links,
+            initials
+          });
+        }
+
+        saveFacdehMembers(members);
+        renderFacdehTeam();
+        renderTeamManagerTable();
+        resetMemberForm();
+        alert(`¡Integrante "${name}" guardado exitosamente!`);
+      });
+    }
+
+    function renderTeamManagerTable() {
+      const tbody = document.getElementById('team-table-body');
+      if (!tbody) return;
+      const members = getFacdehMembers();
+
+      tbody.innerHTML = members.map(m => `
+        <tr>
+          <td>
+            ${m.photo 
+              ? `<img src="${m.photo}" alt="" style="width:32px; height:32px; border-radius:50%; object-fit:cover;" />` 
+              : `<div style="width:32px; height:32px; border-radius:50%; background:var(--navy-800); color:var(--white); font-size:.7rem; display:grid; place-items:center;">${m.initials || 'UC'}</div>`
+            }
+          </td>
+          <td><strong>${m.name}</strong></td>
+          <td>${m.role}</td>
+          <td><span class="user-badge" style="font-size:.68rem;">${m.type}</span></td>
+          <td>
+            <div style="display:flex; gap:.3rem;">
+              <button class="order-btn" style="padding:.15rem .45rem;" onclick="openMemberInCMS('${m.id}')">✏️</button>
+              <button class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteMember('${m.id}')">✕</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.promptAddMember = function() {
+      openEditorWithTab('team');
+      resetMemberForm();
     };
 
     document.querySelectorAll('.facdeh-chip-btn').forEach(btn => {
@@ -1839,19 +2265,23 @@
 
       const tabUsers = document.getElementById('tab-btn-users');
       const tabMat = document.getElementById('tab-btn-mat');
+      const tabTeam = document.getElementById('tab-btn-team');
       const tabOrder = document.getElementById('tab-btn-order');
 
       if (currentUser.role === 'admin') {
         tabUsers.style.display = 'inline-block';
         tabMat.style.display = 'inline-block';
+        tabTeam.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
       } else if (currentUser.role === 'editor') {
         tabUsers.style.display = 'none';
         tabMat.style.display = 'inline-block';
+        tabTeam.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
       } else {
         tabUsers.style.display = 'none';
         tabMat.style.display = 'none';
+        tabTeam.style.display = 'none';
         tabOrder.style.display = 'none';
       }
 
@@ -1859,24 +2289,27 @@
       switchEditorTab('art');
       renderUsersTable();
       renderOrderArticlesList();
+      renderTeamManagerTable();
     }
 
     // Pestañas del Editor
     const tabArt = document.getElementById('tab-btn-art');
     const tabOrder = document.getElementById('tab-btn-order');
+    const tabTeam = document.getElementById('tab-btn-team');
     const tabMat = document.getElementById('tab-btn-mat');
     const tabSec = document.getElementById('tab-btn-security');
     const tabUsers = document.getElementById('tab-btn-users');
 
     const formArt = document.getElementById('form-add-article');
     const secOrder = document.getElementById('sec-order-articles');
+    const secTeam = document.getElementById('sec-team-management');
     const formMat = document.getElementById('form-add-material');
     const formSec = document.getElementById('form-change-password');
     const secUsers = document.getElementById('sec-users-management');
 
     function switchEditorTab(tab) {
-      [tabArt, tabOrder, tabMat, tabSec, tabUsers].forEach(t => t.classList.remove('active'));
-      [formArt, secOrder, formMat, formSec, secUsers].forEach(s => s.style.display = 'none');
+      [tabArt, tabOrder, tabTeam, tabMat, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
+      [formArt, secOrder, secTeam, formMat, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
 
       if (tab === 'art') {
         tabArt.classList.add('active');
@@ -1885,6 +2318,10 @@
         tabOrder.classList.add('active');
         secOrder.style.display = 'block';
         renderOrderArticlesList();
+      } else if (tab === 'team') {
+        tabTeam.classList.add('active');
+        secTeam.style.display = 'block';
+        renderTeamManagerTable();
       } else if (tab === 'mat') {
         tabMat.classList.add('active');
         formMat.style.display = 'block';
@@ -1899,6 +2336,7 @@
 
     tabArt.addEventListener('click', () => switchEditorTab('art'));
     tabOrder.addEventListener('click', () => switchEditorTab('order'));
+    if (tabTeam) tabTeam.addEventListener('click', () => switchEditorTab('team'));
     tabMat.addEventListener('click', () => switchEditorTab('mat'));
     tabSec.addEventListener('click', () => switchEditorTab('sec'));
     tabUsers.addEventListener('click', () => switchEditorTab('users'));
@@ -2183,17 +2621,49 @@
       });
 
       saveVisualContent(visualData);
+
+      // También sincronizar las entidades estructurales (integrantes y materiales)
+      const members = getFacdehMembers();
+      let membersUpdated = false;
+      members.forEach(m => {
+        const nEl = document.querySelector(`[data-edit-key="member-name-${m.id}"]`);
+        const rEl = document.querySelector(`[data-edit-key="member-role-${m.id}"]`);
+        const bEl = document.querySelector(`[data-edit-key="member-badge-${m.id}"]`);
+        const bioEl = document.querySelector(`[data-edit-key="member-bio-${m.id}"]`);
+        if (nEl) { m.name = nEl.innerText.trim(); membersUpdated = true; }
+        if (rEl) { m.role = rEl.innerText.trim(); membersUpdated = true; }
+        if (bEl) { m.badge = bEl.innerText.trim(); membersUpdated = true; }
+        if (bioEl) { m.bio = bioEl.innerText.trim(); membersUpdated = true; }
+      });
+      if (membersUpdated) {
+        saveFacdehMembers(members);
+        renderTeamManagerTable();
+      }
+
+      const materials = getMaterials();
+      let materialsUpdated = false;
+      materials.forEach(mat => {
+        const tEl = document.querySelector(`[data-edit-key="mat-title-${mat.id}"]`);
+        const dEl = document.querySelector(`[data-edit-key="mat-desc-${mat.id}"]`);
+        const bgEl = document.querySelector(`[data-edit-key="mat-badge-${mat.id}"]`);
+        if (tEl) { mat.title = tEl.innerText.trim(); materialsUpdated = true; }
+        if (dEl) { mat.desc = dEl.innerText.trim(); materialsUpdated = true; }
+        if (bgEl) { mat.badge = bgEl.innerText.trim(); materialsUpdated = true; }
+      });
+      if (materialsUpdated) {
+        saveMaterials(materials);
+      }
       
       const statusEl = document.getElementById('visual-edit-status');
       if (statusEl) {
-        statusEl.innerHTML = `✅ <strong>¡Cambios guardados con éxito!</strong> Todos los textos y fotos han quedado actualizados.`;
+        statusEl.innerHTML = `✅ <strong>¡Cambios guardados con éxito!</strong> Todos los textos, integrantes, archivos y fotos han quedado actualizados.`;
         setTimeout(() => {
           if (visualEditingEnabled) {
             statusEl.textContent = 'Modo Edición ACTIVO: Pincha y escribe directamente sobre los textos o cambia imágenes.';
           }
         }, 4000);
       }
-      alert('¡Excelente! Todos los cambios visuales, textos y fotos han sido guardados y sincronizados.');
+      alert('¡Excelente! Todos los cambios visuales, integrantes del equipo, archivos y fotos han sido guardados y sincronizados.');
     }
 
     // ========================================================

@@ -1407,3 +1407,124 @@ body.visual-editing-active [data-editable="bg-img"]:hover .visual-image-overlay 
   border: 1px solid rgba(0,0,0,0.1);
 }
 
+/* ==========================================================================
+   MODAL DE CURRÍCULUM / CV (ORIGINAL PRECIOUS-HUMMINGBIRD)
+   ========================================================================== */
+.cv {
+  margin: auto;
+  border: 0;
+  border-radius: 16px;
+  padding: 0;
+  width: min(860px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  display: none;
+  grid-template-columns: 5fr 6fr;
+  background: var(--white);
+  color: var(--navy-900);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .4);
+}
+.cv[open] {
+  display: grid;
+}
+.cv::backdrop {
+  background: rgba(6, 17, 31, .85);
+  backdrop-filter: blur(4px);
+}
+.cv__photo {
+  min-height: 420px;
+  background: linear-gradient(145deg, var(--navy-800), var(--navy-700));
+  background-size: cover;
+  background-position: center 22%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.cv__photo:not(.cv__photo--img)::after {
+  content: attr(data-initials);
+  font-family: var(--display);
+  font-size: 5rem;
+  color: rgba(196, 216, 238, .35);
+}
+.cv__body {
+  padding: 2.6rem 2.4rem;
+  align-self: center;
+}
+.cv h3 {
+  font-family: var(--sans);
+  font-weight: 800;
+  text-transform: none;
+  font-size: 1.8rem;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin-top: .4rem;
+  color: var(--navy-900);
+}
+.cv .member__role {
+  text-align: left;
+  margin: .3rem 0 1.2rem;
+  color: var(--blue-600);
+  font-weight: 700;
+  font-size: .95rem;
+}
+.cv ul {
+  list-style: none;
+  display: grid;
+  gap: .7rem;
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.2rem;
+}
+.cv li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: .95rem;
+  color: var(--gray-700);
+  line-height: 1.55;
+}
+.cv li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-400);
+}
+.cv__close {
+  position: absolute;
+  top: .8rem;
+  right: .9rem;
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid var(--gray-300);
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--navy-800);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.cv__close:hover {
+  background: var(--navy-900);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .cv {
+    grid-template-columns: 1fr;
+  }
+  .cv__photo {
+    min-height: 300px;
+  }
+  .cv__body {
+    padding: 1.8rem 1.4rem;
+  }
+}
+
+
