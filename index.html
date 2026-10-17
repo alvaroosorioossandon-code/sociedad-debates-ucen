@@ -1562,12 +1562,16 @@
       const addBtnWin = document.getElementById('btn-add-member-win');
       if (addBtnWin) addBtnWin.style.display = isEditorOrAdmin ? 'inline-block' : 'none';
 
+      const visualData = getVisualContent();
+
       grid.innerHTML = filtered.map(m => {
-        const photoStyle = m.photo ? `style="background-image: url('${m.photo}');"` : '';
+        const visualPhotoKey = `member-photo-${m.id}`;
+        const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
+        const photoStyle = effectivePhoto ? `style="background-image: url('${effectivePhoto}');"` : '';
         const linkedinLink = m.links ? m.links.find(l => l.text === 'LinkedIn') : null;
         const perfilLink = m.links ? m.links.find(l => l.text !== 'LinkedIn') : null;
         const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${m.name.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
-        const photoClass = m.photo ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
+        const photoClass = effectivePhoto ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
 
         // Artículos asociados a este integrante
         const memberArticles = allArticles.filter(a => {
@@ -1666,8 +1670,12 @@
       const m = members.find(x => x.id === memberId);
       if (!m) return;
 
-      if (m.photo) {
-        cvModalPhoto.style.backgroundImage = `url('${m.photo}')`;
+      const visualData = getVisualContent();
+      const visualPhotoKey = `member-photo-${m.id}`;
+      const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
+
+      if (effectivePhoto) {
+        cvModalPhoto.style.backgroundImage = `url('${effectivePhoto}')`;
         cvModalPhoto.classList.add('cv__photo--img');
       } else {
         cvModalPhoto.style.backgroundImage = 'none';
