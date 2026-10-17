@@ -1,0 +1,382 @@
+{
+  "members": [
+    {
+      "id": "fac-1",
+      "name": "Macarena Fern√°ndez Undurraga",
+      "role": "Directora Depto. Derecho P√∫blico",
+      "type": "autoridad",
+      "badge": "Cuerpo Acad√©mico",
+      "initials": "MF",
+      "photo": "",
+      "bio": "Licenciada en Derecho por la PUC, M√°ster en Tecnolog√≠a Educativa (UNED). Profesora de Derecho Internacional P√∫blico y Coordinadora de Vinculaci√≥n con el Medio FACDEH-UCEN.",
+      "bulletPoints": [
+        "Licenciada en Derecho por la Pontificia Universidad Cat√≥lica de Chile (PUC).",
+        "M√°ster en Tecnolog√≠a Educativa por la UNED (Espa√±a).",
+        "Profesora de Derecho Internacional P√∫blico en la Universidad Central de Chile.",
+        "Directora del Departamento de Derecho P√∫blico y Coordinadora de Vinculaci√≥n con el Medio de la FACDEH."
+      ],
+      "links": [
+        {
+          "text": "Perfil Oficial FACDEH",
+          "url": "https://facdeh.ucentral.cl/perfil-academico/macarena-fernandez-undurraga/"
+        },
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Macarena%20Fern%C3%A1ndez%20Undurraga"
+        }
+      ]
+    },
+    {
+      "id": "fac-2",
+      "name": "Mar√≠a Luisa Sotomayor Duarte",
+      "role": "Directora Depto. Derecho Privado",
+      "type": "autoridad",
+      "badge": "Cuerpo Acad√©mico",
+      "initials": "MS",
+      "photo": "",
+      "bio": "Abogada y Licenciada en Ciencias Jur√≠dicas y Sociales, con estudios de posgrado y amplia trayectoria docente y de gesti√≥n acad√©mica en la Universidad Central de Chile.",
+      "bulletPoints": [
+        "Abogada y Licenciada en Ciencias Jur√≠dicas y Sociales.",
+        "Directora del Departamento de Derecho Privado de la Facultad de Derecho y Humanidades (FACDEH).",
+        "Extensa trayectoria docente e investigativa en derecho civil y patrimonial."
+      ],
+      "links": [
+        {
+          "text": "Autoridades FACDEH",
+          "url": "https://facdeh.ucentral.cl/autoridades/"
+        },
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Mar%C3%ADa%20Luisa%20Sotomayor%20Duarte"
+        }
+      ]
+    },
+    {
+      "id": "fac-3",
+      "name": "H√©ctor Vargas Ferrer",
+      "role": "Coordinador Sociedad de Debates",
+      "type": "autoridad",
+      "badge": "Coordinaci√≥n",
+      "initials": "HV",
+      "photo": "",
+      "bio": "Licenciado en Filosof√≠a por la Universidad de Chile, Egresado de Derecho de la Universidad Central de Chile y Mediador Familiar (UBO). Mag√≠ster en Gesti√≥n y Liderazgo Educacional con tres diplomados de post√≠tulo por la UCEN.",
+      "bulletPoints": [
+        "Egresado de Derecho, Universidad Central de Chile.",
+        "Licenciado en Filosof√≠a, Universidad de Chile.",
+        "Mediador Familiar (UBO).",
+        "Mag√≠ster en Gesti√≥n y Liderazgo Educacional con post√≠tulos por la UCEN."
+      ],
+      "links": [
+        {
+          "text": "Curr√≠culum Oficial",
+          "url": "https://www.hectorvargasferrer.cl/experiencia-academica"
+        },
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=H%C3%A9ctor%20Vargas%20Ferrer"
+        }
+      ]
+    },
+    {
+      "id": "fac-4",
+      "name": "√Ålvaro Osorio Ossand√≥n",
+      "role": "Asesor Externo",
+      "type": "asesor",
+      "badge": "Universidad de Leiden",
+      "initials": "√ÅO",
+      "photo": "",
+      "bio": "Estudiante avanzado de Derecho en la FACDEH-UCEN y ex bombero voluntario. Beneficiario de la beca DRI de movilidad internacional cursando estudios en Leiden University (Pa√≠ses Bajos). Mejor orador del Torneo de Litigaci√≥n ACHILIT (2024).",
+      "bulletPoints": [
+        "Estudiante avanzado de Derecho, Universidad Central de Chile.",
+        "Actualmente cursando estudios internacionales en Leiden University, Pa√≠ses Bajos (Beca DRI).",
+        "Mejor orador del Torneo de Litigaci√≥n de la Asociaci√≥n Chilena de Litigaci√≥n - ACHILIT (2024).",
+        "Ex bombero voluntario y asesor estrat√©gico en oratoria y litigaci√≥n forense."
+      ],
+      "links": [
+        {
+          "text": "Beca Internacional UCEN",
+          "url": "https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/"
+        },
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=%C3%81lvaro%20Osorio%20Ossand%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "fac-5",
+      "name": "Jorge Legisos Soto",
+      "role": "Consejero & Articulista Doctrina",
+      "type": "estudiante",
+      "badge": "Mejor Orador 2026",
+      "initials": "JL",
+      "photo": "img/equipo/jorge-legisos.jpg",
+      "bio": "Estudiante de Derecho UCEN, investigador en derecho procesal penal y garant√≠as constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampe√≥n del torneo \"Prof. Rodrigo Pica\".",
+      "bulletPoints": [
+        "Estudiante de 3¬∞ a√±o de Derecho, Universidad Central de Chile.",
+        "Cuenta con especializaci√≥n en Propiedad Intelectual por la Universidad del Desarrollo.",
+        "Ayudante del Electivo de Propiedad Industrial y en las c√°tedras de Derecho Penal en la Universidad Central de Chile.",
+        "Mejor orador y subcampe√≥n del Torneo de debates jur√≠dicos \"Prof. Rodrigo Pica\" (2026).",
+        "Mejor orador interuniversitario vs Sociedad de Litigaci√≥n USACH (octubre 2026)."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto"
+        }
+      ]
+    },
+    {
+      "id": "fac-6",
+      "name": "Antonia Vidal",
+      "role": "Consejera & Columnista de Opini√≥n",
+      "type": "estudiante",
+      "badge": "Campeona Oratoria",
+      "initials": "AV",
+      "photo": "img/equipo/antonia-vidal.jpg",
+      "bio": "Estudiante de Derecho UCEN, integrante del equipo titular de litigaci√≥n y debate interfacultades. Campeona y mejor oradora del torneo de debate de la FACDEH, especializada en argumentaci√≥n penal y √©tica procesal.",
+      "bulletPoints": [
+        "Estudiante de 3¬∞ a√±o de Derecho, Universidad Central de Chile.",
+        "Campeona y mejor oradora del Torneo de debates jur√≠dicos \"Prof. Rodrigo Pica\" (2026).",
+        "Vasta experiencia en representaci√≥n en torneos de debates y litigaci√≥n en materias penales y √©ticas.",
+        "Integrante del equipo representativo en el I Torneo Interfacultades e interuniversitario vs USACH."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Antonia%20Vidal%20Universidad%20Central"
+        }
+      ]
+    },
+    {
+      "id": "fac-7",
+      "name": "Mart√≠n Castro",
+      "role": "Consejero & Analista Jurisprudencia",
+      "type": "estudiante",
+      "badge": "Derecho P√∫blico",
+      "initials": "MC",
+      "photo": "img/equipo/martin-castro.jpg",
+      "bio": "Estudiante de Derecho UCEN, ayudante del departamento de Derecho P√∫blico de la Universidad Central de Chile, desempe√±√°ndose en las √°reas de Derecho Internacional P√∫blico y Derecho Procesal.",
+      "bulletPoints": [
+        "Estudiante de 3¬∞ a√±o de Derecho, Universidad Central de Chile.",
+        "Ayudante del Departamento de Derecho P√∫blico de la Universidad Central de Chile.",
+        "Especialista en Derecho Internacional P√∫blico y Derecho Procesal.",
+        "Miembro del equipo titular en el encuentro de debate contra la USACH (2026)."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Mart%C3%ADn%20Castro%20Universidad%20Central%20Derecho"
+        }
+      ]
+    },
+    {
+      "id": "fac-8",
+      "name": "Camilo Gatica",
+      "role": "Consejero de Debates",
+      "type": "estudiante",
+      "badge": "Subcampe√≥n 2026",
+      "initials": "CG",
+      "photo": "img/equipo/camilo-gatica.jpg",
+      "bio": "Estudiante de Derecho UCEN e integrante activo del consejo organizador y de representaci√≥n interuniversitaria.",
+      "bulletPoints": [
+        "Estudiante de 2¬∞ a√±o de Derecho, Universidad Central de Chile.",
+        "Subcampe√≥n del Torneo de debates jur√≠dicos \"Prof. Rodrigo Pica\" (2026).",
+        "Consejero activo en organizaci√≥n de torneos y vinculaci√≥n estudiantil."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Camilo%20Gatica%20Universidad%20Central"
+        }
+      ]
+    },
+    {
+      "id": "fac-9",
+      "name": "Mat√≠as Gioia",
+      "role": "Consejero de Debates",
+      "type": "estudiante",
+      "badge": "Equipo Titular",
+      "initials": "MG",
+      "photo": "img/equipo/matias-gioia.jpg",
+      "bio": "Estudiante de Derecho UCEN y miembro del equipo representativo que enfrent√≥ a la Sociedad de Litigaci√≥n de la USACH en octubre de 2026.",
+      "bulletPoints": [
+        "Estudiante de 3¬∞ a√±o de Derecho, Universidad Central de Chile.",
+        "Miembro del equipo representativo en el encuentro interuniversitario UCEN vs USACH (octubre 2026).",
+        "Orador titular en mociones de derecho bancario, tributario y garant√≠as individuales."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Mat%C3%ADas%20Gioia%20Universidad%20Central"
+        }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "id": "art-1",
+      "title": "Flexibilizaci√≥n del Secreto Bancario: Entre la eficacia persecutoria y las garant√≠as de la vida privada",
+      "category": "Doctrina & Debate Constitucional",
+      "materia": "Derecho Constitucional",
+      "tags": [
+        "Derecho Constitucional",
+        "Debido Proceso",
+        "TC Chile",
+        "Crimen Organizado"
+      ],
+      "author": "Jorge Legisos Soto",
+      "date": "14 de octubre de 2026",
+      "readTime": "6 min",
+      "isLead": true,
+      "summary": "An√°lisis dogm√°tico a partir del debate interfacultades frente a la USACH. La tensi√≥n entre el deber estatal de persecuci√≥n penal del crimen organizado y la protecci√≥n constitucional de las comunicaciones y datos privados.",
+      "content": "\n          <p>El debate en torno a la apertura o flexibilizaci√≥n del secreto bancario ha dejado de ser una simple discusi√≥n t√©cnica de derecho financiero para convertirse en uno de los nudos m√°s sensibles del derecho p√∫blico contempor√°neo.</p>\n          \n          <blockquote>\"No se trata √∫nicamente de facilitar la persecuci√≥n de delitos econ√≥micos complejos, sino de ponderar si el umbral de control jurisdiccional previo constituye una garant√≠a esencial del Estado de Derecho o un obst√°culo procesal dispensable.\"</blockquote>\n\n          <p>En el marco de la reciente jornada de debates interfacultades de la Universidad Central frente a la Sociedad de Litigaci√≥n de la USACH, se contrastaron los dos polos dogm√°ticos: por un lado, el deber de tutela estatal consagrado en el art√≠culo 1¬∞ de la Constituci√≥n, que exige herramientas eficaces para desarticular el lavado de activos; por el otro, la inviolabilidad del hogar y de toda forma de comunicaci√≥n privada (art. 19 N¬∞ 5 CPR).</p>\n\n          <p>La dogm√°tica constitucional moderna nos ense√±a que ning√∫n derecho fundamental es absoluto, pero cualquier restricci√≥n debe satisfacer con rigor los subprincipios de idoneidad, necesidad y proporcionalidad en sentido estricto. La mera agilizaci√≥n administrativa no puede erigirse como fundamento suficiente para sortear el escrutinio de un juez de garant√≠a.</p>\n\n          <p>En conclusi√≥n, el fortalecimiento de las facultades de los √≥rganos persecutores debe ir indefectiblemente de la mano de un est√°ndar reforzado de debido proceso, trazabilidad algor√≠tmica y responsabilidades funcionales estrictas ante eventuales filtraciones.</p>\n        ",
+      "bibliography": [
+        "Tribunal Constitucional de Chile (2023). Sentencia Rol N¬∞ 12.450-22 sobre reserva de datos bancarios.",
+        "Pica Flores, R. (2018). El car√°cter concreto del control de inaplicabilidad por inconstitucionalidad en el sistema chileno. Revista de Derecho.",
+        "Grupo de Acci√≥n Financiera Internacional (GAFI). Est√°ndares Internacionales sobre la Lucha contra el Lavado de Activos.",
+        "https://www.diarioconstitucional.cl/2026/10/14/debate-ucen-flexibilizacion-secreto-bancario/"
+      ]
+    },
+    {
+      "id": "art-2",
+      "title": "La litigaci√≥n estrat√©gica y el arte de la oratoria jur√≠dica en las nuevas generaciones",
+      "category": "Opini√≥n & Columnas",
+      "materia": "Litigaci√≥n Oral",
+      "tags": [
+        "Litigaci√≥n Oral",
+        "Ret√≥rica Forense",
+        "√âtica Profesional"
+      ],
+      "author": "Antonia Vidal",
+      "date": "11 de octubre de 2026",
+      "readTime": "4 min",
+      "isLead": false,
+      "summary": "C√≥mo los torneos de debates universitarios forman abogados preparados para los tribunales del siglo XXI, integrando dial√©ctica y √©tica procesal.",
+      "content": "\n          <p>Tradicionalmente la ense√±anza del derecho se enfoc√≥ en el aprendizaje memor√≠stico de la norma positiva. No obstante, las reformas procesales orales ‚Äîpenal, laboral, de familia y las futuras reformas civiles‚Äî exigen una destreza discursiva muy superior.</p>\n          <p>Participar activamente en la Sociedad de Debates permite comprender que la oratoria no es mero adorno ret√≥rico; es la capacidad de ordenar el pensamiento bajo presi√≥n, someter las premisas al principio de no contradicci√≥n y defender la dignidad humana ante cualquier estrado.</p>\n        ",
+      "bibliography": [
+        "Colegio de Abogados de Chile (2025). Manual de √âtica y Litigaci√≥n en Juicios Orales.",
+        "Baytelman, A. y Duce, M. (2004). Litigaci√≥n Penal, Juicio Oral y Prueba. Editorial Jur√≠dica de Chile.",
+        "https://facdeh.ucentral.cl/noticias/torneo-litigacion-oratoria-forense/"
+      ]
+    },
+    {
+      "id": "art-3",
+      "title": "El principio de legalidad penal frente a nuevas tipolog√≠as delictivas en el ciberespacio",
+      "category": "Jurisprudencia Comentada",
+      "materia": "Delitos Inform√°ticos",
+      "tags": [
+        "Delitos Inform√°ticos",
+        "Derecho Procesal Penal",
+        "Legalidad"
+      ],
+      "author": "Mart√≠n Castro",
+      "date": "8 de octubre de 2026",
+      "readTime": "5 min",
+      "isLead": false,
+      "summary": "Comentario dogm√°tico sobre las exigencias del mandato de determinaci√≥n y tipicidad frente a la evoluci√≥n digital en los tribunales chilenos.",
+      "content": "\n          <p>La celeridad con que evolucionan los delitos inform√°ticos colisiona permanentemente con el mandato de lex certa. ¬øHasta qu√© punto la interpretaci√≥n judicial puede colmar lagunas sin infringir la prohibici√≥n de analog√≠a in malam partem?</p>\n          <p>Analizamos las sentencias m√°s recientes de las Cortes de Apelaciones y la necesidad de una actualizaci√≥n dogm√°tica constante en las aulas universitarias.</p>\n        ",
+      "bibliography": [
+        "Ley N¬∞ 21.459 sobre Delitos Inform√°ticos y adecuaci√≥n de normas del C√≥digo Procesal Penal.",
+        "Corte de Apelaciones de San Miguel (2025). Fallo Rol Penal N¬∞ 342-2025 sobre interceptaci√≥n telem√°tica.",
+        "https://www.diarioconstitucional.cl"
+      ]
+    }
+  ],
+  "hitos": [
+    {
+      "id": "hito-1",
+      "title": "Sociedad de Debates UCEN vs Sociedad de Litigaci√≥n USACH",
+      "badge": "Octubre 2026 ¬∑ Interuniversitario",
+      "desc": "En el marco del I Torneo de Debates Interfacultades de la UCEN, el equipo compuesto por Antonia Vidal, Mart√≠n Castro, Jorge Legisos y Mat√≠as Gioia debati√≥ contra el equipo de la Universidad de Santiago de Chile con la postura en contra de \"Flexibilizar el Secreto Bancario\". Fueron distinguidos como mejores oradores Jorge Legisos Soto (UCEN) y Antonia Pinto (USACH).",
+      "schedule": "‚Ä¢ Cuartos de Final: Mi√©rcoles 14 de octubre de 2026\n‚Ä¢ Semifinal: Lunes 19 de octubre de 2026\n‚Ä¢ Final y 3¬∞/4¬∞ lugar: Viernes 23 de octubre de 2026\n(Lugar: Sala de Litigaci√≥n, piso 2 y Sala de Licenciatura, piso 4, Torre C - FACDEH)",
+      "photo": "img/galeria/foto-08.jpg",
+      "gallery": [
+        "img/galeria/foto-01.jpg",
+        "img/galeria/foto-02.jpg",
+        "img/galeria/foto-03.jpg",
+        "img/galeria/foto-08.jpg"
+      ],
+      "linkUrl": "https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/",
+      "linkText": "Ver cobertura oficial UCEN ‚Üí",
+      "isFeatured": true
+    },
+    {
+      "id": "hito-2",
+      "title": "I Torneo de Debate Jur√≠dico del Poder Judicial",
+      "badge": "Octubre 2024",
+      "desc": "Organizado por la Corte de Apelaciones de San Miguel con ocho facultades de Derecho. En su reestreno, la UCEN alcanz√≥ Cuartos de Final frente a la Universidad de Chile en rondas evaluadas por ministros de Corte.",
+      "schedule": "",
+      "photo": "img/galeria/foto-01.jpg",
+      "gallery": [
+        "img/galeria/foto-01.jpg",
+        "img/galeria/foto-04.jpg"
+      ],
+      "linkUrl": "https://derecho.uchile.cl/noticias/222004/u-de-chile-gana-primer-torneo-de-debate-juridico-del-poder-judicial",
+      "linkText": "Ver cobertura oficial U. de Chile ‚Üí",
+      "isFeatured": false
+    },
+    {
+      "id": "hito-3",
+      "title": "I Torneo \"Dr. Antonio Bascu√±√°n Vald√©s\"",
+      "badge": "Mayo 2025",
+      "desc": "Colegio de Abogados de Chile y Asociaci√≥n Chilena de Litigaci√≥n. Participaci√≥n de once universidades. La UCEN super√≥ fase de grupos y cuartos de final instal√°ndose en las Semifinales Nacionales.",
+      "schedule": "",
+      "photo": "img/galeria/foto-02.jpg",
+      "gallery": [
+        "img/galeria/foto-02.jpg",
+        "img/galeria/foto-05.jpg"
+      ],
+      "linkUrl": "https://finis.cl/equipo-de-debate-de-la-facultad-de-derecho-gano-torneo-organizado-por-el-colegio-de-abogados-y-la-asociacion-chilena-de-litigacion/",
+      "linkText": "Ver registro Semifinales ‚Üí",
+      "isFeatured": false
+    },
+    {
+      "id": "hito-4",
+      "title": "II Torneo de Debate del Poder Judicial",
+      "badge": "Septiembre‚ÄìOctubre 2025",
+      "desc": "Convocatoria de diez facultades de Derecho (PUC, UCH, UCEN, USACH, UDP, UAH, UANDES, UDD, USS, UAUT). Incorporaci√≥n de herramientas inmersivas en litigaci√≥n penal y civil.",
+      "schedule": "",
+      "photo": "img/galeria/foto-03.jpg",
+      "gallery": [
+        "img/galeria/foto-03.jpg",
+        "img/galeria/foto-06.jpg"
+      ],
+      "linkUrl": "https://www.diarioconstitucional.cl/2025/10/30/universidad-catolica-obtiene-el-primer-lugar-en-el-2-torneo-de-debate-juridico-organizado-por-la-corte-de-san-miguel/",
+      "linkText": "Ver en Diario Constitucional ‚Üí",
+      "isFeatured": false
+    },
+    {
+      "id": "hito-5",
+      "title": "II Torneo \"Dr. Antonio Bascu√±√°n Vald√©s\"",
+      "badge": "Mayo‚ÄìJunio 2026",
+      "desc": "Participaci√≥n oficial de la representaci√≥n de la Universidad Central junto a las principales escuelas de Derecho del pa√≠s en la sede del Colegio de Abogados de Chile A.G.",
+      "schedule": "",
+      "photo": "img/galeria/foto-07.jpg",
+      "gallery": [
+        "img/galeria/foto-07.jpg",
+        "img/galeria/foto-09.jpg"
+      ],
+      "linkUrl": "https://actualidad.udla.cl/2026/05/estudiantes-de-derecho-udla-participan-en-el-segundo-torneo-de-debate-juridico-dr-antonio-bascunan-valdes/",
+      "linkText": "Ver n√≥mina oficial ‚Üí",
+      "isFeatured": false
+    },
+    {
+      "id": "hito-6",
+      "title": "Torneo FACDEH en Homenaje a la Excelencia",
+      "badge": "1 de Julio de 2026",
+      "desc": "Hito institucional clave con respaldo de Vicerrector√≠a Acad√©mica y DAVE, rindiendo tributo al legado del profesor Rodrigo Pica Flores y cimentando la plataforma actual.",
+      "schedule": "",
+      "photo": "img/galeria/foto-10.jpg",
+      "gallery": [
+        "img/galeria/foto-10.jpg"
+      ],
+      "linkUrl": "https://noticias.ucentral.cl/noticias/estudiantes-de-derecho-rindieron-homenaje-a-la-excelencia-juridica-en-torneo-de-debate-de-la-facdeh/",
+      "linkText": "Ver noticia oficial UCEN ‚Üí",
+      "isFeatured": false
+    }
+  ],
+  "visualContent": {},
+  "version": 1,
+  "updatedAt": "2026-10-17T22:21:52.287Z"
+}

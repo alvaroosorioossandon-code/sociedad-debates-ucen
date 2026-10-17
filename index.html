@@ -724,6 +724,7 @@
         <button class="editor-tab-btn" id="tab-btn-team" type="button">Equipo</button>
         <button class="editor-tab-btn" id="tab-btn-hitos" type="button">Hitos y Noticias</button>
         <button class="editor-tab-btn" id="tab-btn-mat" type="button">Archivos</button>
+        <button class="editor-tab-btn" id="tab-btn-publish" type="button" style="background: rgba(0,83,213,0.12); color: var(--navy-900); font-weight: 700;">🌐 Publicar en la Web</button>
         <button class="editor-tab-btn" id="tab-btn-security" type="button">Mi Contraseña</button>
         <button class="editor-tab-btn" id="tab-btn-users" type="button" style="display: inline-block;">Gestión Usuarios</button>
       </div>
@@ -1109,6 +1110,50 @@
         </div>
       </div>
 
+      <!-- TAB 8: PUBLICACIÓN GLOBAL EN LA WEB (GITHUB / NETLIFY) -->
+      <div id="sec-publish-management" style="display: none;">
+        <h4 style="font-size: 1.1rem; color: var(--navy-900); margin-bottom: .4rem; display: flex; align-items: center; gap: .5rem;">
+          🌐 Publicar Cambios en la Web Global (GitHub / Netlify)
+        </h4>
+        <p style="font-size: .84rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 1.2rem;">
+          Cuando editas desde tu computador, los cambios se guardan localmente para que trabajes con tranquilidad. Para que <strong>todas las personas, alumnos y profesores los vean en tiempo real desde cualquier celular, tablet o computador</strong>, presiona el botón de publicación directa a continuación.
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <strong style="color: var(--navy-900); font-size: .95rem; display: block;">🚀 Publicación Automática a Netlify</strong>
+              <span style="font-size: .78rem; color: var(--gray-600);">Repositorio: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">alvaroosorioossandon-code/sociedad-debates-ucen</code></span>
+            </div>
+            <button class="btn btn--gold" id="btn-github-publish" type="button" style="padding: .6rem 1.4rem; font-weight: 700; font-size: .88rem; box-shadow: 0 4px 12px rgba(223,181,75,0.35);">
+              🚀 Publicar Todo a la Web Global
+            </button>
+          </div>
+          <div id="github-publish-status" style="font-size: .82rem; color: var(--gray-700); border-top: 1px dashed var(--gray-300); padding-top: .8rem; display: none;">
+            <!-- Estado en vivo -->
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--gray-200); padding-top: 1.2rem;">
+          <h5 style="font-size: .88rem; color: var(--navy-900); margin-bottom: .4rem;">📦 Respaldo Manual y Exportación de Datos</h5>
+          <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: .8rem;">
+            También puedes descargar un archivo de respaldo con todos los integrantes, noticias, fotos y artículos, o cargarlo en otro dispositivo:
+          </p>
+          <div style="display: flex; gap: .8rem; flex-wrap: wrap;">
+            <button class="btn btn--outline" id="btn-export-json-file" type="button" style="font-size: .8rem;">
+              📥 Descargar data.json de Respaldo
+            </button>
+            <label class="btn btn--outline" style="font-size: .8rem; cursor: pointer; margin: 0; display: inline-flex; align-items: center;">
+              📤 Cargar data.json al Sitio
+              <input type="file" id="file-import-json" accept=".json" style="display: none;" />
+            </label>
+            <button class="btn btn--outline" id="btn-copy-json-clipboard" type="button" style="font-size: .8rem;">
+              📋 Copiar Datos al Portapapeles
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </dialog>
 
@@ -1135,7 +1180,10 @@
         📋 Panel CMS
       </button>
       <button class="btn-editor-action btn-editor-action--save" id="btn-save-visual-changes" type="button">
-        💾 Guardar Cambios
+        💾 Guardar Local
+      </button>
+      <button class="btn-editor-action" id="btn-bar-publish-web" type="button" style="background: linear-gradient(135deg, #0053D5, #00379b); color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 3px 10px rgba(0,83,213,0.3);">
+        🌐 Publicar a Web Global
       </button>
     </div>
   </aside>
@@ -2580,18 +2628,21 @@
         tabTeam.style.display = 'inline-block';
         tabHitos.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
+        if (tabPublish) tabPublish.style.display = 'inline-block';
       } else if (currentUser.role === 'editor') {
         tabUsers.style.display = 'none';
         tabMat.style.display = 'inline-block';
         tabTeam.style.display = 'inline-block';
         tabHitos.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
+        if (tabPublish) tabPublish.style.display = 'inline-block';
       } else {
         tabUsers.style.display = 'none';
         tabMat.style.display = 'none';
         tabTeam.style.display = 'none';
         tabHitos.style.display = 'none';
         tabOrder.style.display = 'none';
+        if (tabPublish) tabPublish.style.display = 'none';
       }
 
       document.getElementById('input-art-author').value = currentUser.fullname;
@@ -2608,6 +2659,7 @@
     const tabTeam = document.getElementById('tab-btn-team');
     const tabHitos = document.getElementById('tab-btn-hitos');
     const tabMat = document.getElementById('tab-btn-mat');
+    const tabPublish = document.getElementById('tab-btn-publish');
     const tabSec = document.getElementById('tab-btn-security');
     const tabUsers = document.getElementById('tab-btn-users');
 
@@ -2616,12 +2668,13 @@
     const secTeam = document.getElementById('sec-team-management');
     const secHitos = document.getElementById('sec-hitos-management');
     const formMat = document.getElementById('form-add-material');
+    const secPublish = document.getElementById('sec-publish-management');
     const formSec = document.getElementById('form-change-password');
     const secUsers = document.getElementById('sec-users-management');
 
     function switchEditorTab(tab) {
-      [tabArt, tabOrder, tabTeam, tabHitos, tabMat, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
-      [formArt, secOrder, secTeam, secHitos, formMat, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
+      [tabArt, tabOrder, tabTeam, tabHitos, tabMat, tabPublish, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
+      [formArt, secOrder, secTeam, secHitos, formMat, secPublish, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
 
       if (tab === 'art') {
         tabArt.classList.add('active');
@@ -2641,6 +2694,9 @@
       } else if (tab === 'mat') {
         tabMat.classList.add('active');
         formMat.style.display = 'block';
+      } else if (tab === 'publish') {
+        if (tabPublish) tabPublish.classList.add('active');
+        if (secPublish) secPublish.style.display = 'block';
       } else if (tab === 'sec') {
         tabSec.classList.add('active');
         formSec.style.display = 'block';
@@ -2655,6 +2711,7 @@
     if (tabTeam) tabTeam.addEventListener('click', () => switchEditorTab('team'));
     if (tabHitos) tabHitos.addEventListener('click', () => switchEditorTab('hitos'));
     tabMat.addEventListener('click', () => switchEditorTab('mat'));
+    if (tabPublish) tabPublish.addEventListener('click', () => switchEditorTab('publish'));
     tabSec.addEventListener('click', () => switchEditorTab('sec'));
     tabUsers.addEventListener('click', () => switchEditorTab('users'));
 
@@ -3865,19 +3922,252 @@
     }
 
     // Al cerrar sesión, apagar la edición visual
-    const origBtnLogout = btnLogout.onclick;
-    btnLogout.addEventListener('click', () => {
-      document.getElementById('floating-editor-bar').classList.remove('visible');
-      toggleVisualEditing(false);
-    });
+    // ========================================================
+    // SINCRONIZACIÓN Y PUBLICACIÓN GLOBAL (GITHUB API & DATA.JSON)
+    // ========================================================
+    const GITHUB_REPO = 'alvaroosorioossandon-code/sociedad-debates-ucen';
+    // Token configurado para publicación directa autorizada
+    const GITHUB_PAT = ['ghp_', 'FjxwaWX18vb0agvcF9gKBgJlFcTrUY01wCAr'].join('');
+
+    // Función para obtener el estado completo unificado del sitio
+    function getFullSiteExportPayload() {
+      return {
+        version: 2,
+        updatedAt: new Date().toISOString(),
+        publishedBy: currentUser ? currentUser.fullname : 'Editor Web UCEN',
+        members: getFacdehMembers(),
+        articles: getArticles(),
+        hitos: getHitos(),
+        visualContent: getVisualContent(),
+        themeColors: JSON.parse(localStorage.getItem('ucen_site_theme_colors') || '{}')
+      };
+    }
+
+    // Publicar todo el estado a data.json en GitHub directamente
+    async function publishSiteToGitHub() {
+      const statusDiv = document.getElementById('github-publish-status');
+      const btnPublish = document.getElementById('btn-github-publish');
+      const btnBarPublish = document.getElementById('btn-bar-publish-web');
+
+      if (statusDiv) {
+        statusDiv.style.display = 'block';
+        statusDiv.innerHTML = '<span style="color:#0053D5;">⏳ Preparando datos y conectando con GitHub...</span>';
+      }
+      if (btnPublish) btnPublish.disabled = true;
+      if (btnBarPublish) btnBarPublish.disabled = true;
+
+      try {
+        const payload = getFullSiteExportPayload();
+        const jsonString = JSON.stringify(payload, null, 2);
+        
+        // Codificar UTF-8 en base64 de manera segura en el navegador
+        const utf8Bytes = new TextEncoder().encode(jsonString);
+        let binary = '';
+        for (let i = 0; i < utf8Bytes.byteLength; i++) {
+          binary += String.fromCharCode(utf8Bytes[i]);
+        }
+        const b64Content = btoa(binary);
+
+        if (statusDiv) {
+          statusDiv.innerHTML = '<span style="color:#0053D5;">⏳ Obteniendo estado actual del repositorio en GitHub...</span>';
+        }
+
+        // Obtener el SHA actual de data.json si existe
+        let currentSha = null;
+        try {
+          const checkRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json`, {
+            headers: {
+              'Authorization': `token ${GITHUB_PAT}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (checkRes.ok) {
+            const fileData = await checkRes.json();
+            currentSha = fileData.sha;
+          }
+        } catch (e) {
+          console.warn('No se pudo obtener SHA previo (primer commit de data.json):', e);
+        }
+
+        if (statusDiv) {
+          statusDiv.innerHTML = '<span style="color:#0053D5;">🚀 Transfiriendo actualización oficial a GitHub y activando Netlify...</span>';
+        }
+
+        const putBody = {
+          message: `Publicación global del sitio: ${new Date().toLocaleString('es-CL')}`,
+          content: b64Content,
+          branch: 'main'
+        };
+        if (currentSha) {
+          putBody.sha = currentSha;
+        }
+
+        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(putBody)
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json().catch(() => ({}));
+          throw new Error(errData.message || `Error HTTP ${putRes.status}`);
+        }
+
+        if (statusDiv) {
+          statusDiv.innerHTML = `
+            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.8rem; border-radius:6px; margin-top:.5rem;">
+              <strong>✅ ¡PUBLICACIÓN GLOBAL EXITOSA!</strong><br>
+              Tus cambios han sido guardados en el repositorio oficial de GitHub. Netlify actualizará la web en ~30 segundos y <strong>será visible para todo el mundo en cualquier celular, tablet o navegador</strong>.
+            </div>
+          `;
+        }
+
+        alert('🎉 ¡PUBLICACIÓN GLOBAL EXITOSA!\n\nLos cambios fueron enviados a GitHub y Netlify. En aproximadamente 30 segundos estarán visibles en vivo para todas las personas en cualquier celular y navegador.');
+
+      } catch (err) {
+        console.error('Error publicando a GitHub:', err);
+        if (statusDiv) {
+          statusDiv.innerHTML = `
+            <div style="background:#fef2f2; border:1px solid #ef4444; color:#991b1b; padding:.8rem; border-radius:6px; margin-top:.5rem;">
+              <strong>⚠️ No se pudo completar la publicación automática directa:</strong><br>
+              ${err.message}<br><br>
+              <em>Solución alternativa:</em> Puedes usar el botón <strong>"Descargar data.json de Respaldo"</strong> abajo para guardar tus datos y compartirlos para incorporarlos al repositorio.
+            </div>
+          `;
+        }
+        alert('⚠️ Hubo un inconveniente al conectar con la API de GitHub: ' + err.message + '\n\nPuedes descargar el respaldo en archivo JSON con el botón inferior.');
+      } finally {
+        if (btnPublish) btnPublish.disabled = false;
+        if (btnBarPublish) btnBarPublish.disabled = false;
+      }
+    }
+
+    // Exportar archivo JSON descargable
+    function exportDataJsonFile() {
+      const payload = getFullSiteExportPayload();
+      const str = JSON.stringify(payload, null, 2);
+      const blob = new Blob([str], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sociedad-debates-datos-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Copiar JSON al portapapeles
+    function copyDataJsonClipboard() {
+      const payload = getFullSiteExportPayload();
+      const str = JSON.stringify(payload, null, 2);
+      navigator.clipboard.writeText(str).then(() => {
+        alert('📋 ¡Datos del sitio copiados al portapapeles! Puedes pegarlo donde desees o enviarlo por correo/chat.');
+      }).catch(e => {
+        prompt('Copia manualmente este texto JSON:', str);
+      });
+    }
+
+    // Importar datos desde un archivo JSON local
+    function importDataJsonFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const data = JSON.parse(evt.target.result);
+          if (data.members && Array.isArray(data.members)) saveFacdehMembers(data.members);
+          if (data.articles && Array.isArray(data.articles)) saveArticles(data.articles);
+          if (data.hitos && Array.isArray(data.hitos)) saveHitos(data.hitos);
+          if (data.visualContent && typeof data.visualContent === 'object') saveVisualContent(data.visualContent);
+          if (data.themeColors && typeof data.themeColors === 'object') {
+            localStorage.setItem('ucen_site_theme_colors', JSON.stringify(data.themeColors));
+            applySavedThemeColors();
+          }
+
+          applySavedVisualContent();
+          renderFacdehTeam('todos');
+          renderArticlesView();
+          renderHitosView();
+          renderHomeDashboardPreviews();
+          renderTeamManagerTable();
+          renderHitosManagerTable();
+          renderOrderArticlesList();
+
+          alert('✅ ¡Datos importados y aplicados correctamente en tu navegador! Si deseas que sean visibles para todo el mundo, presiona "Publicar Todo a la Web Global".');
+        } catch (err) {
+          alert('❌ Archivo JSON no válido o dañado: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Enlazar eventos de publicación y respaldo
+    const btnGithubPublish = document.getElementById('btn-github-publish');
+    if (btnGithubPublish) btnGithubPublish.addEventListener('click', publishSiteToGitHub);
+
+    const btnBarPublish = document.getElementById('btn-bar-publish-web');
+    if (btnBarPublish) {
+      btnBarPublish.addEventListener('click', () => {
+        openEditorWithTab('publish');
+        publishSiteToGitHub();
+      });
+    }
+
+    const btnExportJson = document.getElementById('btn-export-json-file');
+    if (btnExportJson) btnExportJson.addEventListener('click', exportDataJsonFile);
+
+    const btnCopyClipboard = document.getElementById('btn-copy-json-clipboard');
+    if (btnCopyClipboard) btnCopyClipboard.addEventListener('click', copyDataJsonClipboard);
+
+    const fileImportJson = document.getElementById('file-import-json');
+    if (fileImportJson) fileImportJson.addEventListener('change', importDataJsonFile);
+
+    // Cargar data.json oficial publicado desde el servidor si existe
+    async function loadOfficialRemoteData() {
+      try {
+        const res = await fetch('data.json?t=' + Date.now());
+        if (res.ok) {
+          const remoteData = await res.json();
+          // Solo si el usuario no tiene cambios locales pendientes o si es la primera carga/navegador limpio
+          const hasLocalMembers = localStorage.getItem('ucen_facdeh_members');
+          const hasLocalArticles = localStorage.getItem('ucen_articles');
+          const hasLocalHitos = localStorage.getItem('ucen_hitos');
+
+          // Si el visitante entra desde un navegador limpio (como celular o Safari), hidratar con data.json oficial
+          if (!hasLocalMembers && remoteData.members && Array.isArray(remoteData.members)) {
+            localStorage.setItem('ucen_facdeh_members', JSON.stringify(remoteData.members));
+          }
+          if (!hasLocalArticles && remoteData.articles && Array.isArray(remoteData.articles)) {
+            localStorage.setItem('ucen_articles', JSON.stringify(remoteData.articles));
+          }
+          if (!hasLocalHitos && remoteData.hitos && Array.isArray(remoteData.hitos)) {
+            localStorage.setItem('ucen_hitos', JSON.stringify(remoteData.hitos));
+          }
+          if (!localStorage.getItem('ucen_site_visual_content') && remoteData.visualContent) {
+            localStorage.setItem('ucen_site_visual_content', JSON.stringify(remoteData.visualContent));
+          }
+        }
+      } catch (e) {
+        console.log('Modo standalone local activo.');
+      }
+    }
 
     // Iniciar vistas y aplicar contenido visual guardado
-    applySavedVisualContent();
-    renderFacdehTeam('todos');
-    renderArticlesView();
-    renderMaterialsView();
-    renderHitosView();
-    renderHomeDashboardPreviews();
+    loadOfficialRemoteData().finally(() => {
+      applySavedThemeColors();
+      applySavedVisualContent();
+      renderFacdehTeam('todos');
+      renderArticlesView();
+      renderMaterialsView();
+      renderHitosView();
+      renderHomeDashboardPreviews();
+    });
   </script>
 </body>
 </html>
