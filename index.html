@@ -953,7 +953,15 @@
           </div>
 
           <div class="form-group">
-            <label>Fotos adicionales / Galería del Encuentro (una URL por línea)</label>
+            <label>Fotos adicionales / Galería del Encuentro</label>
+            <div style="background:var(--blue-50, #f8faff); border:1px dashed var(--blue-200, #c3d9ff); padding:.8rem; border-radius:8px; margin-bottom:.5rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
+                <span style="font-size:.76rem; font-weight:600; color:var(--navy-900);">📁 Cargar fotos desde tu dispositivo (puedes seleccionar varias):</span>
+                <input type="file" id="input-hito-gallery-files" accept="image/*" multiple style="font-size:.76rem; max-width:240px;" />
+              </div>
+              <div id="hito-gallery-previews" style="display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem;"></div>
+            </div>
+            <label style="font-size:.75rem; color:var(--gray-600); font-weight:normal; margin-bottom:.2rem;">O especifica rutas / URLs en línea (una por fila):</label>
             <textarea id="input-hito-gallery" rows="2" placeholder="img/galeria/foto-01.jpg&#10;img/galeria/foto-02.jpg&#10;img/galeria/foto-08.jpg"></textarea>
           </div>
 
@@ -2564,24 +2572,71 @@
       formArt.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Input invisible para selección rápida de imagen local para artículos
+    const fileInputForArticle = document.createElement('input');
+    fileInputForArticle.type = 'file';
+    fileInputForArticle.accept = 'image/*';
+    fileInputForArticle.style.display = 'none';
+    document.body.appendChild(fileInputForArticle);
+
     window.promptInsertImageInArticle = function() {
-      const url = prompt('Introduce la URL de la imagen o ruta local (ej: img/galeria/foto-08.jpg):');
-      if (!url) return;
-      const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
+      // Preguntar si prefiere subir archivo local o poner URL
+      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu Mac\n[Cancelar] = Escribir enlace / URL de imagen');
       const contentTextarea = document.getElementById('input-art-content');
-      const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
-      contentTextarea.value += imgMarkup;
-      alert('¡Imagen agregada al cuerpo del artículo!');
+
+      if (useLocal) {
+        fileInputForArticle.onchange = (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            const dataUrl = evt.target.result;
+            const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
+            contentTextarea.value += imgMarkup;
+            alert('¡Imagen cargada e insertada al cuerpo del artículo!');
+          };
+          reader.readAsDataURL(file);
+          fileInputForArticle.value = '';
+        };
+        fileInputForArticle.click();
+      } else {
+        const url = prompt('Introduce la URL de la imagen o ruta local (ej: img/galeria/foto-08.jpg):');
+        if (!url) return;
+        const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
+        const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
+        contentTextarea.value += imgMarkup;
+        alert('¡Imagen agregada al cuerpo del artículo!');
+      }
     };
 
     window.promptInsertImageInCurrentArticle = function(articleId) {
-      const url = prompt('Introduce la URL de la imagen (ej: img/galeria/foto-08.jpg o https://...):');
-      if (!url) return;
-      const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
-      const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
-      
+      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu Mac\n[Cancelar] = Escribir enlace / URL de imagen');
       const bodyEl = document.querySelector(`[data-edit-key="article-content-${articleId}"]`);
-      if (bodyEl) {
+      if (!bodyEl) return;
+
+      if (useLocal) {
+        fileInputForArticle.onchange = (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            const dataUrl = evt.target.result;
+            const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
+            bodyEl.innerHTML += imgMarkup;
+            saveActiveArticleInline(articleId);
+            alert('¡Imagen insertada directamente en el artículo!');
+          };
+          reader.readAsDataURL(file);
+          fileInputForArticle.value = '';
+        };
+        fileInputForArticle.click();
+      } else {
+        const url = prompt('Introduce la URL de la imagen (ej: img/galeria/foto-08.jpg o https://...):');
+        if (!url) return;
+        const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
+        const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
         bodyEl.innerHTML += imgMarkup;
         saveActiveArticleInline(articleId);
       }
@@ -3009,6 +3064,62 @@
     const inputHitoPhotoFile = document.getElementById('input-hito-photo-file');
     const inputHitoPhotoUrl = document.getElementById('input-hito-photo-url');
 
+    const inputHitoGalleryFiles = document.getElementById('input-hito-gallery-files');
+    const inputHitoGallery = document.getElementById('input-hito-gallery');
+    const hitoGalleryPreviews = document.getElementById('hito-gallery-previews');
+
+    function renderHitoGalleryPreviews() {
+      if (!hitoGalleryPreviews || !inputHitoGallery) return;
+      const urls = inputHitoGallery.value.split('\n').map(u => u.trim()).filter(u => u.length > 0);
+      if (urls.length === 0) {
+        hitoGalleryPreviews.innerHTML = '<span style="font-size:.72rem; color:var(--gray-500); font-style:italic;">No hay fotos adicionales cargadas aún.</span>';
+        return;
+      }
+      hitoGalleryPreviews.innerHTML = urls.map((url, idx) => `
+        <div style="position:relative; width:65px; height:65px; border-radius:6px; overflow:hidden; border:1px solid #d0d7de; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+          <img src="${url}" alt="Foto ${idx+1}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/100x100?text=Foto';" />
+          <button type="button" onclick="removeHitoGalleryPhoto(${idx})" title="Eliminar foto" style="position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.65); color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">✕</button>
+        </div>
+      `).join('');
+    }
+
+    window.removeHitoGalleryPhoto = function(idx) {
+      if (!inputHitoGallery) return;
+      const urls = inputHitoGallery.value.split('\n').map(u => u.trim()).filter(u => u.length > 0);
+      urls.splice(idx, 1);
+      inputHitoGallery.value = urls.join('\n');
+      renderHitoGalleryPreviews();
+    };
+
+    if (inputHitoGallery) {
+      inputHitoGallery.addEventListener('input', () => {
+        renderHitoGalleryPreviews();
+      });
+    }
+
+    if (inputHitoGalleryFiles) {
+      inputHitoGalleryFiles.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        if (!files.length) return;
+
+        let loadedCount = 0;
+        files.forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            const dataUrl = evt.target.result;
+            const currentVal = inputHitoGallery.value.trim();
+            inputHitoGallery.value = currentVal ? `${currentVal}\n${dataUrl}` : dataUrl;
+            loadedCount++;
+            if (loadedCount === files.length) {
+              renderHitoGalleryPreviews();
+              inputHitoGalleryFiles.value = ''; // Reset file input so user can add more files
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+    }
+
     if (inputHitoPhotoFile) {
       inputHitoPhotoFile.addEventListener('change', (e) => {
         const file = e.target.files[0];
@@ -3026,6 +3137,8 @@
       if (!formManageHito) return;
       formManageHito.reset();
       document.getElementById('input-hito-id').value = '';
+      if (inputHitoGallery) inputHitoGallery.value = '';
+      renderHitoGalleryPreviews();
       document.getElementById('btn-save-hito-submit').textContent = 'Guardar Nuevo Hito';
     };
 
@@ -3042,6 +3155,7 @@
       document.getElementById('input-hito-schedule').value = h.schedule || '';
       document.getElementById('input-hito-photo-url').value = h.photo || '';
       document.getElementById('input-hito-gallery').value = h.gallery ? h.gallery.join('\n') : '';
+      renderHitoGalleryPreviews();
       document.getElementById('input-hito-link-url').value = h.linkUrl || '';
       document.getElementById('input-hito-link-text').value = h.linkText || 'Ver noticia oficial →';
       document.getElementById('input-hito-featured').checked = !!h.isFeatured;
