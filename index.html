@@ -451,6 +451,25 @@
           <button class="facdeh-chip-btn" data-tag="Delitos Informáticos" type="button">Ciberespacio & Tecnología</button>
         </div>
 
+        <!-- BANNER DE FILTRADO ACTIVO POR AUTOR -->
+        <div id="author-active-filter-banner" style="display:none; background:var(--blue-50); border:1px solid var(--blue-200); padding:.6rem 1rem; border-radius:8px; margin-bottom:1.2rem; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.6rem;">
+          <div style="display:flex; align-items:center; gap:.6rem;">
+            <span style="font-size:1.1rem;">👤</span>
+            <div>
+              <span style="font-size:.75rem; color:var(--gray-600); display:block; text-transform:uppercase; font-weight:700;">Filtrando artículos por autor:</span>
+              <strong id="author-active-filter-name" style="font-size:.92rem; color:var(--navy-900);">Nombre Autor</strong>
+            </div>
+          </div>
+          <div style="display:flex; gap:.4rem;">
+            <button class="btn btn--outline" id="btn-see-author-profile" type="button" style="font-size:.75rem; padding:.25rem .7rem;">
+              Ver Perfil en Equipo ↗
+            </button>
+            <button class="btn btn--gold" onclick="clearAuthorFilter()" type="button" style="font-size:.75rem; padding:.25rem .7rem;">
+              ✕ Ver Todos los Artículos
+            </button>
+          </div>
+        </div>
+
         <div class="editorial-layout">
           <!-- VISOR EDITORIAL MRNS.CL -->
           <article class="mrns-article-viewer" id="current-article-display">
@@ -581,7 +600,8 @@
       <h3 id="cv-name"></h3>
       <p class="member__role" id="cv-role"></p>
       <ul id="cv-list"></ul>
-      <div id="cv-links" style="margin-top: 1.5rem; display: flex; gap: .8rem; flex-wrap: wrap;"></div>
+      <div id="cv-articles-sec" style="margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.08);"></div>
+      <div id="cv-links" style="margin-top: 1.2rem; display: flex; gap: .8rem; flex-wrap: wrap;"></div>
     </div>
   </dialog>
 
@@ -901,6 +921,7 @@
                 <th>Nombre</th>
                 <th>Cargo</th>
                 <th>Tipo</th>
+                <th style="text-align:center;">Orden</th>
                 <th>Acción</th>
               </tr>
             </thead>
@@ -1451,6 +1472,7 @@
       const grid = document.getElementById('facdeh-team-grid');
       const allMembers = getFacdehMembers();
       const filtered = filter === 'todos' ? allMembers : allMembers.filter(m => m.type === filter);
+      const allArticles = getArticles();
 
       document.getElementById('members-count-label').textContent = `${filtered.length} Integrantes`;
 
@@ -1465,18 +1487,35 @@
         const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${m.name.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
         const photoClass = m.photo ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
 
-        // Controles de editor para cambiar foto, guardar cambios in-situ o eliminar miembro
+        // Artículos asociados a este integrante
+        const memberArticles = allArticles.filter(a => {
+          if (!a.author) return false;
+          const aName = a.author.toLowerCase().trim();
+          const mName = m.name.toLowerCase().trim();
+          return aName.includes(mName) || mName.includes(aName);
+        });
+
+        // Controles de editor para ordenar, cambiar foto, guardar cambios in-situ o eliminar miembro
         const editorControls = isEditorOrAdmin ? `
           <div style="margin-top:.7rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center; gap:.4rem; flex-wrap:wrap;">
             <div style="display:flex; gap:.3rem;">
               <button class="order-btn" onclick="saveMemberInline('${m.id}')" title="Guardar cambios de texto de este integrante">💾 Guardar</button>
               <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
             </div>
-            <div style="display:flex; gap:.3rem;">
+            <div style="display:flex; gap:.25rem; align-items:center;">
+              <button class="order-btn" onclick="moveMemberOrder('${m.id}', -1)" title="Mover hacia arriba / adelante">▲</button>
+              <button class="order-btn" onclick="moveMemberOrder('${m.id}', 1)" title="Mover hacia abajo / atrás">▼</button>
               <button class="order-btn" onclick="openMemberInCMS('${m.id}')" title="Editar en formulario">✏️ Ficha</button>
-              <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕ Borrar</button>
+              <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕</button>
             </div>
           </div>
+        ` : '';
+
+        // Badge / enlace a sus artículos
+        const articlesBadgeHtml = memberArticles.length > 0 ? `
+          <button type="button" class="facdeh-btn-perfil" onclick="filterArticlesByAuthor('${m.name.replace(/'/g, "\\'")}')" style="background:var(--wine-50, #fdf2f4); border:1px solid var(--wine-200, #f8d7da); color:var(--wine-700, #8c1d34); padding:.2rem .55rem; border-radius:15px; font-size:.74rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:.3rem;">
+            ✍️ Lee sus artículos (${memberArticles.length}) →
+          </button>
         ` : '';
 
         return `
@@ -1489,10 +1528,13 @@
               ${isEditorOrAdmin ? '<div class="visual-image-overlay">📷 Cambiar Foto</div>' : ''}
             </div>
             <div class="facdeh-card__body">
-              <span class="facdeh-card__tag" data-editable="text" data-edit-key="member-badge-${m.id}">${m.badge}</span>
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem; margin-bottom:.3rem;">
+                <span class="facdeh-card__tag" data-editable="text" data-edit-key="member-badge-${m.id}">${m.badge}</span>
+                ${articlesBadgeHtml}
+              </div>
               <p class="facdeh-card__bio" data-editable="text" data-edit-key="member-bio-${m.id}">${m.bio}</p>
               
-              <div style="margin-top:.6rem;">
+              <div style="margin-top:.6rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem;">
                 <button type="button" class="facdeh-btn-perfil" onclick="openMemberCV('${m.id}')" style="background:none; border:none; padding:0; cursor:pointer; color:var(--blue-600); font-weight:700; font-size:.85rem; display:inline-flex; align-items:center; gap:.3rem;">
                   Ver currículum completo →
                 </button>
@@ -1557,6 +1599,44 @@
 
       cvModalList.innerHTML = bullets.map(b => `<li>${b.replace(/^[•\-\*]\s*/, '')}</li>`).join('');
 
+      // Artículos de autoría del integrante
+      const cvArticlesSec = document.getElementById('cv-articles-sec');
+      if (cvArticlesSec) {
+        const allArticles = getArticles();
+        const memberArticles = allArticles.filter(a => {
+          if (!a.author) return false;
+          const aName = a.author.toLowerCase().trim();
+          const mName = m.name.toLowerCase().trim();
+          return aName.includes(mName) || mName.includes(aName);
+        });
+
+        if (memberArticles.length > 0) {
+          cvArticlesSec.style.display = 'block';
+          cvArticlesSec.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem;">
+              <strong style="font-size:.84rem; color:var(--navy-900);">📚 Artículos & Columnas Publicadas (${memberArticles.length}):</strong>
+              <button type="button" onclick="cvModal.close(); filterArticlesByAuthor('${m.name.replace(/'/g, "\\'")}');" style="background:none; border:none; color:var(--blue-600); font-size:.76rem; font-weight:700; cursor:pointer;">
+                Filtrar en Tribuna →
+              </button>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:.4rem;">
+              ${memberArticles.map(a => `
+                <div style="background:var(--gray-100); padding:.5rem .7rem; border-radius:6px; border:1px solid var(--gray-200); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:.5rem;" onclick="cvModal.close(); selectArticle('${a.id}'); navigateToWindow('articulos');">
+                  <div>
+                    <h5 style="margin:0; font-size:.82rem; color:var(--navy-900); font-weight:700; font-family:var(--serif);">${a.title}</h5>
+                    <span style="font-size:.7rem; color:var(--gray-600);">${a.category} · ${a.date}</span>
+                  </div>
+                  <span style="font-size:.72rem; color:var(--gold-600); font-weight:700; white-space:nowrap;">Leer →</span>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        } else {
+          cvArticlesSec.style.display = 'none';
+          cvArticlesSec.innerHTML = '';
+        }
+      }
+
       // Enlaces
       if (m.links && m.links.length > 0) {
         cvModalLinks.innerHTML = m.links.map(l => `
@@ -1579,6 +1659,23 @@
         if (e.target === cvModal) cvModal.close();
       });
     }
+
+    // Reordenar integrantes de equipo
+    window.moveMemberOrder = function(memberId, delta) {
+      const members = getFacdehMembers();
+      const idx = members.findIndex(m => m.id === memberId);
+      if (idx === -1) return;
+      const newIdx = idx + delta;
+      if (newIdx < 0 || newIdx >= members.length) return;
+
+      const temp = members[idx];
+      members[idx] = members[newIdx];
+      members[newIdx] = temp;
+
+      saveFacdehMembers(members);
+      renderFacdehTeam();
+      renderTeamManagerTable();
+    };
 
     // ==========================================
     // EDICIÓN IN SITU DE MIEMBROS DEL EQUIPO
@@ -1767,7 +1864,7 @@
       if (!tbody) return;
       const members = getFacdehMembers();
 
-      tbody.innerHTML = members.map(m => `
+      tbody.innerHTML = members.map((m, idx) => `
         <tr>
           <td>
             ${m.photo 
@@ -1778,10 +1875,16 @@
           <td><strong>${m.name}</strong></td>
           <td>${m.role}</td>
           <td><span class="user-badge" style="font-size:.68rem;">${m.type}</span></td>
+          <td style="text-align:center;">
+            <div style="display:inline-flex; gap:.2rem;">
+              <button class="order-btn" style="padding:.1rem .4rem;" title="Subir orden" onclick="moveMemberOrder('${m.id}', -1)">▲</button>
+              <button class="order-btn" style="padding:.1rem .4rem;" title="Bajar orden" onclick="moveMemberOrder('${m.id}', 1)">▼</button>
+            </div>
+          </td>
           <td>
             <div style="display:flex; gap:.3rem;">
-              <button class="order-btn" style="padding:.15rem .45rem;" onclick="openMemberInCMS('${m.id}')">✏️</button>
-              <button class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteMember('${m.id}')">✕</button>
+              <button class="order-btn" style="padding:.15rem .45rem;" onclick="openMemberInCMS('${m.id}')" title="Editar ficha">✏️</button>
+              <button class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar">✕</button>
             </div>
           </td>
         </tr>
@@ -1893,15 +1996,68 @@
 
     let activeArticleId = 'art-1';
     let currentMateriaFilter = 'todos';
+    let currentAuthorFilter = null;
+
+    window.filterArticlesByAuthor = function(authorName) {
+      currentAuthorFilter = authorName.trim();
+      navigateToWindow('articulos');
+      renderArticlesView();
+      const banner = document.getElementById('author-active-filter-banner');
+      if (banner) banner.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.clearAuthorFilter = function() {
+      currentAuthorFilter = null;
+      renderArticlesView();
+    };
 
     // RENDERIZAR TRIBUNA DE ARTÍCULOS (MRNS.CL STYLE CON TAGS Y BIBLIOGRAFÍA)
     function renderArticlesView() {
       const articles = getArticles();
-      const filtered = currentMateriaFilter === 'todos' 
+      let filtered = currentMateriaFilter === 'todos' 
         ? articles 
         : articles.filter(a => (a.materia === currentMateriaFilter) || (a.tags && a.tags.includes(currentMateriaFilter)));
 
-      const current = filtered.find(a => a.id === activeArticleId) || filtered[0] || articles[0];
+      // Filtrar adicionalmente por autor si está activo
+      const authorBanner = document.getElementById('author-active-filter-banner');
+      const authorBannerName = document.getElementById('author-active-filter-name');
+      const btnSeeAuthorProfile = document.getElementById('btn-see-author-profile');
+
+      if (currentAuthorFilter) {
+        const filterNorm = currentAuthorFilter.toLowerCase().trim();
+        filtered = filtered.filter(a => {
+          if (!a.author) return false;
+          const aNorm = a.author.toLowerCase().trim();
+          return aNorm.includes(filterNorm) || filterNorm.includes(aNorm);
+        });
+
+        if (authorBanner) {
+          authorBanner.style.display = 'flex';
+          if (authorBannerName) authorBannerName.textContent = currentAuthorFilter;
+        }
+
+        // Buscar miembro de equipo correspondiente al autor
+        const members = getFacdehMembers();
+        const matchedMember = members.find(m => {
+          const mNorm = m.name.toLowerCase().trim();
+          return mNorm.includes(filterNorm) || filterNorm.includes(mNorm);
+        });
+
+        if (btnSeeAuthorProfile) {
+          if (matchedMember) {
+            btnSeeAuthorProfile.style.display = 'inline-block';
+            btnSeeAuthorProfile.onclick = () => {
+              openMemberCV(matchedMember.id);
+            };
+          } else {
+            btnSeeAuthorProfile.style.display = 'none';
+          }
+        }
+      } else {
+        if (authorBanner) authorBanner.style.display = 'none';
+      }
+
+      const current = filtered.find(a => a.id === activeArticleId) || filtered[0] || (filtered.length > 0 ? filtered[0] : null);
       const display = document.getElementById('current-article-display');
       const list = document.getElementById('sidebar-articles-list');
 
@@ -1911,6 +2067,23 @@
       if (current) {
         const initials = current.author.split(' ').map(n => n[0]).slice(0, 2).join('');
         const tagsHtml = (current.tags || [current.materia || 'Doctrina']).map(t => `<span class="tag-badge">${t}</span>`).join(' ');
+
+        // Buscar si el autor es un miembro del equipo registrado
+        const members = getFacdehMembers();
+        const matchedMember = members.find(m => {
+          if (!current.author) return false;
+          const mNorm = m.name.toLowerCase().trim();
+          const aNorm = current.author.toLowerCase().trim();
+          return mNorm.includes(aNorm) || aNorm.includes(mNorm);
+        });
+
+        const authorClickAction = matchedMember 
+          ? `onclick="openMemberCV('${matchedMember.id}')" style="cursor:pointer;" title="Haz clic para ver la ficha y trayectoria de ${current.author} en el Equipo"` 
+          : `onclick="filterArticlesByAuthor('${current.author.replace(/'/g, "\\'")}')" style="cursor:pointer;" title="Filtrar todos los artículos de ${current.author}"`;
+
+        const teamPill = matchedMember 
+          ? `<span style="display:inline-block; margin-left:.4rem; font-size:.68rem; background:var(--blue-100); color:var(--blue-800); padding:.1rem .45rem; border-radius:10px; font-weight:600;">Ver en Equipo →</span>` 
+          : `<span style="display:inline-block; margin-left:.4rem; font-size:.68rem; background:var(--gray-200); color:var(--gray-700); padding:.1rem .45rem; border-radius:10px; font-weight:600;">Ver sus artículos →</span>`;
 
         // Bibliografía formateada
         let biblioHtml = '';
@@ -1952,10 +2125,10 @@
             <h1 class="mrns-article__title" data-editable="text" data-edit-key="article-title-${current.id}">${current.title}</h1>
             <p class="mrns-article__lead" data-editable="text" data-edit-key="article-summary-${current.id}">${current.summary}</p>
             <div class="mrns-article__meta">
-              <div class="mrns-article__author-badge">
+              <div class="mrns-article__author-badge" ${authorClickAction}>
                 <div class="author-avatar-circle">${initials}</div>
                 <div>
-                  <strong style="color:var(--navy-900);">${current.author}</strong>
+                  <strong style="color:var(--navy-900);">${current.author} ${teamPill}</strong>
                   <span style="display:block; font-size:.74rem;">Tribuna de Debate UCEN · ${current.materia || 'Derecho'}</span>
                 </div>
               </div>
@@ -1970,7 +2143,15 @@
           ${biblioHtml}
         `;
       } else {
-        display.innerHTML = `<p style="padding:2rem; color:var(--gray-600);">No hay artículos publicados en esta materia.</p>`;
+        display.innerHTML = `
+          <div style="padding:3rem 1.5rem; text-align:center; color:var(--gray-600);">
+            <p style="font-size:1.1rem; font-weight:700; color:var(--navy-900); margin-bottom:.5rem;">No se encontraron artículos con este criterio.</p>
+            <p style="font-size:.85rem; margin-bottom:1rem;">Prueba limpiando el filtro de autor o seleccionando otra materia.</p>
+            <button class="btn btn--gold" onclick="clearAuthorFilter()" type="button" style="font-size:.8rem; padding:.3rem .9rem;">
+              Restablecer y Ver Todos los Artículos
+            </button>
+          </div>
+        `;
       }
 
       // Renderizar lista lateral
