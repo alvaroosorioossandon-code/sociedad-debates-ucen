@@ -67,12 +67,12 @@
       <section class="hero">
         <picture class="hero__bg" id="hero-bg-picture">
           <source media="(max-width: 700px)" srcset="img/hero.jpg" />
-          <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" />
+          <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" data-edit-key="hero-bg" />
         </picture>
         <div class="hero__veil"></div>
         <div class="hero__inner">
           <div style="display:inline-block; position:relative; border-radius:50%;">
-            <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" />
+            <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" data-edit-key="hero-logo" />
           </div>
           <div class="hero__text">
             <p class="eyebrow" style="color: var(--blue-200);" data-editable="text" data-edit-key="hero-sub">Facultad de Derecho y Humanidades · UCEN</p>
@@ -170,19 +170,19 @@
               </h4>
               <div class="instagram-feed-mock">
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-1" data-edit-key="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-1">
                     <strong>@debate.ucentral:</strong> Jornada de debate interuniversitario UCEN vs USACH sobre Secreto Bancario. ¡Tremendo desempeño!
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-2" data-edit-key="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-2">
                     <strong>@debate.ucentral:</strong> Felicitamos a nuestro consejero Jorge Legisos por su premio como Mejor Debatiente del encuentro.
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-3" style="background-image: url('img/hero.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-3" data-edit-key="ig-img-3" style="background-image: url('img/hero.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-3">
                     <strong>@debate.ucentral:</strong> I Torneo de Debates Interfacultades en la FACDEH. ¡Sala de Litigación y Licenciatura listas!
                   </p>
@@ -219,7 +219,7 @@
       <section class="home-section-block" style="padding: 0;">
         <div class="memoria">
           <div class="memoria__photo">
-            <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" />
+            <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" data-edit-key="rodrigo-pica-img" />
           </div>
           <div class="memoria__text">
             <p class="eyebrow eyebrow--dark" data-editable="text" data-edit-key="memoria-eyebrow">Homenaje a la Excelencia Jurídica (1979 – 2023)</p>
@@ -1562,42 +1562,46 @@
       grid.innerHTML = filtered.map(m => {
         const visualPhotoKey = `member-photo-${m.id}`;
         const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
-        const photoStyle = effectivePhoto ? `style="background-image: url('${effectivePhoto}');"` : '';
+        const effectiveName = (visualData[`member-name-${m.id}`] && visualData[`member-name-${m.id}`].value) ? visualData[`member-name-${m.id}`].value : m.name;
+        const effectiveRole = (visualData[`member-role-${m.id}`] && visualData[`member-role-${m.id}`].value) ? visualData[`member-role-${m.id}`].value : m.role;
+        const effectiveBadge = (visualData[`member-badge-${m.id}`] && visualData[`member-badge-${m.id}`].value) ? visualData[`member-badge-${m.id}`].value : m.badge;
+        const effectiveBio = (visualData[`member-bio-${m.id}`] && visualData[`member-bio-${m.id}`].value) ? visualData[`member-bio-${m.id}`].value : m.bio;
+
+        const photoStyle = effectivePhoto ? `background-image: url('${effectivePhoto}'); cursor: pointer;` : 'cursor: pointer;';
         const linkedinLink = m.links ? m.links.find(l => l.text === 'LinkedIn') : null;
         const perfilLink = m.links ? m.links.find(l => l.text !== 'LinkedIn') : null;
-        const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${m.name.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
+        const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${effectiveName.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
         const photoClass = effectivePhoto ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
 
         // Artículos asociados a este integrante
         const memberArticles = allArticles.filter(a => {
           if (!a.author) return false;
           const aName = a.author.toLowerCase().trim();
-          const mName = m.name.toLowerCase().trim();
+          const mName = effectiveName.toLowerCase().trim();
           return aName.includes(mName) || mName.includes(aName);
         });
 
-
         // Badge / enlace a sus artículos
         const articlesBadgeHtml = memberArticles.length > 0 ? `
-          <button type="button" class="facdeh-btn-perfil" onclick="filterArticlesByAuthor('${m.name.replace(/'/g, "\\'")}')" style="background:var(--wine-50, #fdf2f4); border:1px solid var(--wine-200, #f8d7da); color:var(--wine-700, #8c1d34); padding:.2rem .55rem; border-radius:15px; font-size:.74rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:.3rem;">
+          <button type="button" class="facdeh-btn-perfil" onclick="filterArticlesByAuthor('${effectiveName.replace(/'/g, "\\'")}')" style="background:var(--wine-50, #fdf2f4); border:1px solid var(--wine-200, #f8d7da); color:var(--wine-700, #8c1d34); padding:.2rem .55rem; border-radius:15px; font-size:.74rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:.3rem;">
             ✍️ Lee sus artículos (${memberArticles.length}) →
           </button>
         ` : '';
 
         return `
           <article class="facdeh-card" id="card-${m.id}">
-            <div class="${photoClass}" ${photoStyle} ${initialsAttr} onclick="openMemberCV('${m.id}')" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
+            <div class="${photoClass}" style="${photoStyle}" ${initialsAttr} onclick="openMemberCV('${m.id}')" title="Haz clic para ver currículum completo">
               <div class="facdeh-card__overlay-text">
-                <h3>${m.name}</h3>
-                <p>${m.role}</p>
+                <h3>${effectiveName}</h3>
+                <p>${effectiveRole}</p>
               </div>
             </div>
             <div class="facdeh-card__body">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem; margin-bottom:.3rem;">
-                <span class="facdeh-card__tag" ${attrEditBadge}>${m.badge}</span>
+                <span class="facdeh-card__tag">${effectiveBadge}</span>
                 ${articlesBadgeHtml}
               </div>
-              <p class="facdeh-card__bio" ${attrEditBio}>${m.bio}</p>
+              <p class="facdeh-card__bio">${effectiveBio}</p>
               
               <div style="margin-top:.6rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem;">
                 <button type="button" class="facdeh-btn-perfil" onclick="openMemberCV('${m.id}')" style="background:none; border:none; padding:0; cursor:pointer; color:var(--blue-600); font-weight:700; font-size:.85rem; display:inline-flex; align-items:center; gap:.3rem;">
@@ -1644,6 +1648,10 @@
       const visualData = getVisualContent();
       const visualPhotoKey = `member-photo-${m.id}`;
       const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
+      const effName = (visualData[`member-name-${m.id}`] && visualData[`member-name-${m.id}`].value) ? visualData[`member-name-${m.id}`].value : m.name;
+      const effRole = (visualData[`member-role-${m.id}`] && visualData[`member-role-${m.id}`].value) ? visualData[`member-role-${m.id}`].value : m.role;
+      const effBadge = (visualData[`member-badge-${m.id}`] && visualData[`member-badge-${m.id}`].value) ? visualData[`member-badge-${m.id}`].value : (m.badge || '');
+      const effBio = (visualData[`member-bio-${m.id}`] && visualData[`member-bio-${m.id}`].value) ? visualData[`member-bio-${m.id}`].value : m.bio;
 
       if (effectivePhoto) {
         cvModalPhoto.style.backgroundImage = `url('${effectivePhoto}')`;
@@ -1653,16 +1661,16 @@
         cvModalPhoto.classList.remove('cv__photo--img');
       }
 
-      const initials = m.initials || m.name.split(' ').map(n=>n[0]).join('').slice(0,2);
+      const initials = m.initials || effName.split(' ').map(n=>n[0]).join('').slice(0,2);
       cvModalPhoto.setAttribute('data-initials', initials);
 
-      cvModalName.textContent = m.name;
-      cvModalRole.textContent = `${m.role} · ${m.badge || ''}`;
+      cvModalName.textContent = effName;
+      cvModalRole.textContent = `${effRole} · ${effBadge}`;
 
       // Puntos del currículum (si tiene bulletPoints o parsear bio)
       let bullets = m.bulletPoints || [];
-      if ((!bullets || bullets.length === 0) && m.bio) {
-        bullets = m.bio.split('. ').filter(b => b.trim().length > 0).map(b => b.endsWith('.') ? b : b + '.');
+      if ((!bullets || bullets.length === 0) && effBio) {
+        bullets = effBio.split('. ').filter(b => b.trim().length > 0).map(b => b.endsWith('.') ? b : b + '.');
       }
 
       cvModalList.innerHTML = bullets.map(b => `<li>${b.replace(/^[•\-\*]\s*/, '')}</li>`).join('');
@@ -1674,7 +1682,7 @@
         const memberArticles = allArticles.filter(a => {
           if (!a.author) return false;
           const aName = a.author.toLowerCase().trim();
-          const mName = m.name.toLowerCase().trim();
+          const mName = effName.toLowerCase().trim();
           return aName.includes(mName) || mName.includes(aName);
         });
 
@@ -1683,7 +1691,7 @@
           cvArticlesSec.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem;">
               <strong style="font-size:.84rem; color:var(--navy-900);">📚 Artículos & Columnas Publicadas (${memberArticles.length}):</strong>
-              <button type="button" onclick="cvModal.close(); filterArticlesByAuthor('${m.name.replace(/'/g, "\\'")}');" style="background:none; border:none; color:var(--blue-600); font-size:.76rem; font-weight:700; cursor:pointer;">
+              <button type="button" onclick="cvModal.close(); filterArticlesByAuthor('${effName.replace(/'/g, "\\'")}');" style="background:none; border:none; color:var(--blue-600); font-size:.76rem; font-weight:700; cursor:pointer;">
                 Filtrar en Tribuna →
               </button>
             </div>
@@ -2537,30 +2545,37 @@
       const container = document.getElementById('materials-container');
       const materials = getMaterials();
       const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+      const visualData = getVisualContent();
 
-      container.innerHTML = materials.map((mat, idx) => `
+      container.innerHTML = materials.map((mat, idx) => {
+        const title = (visualData[`mat-title-${mat.id}`] && visualData[`mat-title-${mat.id}`].value) ? visualData[`mat-title-${mat.id}`].value : mat.title;
+        const badge = (visualData[`mat-badge-${mat.id}`] && visualData[`mat-badge-${mat.id}`].value) ? visualData[`mat-badge-${mat.id}`].value : mat.badge;
+        const desc = (visualData[`mat-desc-${mat.id}`] && visualData[`mat-desc-${mat.id}`].value) ? visualData[`mat-desc-${mat.id}`].value : mat.desc;
+
+        return `
         <div class="material-card">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <span class="material-card__badge" data-editable="text" data-edit-key="mat-badge-${mat.id}">${mat.badge}</span>
+            <span class="material-card__badge" data-editable="text" data-edit-key="mat-badge-${mat.id}">${badge}</span>
             ${isEditorOrAdmin ? `
               <button class="order-btn editor-in-situ-controls" style="color:#c92a2a; padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕ Borrar</button>
             ` : ''}
           </div>
-          <h3 class="material-card__title" data-editable="text" data-edit-key="mat-title-${mat.id}">${mat.title}</h3>
-          <p class="material-card__desc" data-editable="text" data-edit-key="mat-desc-${mat.id}">${mat.desc}</p>
+          <h3 class="material-card__title" data-editable="text" data-edit-key="mat-title-${mat.id}">${title}</h3>
+          <p class="material-card__desc" data-editable="text" data-edit-key="mat-desc-${mat.id}">${desc}</p>
           <div class="material-card__footer">
             <span>Formato: <strong>${mat.format}</strong></span>
             <div style="display:flex; gap:.4rem;">
               ${isEditorOrAdmin ? `
                 <button class="order-btn editor-in-situ-controls" onclick="saveMaterialInline('${mat.id}')" title="Guardar cambios">💾 Guardar</button>
               ` : ''}
-              <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" onclick="handleDownload('${mat.title}')">
+              <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" onclick="handleDownload('${title}')">
                 Descargar
               </button>
             </div>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     window.deleteMaterial = function(matId) {
@@ -3991,6 +4006,7 @@
         publishedBy: currentUser ? currentUser.fullname : 'Editor Web UCEN',
         members: getFacdehMembers(),
         articles: getArticles(),
+        materials: getMaterials(),
         hitos: getHitos(),
         visualContent: getVisualContent(),
         themeColors: JSON.parse(localStorage.getItem('ucen_site_theme_colors') || '{}')
@@ -4138,6 +4154,7 @@
           const data = JSON.parse(evt.target.result);
           if (data.members && Array.isArray(data.members)) saveFacdehMembers(data.members);
           if (data.articles && Array.isArray(data.articles)) saveArticles(data.articles);
+          if (data.materials && Array.isArray(data.materials)) saveMaterials(data.materials);
           if (data.hitos && Array.isArray(data.hitos)) saveHitos(data.hitos);
           if (data.visualContent && typeof data.visualContent === 'object') saveVisualContent(data.visualContent);
           if (data.themeColors && typeof data.themeColors === 'object') {
@@ -4148,6 +4165,7 @@
           applySavedVisualContent();
           renderFacdehTeam('todos');
           renderArticlesView();
+          renderMaterialsView();
           renderHitosView();
           renderHomeDashboardPreviews();
           renderTeamManagerTable();
@@ -4197,6 +4215,9 @@
             }
             if (remoteData.articles && Array.isArray(remoteData.articles)) {
               localStorage.setItem('ucen_articles', JSON.stringify(remoteData.articles));
+            }
+            if (remoteData.materials && Array.isArray(remoteData.materials)) {
+              localStorage.setItem('ucen_materials', JSON.stringify(remoteData.materials));
             }
             if (remoteData.hitos && Array.isArray(remoteData.hitos)) {
               localStorage.setItem('ucen_hitos', JSON.stringify(remoteData.hitos));
