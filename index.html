@@ -1531,7 +1531,7 @@
 
         // Controles de editor para ordenar, cambiar foto, guardar cambios in-situ o eliminar miembro
         const editorControls = isEditorOrAdmin ? `
-          <div style="margin-top:.7rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center; gap:.4rem; flex-wrap:wrap;">
+          <div class="editor-in-situ-controls" style="margin-top:.7rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center; gap:.4rem; flex-wrap:wrap;">
             <div style="display:flex; gap:.3rem;">
               <button class="order-btn" onclick="saveMemberInline('${m.id}')" title="Guardar cambios de texto de este integrante">💾 Guardar</button>
               <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
@@ -2139,7 +2139,7 @@
 
         const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
         const editArticleBtn = isEditorOrAdmin ? `
-          <div style="background:var(--blue-50); border:1px solid var(--blue-200); padding:.6rem .9rem; border-radius:8px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
+          <div class="editor-in-situ-controls" style="background:var(--blue-50); border:1px solid var(--blue-200); padding:.6rem .9rem; border-radius:8px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
             <span style="font-size:.78rem; color:var(--navy-900); font-weight:700;">✏️ Puedes editar el título, la bajada y los párrafos pinchando sobre ellos directamente:</span>
             <div style="display:flex; gap:.4rem;">
               <button class="order-btn" style="background:var(--blue-600); color:#fff;" onclick="promptInsertImageInCurrentArticle('${current.id}')" title="Insertar foto dentro del artículo">📷 + Foto</button>
@@ -2418,7 +2418,7 @@
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <span class="material-card__badge" data-editable="text" data-edit-key="mat-badge-${mat.id}">${mat.badge}</span>
             ${isEditorOrAdmin ? `
-              <button class="order-btn" style="color:#c92a2a; padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕ Borrar</button>
+              <button class="order-btn editor-in-situ-controls" style="color:#c92a2a; padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕ Borrar</button>
             ` : ''}
           </div>
           <h3 class="material-card__title" data-editable="text" data-edit-key="mat-title-${mat.id}">${mat.title}</h3>
@@ -2427,7 +2427,7 @@
             <span>Formato: <strong>${mat.format}</strong></span>
             <div style="display:flex; gap:.4rem;">
               ${isEditorOrAdmin ? `
-                <button class="order-btn" onclick="saveMaterialInline('${mat.id}')" title="Guardar cambios">💾 Guardar</button>
+                <button class="order-btn editor-in-situ-controls" onclick="saveMaterialInline('${mat.id}')" title="Guardar cambios">💾 Guardar</button>
               ` : ''}
               <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" onclick="handleDownload('${mat.title}')">
                 Descargar
@@ -3085,7 +3085,7 @@
         ` : '';
 
         const editorControls = isEditorOrAdmin ? `
-          <div style="margin-top:.8rem; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; gap:.4rem; align-items:center;">
+          <div class="editor-in-situ-controls" style="margin-top:.8rem; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; gap:.4rem; align-items:center;">
             <button class="order-btn" onclick="saveHitoInline('${featured.id}')">💾 Guardar Cambios</button>
             <button class="order-btn" onclick="editHitoInCMS('${featured.id}')">✏️ Editar Completo</button>
             <button class="order-btn" style="color:#c92a2a;" onclick="deleteHito('${featured.id}')">✕ Borrar</button>
@@ -3133,7 +3133,7 @@
         ` : '';
 
         const editorControls = isEditorOrAdmin ? `
-          <div style="margin-top:auto; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center;">
+          <div class="editor-in-situ-controls" style="margin-top:auto; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center;">
             <div style="display:flex; gap:.3rem;">
               <button class="order-btn" style="padding:.15rem .45rem;" onclick="saveHitoInline('${h.id}')" title="Guardar cambios in situ">💾</button>
               <button class="order-btn" style="padding:.15rem .45rem;" onclick="editHitoInCMS('${h.id}')" title="Editar en panel">✏️</button>
@@ -3538,6 +3538,8 @@
     }
 
     function enableContentEditable() {
+      // SOLO en versión escritorio/laptop; nunca en celulares ni pantallas táctiles pequeñas
+      if (window.innerWidth <= 820) return;
       document.querySelectorAll('[data-editable="text"], [data-editable="html"]').forEach(el => {
         el.setAttribute('contenteditable', 'true');
         el.setAttribute('spellcheck', 'true');

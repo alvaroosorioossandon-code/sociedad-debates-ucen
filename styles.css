@@ -1867,6 +1867,33 @@ body.visual-editing-active [data-editable="bg-img"]:hover .visual-image-overlay 
     flex-direction: column;
     gap: .8rem;
   }
+
+  /* ==========================================================================
+     SUPRESIÓN TOTAL DEL FORMATO Y CONTROLES DE EDICIÓN EN LA VERSIÓN MÓVIL
+     (Garantiza una lectura 100% limpia, proporcional e institucional en celulares)
+     ========================================================================== */
+  .floating-editor-bar,
+  .top-ticker__btn,
+  .nav__editor-pill,
+  .editor-only-btn,
+  .editor-in-situ-controls,
+  .visual-image-overlay,
+  .inline-editor-modal,
+  #editor-visual-guide-banner,
+  #editor-dialog {
+    display: none !important;
+  }
+
+  /* Desactivar cualquier línea punteada o halo de edición en móvil */
+  [data-editable="text"],
+  [data-editable="html"],
+  [data-editable="img"],
+  [data-editable="bg-img"] {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    cursor: default !important;
+  }
 }
 
 /* Pantallas extra pequeñas (≤ 480px) */
