@@ -52,9 +52,6 @@
       <button class="nav-tab-btn" data-window="equipo" type="button">Cuerpo Académico & Equipo</button>
       <button class="nav-tab-btn" data-window="archivos" type="button">Repositorio & Archivos</button>
       <button class="nav-tab-btn" data-window="noticias" type="button">Hitos & Torneos</button>
-      <button class="nav__editor-pill" id="open-editor-nav-btn" type="button">
-        ⚖️ Acceso Editorial
-      </button>
     </nav>
   </header>
 
@@ -68,16 +65,14 @@
 
       <!-- BLOQUE 1: TÍTULO PRINCIPAL (INCLUYENDO ENCABEZADO Y MENCIÓN RODRIGO PICA) -->
       <section class="hero">
-        <picture class="hero__bg" data-editable="bg-img" data-edit-key="hero-bg" data-img-target="img">
+        <picture class="hero__bg" id="hero-bg-picture">
           <source media="(max-width: 700px)" srcset="img/hero.jpg" />
           <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" />
-          <div class="visual-image-overlay">📷 Cambiar Imagen de Fondo</div>
         </picture>
         <div class="hero__veil"></div>
         <div class="hero__inner">
-          <div data-editable="img" data-edit-key="hero-logo" style="display:inline-block; position:relative; border-radius:50%;">
+          <div style="display:inline-block; position:relative; border-radius:50%;">
             <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" />
-            <div class="visual-image-overlay">📷 Cambiar Logo</div>
           </div>
           <div class="hero__text">
             <p class="eyebrow" style="color: var(--blue-200);" data-editable="text" data-edit-key="hero-sub">Facultad de Derecho y Humanidades · UCEN</p>
@@ -175,25 +170,19 @@
               </h4>
               <div class="instagram-feed-mock">
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-1" data-editable="bg-img" data-edit-key="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');">
-                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
-                  </div>
+                  <div class="ig-post-img" id="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-1">
                     <strong>@debate.ucentral:</strong> Jornada de debate interuniversitario UCEN vs USACH sobre Secreto Bancario. ¡Tremendo desempeño!
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-2" data-editable="bg-img" data-edit-key="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');">
-                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
-                  </div>
+                  <div class="ig-post-img" id="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-2">
                     <strong>@debate.ucentral:</strong> Felicitamos a nuestro consejero Jorge Legisos por su premio como Mejor Debatiente del encuentro.
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-3" data-editable="bg-img" data-edit-key="ig-img-3" style="background-image: url('img/hero.jpg');">
-                    <div class="visual-image-overlay">📷 Cambiar Foto</div>
-                  </div>
+                  <div class="ig-post-img" id="ig-img-3" style="background-image: url('img/hero.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-3">
                     <strong>@debate.ucentral:</strong> I Torneo de Debates Interfacultades en la FACDEH. ¡Sala de Litigación y Licenciatura listas!
                   </p>
@@ -229,9 +218,8 @@
       <!-- BLOQUE 4: HOMENAJE (RESUMEN VISUAL CON ACCESO A PROFUNDIZACIÓN) -->
       <section class="home-section-block" style="padding: 0;">
         <div class="memoria">
-          <div class="memoria__photo" data-editable="img" data-edit-key="rodrigo-pica-img" style="position:relative;">
+          <div class="memoria__photo">
             <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" />
-            <div class="visual-image-overlay">📷 Cambiar Foto Homenaje</div>
           </div>
           <div class="memoria__text">
             <p class="eyebrow eyebrow--dark" data-editable="text" data-edit-key="memoria-eyebrow">Homenaje a la Excelencia Jurídica (1979 – 2023)</p>
@@ -444,9 +432,6 @@
             <p class="eyebrow eyebrow--wine">Tribuna de Opinión y Doctrina Constitucional</p>
             <h2>Artículos & Columnas</h2>
           </div>
-          <button class="btn btn--gold" onclick="openEditorWithTab('art')" type="button">
-            + Publicar Artículo
-          </button>
         </div>
 
         <!-- FILTRO POR MATERIA Y ETIQUETAS (TAGS) -->
@@ -499,12 +484,9 @@
               <h4 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .4rem; font-weight: 700;">
                 Convocatoria Permanente
               </h4>
-              <p style="font-size: .82rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 1rem;">
-                Estudiantes y socios pueden redactar y enviar sus análisis jurídicos sobre derecho público, penal, ética procesal y jurisprudencia.
+              <p style="font-size: .82rem; color: var(--gray-700); line-height: 1.5; margin: 0;">
+                Estudiantes y socios pueden redactar y remitir sus análisis jurídicos sobre derecho público, penal, ética procesal y jurisprudencia a la coordinación de la Sociedad de Debates.
               </p>
-              <button class="btn btn--outline" style="width: 100%; justify-content: center; font-size: .78rem;" onclick="openEditorWithTab('art')" type="button">
-                Escribir Opinión Ahora
-              </button>
             </div>
           </aside>
         </div>
@@ -534,9 +516,6 @@
           </div>
           <div style="display:flex; align-items:center; gap:1rem;">
             <span style="font-size: .8rem; color: var(--gray-600); font-weight: 600;" id="members-count-label">9 Integrantes</span>
-            <button class="btn btn--gold editor-only-btn" id="btn-add-member-win" onclick="promptAddMember()" type="button" style="padding:.25rem .75rem; font-size:.74rem; display:none;">
-              + Agregar Integrante / Socio
-            </button>
           </div>
         </div>
 
@@ -557,9 +536,6 @@
             <p class="eyebrow" style="color: var(--gold-400);">Repositorio Académico y Documental</p>
             <h2 style="color: var(--white);" data-editable="text" data-edit-key="archivos-title">Archivos y Materiales</h2>
           </div>
-          <button class="btn btn--gold" onclick="openEditorWithTab('mat')" type="button">
-            + Subir Archivo
-          </button>
         </div>
         <p style="color: var(--blue-200); font-size: .95rem; max-width: 65ch;" data-editable="text" data-edit-key="archivos-lead">
           Minutas dogmáticas, pautas de evaluación de oratoria, compendios de mociones preparadas y manuales técnicos de litigación.
@@ -581,9 +557,6 @@
             <p class="eyebrow eyebrow--dark">Trayectoria Competitiva (2024 – 2026)</p>
             <h2>Hitos y Torneos de Debate</h2>
           </div>
-          <button class="btn btn--gold editor-only-btn" id="btn-add-hito-win" onclick="promptAddHito()" type="button" style="display:none; padding:.3rem .8rem; font-size:.76rem;">
-            + Agregar Hito / Noticia
-          </button>
         </div>
 
         <!-- NOTICIA DESTACADA: Renderizada dinámicamente -->
@@ -714,29 +687,13 @@
           <span class="user-badge user-badge--admin" id="logged-user-role-badge">ADMIN</span>
         </div>
         <div style="display:flex; align-items:center; gap:.8rem;">
-          <button id="btn-modal-launch-visual" type="button" class="btn btn--gold" style="padding:.3rem .8rem; font-size:.76rem; border-radius:20px;">
-            🎨 Ir a Edición Visual en Vivo
-          </button>
           <button id="btn-logout" type="button" style="background:none; border:none; color: #c92a2a; font-weight:700; cursor:pointer; font-size:.78rem;">
             Cerrar Sesión
           </button>
         </div>
       </div>
 
-      <!-- BANNER EXPLICATIVO PARA EDITORES Y ADMIN -->
-      <div id="editor-visual-guide-banner" style="background: linear-gradient(135deg, rgba(0, 83, 213, .08), rgba(223, 181, 75, .1)); border: 1px solid var(--gold-400); border-radius: 8px; padding: .8rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-        <div>
-          <strong style="color: var(--navy-900); font-size: .86rem; display: block; margin-bottom: .2rem;">
-            ✨ Modo Visual "Estilo Wix" Habilitado
-          </strong>
-          <p style="font-size: .78rem; color: var(--gray-700); margin: 0; line-height: 1.4;">
-            Cierra este modal para editar la web directamente en pantalla: pincha sobre cualquier texto para escribirlo, o haz clic en cualquier foto para cambiarla.
-          </p>
-        </div>
-        <button class="btn btn--outline" id="btn-close-and-edit-visual" type="button" style="font-size: .75rem; white-space: nowrap; padding: .4rem .8rem;">
-          Cerrar e Iniciar Edición ✏️
-        </button>
-      </div>
+
 
       <!-- TABS DEL PANEL -->
       <div class="editor-tabs-bar">
@@ -1178,36 +1135,7 @@
     </div>
   </dialog>
 
-  <!-- ========================================================
-       BARRA FLOTANTE DE EDICIÓN VISUAL IN SITU ("ESTILO WIX")
-       (Solo visible para Administradores y Editores autenticados)
-       ======================================================== -->
-  <aside class="floating-editor-bar" id="floating-editor-bar" style="display: none;" aria-label="Controles de Edición Visual">
-    <div class="floating-editor-bar__role">
-      <span>🎨 Modo Edición Visual</span>
-      <span class="user-badge" id="bar-user-badge">ADMIN</span>
-    </div>
-    <div class="floating-editor-bar__status" id="visual-edit-status">
-      Haz clic en cualquier texto para escribir, o en una imagen para cambiarla.
-    </div>
-    <div class="floating-editor-bar__actions">
-      <button class="btn-editor-action" id="btn-toggle-visual-edit" type="button">
-        ✏️ <span id="visual-toggle-text">Pausar Edición</span>
-      </button>
-      <button class="btn-editor-action" id="btn-open-palette-modal" type="button">
-        🎨 Colores Tema
-      </button>
-      <button class="btn-editor-action" onclick="openEditorModal()" type="button">
-        📋 Panel CMS
-      </button>
-      <button class="btn-editor-action btn-editor-action--save" id="btn-save-visual-changes" type="button">
-        💾 Guardar Local
-      </button>
-      <button class="btn-editor-action" id="btn-bar-publish-web" type="button" style="background: linear-gradient(135deg, #0053D5, #00379b); color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 3px 10px rgba(0,83,213,0.3);">
-        🌐 Publicar a Web Global
-      </button>
-    </div>
-  </aside>
+
 
   <!-- MODAL: CAMBIO DE IMAGEN VISUAL -->
   <div class="inline-editor-modal" id="image-edit-modal">
@@ -1320,6 +1248,7 @@
       <a href="https://instagram.com/debate.ucentral" target="_blank" rel="noopener">Instagram @debate.ucentral</a>
       <a href="mailto:socdebate@ucentral.cl">socdebate@ucentral.cl</a>
       <a href="https://facdeh.ucentral.cl" target="_blank" rel="noopener">Portal FACDEH-UCEN</a>
+      <a href="javascript:void(0)" onclick="openEditorModal()" style="color:var(--gold-400); font-weight:600;">⚖️ Acceso Claustro & CMS</a>
     </p>
   </footer>
 
@@ -1647,21 +1576,6 @@
           return aName.includes(mName) || mName.includes(aName);
         });
 
-        // Controles de editor para ordenar, cambiar foto, guardar cambios in-situ o eliminar miembro
-        const editorControls = isEditorOrAdmin ? `
-          <div class="editor-in-situ-controls" style="margin-top:.7rem; padding-top:.5rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center; gap:.4rem; flex-wrap:wrap;">
-            <div style="display:flex; gap:.3rem;">
-              <button class="order-btn" onclick="saveMemberInline('${m.id}')" title="Guardar cambios de texto de este integrante">💾 Guardar</button>
-              <button class="order-btn" onclick="editMemberPhoto('${m.id}')" title="Cambiar foto de este integrante">📷 Foto</button>
-            </div>
-            <div style="display:flex; gap:.25rem; align-items:center;">
-              <button class="order-btn" onclick="moveMemberOrder('${m.id}', -1)" title="Mover hacia arriba / adelante">▲</button>
-              <button class="order-btn" onclick="moveMemberOrder('${m.id}', 1)" title="Mover hacia abajo / atrás">▼</button>
-              <button class="order-btn" onclick="openMemberInCMS('${m.id}')" title="Editar en formulario">✏️ Ficha</button>
-              <button class="order-btn" style="color:#c92a2a;" onclick="deleteMember('${m.id}')" title="Eliminar integrante">✕</button>
-            </div>
-          </div>
-        ` : '';
 
         // Badge / enlace a sus artículos
         const articlesBadgeHtml = memberArticles.length > 0 ? `
@@ -1670,21 +1584,13 @@
           </button>
         ` : '';
 
-        const canEditVisual = isEditorOrAdmin && (typeof visualEditingEnabled !== 'undefined' && visualEditingEnabled);
-        const attrEditBg = canEditVisual ? `data-editable="bg-img" data-edit-key="member-photo-${m.id}"` : '';
-        const attrEditName = canEditVisual ? `data-editable="text" data-edit-key="member-name-${m.id}"` : '';
-        const attrEditRole = canEditVisual ? `data-editable="text" data-edit-key="member-role-${m.id}"` : '';
-        const attrEditBadge = canEditVisual ? `data-editable="text" data-edit-key="member-badge-${m.id}"` : '';
-        const attrEditBio = canEditVisual ? `data-editable="text" data-edit-key="member-bio-${m.id}"` : '';
-
         return `
           <article class="facdeh-card" id="card-${m.id}">
-            <div class="${photoClass}" ${photoStyle} ${initialsAttr} ${attrEditBg} onclick="${canEditVisual ? `editMemberPhoto('${m.id}')` : `openMemberCV('${m.id}')`}" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
+            <div class="${photoClass}" ${photoStyle} ${initialsAttr} onclick="openMemberCV('${m.id}')" style="${photoStyle ? photoStyle.slice(7,-1) : ''} cursor:pointer;" title="Haz clic para ver currículum completo">
               <div class="facdeh-card__overlay-text">
-                <h3 ${attrEditName}>${m.name}</h3>
-                <p ${attrEditRole}>${m.role}</p>
+                <h3>${m.name}</h3>
+                <p>${m.role}</p>
               </div>
-              ${canEditVisual ? '<div class="visual-image-overlay">📷 Cambiar Foto</div>' : ''}
             </div>
             <div class="facdeh-card__body">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem; margin-bottom:.3rem;">
@@ -1708,7 +1614,6 @@
                   </a>
                 ` : ''}
               </div>
-              ${editorControls}
             </div>
           </article>
         `;
@@ -2266,20 +2171,7 @@
           `;
         }
 
-        const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
-        const editArticleBtn = isEditorOrAdmin ? `
-          <div class="editor-in-situ-controls" style="background:var(--blue-50); border:1px solid var(--blue-200); padding:.6rem .9rem; border-radius:8px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
-            <span style="font-size:.78rem; color:var(--navy-900); font-weight:700;">✏️ Puedes editar el título, la bajada y los párrafos pinchando sobre ellos directamente:</span>
-            <div style="display:flex; gap:.4rem;">
-              <button class="order-btn" style="background:var(--blue-600); color:#fff;" onclick="promptInsertImageInCurrentArticle('${current.id}')" title="Insertar foto dentro del artículo">📷 + Foto</button>
-              <button class="order-btn" style="background:var(--gold-400); color:var(--navy-950);" onclick="saveActiveArticleInline('${current.id}')" title="Guardar cambios hechos in situ">💾 Guardar Cambios</button>
-              <button class="order-btn" onclick="editArticleInCMS('${current.id}')" title="Editar en panel redactar">✍️ Formulario Completo</button>
-            </div>
-          </div>
-        ` : '';
-
         display.innerHTML = `
-          ${editArticleBtn}
           <div class="mrns-article__header">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; margin-bottom:.6rem;">
               <span class="mrns-article__cat">${current.category}</span>
@@ -4014,9 +3906,12 @@
       themeColorModal.classList.remove('active');
     };
 
-    document.getElementById('btn-open-palette-modal').addEventListener('click', () => {
-      themeColorModal.classList.add('active');
-    });
+    const btnOpenPalette = document.getElementById('btn-open-palette-modal');
+    if (btnOpenPalette) {
+      btnOpenPalette.addEventListener('click', () => {
+        if (themeColorModal) themeColorModal.classList.add('active');
+      });
+    }
 
     const COLOR_PALETTES = {
       'ucen-classic': { primary: '#0053D5', gold: '#dfb54b', dark: '#06111f' },
@@ -4065,69 +3960,18 @@
       } catch (e) {}
     }
 
-    // Botones de la barra flotante
-    document.getElementById('btn-toggle-visual-edit').addEventListener('click', () => toggleVisualEditing());
-    document.getElementById('btn-save-visual-changes').addEventListener('click', saveAllVisualChanges);
-
-    // Integración en setupUserSession para mostrar/ocultar la barra de edición visual
+    // Integración en setupUserSession
     const origSetupUserSession = setupUserSession;
     setupUserSession = function() {
       origSetupUserSession();
-      const floatingBar = document.getElementById('floating-editor-bar');
-      const barBadge = document.getElementById('bar-user-badge');
-
-      if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor')) {
-        // Mostrar barra flotante de edición visual estilo Wix
-        if (floatingBar) {
-          floatingBar.style.removeProperty('display');
-          floatingBar.classList.add('visible');
-        }
-        if (barBadge) {
-          barBadge.textContent = currentUser.role.toUpperCase();
-          barBadge.className = `user-badge user-badge--${currentUser.role}`;
-        }
-        toggleVisualEditing(true);
-      } else {
-        // Socios o no autenticados: Sin acceso al editor visual del sitio
-        if (floatingBar) {
-          floatingBar.classList.remove('visible');
-          floatingBar.style.setProperty('display', 'none', 'important');
-        }
-        toggleVisualEditing(false);
-      }
-
-      // Re-renderizar vistas para que los botones in-situ solo se muestren al autenticarse
       renderFacdehTeam();
       renderArticlesView();
       renderHitosView();
     };
 
-    // Botones del Modal para ir directo a la Edición Visual
-    const btnLaunchVisual = document.getElementById('btn-modal-launch-visual');
-    if (btnLaunchVisual) {
-      btnLaunchVisual.addEventListener('click', () => {
-        editorDialog.close();
-        toggleVisualEditing(true);
-      });
-    }
-
-    const btnCloseAndEdit = document.getElementById('btn-close-and-edit-visual');
-    if (btnCloseAndEdit) {
-      btnCloseAndEdit.addEventListener('click', () => {
-        editorDialog.close();
-        toggleVisualEditing(true);
-      });
-    }
-
-    // Al cerrar sesión, apagar la edición visual y re-renderizar la vista limpia
+    // Al cerrar sesión, re-renderizar la vista limpia
     btnLogout.addEventListener('click', () => {
       currentUser = null;
-      const fb = document.getElementById('floating-editor-bar');
-      if (fb) {
-        fb.classList.remove('visible');
-        fb.style.setProperty('display', 'none', 'important');
-      }
-      toggleVisualEditing(false);
       renderFacdehTeam();
       renderArticlesView();
       renderHitosView();

@@ -1304,60 +1304,17 @@ body.visual-editing-active [data-editable="bg-img"]:hover {
   filter: brightness(0.92);
 }
 
-.visual-image-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(6, 17, 31, 0.65);
-  color: #fff;
-  font-size: .85rem;
-  font-weight: 700;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity .2s;
-  pointer-events: none;
-  z-index: 10;
-  gap: .4rem;
-}
-
-body.visual-editing-active [data-editable="img"]:hover .visual-image-overlay,
-body.visual-editing-active [data-editable="bg-img"]:hover .visual-image-overlay {
-  opacity: 1;
-}
-
-/* BARRA FLOTANTE DE EDICIÓN VISUAL (SOLO TRAS INICIAR SESIÓN) */
-.floating-editor-bar {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(250px);
-  background: rgba(6, 17, 31, 0.95);
-  backdrop-filter: blur(12px);
-  color: #fff;
-  border: 1px solid rgba(223, 181, 75, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  border-radius: 50px;
-  padding: .6rem 1.4rem;
+/* SUPRESIÓN DEFINITIVA DE ELEMENTOS DE EDICIÓN IN-SITU Y BARRAS FLOTANTES (TODO CENTRALIZADO EN MODAL CMS) */
+.visual-image-overlay,
+.floating-editor-bar,
+.editor-in-situ-controls,
+.editor-only-btn,
+.nav__editor-pill,
+#editor-visual-guide-banner {
   display: none !important;
   opacity: 0 !important;
-  pointer-events: none !important;
   visibility: hidden !important;
-  align-items: center;
-  gap: 1.2rem;
-  z-index: -999 !important;
-  transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), opacity .3s ease;
-  font-size: .84rem;
-}
-
-.floating-editor-bar.visible {
-  display: flex !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-  z-index: 999 !important;
-  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: none !important;
 }
 
 .floating-editor-bar__role {
