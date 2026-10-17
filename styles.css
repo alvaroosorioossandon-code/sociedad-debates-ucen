@@ -859,7 +859,7 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   .facdeh-header-hero { padding: 2rem; }
 }
 @media (max-width: 760px) {
-  .nav__links { display: none; }
+  /* La navegación móvil y hamburguesa se gestiona en la sección responsive integral */
 }
 /* ==========================================================================
    DASHBOARD HOME & COMPONENTES VISUALES EN ORDEN JERÁRQUICO (1 AL 8)
@@ -1515,15 +1515,370 @@ body.visual-editing-active [data-editable="bg-img"]:hover .visual-image-overlay 
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .cv {
+/* BOTÓN HAMBURGUESA MÓVIL */
+.nav__hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: .5rem;
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold-400);
+  border-radius: 2px;
+  transition: all .25s ease-in-out;
+}
+.nav__hamburger.is-active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.nav__hamburger.is-active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN RESPONSIVE INTEGRAL PARA CELULARES Y TABLETS (≤ 820px)
+   ========================================================================== */
+@media (max-width: 820px) {
+  /* Barra superior ticker */
+  .top-ticker {
+    font-size: .72rem;
+    padding: .3rem .8rem;
+  }
+  .top-ticker__tag {
+    display: none;
+  }
+  .top-ticker__btn {
+    padding: .2rem .5rem;
+    font-size: .68rem;
+  }
+
+  /* Cabecera y Navegación Móvil */
+  .nav {
+    padding: .6rem 4vw;
+  }
+  .nav__brand {
+    font-size: .95rem;
+    gap: .5rem;
+  }
+  .nav__brand img {
+    width: 34px;
+    height: 34px;
+  }
+  .nav__hamburger {
+    display: flex;
+  }
+  .nav__links {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(6, 17, 31, 0.98);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    flex-direction: column;
+    padding: 1.2rem 1.5rem 1.8rem;
+    gap: .6rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border-bottom: 2px solid var(--gold-400);
+    display: none;
+    z-index: 99;
+  }
+  .nav__links.nav__links--open {
+    display: flex;
+  }
+  .nav-tab-btn {
+    width: 100%;
+    text-align: left;
+    padding: .75rem 1rem;
+    font-size: .95rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid transparent;
+  }
+  .nav-tab-btn.active {
+    background: rgba(223, 181, 75, 0.15);
+    border-left-color: var(--gold-400);
+    color: var(--gold-400);
+  }
+  .nav__editor-pill {
+    width: 100%;
+    text-align: center;
+    margin-top: .4rem;
+    padding: .7rem 1rem;
+    font-size: .9rem;
+  }
+
+  /* Hero y Sección Memoria */
+  .hero {
+    padding: 3rem 0;
+  }
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .hero__seal {
+    margin: 0 auto;
+    width: 130px;
+    height: 130px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  .hero p {
+    font-size: 1rem;
+    margin: 0 auto 1.5rem;
+  }
+  .memoria {
     grid-template-columns: 1fr;
   }
+  .memoria__photo {
+    min-height: 260px;
+    aspect-ratio: 16 / 9;
+  }
+  .memoria__body {
+    padding: 1.8rem 1.4rem;
+  }
+
+  /* Bloques Dashboard Home */
+  .home-section-block {
+    padding: 2.2rem 0;
+  }
+  .home-block-header {
+    margin-bottom: 1.2rem;
+    gap: .6rem;
+  }
+  .home-block-header h3 {
+    font-size: 1.6rem;
+  }
+
+  /* Grillas de 2 y 3 columnas se adaptan a 1 columna en móvil */
+  .join-grid,
+  .social-contact-grid,
+  .docs-gallery-grid,
+  .editorial-layout,
+  .radio-box {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+  }
+  .join-card {
+    padding: 1.6rem 1.2rem;
+  }
+  .join-card h4 {
+    font-size: 1.4rem;
+  }
+  .join-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .8rem;
+  }
+  .stat-box {
+    padding: 1rem .6rem;
+  }
+  .stat-number {
+    font-size: 1.9rem;
+  }
+
+  /* Feed Instagram en móvil: 1 columna centrada o 2 columnas compactas */
+  .instagram-feed-mock {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .contact-direct-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* Mini galería */
+  .home-mini-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .6rem;
+  }
+
+  /* Calendario */
+  .calendar-timeline {
+    grid-template-columns: 1fr;
+    gap: .8rem;
+  }
+
+  /* Ventana 2: Artículos y Opinión (MRNS.CL Style) */
+  .tags-filter-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: .6rem;
+    -webkit-overflow-scrolling: touch;
+    gap: .4rem;
+  }
+  .tags-filter-bar .facdeh-chip-btn {
+    white-space: nowrap;
+    font-size: .76rem;
+    padding: .35rem .75rem;
+  }
+  .mrns-article-viewer {
+    padding: 1.5rem 1.2rem;
+  }
+  .mrns-article__title {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+  .mrns-article__lead {
+    font-size: .95rem;
+  }
+  .mrns-article__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .6rem;
+  }
+  .editorial-sidebar {
+    margin-top: 1.5rem;
+  }
+
+  /* Ventana 3: Equipo y Fichas FACDEH */
+  .facdeh-header-hero {
+    padding: 1.8rem 1.2rem;
+  }
+  .facdeh-header-hero h2 {
+    font-size: 1.8rem;
+  }
+  .facdeh-filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: .8rem;
+  }
+  .facdeh-filter-chips {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: .4rem;
+    -webkit-overflow-scrolling: touch;
+    gap: .4rem;
+  }
+  .facdeh-filter-chips .facdeh-chip-btn {
+    white-space: nowrap;
+    font-size: .75rem;
+  }
+  .facdeh-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .facdeh-card__photo {
+    height: 240px;
+  }
+  .facdeh-card__body {
+    padding: 1.3rem;
+  }
+
+  /* Ventana 4: Repositorio y Archivos */
+  .materials-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Ventana 5: Hitos y Noticias */
+  .hito-hero {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .hito-hero__photo {
+    min-height: 220px;
+    max-height: 280px;
+  }
+  .hito-hero__body {
+    padding: 1.4rem;
+  }
+  .hito-hero__title {
+    font-size: 1.4rem;
+  }
+  .hitos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* MODALES Y DIALOGS RESPONSIVE */
+  .cv {
+    grid-template-columns: 1fr;
+    width: 94vw;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
   .cv__photo {
-    min-height: 300px;
+    min-height: 220px;
+    max-height: 280px;
   }
   .cv__body {
-    padding: 1.8rem 1.4rem;
+    padding: 1.6rem 1.2rem;
+  }
+  .cv h3 {
+    font-size: 1.45rem;
+  }
+  .editor-modal {
+    width: 95vw !important;
+    max-height: 92vh !important;
+    padding: 0;
+    border-radius: 12px;
+  }
+  .editor-modal__head {
+    padding: .8rem 1rem;
+  }
+  .editor-modal__body {
+    padding: 1.2rem 1rem;
+  }
+  .editor-tabs-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: .4rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .editor-tab-btn {
+    white-space: nowrap;
+    font-size: .75rem;
+    padding: .4rem .7rem;
+  }
+
+  /* Tablas responsivas con scroll horizontal en móvil */
+  .users-table-container,
+  div[style*="overflow-y: auto"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .users-table {
+    min-width: 480px;
+  }
+
+  /* Formularios en 1 columna para móviles */
+  form div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer en móvil */
+  .footer {
+    padding: 2.2rem 1rem;
+  }
+  .footer__links {
+    flex-direction: column;
+    gap: .8rem;
+  }
+}
+
+/* Pantallas extra pequeñas (≤ 480px) */
+@media (max-width: 480px) {
+  .join-stats {
+    grid-template-columns: 1fr;
+  }
+  .home-mini-gallery {
+    grid-template-columns: 1fr;
+  }
+  .top-ticker {
+    display: none; /* Dejar más espacio de lectura en teléfonos pequeños */
   }
 }
 

@@ -39,7 +39,14 @@
       <span>Sociedad de Debates <em>UCEN</em></span>
     </a>
 
-    <nav class="nav__links" aria-label="Navegación de Ventanas">
+    <!-- BOTÓN MENÚ MÓVIL (HAMBURGUESA) -->
+    <button class="nav__hamburger" id="nav-hamburger-btn" type="button" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav__links" id="main-nav-links" aria-label="Navegación de Ventanas">
       <button class="nav-tab-btn active" data-window="inicio" type="button">Inicio & Memoria</button>
       <button class="nav-tab-btn" data-window="articulos" type="button">Artículos & Opinión</button>
       <button class="nav-tab-btn" data-window="equipo" type="button">Cuerpo Académico & Equipo</button>
@@ -1262,6 +1269,14 @@
       if (targetWin) targetWin.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
 
+      // Cerrar menú móvil si está desplegado
+      const mainNav = document.getElementById('main-nav-links');
+      const burger = document.getElementById('nav-hamburger-btn');
+      if (mainNav && mainNav.classList.contains('nav__links--open')) {
+        mainNav.classList.remove('nav__links--open');
+        if (burger) burger.classList.remove('is-active');
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Si el modo edición visual está activo, habilitar en la ventana recién abierta
@@ -1269,6 +1284,25 @@
         setTimeout(enableContentEditable, 50);
       }
     };
+
+    const navHamburgerBtn = document.getElementById('nav-hamburger-btn');
+    const mainNavLinks = document.getElementById('main-nav-links');
+    if (navHamburgerBtn && mainNavLinks) {
+      navHamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mainNavLinks.classList.toggle('nav__links--open');
+        navHamburgerBtn.classList.toggle('is-active', isOpen);
+        navHamburgerBtn.setAttribute('aria-expanded', isOpen);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mainNavLinks.contains(e.target) && !navHamburgerBtn.contains(e.target)) {
+          mainNavLinks.classList.remove('nav__links--open');
+          navHamburgerBtn.classList.remove('is-active');
+          navHamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
 
     document.querySelectorAll('.nav-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
