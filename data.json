@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-18T23:21:49.692Z",
+  "updatedAt": "2026-10-18T23:23:24.722Z",
   "publishedBy": "Administrador Central",
   "users": [
     {
@@ -222,6 +222,29 @@
     }
   ],
   "articles": [
+    {
+      "id": "art-1792365804645",
+      "title": "aaa",
+      "category": "Doctrina & Debate Constitucional",
+      "materia": "Derecho Constitucional",
+      "tags": [
+        "Derecho Constitucional"
+      ],
+      "author": "Martín Castro",
+      "authorMemberId": "fac-7",
+      "date": "19 de octubre de 2026",
+      "readTime": "3 min",
+      "summary": "aaa",
+      "content": "<div><figure class=\"article-inline-figure\"><sup id=\"fnref-1\"><a href=\"#fn-1\" class=\"footnote-ref\">[1]</a></sup>&nbsp;<img src=\"https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365767764-descarga.jpg\" alt=\"foto ia\"><figcaption>foto ia</figcaption></figure><p><br></p></div>aaaa<sup id=\"fnref-2\"><a href=\"#fn-2\" class=\"footnote-ref\">[2]</a></sup>&nbsp;",
+      "footnotes": [
+        "[1] leeer",
+        "[2] aaaa"
+      ],
+      "bibliography": [
+        "https://noticias.ucentral.cl/noticias/prestigioso-ranking-chambers-latin-america-2027-destaca-a-seis-profesionales-de-la-facultad-de-derecho-y-humanidades/"
+      ],
+      "isLead": false
+    },
     {
       "id": "art-1",
       "title": "Flexibilización del Secreto Bancario: Entre la eficacia persecutoria y las garantías de la vida privada",
