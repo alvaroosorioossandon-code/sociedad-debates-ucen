@@ -19,8 +19,8 @@
   <div class="top-ticker">
     <div class="wrap top-ticker__inner">
       <div style="display:flex; align-items:center; gap:.8rem; overflow:hidden;">
-        <span class="top-ticker__tag">Actualidad 2026</span>
-        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+        <span class="top-ticker__tag" data-editable="text" data-edit-key="ticker-tag">Actualidad 2026</span>
+        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" data-editable="text" data-edit-key="ticker-text">
           I Torneo de Debates Interfacultades UCEN · Sala de Litigación y Sala de Licenciatura (Torre C, FACDEH)
         </span>
       </div>
@@ -66,13 +66,13 @@
       <!-- BLOQUE 1: TÍTULO PRINCIPAL (INCLUYENDO ENCABEZADO Y MENCIÓN RODRIGO PICA) -->
       <section class="hero">
         <picture class="hero__bg" id="hero-bg-picture">
-          <source media="(max-width: 700px)" srcset="img/hero.jpg" />
-          <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" data-edit-key="hero-bg" />
+          <source id="hero-bg-source" media="(max-width: 700px)" srcset="img/hero.jpg" />
+          <img src="img/hero.jpg" alt="Jornada de debate en la Universidad Central de Chile" id="hero-bg-img" data-editable="img" data-edit-key="hero-bg" />
         </picture>
         <div class="hero__veil"></div>
         <div class="hero__inner">
           <div style="display:inline-block; position:relative; border-radius:50%;">
-            <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" data-edit-key="hero-logo" />
+            <img class="hero__logo" src="img/logo.jpg" alt="Logo de la Sociedad de Debates Prof. Rodrigo Pica F." width="220" height="220" id="hero-logo-img" data-editable="img" data-edit-key="hero-logo" />
           </div>
           <div class="hero__text">
             <p class="eyebrow" style="color: var(--blue-200);" data-editable="text" data-edit-key="hero-sub">Facultad de Derecho y Humanidades · UCEN</p>
@@ -88,8 +88,7 @@
               <button class="btn btn--light" onclick="navigateToWindow('equipo')" type="button">
                 Cuerpo Académico & Equipo
               </button>
-              <a class="btn btn--ghost" href="mailto:socdebate@ucentral.cl" data-editable="text" data-edit-key="hero-email-btn">
-                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <a class="btn btn--ghost" id="hero-email-link" href="mailto:socdebate@ucentral.cl" data-editable="text" data-edit-key="hero-email-btn">
                 socdebate@ucentral.cl
               </a>
             </div>
@@ -114,7 +113,7 @@
             <div class="join-card">
               <span class="eyebrow" style="color: var(--gold-400);" data-editable="text" data-edit-key="join-eyebrow">Convocatoria Abierta 2026</span>
               <h4 data-editable="text" data-edit-key="join-title">Forja tu voz en los estrados</h4>
-              <p data-editable="text" data-edit-key="join-desc">
+              <p data-editable="text" data-edit-key="join-desc" style="text-align: justify;">
                 La Sociedad de Debates ofrece talleres formativos en contra-interrogatorio, detección de falacias lógicas, argumentación constitucional y alegatos de clausura. Representamos a la Universidad Central frente a los principales tribunales y escuelas de Derecho del país.
               </p>
               <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -170,19 +169,19 @@
               </h4>
               <div class="instagram-feed-mock">
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-1" data-edit-key="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-1" data-editable="bg-img" data-edit-key="ig-img-1" style="background-image: url('img/galeria/foto-08.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-1">
                     <strong>@debate.ucentral:</strong> Jornada de debate interuniversitario UCEN vs USACH sobre Secreto Bancario. ¡Tremendo desempeño!
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-2" data-edit-key="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-2" data-editable="bg-img" data-edit-key="ig-img-2" style="background-image: url('img/jorge-legisos-mejor-debatiente.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-2">
                     <strong>@debate.ucentral:</strong> Felicitamos a nuestro consejero Jorge Legisos por su premio como Mejor Debatiente del encuentro.
                   </p>
                 </article>
                 <article class="ig-post-card">
-                  <div class="ig-post-img" id="ig-img-3" data-edit-key="ig-img-3" style="background-image: url('img/hero.jpg');"></div>
+                  <div class="ig-post-img" id="ig-img-3" data-editable="bg-img" data-edit-key="ig-img-3" style="background-image: url('img/hero.jpg');"></div>
                   <p class="ig-post-caption" data-editable="text" data-edit-key="ig-caption-3">
                     <strong>@debate.ucentral:</strong> I Torneo de Debates Interfacultades en la FACDEH. ¡Sala de Litigación y Licenciatura listas!
                   </p>
@@ -199,7 +198,7 @@
               </p>
               <div style="margin-bottom: 1.2rem;">
                 <strong style="display:block; font-size: .95rem; color: var(--navy-900);">Correo electrónico:</strong>
-                <a href="mailto:socdebate@ucentral.cl" style="color: var(--blue-600); font-weight: 700; text-decoration: underline;" data-editable="text" data-edit-key="contact-email">
+                <a id="contact-email-link" href="mailto:socdebate@ucentral.cl" style="color: var(--blue-600); font-weight: 700; text-decoration: underline;" data-editable="text" data-edit-key="contact-email">
                   socdebate@ucentral.cl
                 </a>
               </div>
@@ -219,7 +218,7 @@
       <section class="home-section-block" style="padding: 0;">
         <div class="memoria">
           <div class="memoria__photo">
-            <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" data-edit-key="rodrigo-pica-img" />
+            <img src="img/rodrigo-pica.jpg" alt="Rodrigo Pica Flores" loading="lazy" id="pica-memoria-img" data-editable="img" data-edit-key="rodrigo-pica-img" />
           </div>
           <div class="memoria__text">
             <p class="eyebrow eyebrow--dark" data-editable="text" data-edit-key="memoria-eyebrow">Homenaje a la Excelencia Jurídica (1979 – 2023)</p>
@@ -227,7 +226,7 @@
             <p class="memoria__quote" data-editable="text" data-edit-key="memoria-quote">
               "En memoria del gran ex debatiente, profesor titular de Derecho Político y Constitucional, y ministro del Tribunal Constitucional de Chile, <strong>Rodrigo Pica Flores</strong>."
             </p>
-            <p style="font-size: .85rem; color: var(--gray-600); margin: 1rem 0 1.5rem; line-height: 1.6;" data-editable="text" data-edit-key="memoria-desc">
+            <p style="font-size: .85rem; color: var(--gray-600); margin: 1rem 0 1.5rem; line-height: 1.6; text-align: justify;" data-editable="text" data-edit-key="memoria-desc">
               Su legado permanece vivo en la FACDEH a través de su doctrina sobre el control concreto de inaplicabilidad, el debido proceso sancionador y el rigor dialéctico en las nuevas generaciones.
             </p>
             <div style="display: flex; gap: .8rem; flex-wrap: wrap;">
@@ -286,26 +285,26 @@
               <p class="eyebrow" style="color: var(--blue-600);">Difusión Institucional · Radio U.Central 107.1 FM</p>
               <h3>Radio y Medios</h3>
             </div>
-            <a class="btn-more" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
+            <a class="btn-more" id="radio-channel-link" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
               Ver canal oficial en YouTube →
             </a>
           </div>
 
           <div class="radio-box">
             <div>
-              <p class="eyebrow" style="color: var(--gold-400);">Entrevista Exclusiva · 5 de octubre de 2026</p>
-              <h4 style="font-family: var(--display); font-size: 2rem; text-transform: uppercase; margin: .5rem 0 .8rem; color: var(--white);">
+              <p class="eyebrow" style="color: var(--gold-400);" data-editable="text" data-edit-key="radio-eyebrow">Entrevista Exclusiva · 5 de octubre de 2026</p>
+              <h4 style="font-family: var(--display); font-size: 2rem; text-transform: uppercase; margin: .5rem 0 .8rem; color: var(--white);" data-editable="text" data-edit-key="radio-title">
                 Sociedad de Debates al Aire
               </h4>
-              <p style="color: var(--blue-200); line-height: 1.6; margin-bottom: 1.4rem; font-size: .92rem;">
+              <p style="color: var(--blue-200); line-height: 1.6; margin-bottom: 1.4rem; font-size: .92rem; text-align: justify;" data-editable="text" data-edit-key="radio-desc">
                 El equipo de la Sociedad de Debates "Prof. Rodrigo Pica F." analiza en Radio U.Central el re-impulso de la oratoria forense, la preparación ante el torneo interfacultades y la importancia del pensamiento crítico en la formación universitaria.
               </p>
-              <a class="btn btn--gold" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
+              <a class="btn btn--gold" id="radio-youtube-btn" href="https://youtu.be/ri-sdSjdIjI" target="_blank" rel="noopener">
                 Reproducir en YouTube →
               </a>
             </div>
             <div>
-              <iframe src="https://www.youtube-nocookie.com/embed/ri-sdSjdIjI" title="Entrevista a la Sociedad de Debates en Radio U.Central 107.1 FM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe id="radio-youtube-iframe" src="https://www.youtube-nocookie.com/embed/ri-sdSjdIjI" title="Entrevista a la Sociedad de Debates en Radio U.Central 107.1 FM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -342,16 +341,16 @@
               </h4>
               <div class="home-mini-gallery">
                 <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
-                  <img src="img/galeria/foto-01.jpg" alt="Encuentro de debate" />
+                  <img src="img/galeria/foto-01.jpg" alt="Encuentro de debate" id="home-gal-img-1" data-editable="img" data-edit-key="home-gal-1" />
                 </div>
                 <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
-                  <img src="img/galeria/foto-02.jpg" alt="Equipos en sala de litigación" />
+                  <img src="img/galeria/foto-02.jpg" alt="Equipos en sala de litigación" id="home-gal-img-2" data-editable="img" data-edit-key="home-gal-2" />
                 </div>
                 <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
-                  <img src="img/galeria/foto-03.jpg" alt="Preparación de moción" />
+                  <img src="img/galeria/foto-03.jpg" alt="Preparación de moción" id="home-gal-img-3" data-editable="img" data-edit-key="home-gal-3" />
                 </div>
                 <div class="mini-gal-img" onclick="navigateToWindow('noticias')">
-                  <img src="img/galeria/foto-08.jpg" alt="UCEN vs USACH" />
+                  <img src="img/galeria/foto-08.jpg" alt="UCEN vs USACH" id="home-gal-img-4" data-editable="img" data-edit-key="home-gal-4" />
                 </div>
               </div>
             </div>
@@ -365,7 +364,7 @@
           <div class="home-block-header">
             <div>
               <p class="eyebrow eyebrow--dark">Agenda Académica & Competitiva</p>
-              <h3>Calendario de Eventos y Próximas Reuniones</h3>
+              <h3 data-editable="text" data-edit-key="calendar-block-title">Calendario de Eventos y Próximas Reuniones</h3>
             </div>
             <button class="btn-more" onclick="navigateToWindow('noticias')" type="button">
               Ver detalle de rondas y torneos →
@@ -375,45 +374,45 @@
           <div class="calendar-timeline">
             <div class="calendar-item">
               <div class="cal-badge">
-                <b>14</b>
-                <span>OCT</span>
+                <b data-editable="text" data-edit-key="cal-1-day">14</b>
+                <span data-editable="text" data-edit-key="cal-1-month">OCT</span>
               </div>
               <div>
-                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Cuartos de Final</strong>
-                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">I Torneo de Debates Interfacultades UCEN (Torre C, FACDEH).</p>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;" data-editable="text" data-edit-key="cal-1-title">Cuartos de Final</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;" data-editable="text" data-edit-key="cal-1-desc">I Torneo de Debates Interfacultades UCEN (Torre C, FACDEH).</p>
               </div>
             </div>
 
             <div class="calendar-item">
               <div class="cal-badge" style="background:var(--wine-700); color:var(--white);">
-                <b>19</b>
-                <span>OCT</span>
+                <b data-editable="text" data-edit-key="cal-2-day">19</b>
+                <span data-editable="text" data-edit-key="cal-2-month">OCT</span>
               </div>
               <div>
-                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Semifinal Nacional</strong>
-                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Sala de Litigación (2° piso) y Sala de Licenciatura (4° piso).</p>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;" data-editable="text" data-edit-key="cal-2-title">Semifinal Nacional</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;" data-editable="text" data-edit-key="cal-2-desc">Sala de Litigación (2° piso) y Sala de Licenciatura (4° piso).</p>
               </div>
             </div>
 
             <div class="calendar-item">
               <div class="cal-badge" style="background:var(--gold-400); color:var(--navy-950);">
-                <b>23</b>
-                <span>OCT</span>
+                <b data-editable="text" data-edit-key="cal-3-day">23</b>
+                <span data-editable="text" data-edit-key="cal-3-month">OCT</span>
               </div>
               <div>
-                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Gran Final y Premiación</strong>
-                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Definición del campeonato y mejor orador individual.</p>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;" data-editable="text" data-edit-key="cal-3-title">Gran Final y Premiación</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;" data-editable="text" data-edit-key="cal-3-desc">Definición del campeonato y mejor orador individual.</p>
               </div>
             </div>
 
             <div class="calendar-item">
               <div class="cal-badge">
-                <b>VIER</b>
-                <span>17:00</span>
+                <b data-editable="text" data-edit-key="cal-4-day">VIER</b>
+                <span data-editable="text" data-edit-key="cal-4-month">17:00</span>
               </div>
               <div>
-                <strong style="color:var(--navy-900); font-size:.95rem; display:block;">Reunión Ordinaria de Consejo</strong>
-                <p style="font-size:.82rem; color:var(--gray-600); margin:0;">Taller de contra-interrogatorio y preparación de mociones.</p>
+                <strong style="color:var(--navy-900); font-size:.95rem; display:block;" data-editable="text" data-edit-key="cal-4-title">Reunión Ordinaria de Consejo</strong>
+                <p style="font-size:.82rem; color:var(--gray-600); margin:0;" data-editable="text" data-edit-key="cal-4-desc">Taller de contra-interrogatorio y preparación de mociones.</p>
               </div>
             </div>
           </div>
@@ -701,6 +700,7 @@
       <div class="editor-tabs-bar">
         <button class="editor-tab-btn active" id="tab-btn-art" type="button">✍️ Redactar Artículo</button>
         <button class="editor-tab-btn" id="tab-btn-order" type="button">📚 Gestionar Artículos</button>
+        <button class="editor-tab-btn" id="tab-btn-home" type="button">🏠 Página de Inicio</button>
         <button class="editor-tab-btn" id="tab-btn-hitos" type="button">🏆 Hitos y Noticias</button>
         <button class="editor-tab-btn" id="tab-btn-mat" type="button">📂 Archivos y Materiales</button>
         <button class="editor-tab-btn" id="tab-btn-team" type="button">🏛️ Equipo y Consejeros</button>
@@ -1252,20 +1252,328 @@
         </div>
       </div>
 
+      <!-- TAB INICIO: EDITOR COMPLETO DE LA PÁGINA DE INICIO (HERO, CONVOCATORIA, INSTAGRAM, HOMENAJE, RADIO, GALERÍA Y CALENDARIO) -->
+      <div id="sec-home-editor" style="display: none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; margin-bottom:1.1rem; background:var(--blue-50, #f4f8ff); border:1px solid var(--blue-200, #c8dcf8); padding:1rem 1.2rem; border-radius:10px;">
+          <div>
+            <h4 style="font-size:1.05rem; color:var(--navy-900); margin:0 0 .25rem;">🏠 Editor Completo de la Página de Inicio</h4>
+            <p style="font-size:.8rem; color:var(--gray-700); margin:0;">
+              Modifica aquí todos los textos, fotografías, tarjetas de Instagram, video de Radio UCEN y calendario de la portada, o activa la edición directa sobre la página.
+            </p>
+          </div>
+          <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+            <button type="button" class="btn btn--outline" style="font-size:.78rem; padding:.45rem .9rem; background:#fff;" onclick="startVisualEditFromCMS()">
+              ✨ Editar Directo sobre la Página (In-Situ)
+            </button>
+            <button type="button" class="btn btn--gold" style="font-size:.8rem; padding:.45rem 1rem;" onclick="saveHomeEditorForm()">
+              💾 Guardar y Publicar Inicio Ahora
+            </button>
+          </div>
+        </div>
+
+        <div id="home-editor-feedback" style="display:none; margin-bottom:1rem;"></div>
+        <span id="home-photo-upload-status" style="display:none; font-size:.78rem; font-weight:700; color:var(--blue-700); margin-bottom:.8rem;"></span>
+
+        <form id="form-home-editor" onsubmit="event.preventDefault(); saveHomeEditorForm();">
+          <!-- 1. BARRA SUPERIOR Y PORTADA HERO -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              1. Barra Superior (Ticker) y Portada Principal (Hero)
+            </h5>
+            <div class="form-group" style="display:grid; grid-template-columns:1fr 3fr; gap:.8rem;">
+              <div>
+                <label>Etiqueta Barra Superior</label>
+                <input type="text" data-home-key="ticker-tag" placeholder="Actualidad 2026" />
+              </div>
+              <div>
+                <label>Mensaje Informativo Barra Superior</label>
+                <input type="text" data-home-key="ticker-text" placeholder="I Torneo de Debates Interfacultades UCEN..." />
+              </div>
+            </div>
+
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:.8rem;">
+              <div>
+                <label>Subtítulo Institucional</label>
+                <input type="text" data-home-key="hero-sub" placeholder="Facultad de Derecho y Humanidades · UCEN" />
+              </div>
+              <div>
+                <label>Título Principal (Portada)</label>
+                <input type="text" data-home-key="hero-title" placeholder="Sociedad de Debates" />
+              </div>
+              <div>
+                <label>Nombre Honorífico (Manuscrito)</label>
+                <input type="text" data-home-key="hero-script" placeholder="Prof. Rodrigo Pica F." />
+              </div>
+              <div>
+                <label>Correo en Botón de Portada</label>
+                <input type="text" data-home-key="hero-email-btn" placeholder="socdebate@ucentral.cl" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Descripción Principal de Portada (Bajada Hero)</label>
+              <textarea rows="3" data-home-key="hero-lead" placeholder="Potenciando las competencias discursivas..."></textarea>
+            </div>
+
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>🖼️ Imagen de Fondo de Portada (Hero)</label>
+                <input type="text" data-home-img-key="hero-bg" placeholder="img/hero.jpg o URL" style="margin-bottom:.4rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'hero-bg')" style="font-size:.75rem;" />
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>🛡️ Escudo / Logo Circular de Portada</label>
+                <input type="text" data-home-img-key="hero-logo" placeholder="img/logo.jpg o URL" style="margin-bottom:.4rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'hero-logo')" style="font-size:.75rem;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. BLOQUE ÚNETE A DEBATIR Y ESTADÍSTICAS -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              2. Bloque "Únete a Debatir" e Indicadores Estadísticos
+            </h5>
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:.8rem;">
+              <div>
+                <label>Título de Sección</label>
+                <input type="text" data-home-key="join-header-title" />
+              </div>
+              <div>
+                <label>Etiqueta Convocatoria</label>
+                <input type="text" data-home-key="join-eyebrow" />
+              </div>
+              <div>
+                <label>Título de Tarjeta</label>
+                <input type="text" data-home-key="join-title" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Descripción de Convocatoria y Talleres</label>
+              <textarea rows="3" data-home-key="join-desc"></textarea>
+            </div>
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:.75rem;">
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Indicador 1 (Cifra y Texto)</label>
+                <input type="text" data-home-key="stat-1-num" style="margin-bottom:.3rem; font-weight:700;" />
+                <input type="text" data-home-key="stat-1-lbl" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Indicador 2 (Cifra y Texto)</label>
+                <input type="text" data-home-key="stat-2-num" style="margin-bottom:.3rem; font-weight:700;" />
+                <input type="text" data-home-key="stat-2-lbl" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Indicador 3 (Cifra y Texto)</label>
+                <input type="text" data-home-key="stat-3-num" style="margin-bottom:.3rem; font-weight:700;" />
+                <input type="text" data-home-key="stat-3-lbl" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Indicador 4 (Cifra y Texto)</label>
+                <input type="text" data-home-key="stat-4-num" style="margin-bottom:.3rem; font-weight:700;" />
+                <input type="text" data-home-key="stat-4-lbl" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. BLOQUE INSTAGRAM Y CONTACTO DIRECTO -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              3. Publicaciones de Instagram (@debate.ucentral) y Contacto Directo
+            </h5>
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:.85rem;">
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📸 Publicación Instagram 1</label>
+                <input type="text" data-home-bg-key="ig-img-1" placeholder="URL o ruta de foto 1" style="margin-bottom:.35rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'ig-img-1', true)" style="font-size:.73rem; margin-bottom:.45rem;" />
+                <textarea rows="2" data-home-key="ig-caption-1" placeholder="Pie de foto Instagram 1..."></textarea>
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📸 Publicación Instagram 2</label>
+                <input type="text" data-home-bg-key="ig-img-2" placeholder="URL o ruta de foto 2" style="margin-bottom:.35rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'ig-img-2', true)" style="font-size:.73rem; margin-bottom:.45rem;" />
+                <textarea rows="2" data-home-key="ig-caption-2" placeholder="Pie de foto Instagram 2..."></textarea>
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📸 Publicación Instagram 3</label>
+                <input type="text" data-home-bg-key="ig-img-3" placeholder="URL o ruta de foto 3" style="margin-bottom:.35rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'ig-img-3', true)" style="font-size:.73rem; margin-bottom:.45rem;" />
+                <textarea rows="2" data-home-key="ig-caption-3" placeholder="Pie de foto Instagram 3..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:.8rem; margin-top:.6rem;">
+              <div>
+                <label>Título Bloque Redes</label>
+                <input type="text" data-home-key="social-block-title" />
+              </div>
+              <div>
+                <label>Título Tarjeta Contacto</label>
+                <input type="text" data-home-key="contact-box-title" />
+              </div>
+              <div>
+                <label>Correo Oficial de Contacto</label>
+                <input type="text" data-home-key="contact-email" />
+              </div>
+              <div>
+                <label>Dirección / Ubicación Física</label>
+                <input type="text" data-home-key="contact-address" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Texto Invitación de Contacto</label>
+              <input type="text" data-home-key="contact-box-desc" />
+            </div>
+          </div>
+
+          <!-- 4. BLOQUE HOMENAJE RODRIGO PICA FLORES -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              4. Bloque Homenaje "Prof. Rodrigo Pica Flores"
+            </h5>
+            <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:.8rem;">
+              <div>
+                <label>Subtítulo Homenaje</label>
+                <input type="text" data-home-key="memoria-eyebrow" />
+              </div>
+              <div>
+                <label>Nombre Homenajeado</label>
+                <input type="text" data-home-key="memoria-script-name" />
+              </div>
+              <div style="background:#fff; padding:.5rem .7rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>🖼️ Fotografía del Homenaje</label>
+                <input type="text" data-home-img-key="rodrigo-pica-img" style="margin-bottom:.3rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'rodrigo-pica-img')" style="font-size:.73rem;" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Cita Destacada del Homenaje</label>
+              <textarea rows="2" data-home-key="memoria-quote"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Reseña de Legado Académico</label>
+              <textarea rows="2" data-home-key="memoria-desc"></textarea>
+            </div>
+          </div>
+
+          <!-- 5. BLOQUE RADIO UCEN Y MULTIMEDIA + GALERÍA DEL INICIO -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              5. Bloque Radio U.Central (YouTube) y Mini Galería Fotográfica del Inicio
+            </h5>
+            <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:.8rem;">
+              <div>
+                <label>Subtítulo Radio / Entrevista</label>
+                <input type="text" data-home-key="radio-eyebrow" />
+              </div>
+              <div>
+                <label>Título Bloque Radio</label>
+                <input type="text" data-home-key="radio-title" />
+              </div>
+              <div>
+                <label>🎬 Enlace del Video en YouTube</label>
+                <input type="text" id="input-home-youtube-url" placeholder="https://youtu.be/ri-sdSjdIjI" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Descripción de la Entrevista / Multimedia</label>
+              <textarea rows="2" data-home-key="radio-desc"></textarea>
+            </div>
+
+            <label style="margin-top:.5rem; display:block;">📷 Las 4 Fotografías de "Momentos y Encuentros" en el Inicio:</label>
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:.75rem; margin-top:.35rem;">
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Foto Galería 1</label>
+                <input type="text" data-home-img-key="home-gal-1" style="margin-bottom:.3rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'home-gal-1')" style="font-size:.72rem;" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Foto Galería 2</label>
+                <input type="text" data-home-img-key="home-gal-2" style="margin-bottom:.3rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'home-gal-2')" style="font-size:.72rem;" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Foto Galería 3</label>
+                <input type="text" data-home-img-key="home-gal-3" style="margin-bottom:.3rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'home-gal-3')" style="font-size:.72rem;" />
+              </div>
+              <div style="background:#fff; padding:.6rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>Foto Galería 4</label>
+                <input type="text" data-home-img-key="home-gal-4" style="margin-bottom:.3rem;" />
+                <input type="file" accept="image/*" onchange="uploadHomeEditorImage(this, 'home-gal-4')" style="font-size:.72rem;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. CALENDARIO DE EVENTOS Y PRÓXIMAS REUNIONES -->
+          <div style="background:var(--gray-100); border:1px solid var(--gray-300); border-radius:8px; padding:1.1rem; margin-bottom:1.2rem;">
+            <h5 style="font-size:.88rem; text-transform:uppercase; color:var(--navy-900); margin:0 0 .8rem; border-bottom:1px solid var(--gray-300); padding-bottom:.4rem;">
+              6. Calendario de Eventos y Próximas Reuniones (4 Eventos en Inicio)
+            </h5>
+            <div class="form-group">
+              <label>Título de la Sección de Calendario</label>
+              <input type="text" data-home-key="calendar-block-title" />
+            </div>
+            <div class="form-group" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:.8rem;">
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📅 Evento 1</label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:.4rem; margin-bottom:.35rem;">
+                  <input type="text" data-home-key="cal-1-day" placeholder="Día (14)" />
+                  <input type="text" data-home-key="cal-1-month" placeholder="Mes (OCT)" />
+                </div>
+                <input type="text" data-home-key="cal-1-title" placeholder="Título evento 1" style="margin-bottom:.35rem; font-weight:700;" />
+                <input type="text" data-home-key="cal-1-desc" placeholder="Lugar o descripción" />
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📅 Evento 2</label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:.4rem; margin-bottom:.35rem;">
+                  <input type="text" data-home-key="cal-2-day" placeholder="Día (19)" />
+                  <input type="text" data-home-key="cal-2-month" placeholder="Mes (OCT)" />
+                </div>
+                <input type="text" data-home-key="cal-2-title" placeholder="Título evento 2" style="margin-bottom:.35rem; font-weight:700;" />
+                <input type="text" data-home-key="cal-2-desc" placeholder="Lugar o descripción" />
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📅 Evento 3</label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:.4rem; margin-bottom:.35rem;">
+                  <input type="text" data-home-key="cal-3-day" placeholder="Día (23)" />
+                  <input type="text" data-home-key="cal-3-month" placeholder="Mes (OCT)" />
+                </div>
+                <input type="text" data-home-key="cal-3-title" placeholder="Título evento 3" style="margin-bottom:.35rem; font-weight:700;" />
+                <input type="text" data-home-key="cal-3-desc" placeholder="Lugar o descripción" />
+              </div>
+              <div style="background:#fff; padding:.75rem; border-radius:6px; border:1px solid var(--gray-300);">
+                <label>📅 Evento 4</label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:.4rem; margin-bottom:.35rem;">
+                  <input type="text" data-home-key="cal-4-day" placeholder="Día (VIER)" />
+                  <input type="text" data-home-key="cal-4-month" placeholder="Hora (17:00)" />
+                </div>
+                <input type="text" data-home-key="cal-4-title" placeholder="Título evento 4" style="margin-bottom:.35rem; font-weight:700;" />
+                <input type="text" data-home-key="cal-4-desc" placeholder="Lugar o descripción" />
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" id="btn-save-home-submit" class="btn btn--gold" style="width:100%; justify-content:center; padding:.85rem 1.4rem; font-size:.95rem; font-weight:800;">
+            💾 Guardar y Publicar Todos los Cambios de la Página de Inicio
+          </button>
+        </form>
+      </div>
+
       <!-- TAB 8: PUBLICACIÓN GLOBAL EN LA WEB (GITHUB / NETLIFY) -->
       <div id="sec-publish-management" style="display: none;">
         <h4 style="font-size: 1.1rem; color: var(--navy-900); margin-bottom: .4rem; display: flex; align-items: center; gap: .5rem;">
           🌐 Publicar Cambios en la Web Global (GitHub / Netlify)
         </h4>
         <p style="font-size: .84rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 1.2rem;">
-          Cuando editas desde tu computador, los cambios se guardan localmente para que trabajes con tranquilidad. Para que <strong>todas las personas, alumnos y profesores los vean en tiempo real desde cualquier celular, tablet o computador</strong>, presiona el botón de publicación directa a continuación.
+          Cuando editas desde tu computador, los cambios se sincronizan en tiempo real con la base de datos en la nube para que <strong>todas las personas, alumnos y profesores los vean al instante desde cualquier celular, tablet o computador</strong>.
         </p>
 
         <div style="background: #f8fafc; border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
-              <strong style="color: var(--navy-900); font-size: .95rem; display: block;">🚀 Publicación Automática a Netlify</strong>
-              <span style="font-size: .78rem; color: var(--gray-600);">Repositorio: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">alvaroosorioossandon-code/sociedad-debates-ucen</code></span>
+              <strong style="color: var(--navy-900); font-size: .95rem; display: block;">🚀 Sincronización Digital Instantánea en Vivo</strong>
+              <span style="font-size: .78rem; color: var(--gray-600);">Base de Datos Cloud activa: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">alvaroosorioossandon-code/sociedad-debates-ucen</code></span>
             </div>
             <button class="btn btn--gold" id="btn-github-publish" type="button" style="padding: .6rem 1.4rem; font-weight: 700; font-size: .88rem; box-shadow: 0 4px 12px rgba(223,181,75,0.35);">
               🚀 Publicar Todo a la Web Global
@@ -1298,6 +1606,17 @@
 
     </div>
   </dialog>
+
+  <!-- BARRA FLOTANTE EXCLUSIVA CUANDO SE ACTIVA EL MODO VISUAL DESDE EL CMS -->
+  <div id="visual-mode-floating-bar" style="display:none; position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%); z-index:9999; background:var(--navy-950, #06111f); color:#fff; padding:.75rem 1.3rem; border-radius:999px; box-shadow:0 12px 32px rgba(0,0,0,0.45); border:2px solid var(--gold-400, #dfb54b); align-items:center; gap:.85rem; flex-wrap:wrap; max-width:95vw;">
+    <span style="font-size:.8rem; font-weight:700; color:var(--gold-400);">✨ Modo Edición Directa Activo: Haz clic sobre cualquier texto o foto para editarlo</span>
+    <button type="button" class="btn btn--gold" style="padding:.35rem .9rem; font-size:.78rem; font-weight:800;" onclick="saveAllVisualChanges()">
+      💾 Guardar y Publicar en Vivo
+    </button>
+    <button type="button" class="btn btn--outline" style="padding:.35rem .8rem; font-size:.76rem; color:#fff; border-color:rgba(255,255,255,0.35);" onclick="exitVisualEditModeToCMS()">
+      ↩ Volver al Panel CMS
+    </button>
+  </div>
 
 
 
@@ -1547,6 +1866,11 @@
 
     function safeSetItem(key, strValue) {
       window._ucenMemStore[key] = strValue;
+      const trackedDataKeys = ['ucen_facdeh_members', 'ucen_articles', 'ucen_materials', 'ucen_users', 'ucen_hitos', 'ucen_site_visual_content', 'ucen_site_theme_colors'];
+      if (!window._applyingRemoteData && trackedDataKeys.includes(key)) {
+        window._ucenMemStore['ucen_has_unsynced_changes'] = 'true';
+        try { localStorage.setItem('ucen_has_unsynced_changes', 'true'); } catch (e) {}
+      }
       try {
         localStorage.setItem(key, strValue);
       } catch (e) {
@@ -3525,6 +3849,7 @@
       const tabTeam = document.getElementById('tab-btn-team');
       const tabHitos = document.getElementById('tab-btn-hitos');
       const tabOrder = document.getElementById('tab-btn-order');
+      const tabHome = document.getElementById('tab-btn-home');
 
       if (currentUser.role === 'admin') {
         tabUsers.style.display = 'inline-block';
@@ -3532,6 +3857,7 @@
         tabTeam.style.display = 'inline-block';
         tabHitos.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
+        if (tabHome) tabHome.style.display = 'inline-block';
         if (tabPublish) tabPublish.style.display = 'inline-block';
       } else if (currentUser.role === 'editor') {
         tabUsers.style.display = 'none';
@@ -3539,14 +3865,16 @@
         tabTeam.style.display = 'inline-block';
         tabHitos.style.display = 'inline-block';
         tabOrder.style.display = 'inline-block';
+        if (tabHome) tabHome.style.display = 'inline-block';
         if (tabPublish) tabPublish.style.display = 'inline-block';
       } else {
-        // Consejero(a): Puede redactar y gestionar artículos, publicar noticias/hitos y gestionar archivos
+        // Consejero(a): Puede redactar y gestionar artículos, publicar noticias/hitos, archivos e inicio
         tabUsers.style.display = 'none';
         tabTeam.style.display = 'none';
         tabOrder.style.display = 'inline-block';
         tabHitos.style.display = 'inline-block';
         tabMat.style.display = 'inline-block';
+        if (tabHome) tabHome.style.display = 'inline-block';
         if (tabPublish) tabPublish.style.display = 'inline-block';
       }
 
@@ -3579,11 +3907,13 @@
       renderTeamManagerTable();
       renderHitosManagerTable();
       renderMaterialsManagerTable();
+      if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
     }
 
     // Pestañas del Editor
     const tabArt = document.getElementById('tab-btn-art');
     const tabOrder = document.getElementById('tab-btn-order');
+    const tabHome = document.getElementById('tab-btn-home');
     const tabTeam = document.getElementById('tab-btn-team');
     const tabHitos = document.getElementById('tab-btn-hitos');
     const tabMat = document.getElementById('tab-btn-mat');
@@ -3593,6 +3923,7 @@
 
     const formArt = document.getElementById('form-add-article');
     const secOrder = document.getElementById('sec-order-articles');
+    const secHome = document.getElementById('sec-home-editor');
     const secTeam = document.getElementById('sec-team-management');
     const secHitos = document.getElementById('sec-hitos-management');
     const formMat = document.getElementById('form-add-material');
@@ -3601,8 +3932,8 @@
     const secUsers = document.getElementById('sec-users-management');
 
     function switchEditorTab(tab) {
-      [tabArt, tabOrder, tabTeam, tabHitos, tabMat, tabPublish, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
-      [formArt, secOrder, secTeam, secHitos, formMat, secPublish, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
+      [tabArt, tabOrder, tabHome, tabTeam, tabHitos, tabMat, tabPublish, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
+      [formArt, secOrder, secHome, secTeam, secHitos, formMat, secPublish, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
 
       populateAuthorAndUserMemberSelects();
 
@@ -3613,6 +3944,10 @@
         tabOrder.classList.add('active');
         secOrder.style.display = 'block';
         renderOrderArticlesList();
+      } else if (tab === 'home') {
+        if (tabHome) tabHome.classList.add('active');
+        if (secHome) secHome.style.display = 'block';
+        if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
       } else if (tab === 'team') {
         tabTeam.classList.add('active');
         secTeam.style.display = 'block';
@@ -3640,6 +3975,7 @@
 
     tabArt.addEventListener('click', () => switchEditorTab('art'));
     tabOrder.addEventListener('click', () => switchEditorTab('order'));
+    if (tabHome) tabHome.addEventListener('click', () => switchEditorTab('home'));
     if (tabTeam) tabTeam.addEventListener('click', () => switchEditorTab('team'));
     if (tabHitos) tabHitos.addEventListener('click', () => switchEditorTab('hitos'));
     tabMat.addEventListener('click', () => switchEditorTab('mat'));
@@ -4783,22 +5119,53 @@
       safeSetItem('ucen_site_visual_content', JSON.stringify(clean));
     }
 
+    function extractYoutubeVideoId(url) {
+      if (!url) return '';
+      const str = url.trim();
+      const m = str.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|live\/|shorts\/))([A-Za-z0-9_-]{6,})/i);
+      return m ? m[1] : '';
+    }
+
     // Cargar contenido visual guardado al DOM (solo bloques estáticos, sin pisar entidades del CMS)
     function applySavedVisualContent() {
       const visualData = getVisualContent();
       Object.keys(visualData).forEach(key => {
         if (isDynamicEntityEditKey(key)) return;
         const data = visualData[key];
+        if (!data) return;
+
+        if (key === 'radio-youtube-url' && data.value) {
+          const vidId = extractYoutubeVideoId(data.value);
+          const watchUrl = vidId ? `https://youtu.be/${vidId}` : normalizeExternalUrl(data.value);
+          const embedUrl = vidId ? `https://www.youtube-nocookie.com/embed/${vidId}` : data.value;
+          const iframeEl = document.getElementById('radio-youtube-iframe');
+          const btnEl = document.getElementById('radio-youtube-btn');
+          const chEl = document.getElementById('radio-channel-link');
+          if (iframeEl && iframeEl.src !== embedUrl) iframeEl.src = embedUrl;
+          if (btnEl) btnEl.href = watchUrl;
+          if (chEl) chEl.href = watchUrl;
+          return;
+        }
+
         const el = document.querySelector(`[data-edit-key="${key}"]`);
-        if (!el || !data) return;
+        if (!el) return;
 
         if (data.type === 'text') {
           el.innerText = data.value;
+          if (key === 'hero-email-btn' && data.value) {
+            el.href = `mailto:${data.value.trim()}`;
+          } else if (key === 'contact-email' && data.value) {
+            el.href = `mailto:${data.value.trim()}`;
+          }
         } else if (data.type === 'html') {
           el.innerHTML = data.value;
         } else if (data.type === 'img') {
           const imgEl = el.tagName === 'IMG' ? el : el.querySelector('img');
           if (imgEl && data.value) imgEl.src = data.value;
+          if (key === 'hero-bg' && data.value) {
+            const srcEl = document.getElementById('hero-bg-source');
+            if (srcEl) srcEl.srcset = data.value;
+          }
         } else if (data.type === 'bg-img') {
           if (data.value) {
             el.style.backgroundImage = `url('${data.value}')`;
@@ -4812,12 +5179,199 @@
       applySavedThemeColors();
     }
 
+    // ========================================================
+    // EDITOR DEDICADO DE LA PÁGINA DE INICIO (CMS TAB "🏠 PÁGINA DE INICIO")
+    // ========================================================
+    let _homePendingUploads = [];
+
+    window.populateHomeEditorForm = function() {
+      const form = document.getElementById('form-home-editor');
+      if (!form) return;
+      const visualData = getVisualContent();
+
+      // 1. Campos de texto [data-home-key]
+      form.querySelectorAll('[data-home-key]').forEach(inp => {
+        const key = inp.getAttribute('data-home-key');
+        if (visualData[key] && typeof visualData[key].value === 'string') {
+          inp.value = visualData[key].value;
+        } else {
+          const domEl = document.querySelector(`[data-edit-key="${key}"]`);
+          inp.value = domEl ? domEl.innerText.trim() : '';
+        }
+      });
+
+      // 2. Campos de imagen <img> [data-home-img-key]
+      form.querySelectorAll('[data-home-img-key]').forEach(inp => {
+        const key = inp.getAttribute('data-home-img-key');
+        if (visualData[key] && visualData[key].value) {
+          inp.value = visualData[key].value;
+        } else {
+          const domEl = document.querySelector(`[data-edit-key="${key}"]`);
+          const imgEl = domEl ? (domEl.tagName === 'IMG' ? domEl : domEl.querySelector('img')) : null;
+          inp.value = imgEl ? (imgEl.getAttribute('src') || '') : '';
+        }
+      });
+
+      // 3. Campos de imagen de fondo [data-home-bg-key] (Instagram cards)
+      form.querySelectorAll('[data-home-bg-key]').forEach(inp => {
+        const key = inp.getAttribute('data-home-bg-key');
+        if (visualData[key] && visualData[key].value) {
+          inp.value = visualData[key].value;
+        } else {
+          const domEl = document.querySelector(`[data-edit-key="${key}"]`);
+          let bgUrl = '';
+          if (domEl && domEl.style && domEl.style.backgroundImage) {
+            bgUrl = domEl.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+          }
+          inp.value = bgUrl;
+        }
+      });
+
+      // 4. YouTube URL en Bloque Radio
+      const ytInp = document.getElementById('input-home-youtube-url');
+      if (ytInp) {
+        if (visualData['radio-youtube-url'] && visualData['radio-youtube-url'].value) {
+          ytInp.value = visualData['radio-youtube-url'].value;
+        } else {
+          const btnEl = document.getElementById('radio-youtube-btn');
+          ytInp.value = btnEl ? (btnEl.getAttribute('href') || 'https://youtu.be/ri-sdSjdIjI') : 'https://youtu.be/ri-sdSjdIjI';
+        }
+      }
+    };
+
+    window.uploadHomeEditorImage = async function(fileInput, targetKey, isBg = false) {
+      const file = fileInput && fileInput.files ? fileInput.files[0] : null;
+      if (!file) return;
+      const statusEl = document.getElementById('home-photo-upload-status');
+      if (statusEl) {
+        statusEl.style.display = 'inline-block';
+        statusEl.textContent = `⏳ Subiendo y optimizando imagen (${file.name})...`;
+      }
+      const selector = isBg ? `[data-home-bg-key="${targetKey}"]` : `[data-home-img-key="${targetKey}"]`;
+      const urlInput = document.querySelector(selector);
+
+      const task = (async () => {
+        try {
+          const maxDim = targetKey === 'hero-bg' ? 1280 : 900;
+          const compressed = await compressImageFile(file, maxDim, 0.80);
+          if (urlInput) {
+            urlInput.value = compressed;
+          }
+          if (statusEl) {
+            statusEl.textContent = '✅ Imagen lista — pulsa "Guardar y Publicar Inicio" para aplicar.';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+          }
+        } catch (err) {
+          alert('No se pudo procesar la imagen: ' + err.message);
+        } finally {
+          fileInput.value = '';
+        }
+      })();
+      _homePendingUploads.push(task);
+      await task;
+    };
+
+    window.saveHomeEditorForm = async function() {
+      const form = document.getElementById('form-home-editor');
+      if (!form) return;
+
+      const submitBtn = document.getElementById('btn-save-home-submit');
+      const origText = submitBtn ? submitBtn.textContent : '💾 Guardar y Publicar Todos los Cambios de la Página de Inicio';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Guardando y publicando Página de Inicio...';
+      }
+
+      try {
+        if (_homePendingUploads.length > 0) {
+          await Promise.allSettled(_homePendingUploads);
+          _homePendingUploads = [];
+        }
+
+        const visualData = getVisualContent();
+
+        form.querySelectorAll('[data-home-key]').forEach(inp => {
+          const key = inp.getAttribute('data-home-key');
+          const val = inp.value.trim();
+          if (key && val) {
+            visualData[key] = { type: 'text', value: val };
+          }
+        });
+
+        form.querySelectorAll('[data-home-img-key]').forEach(inp => {
+          const key = inp.getAttribute('data-home-img-key');
+          const val = inp.value.trim();
+          if (key && val) {
+            visualData[key] = { type: 'img', value: val };
+          }
+        });
+
+        form.querySelectorAll('[data-home-bg-key]').forEach(inp => {
+          const key = inp.getAttribute('data-home-bg-key');
+          const val = inp.value.trim();
+          if (key && val) {
+            visualData[key] = { type: 'bg-img', value: val };
+          }
+        });
+
+        const ytInp = document.getElementById('input-home-youtube-url');
+        if (ytInp && ytInp.value.trim()) {
+          visualData['radio-youtube-url'] = { type: 'url', value: ytInp.value.trim() };
+        }
+
+        saveVisualContent(visualData);
+        applySavedVisualContent();
+        if (typeof publishSiteToGitHub === 'function') {
+          await publishSiteToGitHub({ silent: true });
+        }
+
+        const fbEl = document.getElementById('home-editor-feedback');
+        if (fbEl) {
+          fbEl.style.display = 'block';
+          fbEl.innerHTML = `
+            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.85rem 1.1rem; border-radius:8px; font-size:.84rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.6rem;">
+              <span>✅ <strong>¡Página de Inicio actualizada y sincronizada en vivo para todos los dispositivos!</strong></span>
+              <button type="button" class="order-btn" style="background:#10b981; color:#fff; border:none; padding:.35rem .85rem; font-weight:700;" onclick="editorDialog.close(); navigateToWindow('inicio');">
+                🏠 Ver Página de Inicio →
+              </button>
+            </div>
+          `;
+          fbEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+      }
+    };
+
+    window.startVisualEditFromCMS = function() {
+      if (editorDialog) editorDialog.close();
+      navigateToWindow('inicio');
+      toggleVisualEditing(true);
+      const floatBar = document.getElementById('visual-mode-floating-bar');
+      if (floatBar) floatBar.style.display = 'flex';
+    };
+
+    window.exitVisualEditModeToCMS = function() {
+      toggleVisualEditing(false);
+      const floatBar = document.getElementById('visual-mode-floating-bar');
+      if (floatBar) floatBar.style.display = 'none';
+      if (editorDialog) {
+        editorDialog.showModal();
+        switchEditorTab('home');
+      }
+    };
+
     // Activar o desactivar el modo de edición visual
     function toggleVisualEditing(forceState) {
-      if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'editor')) {
+      if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'editor' && currentUser.role !== 'consejero')) {
         visualEditingEnabled = false;
         document.body.classList.remove('visual-editing-active');
         disableContentEditable();
+        const floatBar = document.getElementById('visual-mode-floating-bar');
+        if (floatBar) floatBar.style.display = 'none';
         return;
       }
 
@@ -4825,18 +5379,21 @@
       const toggleBtn = document.getElementById('btn-toggle-visual-edit');
       const toggleText = document.getElementById('visual-toggle-text');
       const statusEl = document.getElementById('visual-edit-status');
+      const floatBar = document.getElementById('visual-mode-floating-bar');
 
       if (visualEditingEnabled) {
         document.body.classList.add('visual-editing-active');
         if (toggleBtn) toggleBtn.classList.add('btn-editor-action--active');
         if (toggleText) toggleText.textContent = 'Pausar Edición';
         if (statusEl) statusEl.textContent = 'Modo Edición ACTIVO: Pincha y escribe directamente sobre los textos o cambia imágenes.';
+        if (floatBar) floatBar.style.display = 'flex';
         enableContentEditable();
       } else {
         document.body.classList.remove('visual-editing-active');
         if (toggleBtn) toggleBtn.classList.remove('btn-editor-action--active');
         if (toggleText) toggleText.textContent = 'Activar Edición';
         if (statusEl) statusEl.textContent = 'Modo Edición en pausa. Haz clic en "Activar Edición" para continuar.';
+        if (floatBar) floatBar.style.display = 'none';
         disableContentEditable();
       }
     }
@@ -4857,7 +5414,7 @@
     }
 
     // Guardar cambios visuales en el almacenamiento persistente
-    function saveAllVisualChanges() {
+    async function saveAllVisualChanges() {
       const visualData = getVisualContent();
       let changedCount = 0;
 
@@ -4902,7 +5459,7 @@
         const dEl = document.querySelector(`[data-edit-key="mat-desc-${mat.id}"]`);
         const bgEl = document.querySelector(`[data-edit-key="mat-badge-${mat.id}"]`);
         if (tEl) { mat.title = tEl.innerText.trim(); materialsUpdated = true; }
-        if (dEl) { mat.desc = dEl.innerText.trim(); materialsUpdated = true; }
+        if (dEl) { mat.desc = dEl.innerHTML.trim(); materialsUpdated = true; }
         if (bgEl) { mat.badge = bgEl.innerText.trim(); materialsUpdated = true; }
       });
       if (materialsUpdated) {
@@ -4917,7 +5474,7 @@
         const dEl = document.querySelector(`[data-edit-key="hito-desc-${h.id}"]`);
         const bEl = document.querySelector(`[data-edit-key="hito-badge-${h.id}"]`);
         if (tEl) { h.title = tEl.innerText.trim(); hitosUpdated = true; }
-        if (dEl) { h.desc = dEl.innerText.trim(); hitosUpdated = true; }
+        if (dEl) { h.desc = dEl.innerHTML.trim(); hitosUpdated = true; }
         if (bEl) { h.badge = bEl.innerText.trim(); hitosUpdated = true; }
       });
       if (hitosUpdated) {
@@ -4950,8 +5507,9 @@
           }
         }, 4000);
       }
-      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
-      alert('¡Excelente! Todos los cambios visuales, artículos, hitos, integrantes del equipo, archivos y fotos han sido guardados y sincronizados.');
+      if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
+      if (typeof publishSiteToGitHub === 'function') await publishSiteToGitHub({ silent: true });
+      alert('✅ ¡Excelente! Todos los cambios en la página, textos, artículos, hitos, integrantes y fotos han sido guardados y publicados en vivo.');
     }
 
     // ========================================================
@@ -5034,6 +5592,10 @@
             ? currentImageTargetElement 
             : currentImageTargetElement.querySelector('img');
           if (imgEl) imgEl.src = newUrl;
+          if (currentImageKey === 'hero-bg') {
+            const srcEl = document.getElementById('hero-bg-source');
+            if (srcEl) srcEl.srcset = newUrl;
+          }
         } else if (type === 'bg-img') {
           currentImageTargetElement.style.backgroundImage = `url('${newUrl}')`;
           const innerImg = currentImageTargetElement.querySelector('img');
@@ -5055,6 +5617,7 @@
           visualData[currentImageKey] = { type, value: newUrl };
           saveVisualContent(visualData);
         }
+        if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
         if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       }
 
@@ -5148,11 +5711,13 @@
       renderHitosView();
       if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
       if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
+      if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
     };
 
     // Al cerrar sesión, re-renderizar la vista limpia
     btnLogout.addEventListener('click', () => {
       currentUser = null;
+      toggleVisualEditing(false);
       renderFacdehTeam();
       renderArticlesView();
       renderMaterialsView();
@@ -5160,14 +5725,23 @@
     });
 
     // ========================================================
-    // SINCRONIZACIÓN Y PUBLICACIÓN GLOBAL (GITHUB API & DATA.JSON)
+    // SINCRONIZACIÓN Y PUBLICACIÓN GLOBAL EN TIEMPO REAL (GITHUB CLOUD DB)
     // ========================================================
     const GITHUB_REPO = 'alvaroosorioossandon-code/sociedad-debates-ucen';
-    // Token configurado para publicación directa autorizada
     const GITHUB_PAT = _getSyncAuthKey();
     window._lastKnownDataJsonSha = null;
     window._publishInProgress = false;
     window._publishQueued = false;
+
+    function decodeBase64Utf8(b64Str) {
+      const cleanB64 = (b64Str || '').replace(/\s+/g, '');
+      const binaryStr = atob(cleanB64);
+      const bytes = new Uint8Array(binaryStr.length);
+      for (let i = 0; i < binaryStr.length; i++) {
+        bytes[i] = binaryStr.charCodeAt(i);
+      }
+      return new TextDecoder('utf-8').decode(bytes);
+    }
 
     function updateSyncIndicator(state, message) {
       const ind = document.getElementById('cms-sync-indicator');
@@ -5191,7 +5765,7 @@
       }
     }
 
-    // Función para obtener el estado completo unificado del sitio (incluyendo usuarios)
+    // Función para obtener el estado completo unificado del sitio (incluyendo usuarios e inicio)
     function getFullSiteExportPayload() {
       return {
         version: 2,
@@ -5211,27 +5785,7 @@
       if (!forceTreeFallback && window._lastKnownDataJsonSha) {
         return window._lastKnownDataJsonSha;
       }
-      if (!forceTreeFallback) {
-        try {
-          const checkRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json?t=${Date.now()}`, {
-            cache: 'no-store',
-            headers: {
-              'Authorization': `token ${GITHUB_PAT}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
-          if (checkRes.ok) {
-            const fileData = await checkRes.json();
-            if (fileData && fileData.sha) {
-              window._lastKnownDataJsonSha = fileData.sha;
-              return fileData.sha;
-            }
-          }
-        } catch (e) {
-          console.warn('Error consultando contents/data.json:', e);
-        }
-      }
-      // Fallback al árbol Git de la rama main (sin caché de 60s de contents)
+      // Consultar primero el árbol Git de la rama main (0s de caché en GitHub)
       try {
         const treeRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/git/trees/main?t=${Date.now()}`, {
           cache: 'no-store',
@@ -5253,10 +5807,29 @@
       } catch (e) {
         console.warn('Error consultando git/trees/main:', e);
       }
+      // Fallback a contents/data.json
+      try {
+        const checkRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Authorization': `token ${GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (checkRes.ok) {
+          const fileData = await checkRes.json();
+          if (fileData && fileData.sha) {
+            window._lastKnownDataJsonSha = fileData.sha;
+            return fileData.sha;
+          }
+        }
+      } catch (e) {
+        console.warn('Error consultando contents/data.json:', e);
+      }
       return window._lastKnownDataJsonSha;
     }
 
-    // Publicar todo el estado a data.json en GitHub directamente
+    // Publicar todo el estado a data.json en GitHub directamente (base de datos en tiempo real)
     async function publishSiteToGitHub(options = {}) {
       const isSilent = Boolean(options && typeof options === 'object' && options.silent === true);
 
@@ -5270,14 +5843,14 @@
       const btnPublish = document.getElementById('btn-github-publish');
       const btnBarPublish = document.getElementById('btn-bar-publish-web');
 
-      const origBtnText = btnPublish ? btnPublish.innerHTML : '🚀 Publicar Todo a la Web Global Ahora';
+      const origBtnText = btnPublish ? btnPublish.innerHTML : '🚀 Publicar Todo a la Web Global';
       const origBarText = btnBarPublish ? btnBarPublish.innerHTML : '🚀 Publicar en Vivo';
 
       updateSyncIndicator('syncing', '⏳ Sincronizando web...');
 
       if (statusDiv) {
         statusDiv.style.display = 'block';
-        statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">⏳ Preparando datos y conectando con el servidor global...</span>';
+        statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">⏳ Preparando datos y sincronizando con la base de datos en la nube...</span>';
       }
       if (btnPublish) {
         btnPublish.disabled = true;
@@ -5301,15 +5874,7 @@
         }
         const b64Content = btoa(binary);
 
-        if (statusDiv) {
-          statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">⏳ Verificando versión actual en GitHub...</span>';
-        }
-
         let currentSha = await fetchLatestDataJsonSha(false);
-
-        if (statusDiv) {
-          statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">🚀 Subiendo cambios a GitHub y activando despliegue en Netlify...</span>';
-        }
 
         const sendPutRequest = async (shaToUse) => {
           const putBody = {
@@ -5332,7 +5897,7 @@
 
         let putRes = await sendPutRequest(currentSha);
 
-        // Si hubo conflicto de SHA (409 o 422 por caché de GitHub), obtener SHA fresco desde git/trees/main y reintentar automáticamente
+        // Si hubo conflicto de SHA (409 o 422), obtener SHA fresco desde git/trees/main y reintentar automáticamente
         if (!putRes.ok && (putRes.status === 409 || putRes.status === 422)) {
           window._lastKnownDataJsonSha = null;
           const freshSha = await fetchLatestDataJsonSha(true);
@@ -5349,20 +5914,24 @@
           window._lastKnownDataJsonSha = putData.content.sha;
         }
 
+        // Marcar cambios locales como 100% sincronizados con la nube
+        window._ucenMemStore['ucen_has_unsynced_changes'] = 'false';
+        try { localStorage.setItem('ucen_has_unsynced_changes', 'false'); } catch (e) {}
+
         const timeStr = new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
-        updateSyncIndicator('ok', `✅ Publicado (${timeStr})`);
+        updateSyncIndicator('ok', `✅ En Vivo (${timeStr})`);
 
         if (statusDiv) {
           statusDiv.innerHTML = `
             <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.85rem; border-radius:8px; margin-top:.5rem;">
-              <strong>✅ ¡PUBLICACIÓN GLOBAL EXITOSA (${timeStr})!</strong><br>
-              Todos los artículos, usuarios, integrantes, hitos y archivos han quedado guardados en el servidor oficial. En ~25 segundos estarán visibles en cualquier celular, tablet o computador.
+              <strong>✅ ¡PUBLICACIÓN DIGITAL INSTANTÁNEA EXITOSA (${timeStr})!</strong><br>
+              Todos los cambios (Inicio, artículos, usuarios, integrantes, noticias y archivos) ya están activos en vivo para cualquier celular, tablet o computador sin necesidad de volver a subir carpetas a Netlify.
             </div>
           `;
         }
 
         if (!isSilent) {
-          alert('🎉 ¡PUBLICACIÓN GLOBAL EXITOSA!\n\nTodos tus cambios (artículos, usuarios, equipo, hitos y archivos) fueron enviados a GitHub y Netlify.\nEn ~25 segundos estarán activos para todas las personas en cualquier dispositivo.');
+          alert('🎉 ¡PUBLICACIÓN DIGITAL EXITOSA!\n\nTodos tus cambios ya están activos en tiempo real en la nube.\nCualquier persona que abra el link de Netlify en su celular o computador verá los cambios de inmediato.');
         }
 
       } catch (err) {
@@ -5373,7 +5942,7 @@
             <div style="background:#fef2f2; border:1px solid #ef4444; color:#991b1b; padding:.85rem; border-radius:8px; margin-top:.5rem;">
               <strong>⚠️ No se pudo completar la sincronización automática:</strong><br>
               ${err.message}<br><br>
-              <em>Puedes volver a pulsar "Publicar Todo a la Web Global Ahora" o descargar el respaldo JSON abajo.</em>
+              <em>Puedes volver a pulsar "Publicar Todo a la Web Global" o descargar el respaldo JSON abajo.</em>
             </div>
           `;
         }
@@ -5455,6 +6024,7 @@
           if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
           renderOrderArticlesList();
           if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
+          if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
 
           alert('✅ ¡Datos importados y aplicados correctamente! Publicando ahora en la Web Global...');
           publishSiteToGitHub({ silent: false });
@@ -5488,14 +6058,91 @@
     const fileImportJson = document.getElementById('file-import-json');
     if (fileImportJson) fileImportJson.addEventListener('change', importDataJsonFile);
 
-    // Cargar data.json oficial publicado desde el servidor si existe
+    // Cargar data.json en tiempo real desde la nube de GitHub (0s caché, funciona incluso con carpeta estática en Netlify)
+    async function fetchLiveCloudDataJson() {
+      // 1. Vía Git Tree + Git Blob API (0.0 segundos de caché, actualización instantánea tras publicar)
+      try {
+        const treeRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/git/trees/main?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Authorization': `token ${GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (treeRes.ok) {
+          const treeData = await treeRes.json();
+          const entry = treeData && Array.isArray(treeData.tree)
+            ? treeData.tree.find(item => item.path === 'data.json')
+            : null;
+          if (entry && entry.sha) {
+            window._lastKnownDataJsonSha = entry.sha;
+            const blobRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/git/blobs/${entry.sha}`, {
+              cache: 'no-store',
+              headers: {
+                'Authorization': `token ${GITHUB_PAT}`,
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            });
+            if (blobRes.ok) {
+              const blobData = await blobRes.json();
+              if (blobData && blobData.content) {
+                return JSON.parse(decodeBase64Utf8(blobData.content));
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Fallback de Git Blob API:', e);
+      }
+
+      // 2. Fallback vía contents/data.json en GitHub API
+      try {
+        const contentRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Authorization': `token ${GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (contentRes.ok) {
+          const fileData = await contentRes.json();
+          if (fileData && fileData.sha) window._lastKnownDataJsonSha = fileData.sha;
+          if (fileData && fileData.content) {
+            return JSON.parse(decodeBase64Utf8(fileData.content));
+          }
+        }
+      } catch (e) {}
+
+      // 3. Fallback vía raw.githubusercontent.com
+      try {
+        const rawRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/data.json?t=${Date.now()}`, {
+          cache: 'no-store'
+        });
+        if (rawRes.ok) {
+          return await rawRes.json();
+        }
+      } catch (e) {}
+
+      // 4. Fallback local (data.json estático de respaldo)
+      const localRes = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+      if (localRes.ok) {
+        return await localRes.json();
+      }
+      return null;
+    }
+
     async function loadOfficialRemoteData() {
       try {
-        const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
-        if (res.ok) {
-          const remoteData = await res.json();
-          const isEditing = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
-          if (!isEditing) {
+        // Si este navegador tiene cambios recién guardados pendientes de subir, no pisarlos y subirlos ahora
+        if (safeGetItem('ucen_has_unsynced_changes') === 'true') {
+          setTimeout(() => publishSiteToGitHub({ silent: true }), 300);
+          return;
+        }
+
+        const remoteData = await fetchLiveCloudDataJson();
+        if (remoteData) {
+          window._applyingRemoteData = true;
+          try {
             if (remoteData.users && Array.isArray(remoteData.users)) {
               saveUsers(remoteData.users);
             }
@@ -5517,6 +6164,8 @@
             if (remoteData.themeColors && typeof remoteData.themeColors === 'object') {
               safeSetItem('ucen_site_theme_colors', JSON.stringify(remoteData.themeColors));
             }
+          } finally {
+            window._applyingRemoteData = false;
           }
         }
       } catch (e) {
@@ -5535,6 +6184,7 @@
       renderHomeDashboardPreviews();
       if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
       if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
+      if (typeof populateHomeEditorForm === 'function') populateHomeEditorForm();
 
       // Procesar parámetros de URL (Deep linking para compartir artículos o ventanas)
       try {
