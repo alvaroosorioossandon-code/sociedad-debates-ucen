@@ -1,7 +1,37 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-18T20:46:27.934Z",
+  "updatedAt": "2026-10-18T23:14:35.678Z",
   "publishedBy": "Administrador Central",
+  "users": [
+    {
+      "id": "usr-admin",
+      "fullname": "Administrador Central",
+      "username": "admin",
+      "password": "debate2026",
+      "role": "admin"
+    },
+    {
+      "id": "usr-editor-1",
+      "fullname": "Editor General",
+      "username": "editor",
+      "password": "editor2026",
+      "role": "editor"
+    },
+    {
+      "id": "usr-consejero-1",
+      "fullname": "Consejero(a) de Debate",
+      "username": "consejero",
+      "password": "consejero2026",
+      "role": "consejero"
+    },
+    {
+      "id": "usr-socio-1",
+      "fullname": "Consejero(a) Redactor",
+      "username": "socio",
+      "password": "socio2026",
+      "role": "consejero"
+    }
+  ],
   "members": [
     {
       "id": "fac-1",
@@ -192,6 +222,30 @@
     }
   ],
   "articles": [
+    {
+      "id": "art-1792365275560",
+      "title": "El hallazgo empírico y la paradoja de la celeridad procesal",
+      "category": "Jurisprudencia Comentada",
+      "materia": "Derecho Constitucional",
+      "tags": [
+        "Derecho Constitucional"
+      ],
+      "author": "Álvaro Osorio Ossandón",
+      "authorMemberId": "fac-4",
+      "date": "19 de octubre de 2026",
+      "readTime": "3 min",
+      "summary": "Un análisis desde la Teoría de la Argumentación Jurídica, el Razonamiento Probatorio y los Materiales Docentes de la Academia Judicial a propósito de la generación algorítmica de sentencias de amparo migratorio.",
+      "content": "<span id=\"docs-internal-guid-9fc7a283-7fff-03d6-2eb7-d17b43822c22\"><figure class=\"article-inline-figure\"><img src=\"https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365228591-descarga.jpg\" alt=\"Imagen referencia\"><figcaption>Imagen referencia</figcaption></figure><p><br></p><p dir=\"ltr\" style=\"text-align: justify; line-height: 1.38; margin-top: 0pt; margin-bottom: 10pt;\"><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"><sup id=\"fnref-1\" style=\"color: rgb(31, 36, 45); font-family: Merriweather, Georgia, serif;\"><span style=\"font-size: 1.04rem;\"><u><b>aaaaaa.   </b>aaaaaa  </u>aaa<u>a</u>aaa   aaaaa&nbsp;</span><a href=\"#fn-1\" class=\"footnote-ref\">[1]</a></sup><span style=\"color: rgb(31, 36, 45); font-family: Merriweather, Georgia, serif; font-size: 1.04rem;\">&nbsp;</span>El presente trabajo de investigación examina de manera exhaustiva el fenómeno de la automatización de decisiones judiciales a través de modelos extensos de lenguaje (LLM) en la Corte de Apelaciones de Santiago de Chile, develado en octubre de 2026 tras la filtración accidental de un </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">prompt</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> (instrucción algorítmica) en la causa Rol Civil-16311-2024 y su rastreo sistemático en cinco sentencias de acción constitucional de amparo en materia migratoria (Roles Amparo-4436-2026, 4442-2026, 4460-2026, 4448-2026 y 4648-2026). A partir de los hallazgos empíricos sobre la velocidad de tramitación, la estandarización en cadena y la asimetría argumentativa, este estudio profundiza el fenómeno cruzando la evidencia forense documental con el marco teórico contenido en los </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">Materiales Docentes de la Academia Judicial de Chile</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> (Carbonell, Ihnen y Quintero, 2022) y la Teoría Estándar de la Argumentación Jurídica </span><a href=\"https://debateucentral.netlify.app/#fn-2\" class=\"footnote-ref\" style=\"color: rgb(140, 29, 52); text-decoration: underline; font-family: &quot;DM Sans&quot;, system-ui, -apple-system, sans-serif; white-space: pre-wrap;\">[2]</a><span style=\"background-color: transparent; color: rgb(0, 0, 0); font-family: &quot;Google Sans Text&quot;, sans-serif; font-size: 11pt; white-space: pre-wrap;\">(Alexy, 1989; MacCormick, 2005, 2018; Wróblewski, 1974, 1992; Atienza, 2005, 2013; Guastini, 2011, 2014; Taruffo, 2009; Ferrer Beltrán, 2005, 2007).</span></p><h3 style=\"text-align: justify; line-height: 1.38; margin-top: 0pt; margin-bottom: 10pt;\"><span style=\"background-color: transparent; color: rgb(0, 0, 0); font-family: &quot;Google Sans Text&quot;, sans-serif; font-size: 11pt; white-space: pre-wrap;\">asssss</span></h3><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">El estudio sostiene y demuestra cinco tesis matrices: (1) la celeridad de veinticuatro horas exigida por el Auto Acordado de 1932 para fallar recursos de amparo genera una presión institucional que incentiva el reemplazo del razonamiento deliberativo por plantillas estáticas o generación algorítmica; (2) el diseño del </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">prompt</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> judicial analizado invierte radicalmente la relación entre el </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">contexto de descubrimiento</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> y el </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">contexto de justificación</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> (Wasserstrom, 1961), transformando la fundamentación en una mera racionalización </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">ex post</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> de un resultado fijado de antemano (</span><span style=\"font-size: 11pt; font-family: &quot;Roboto Mono&quot;, monospace; color: rgb(24, 128, 56); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">[rechazando/acogiendo]</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">); (3) si bien las sentencias generadas por IA superan con éxito el test formal de la </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">justificación interna</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> (silogismo subsuntivo por </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">modus ponens</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">) y presentan una prosa superficialmente más limpia que las plantillas humanas tradicionales (como las observadas en la Undécima Sala), fracasan de forma crítica en la </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">justificación externa</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> de la premisa normativa y de la premisa fáctica; (4) la manipulación inmotivada del criterio temporal de evaluación de la legalidad del acto administrativo y la imposición gramatical del tiempo presente destruyen la estructura de la inferencia probatoria (González Lagier, 2003) e invisibilizan la dimensión temporal de los hechos operativos; y (5) la aplicación de una cadena de cuatro filtros burocráticos estandarizados sobre personas migrantes vulnera el deber de análisis interseccional frente a </span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-style: italic; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\">categorías sospechosas</span><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"> (nacionalidad, migración y vulnerabilidad socioeconómica), consolidando un déficit de legitimidad democrática y garantista (Ferrajoli, 1997, 2011). Finalmente, se propone un modelo de auditoría argumentativa basado en la reconstrucción pragma-dialéctica (Van Eemeren y Grootendorst, 2011) y un protocolo institucional preventivo alineado con el Reglamento (UE) 2024/1689 de Inteligencia Artificial.</span></p><figure class=\"article-inline-figure\"><img src=\"https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365250545-images-1-.jpg\" alt=\"imagen 2 referencia\"><figcaption>imagen 2 referencia</figcaption></figure><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"></span></p><p>aaaaaa</p><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"><br></span></p><div><span style=\"font-size: 11pt; font-family: &quot;Google Sans Text&quot;, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;\"><br></span></div></span>",
+      "footnotes": [
+        "[1] Este sera el inicio de una serie de articulos",
+        "[2] leer libro",
+        "[3] leer"
+      ],
+      "bibliography": [
+        "Ver https://www.youtube.com/watch?v=zgVNDKqD_bI"
+      ],
+      "isLead": false
+    },
     {
       "id": "art-1",
       "title": "Flexibilización del Secreto Bancario: Entre la eficacia persecutoria y las garantías de la vida privada",
@@ -489,35 +543,5 @@
       "value": "Minutas dogmáticas, pautas de evaluación de oratoria, compendios de mociones preparadas y manuales técnicos de litigación."
     }
   },
-  "themeColors": {},
-  "users": [
-    {
-      "id": "usr-admin",
-      "fullname": "Administrador Central",
-      "username": "admin",
-      "password": "debate2026",
-      "role": "admin"
-    },
-    {
-      "id": "usr-editor-1",
-      "fullname": "Editor General",
-      "username": "editor",
-      "password": "editor2026",
-      "role": "editor"
-    },
-    {
-      "id": "usr-consejero-1",
-      "fullname": "Consejero(a) de Debate",
-      "username": "consejero",
-      "password": "consejero2026",
-      "role": "consejero"
-    },
-    {
-      "id": "usr-socio-1",
-      "fullname": "Consejero(a) Redactor",
-      "username": "socio",
-      "password": "socio2026",
-      "role": "consejero"
-    }
-  ]
+  "themeColors": {}
 }
