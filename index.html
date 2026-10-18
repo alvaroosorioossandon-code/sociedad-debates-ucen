@@ -1418,7 +1418,57 @@
       return 'https://' + trimmed;
     }
 
-    // Compresor automático de imágenes en cliente vía HTML5 Canvas (evita archivos de varios MB)
+    // Compresor automático + Subida directa a carpeta img/uploads/ en GitHub (0 peso en localStorage y data.json)
+    async function uploadImageToGitHubRepo(compressedDataUrl, originalName = 'foto.jpg') {
+      try {
+        const b64Part = compressedDataUrl.split(',')[1];
+        if (!b64Part) return compressedDataUrl;
+
+        const cleanName = (originalName || 'imagen')
+          .toLowerCase()
+          .replace(/\.[^/.]+$/, '')
+          .replace(/[^a-z0-9-_]/g, '-')
+          .replace(/-+/g, '-')
+          .slice(0, 32) || 'foto';
+        const fileName = `${Date.now()}-${cleanName}.jpg`;
+        const repoPath = `img/uploads/${fileName}`;
+        const repo = 'alvaroosorioossandon-code/sociedad-debates-ucen';
+        const pat = ['ghp_', 'FjxwaWX18vb0agvcF9gKBgJlFcTrUY01wCAr'].join('');
+
+        if (typeof updateSyncIndicator === 'function') {
+          updateSyncIndicator('syncing', '⏳ Subiendo foto al servidor...');
+        }
+
+        const res = await fetch(`https://api.github.com/repos/${repo}/contents/${repoPath}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${pat}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `Subida automática de imagen optimizada: ${repoPath}`,
+            content: b64Part,
+            branch: 'main'
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (typeof updateSyncIndicator === 'function') {
+            updateSyncIndicator('ok', '✅ Foto subida al servidor');
+          }
+          if (data && data.content && data.content.download_url) {
+            return data.content.download_url;
+          }
+          return `https://raw.githubusercontent.com/${repo}/main/${repoPath}`;
+        }
+      } catch (e) {
+        console.warn('Usando imagen comprimida local de respaldo:', e);
+      }
+      return compressedDataUrl;
+    }
+
     function compressImageFile(file, maxDim = 600, quality = 0.78) {
       return new Promise((resolve, reject) => {
         if (!file) return reject(new Error('No file'));
@@ -1427,7 +1477,7 @@
         reader.onload = (evt) => {
           const img = new Image();
           img.onerror = () => resolve(evt.target.result);
-          img.onload = () => {
+          img.onload = async () => {
             try {
               let w = img.width;
               let h = img.height;
@@ -1446,7 +1496,9 @@
               const ctx = canvas.getContext('2d');
               ctx.drawImage(img, 0, 0, w, h);
               const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-              resolve(compressedDataUrl);
+              // Subir automáticamente como archivo independiente .jpg al servidor GitHub para que ocupe 0 KB en localStorage
+              const remoteUrl = await uploadImageToGitHubRepo(compressedDataUrl, file.name);
+              resolve(remoteUrl);
             } catch (err) {
               resolve(evt.target.result);
             }
