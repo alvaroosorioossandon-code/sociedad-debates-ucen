@@ -651,10 +651,10 @@
     <div class="editor-modal__body" id="editor-login-sec" style="padding: 2.2rem 2rem;">
       <div style="text-align: center; margin-bottom: 1.8rem;">
         <div style="display: inline-block; padding: .3rem .9rem; background: var(--blue-50); border: 1px solid var(--blue-200); border-radius: 20px; font-size: .74rem; font-weight: 700; color: var(--blue-700); margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .04em;">
-          Acceso Restringido para Claustro y Editores
+          Acceso Restringido para Claustro, Editores y Consejeros(as)
         </div>
         <p style="font-size: .86rem; color: var(--gray-600); line-height: 1.5; margin: 0 auto; max-width: 440px;">
-          Ingresa tus credenciales autorizadas de <strong>Admin Central</strong>, <strong>Editor de Contenido</strong> o <strong>Socio de Debate</strong> para acceder al panel de redacción y herramientas oficiales.
+          Ingresa tus credenciales autorizadas de <strong>Admin Central</strong>, <strong>Editor de Contenido</strong> o <strong>Consejero(a) de Debate</strong> para acceder al panel de redacción y herramientas oficiales.
         </p>
       </div>
 
@@ -663,7 +663,7 @@
           <label for="login-username" style="font-weight: 700; font-size: .82rem; color: var(--navy-900); text-transform: uppercase; letter-spacing: .03em; margin-bottom: .4rem; display: block;">
             Nombre de Usuario
           </label>
-          <input type="text" id="login-username" autocomplete="off" placeholder="Ej: admin / editor" required style="width: 100%; padding: .75rem 1rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: .9rem; background: #fdfefe; transition: border-color .2s, box-shadow .2s;" />
+          <input type="text" id="login-username" autocomplete="off" placeholder="Ej: admin / editor / consejero" required style="width: 100%; padding: .75rem 1rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: .9rem; background: #fdfefe; transition: border-color .2s, box-shadow .2s;" />
         </div>
         <div class="form-group" style="margin-bottom: 1.5rem;">
           <label for="editor-password" style="font-weight: 700; font-size: .82rem; color: var(--navy-900); text-transform: uppercase; letter-spacing: .03em; margin-bottom: .4rem; display: block;">
@@ -697,30 +697,31 @@
         </div>
       </div>
 
-
-
       <!-- TABS DEL PANEL -->
       <div class="editor-tabs-bar">
-        <button class="editor-tab-btn active" id="tab-btn-art" type="button">Redactar</button>
-        <button class="editor-tab-btn" id="tab-btn-order" type="button">Ordenar Artículos</button>
-        <button class="editor-tab-btn" id="tab-btn-team" type="button">Equipo</button>
-        <button class="editor-tab-btn" id="tab-btn-hitos" type="button">Hitos y Noticias</button>
-        <button class="editor-tab-btn" id="tab-btn-mat" type="button">Archivos</button>
+        <button class="editor-tab-btn active" id="tab-btn-art" type="button">✍️ Redactar Artículo</button>
+        <button class="editor-tab-btn" id="tab-btn-order" type="button">📚 Gestionar Artículos</button>
+        <button class="editor-tab-btn" id="tab-btn-hitos" type="button">🏆 Hitos y Noticias</button>
+        <button class="editor-tab-btn" id="tab-btn-mat" type="button">📂 Archivos y Materiales</button>
+        <button class="editor-tab-btn" id="tab-btn-team" type="button">🏛️ Equipo y Consejeros</button>
         <button class="editor-tab-btn" id="tab-btn-publish" type="button" style="background: rgba(0,83,213,0.12); color: var(--navy-900); font-weight: 700;">🌐 Publicar en la Web</button>
-        <button class="editor-tab-btn" id="tab-btn-security" type="button">Mi Contraseña</button>
-        <button class="editor-tab-btn" id="tab-btn-users" type="button" style="display: inline-block;">Gestión Usuarios</button>
+        <button class="editor-tab-btn" id="tab-btn-security" type="button">🔒 Mi Contraseña</button>
+        <button class="editor-tab-btn" id="tab-btn-users" type="button" style="display: inline-block;">👥 Gestión Usuarios</button>
       </div>
 
-      <!-- TAB 1: FORMULARIO ARTÍCULO CON ETIQUETAS, MATERIA Y BIBLIOGRAFÍA -->
+      <!-- TAB 1: FORMULARIO ARTÍCULO CON EDITOR ENRIQUECIDO, VÍNCULO ORGÁNICO DE AUTOR, FOTOS Y NOTAS AL PIE -->
       <form id="form-add-article">
         <input type="hidden" id="input-art-id" value="" />
+        <input type="hidden" id="input-art-author-member-id" value="" />
+
         <div class="form-group">
-          <label>Título del Artículo</label>
-          <input type="text" id="input-art-title" required placeholder="Ej: Control de Convencionalidad y Debido Proceso" />
+          <label>Título del Artículo o Columna</label>
+          <input type="text" id="input-art-title" required placeholder="Ej: Control de Convencionalidad y Debido Proceso en la Jurisprudencia Reciente" style="font-size:1.05rem; font-weight:700;" />
         </div>
-        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+
+        <div class="form-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .85rem;">
           <div>
-            <label>Categoría</label>
+            <label>Categoría Editorial</label>
             <select id="input-art-cat">
               <option value="Doctrina & Debate Constitucional">Doctrina & Debate Constitucional</option>
               <option value="Opinión & Columnas">Opinión & Columnas</option>
@@ -735,90 +736,212 @@
               <option value="Litigación Oral">Litigación Oral</option>
               <option value="Delitos Informáticos">Delitos Informáticos</option>
               <option value="Derecho Internacional">Derecho Internacional</option>
+              <option value="Derecho Civil y Patrimonial">Derecho Civil y Patrimonial</option>
             </select>
-          </div>
-        </div>
-        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
-          <div>
-            <label>Autor</label>
-            <input type="text" id="input-art-author" required placeholder="Nombre del autor o socio..." />
           </div>
           <div>
             <label>Etiquetas / Tags (separadas por coma)</label>
             <input type="text" id="input-art-tags" placeholder="Ej: TC, Derechos Fundamentales, GAFI" />
           </div>
         </div>
-        <div class="form-group">
-          <label>Bajada / Lead (Destacado inicial)</label>
-          <textarea id="input-art-summary" required placeholder="Breve análisis en 2 o 3 líneas..."></textarea>
-        </div>
-        <div class="form-group">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.3rem;">
-            <label style="margin:0;">Cuerpo del Artículo (Párrafos y fotos)</label>
-            <button type="button" class="order-btn" onclick="promptInsertImageInArticle()" style="font-size:.72rem; padding:.2rem .6rem;">
-              📷 Insertar Imagen / Foto
-            </button>
+
+        <!-- AUTORÍA CON VÍNCULO ORGÁNICO A INTEGRANTES DEL EQUIPO -->
+        <div class="form-group" style="background: var(--blue-50, #f4f8ff); border: 1px solid var(--blue-200, #c8dcf8); padding: 1rem; border-radius: 8px;">
+          <label style="color: var(--navy-900); margin-bottom: .45rem;">👤 Autor(a) del Artículo y Vínculo Orgánico con el Equipo (Consejero/a, Profesor/a o Asesor/a)</label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .8rem; align-items: center;">
+            <div>
+              <span style="font-size:.73rem; font-weight:700; color:var(--blue-700); display:block; margin-bottom:.25rem;">1. Seleccionar integrante del Equipo (recomendado para vincular ficha):</span>
+              <select id="select-art-author-member" onchange="handleArticleAuthorMemberSelect(this.value)">
+                <option value="">-- Seleccionar Consejero(a), Profesor(a) o escribir manualmente --</option>
+              </select>
+            </div>
+            <div>
+              <span style="font-size:.73rem; font-weight:700; color:var(--navy-800); display:block; margin-bottom:.25rem;">2. Nombre del Autor(a) que aparecerá publicado (editable por Admin/Editor):</span>
+              <input type="text" id="input-art-author" required placeholder="Ej: Jorge Legisos Soto / Dra. Macarena Fernández..." />
+            </div>
           </div>
-          <textarea id="input-art-content" required style="min-height: 140px;" placeholder="Escribe el texto completo aquí... Puedes usar el botón de arriba para insertar fotos en cualquier parte del artículo."></textarea>
-          <span style="font-size:.72rem; color:var(--gray-600); display:block; margin-top:.2rem;">
-            💡 Tip: Puedes intercalar texto e imágenes. Para insertar una foto pulsa <strong>"📷 Insertar Imagen"</strong> arriba.
+          <span style="font-size:.73rem; color:var(--gray-600); display:block; margin-top:.4rem;">
+            💡 Si un Editor o Administrador sube el artículo en nombre de un Consejero(a), Profesor(a) o Asesor(a), basta con elegirlo en la lista (o escribir su nombre) para que el artículo quede vinculado automáticamente a su perfil y currículum.
           </span>
         </div>
+
         <div class="form-group">
-          <label>Bibliografía y Enlaces de Referencia (un enlace o cita por línea)</label>
-          <textarea id="input-art-biblio" rows="3" placeholder="https://www.diarioconstitucional.cl/fallo-tc/&#10;Zúñiga Urbina, F. (2024). Justicia Constitucional y Democracia. Tirant Lo Blanch.&#10;https://www.tribunalconstitucional.cl"></textarea>
+          <label>Bajada / Resumen Ejecutivo (Lead inicial)</label>
+          <textarea id="input-art-summary" rows="2" required placeholder="Síntesis dogmática o introducción de la columna en 2 a 3 líneas..."></textarea>
         </div>
-        <div style="display:flex; gap:.6rem; margin-top:.5rem;">
-          <button class="btn btn--gold" style="flex:1; justify-content: center;" type="submit" id="btn-submit-article">
-            Publicar Artículo
+
+        <!-- EDITOR DE TEXTO ENRIQUECIDO COMPLETO PARA ARTÍCULOS -->
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; margin-bottom:.4rem;">
+            <label style="margin:0;">Cuerpo del Artículo (Editor Académico con Formato, Justificación, Fotos entre el texto y Notas al Pie)</label>
+            <span id="art-photo-upload-status" style="font-size:.75rem; font-weight:700; color:var(--blue-700); display:none;"></span>
+          </div>
+
+          <div class="rich-editor-wrap">
+            <div class="rich-toolbar" id="art-rich-toolbar">
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'bold')" title="Negrita (Ctrl+B)"><b>B</b> Negrita</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'italic')" title="Cursiva (Ctrl+I)"><i>I</i> Cursiva</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'underline')" title="Subrayado (Ctrl+U)"><u>U</u> Subrayar</button>
+              <span class="rich-toolbar__sep"></span>
+              <button type="button" class="rich-toolbar__btn rich-toolbar__btn--accent" onclick="execRichCmd('art-rich-editor', 'justifyFull')" title="Justificar texto académicamente">≣ Justificar</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'justifyLeft')" title="Alinear a la izquierda">⬅ Izq.</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'justifyCenter')" title="Centrar">⬌ Centro</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'justifyRight')" title="Alinear a la derecha">➡ Der.</button>
+              <span class="rich-toolbar__sep"></span>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichBlock('art-rich-editor', 'H3')" title="Insertar Subtítulo de Sección">H2 Subtítulo</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichBlock('art-rich-editor', 'P')" title="Párrafo normal">¶ Párrafo</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichBlock('art-rich-editor', 'BLOCKQUOTE')" title="Cita destacada">❝ Cita</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'insertUnorderedList')" title="Lista con viñetas">• Lista</button>
+              <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('art-rich-editor', 'insertOrderedList')" title="Lista numerada">1. Lista</button>
+              <span class="rich-toolbar__sep"></span>
+              <button type="button" class="rich-toolbar__btn rich-toolbar__btn--gold" onclick="insertFootnoteInArticleEditor()" title="Insertar llamada de nota al pie de página en la posición del cursor">¹ Pie de Página / Nota</button>
+              <button type="button" class="rich-toolbar__btn rich-toolbar__btn--gold" onclick="promptInsertImageInArticle('local')" title="Subir e insertar una o varias fotos exactamente donde está el cursor">📷 Subir Foto(s) aquí</button>
+              <button type="button" class="rich-toolbar__btn" onclick="promptInsertImageInArticle('url')" title="Insertar imagen mediante enlace o URL">🌐 Foto por URL</button>
+            </div>
+
+            <div id="art-rich-editor" class="rich-editor-area" contenteditable="true" spellcheck="true" data-placeholder="Escribe o pega aquí el desarrollo completo de tu artículo... Puedes seleccionar texto para aplicar Negrita, Cursiva, Justificar, Citas, agregar Notas al Pie [1] o situar el cursor entre cualquier párrafo y pulsar «📷 Subir Foto(s) aquí» para intercalar todas las imágenes explicativas que necesites."></div>
+          </div>
+
+          <textarea id="input-art-content" style="display:none;"></textarea>
+          <span style="font-size:.74rem; color:var(--gray-600); display:block; margin-top:.35rem;">
+            💡 <strong>Tip Académico:</strong> Todo el artículo se publica con <strong>alineación justificada</strong> por defecto. Para intercalar fotos explicativas entre párrafos, haz clic en el lugar del texto donde quieras la imagen y pulsa <strong>"📷 Subir Foto(s) aquí"</strong> (puedes elegir varias fotos a la vez).
+          </span>
+        </div>
+
+        <!-- NOTAS AL PIE DE PÁGINA Y BIBLIOGRAFÍA -->
+        <div class="form-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.3rem;">
+              <label style="margin:0;">¹ Notas al Pie de Página (una nota por línea)</label>
+              <button type="button" class="order-btn" onclick="insertFootnoteInArticleEditor()" style="font-size:.7rem; padding:.15rem .5rem;">+ Agregar Nota [n]</button>
+            </div>
+            <textarea id="input-art-footnotes" rows="4" placeholder="[1] Véase Sentencia Rol N° 12.450-22 del Tribunal Constitucional, considerando 14°.&#10;[2] Cfr. Pica Flores, Rodrigo (2018), p. 84."></textarea>
+            <span style="font-size:.71rem; color:var(--gray-600); display:block; margin-top:.2rem;">
+              Se mostrarán numeradas al final del cuerpo del artículo con enlace interactivo desde el texto.
+            </span>
+          </div>
+          <div>
+            <label>📚 Bibliografía y Enlaces de Referencia (uno por línea)</label>
+            <textarea id="input-art-biblio" rows="4" placeholder="https://www.diarioconstitucional.cl/fallo-tc/&#10;Zúñiga Urbina, F. (2024). Justicia Constitucional y Democracia. Tirant Lo Blanch.&#10;https://www.tribunalconstitucional.cl"></textarea>
+            <span style="font-size:.71rem; color:var(--gray-600); display:block; margin-top:.2rem;">
+              Las URLs que comiencen con http/https se transformarán automáticamente en enlaces clicables.
+            </span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:.6rem; margin-top:.6rem;">
+          <button class="btn btn--gold" style="flex:1; justify-content: center; padding:.8rem 1.2rem; font-size:.95rem;" type="submit" id="btn-submit-article">
+            Publicar Artículo en la Tribuna
           </button>
-          <button class="btn btn--outline" type="button" onclick="resetArticleForm()" id="btn-cancel-edit-art" style="display:none; padding:.4rem 1rem;">
+          <button class="btn btn--outline" type="button" onclick="resetArticleForm()" id="btn-cancel-edit-art" style="display:none; padding:.4rem 1.2rem;">
             Cancelar Edición
           </button>
         </div>
       </form>
 
-      <!-- TAB 2: ORDENAR ARTÍCULOS DIRECTAMENTE EN INTERFAZ -->
+      <!-- TAB 2: ORDENAR Y GESTIONAR ARTÍCULOS -->
       <div id="sec-order-articles" style="display: none;">
-        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Reordenar y Fijar Artículos</h4>
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Gestionar, Editar Autores, Reordenar y Fijar Artículos</h4>
         <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: 1rem;">
-          Usa los controles de la interfaz para mover artículos arriba o abajo, o fijar el artículo principal que lidera la portada y la tribuna.
+          Pulsa <strong>"✏️ Editar"</strong> en cualquier artículo para modificar su texto, formato, fotos o cambiar su autor(a), o usa las flechas para fijarlo en portada.
         </p>
         <div id="order-articles-list">
           <!-- Renderizado dinámico de controles de orden -->
         </div>
       </div>
 
-      <!-- TAB 2: FORMULARIO MATERIAL -->
+      <!-- TAB ARCHIVOS: FORMULARIO Y GESTOR COMPLETO DE ARCHIVOS Y MATERIALES -->
       <form id="form-add-material" style="display: none;">
-        <div class="form-group">
-          <label>Nombre del Documento</label>
-          <input type="text" id="input-mat-title" required placeholder="Ej: Minuta: Flexibilización del Secreto Bancario" />
+        <input type="hidden" id="input-mat-id" value="" />
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:.5rem;">
+          <div>
+            <h4 style="font-size: 1rem; color: var(--navy-900); margin:0;">Repositorio de Archivos, Minutas y Materiales</h4>
+            <p style="font-size: .8rem; color: var(--gray-600); margin:.2rem 0 0;">Sube documentos PDF/DOCX desde tu computador o enlaza archivos de Google Drive/OneDrive, y edita o administra los existentes abajo.</p>
+          </div>
+          <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" type="button" onclick="resetMaterialForm()">+ Nuevo Archivo</button>
         </div>
-        <div class="form-group">
-          <label>Categoría</label>
-          <select id="input-mat-cat">
-            <option value="Minutas de Debate">Minutas de Debate</option>
-            <option value="Mociones Oficiales">Mociones Oficiales</option>
-            <option value="Guías de Litigación">Guías de Litigación</option>
-            <option value="Estatutos">Estatutos</option>
-          </select>
+
+        <div style="background: var(--gray-100); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--gray-300); margin-bottom: 1.5rem;">
+          <div class="form-group" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: .8rem;">
+            <div>
+              <label>Nombre del Documento o Material</label>
+              <input type="text" id="input-mat-title" required placeholder="Ej: Minuta Dogmática: Flexibilización del Secreto Bancario" />
+            </div>
+            <div>
+              <label>Categoría</label>
+              <select id="input-mat-cat">
+                <option value="Minutas de Debate">Minutas de Debate</option>
+                <option value="Mociones Oficiales">Mociones Oficiales</option>
+                <option value="Guías de Litigación">Guías de Litigación</option>
+                <option value="Jurisprudencia y Fallos">Jurisprudencia y Fallos</option>
+                <option value="Estatutos y Reglamentos">Estatutos y Reglamentos</option>
+              </select>
+            </div>
+            <div>
+              <label>Formato (PDF / DOCX / LINK)</label>
+              <input type="text" id="input-mat-format" value="PDF" placeholder="PDF / DOCX" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Descripción Pedagógica y Contenido del Archivo</label>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('mat-rich-editor', 'bold')"><b>B</b> Negrita</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('mat-rich-editor', 'italic')"><i>I</i> Cursiva</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('mat-rich-editor', 'underline')"><u>U</u> Subrayar</button>
+                <button type="button" class="rich-toolbar__btn rich-toolbar__btn--accent" onclick="execRichCmd('mat-rich-editor', 'justifyFull')">≣ Justificar</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('mat-rich-editor', 'insertUnorderedList')">• Lista</button>
+              </div>
+              <div id="mat-rich-editor" class="rich-editor-area rich-editor-area--compact" contenteditable="true" spellcheck="true" data-placeholder="Describe el contenido del documento, argumentos principales o instrucciones de lectura..."></div>
+            </div>
+            <textarea id="input-mat-desc" style="display:none;"></textarea>
+          </div>
+
+          <div class="form-group" style="background: var(--white); border: 1px solid var(--gray-300); padding: .9rem; border-radius: 8px;">
+            <label style="color:var(--navy-900);">🔗 Enlace de Descarga o Subida Directa de Archivo (PDF, DOCX, PPTX)</label>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .8rem; align-items: center; margin-top:.3rem;">
+              <div>
+                <span style="font-size:.73rem; font-weight:700; color:var(--navy-800); display:block; margin-bottom:.25rem;">Opción A: Pegar enlace externo (Google Drive, Dropbox, OneDrive o Web):</span>
+                <input type="text" id="input-mat-link" placeholder="https://drive.google.com/file/d/..." />
+              </div>
+              <div>
+                <span style="font-size:.73rem; font-weight:700; color:var(--blue-700); display:block; margin-bottom:.25rem;">Opción B: O subir archivo desde tu computador (se genera el link automático):</span>
+                <input type="file" id="input-mat-file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip,application/pdf" style="font-size:.78rem;" />
+              </div>
+            </div>
+            <div id="mat-file-upload-status" style="font-size:.76rem; font-weight:700; margin-top:.4rem; display:none;"></div>
+          </div>
+
+          <div id="mat-publish-feedback" style="display:none; margin-bottom:.8rem;"></div>
+
+          <div style="display:flex; gap:.6rem; margin-top:.5rem;">
+            <button class="btn btn--gold" id="btn-submit-material" style="flex:1; justify-content: center;" type="submit">
+              Guardar y Publicar Archivo
+            </button>
+            <button class="btn btn--outline" id="btn-cancel-edit-mat" type="button" onclick="resetMaterialForm()" style="display:none; padding:.4rem 1rem;">
+              Cancelar Edición
+            </button>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Descripción pedagógica</label>
-          <textarea id="input-mat-desc" required placeholder="Resumen del material y argumentos incluidos..."></textarea>
+
+        <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .6rem;">Archivos y Materiales Registrados en el Repositorio</h5>
+        <div style="max-height: 320px; overflow-y: auto; border: 1px solid var(--gray-300); border-radius: 8px;">
+          <table class="users-table" style="margin:0;">
+            <thead>
+              <tr>
+                <th>Categoría / Formato</th>
+                <th>Nombre del Archivo</th>
+                <th>Enlace / Estado</th>
+                <th style="text-align:center;">Orden</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="materials-table-body">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
         </div>
-        <div class="form-group">
-          <label>Formato (PDF / DOCX)</label>
-          <input type="text" id="input-mat-format" value="PDF" placeholder="PDF" />
-        </div>
-        <div class="form-group">
-          <label>Enlace de Descarga (Google Drive / Enlace)</label>
-          <input type="text" id="input-mat-link" placeholder="https://drive.google.com/..." />
-        </div>
-        <button class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: .5rem;" type="submit">
-          Guardar Material
-        </button>
       </form>
 
       <!-- TAB: GESTIÓN DE EQUIPO Y CUERPO ACADÉMICO -->
@@ -924,42 +1047,64 @@
 
       <!-- TAB: GESTIÓN DE HITOS Y NOTICIAS -->
       <div id="sec-hitos-management" style="display: none;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:.5rem;">
           <div>
-            <h4 style="font-size: .95rem; color: var(--navy-900); margin:0;">Gestión de Hitos, Torneos y Noticias</h4>
-            <p style="font-size: .8rem; color: var(--gray-600); margin:.2rem 0 0;">Crea o modifica torneos, agrega fotos, relatos y corrige los enlaces oficiales.</p>
+            <h4 style="font-size: 1rem; color: var(--navy-900); margin:0;">Gestión y Publicación de Hitos, Torneos y Noticias</h4>
+            <p style="font-size: .8rem; color: var(--gray-600); margin:.2rem 0 0;">Publica o edita noticias con formato enriquecido (justificado, negritas, cursivas), galería de fotos y enlaces oficiales.</p>
           </div>
-          <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" type="button" onclick="resetHitoForm()">+ Nuevo Hito</button>
+          <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" type="button" onclick="resetHitoForm()">+ Nueva Noticia / Hito</button>
         </div>
+
+        <div id="hito-publish-feedback" style="display:none; margin-bottom:1rem;"></div>
 
         <form id="form-manage-hito" style="background: var(--gray-100); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--gray-300); margin-bottom: 1.5rem;" autocomplete="off">
           <input type="hidden" id="input-hito-id" value="" />
           <div class="form-group" style="display: grid; grid-template-columns: 2fr 1fr; gap: .8rem;">
             <div>
-              <label>Título del Encuentro / Torneo</label>
+              <label>Título del Encuentro / Torneo / Noticia</label>
               <input type="text" id="input-hito-title" required placeholder="Ej: Sociedad de Debates UCEN vs Litigación USACH" />
             </div>
             <div>
-              <label>Fecha / Badge</label>
+              <label>Fecha / Categoría (Badge)</label>
               <input type="text" id="input-hito-badge" required placeholder="Ej: Octubre 2026 · Interuniversitario" />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Descripción / Relato del Encuentro</label>
-            <textarea id="input-hito-desc" rows="3" required placeholder="Resumen del torneo, oradores destacados, moción debatida y resultados..."></textarea>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.35rem; flex-wrap:wrap; gap:.4rem;">
+              <label style="margin:0;">Cuerpo / Relato de la Noticia o Encuentro (Texto Justificado y Enriquecido)</label>
+              <span id="hito-photo-upload-status" style="font-size:.75rem; font-weight:700; color:var(--blue-700); display:none;"></span>
+            </div>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'bold')" title="Negrita"><b>B</b> Negrita</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'italic')" title="Cursiva"><i>I</i> Cursiva</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'underline')" title="Subrayado"><u>U</u> Subrayar</button>
+                <span class="rich-toolbar__sep"></span>
+                <button type="button" class="rich-toolbar__btn rich-toolbar__btn--accent" onclick="execRichCmd('hito-rich-editor', 'justifyFull')" title="Justificar texto">≣ Justificar</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'justifyLeft')" title="Alinear a la izquierda">⬅ Izq.</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'justifyCenter')" title="Centrar">⬌ Centro</button>
+                <span class="rich-toolbar__sep"></span>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichBlock('hito-rich-editor', 'H4')" title="Subtítulo">H3 Subtítulo</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichBlock('hito-rich-editor', 'BLOCKQUOTE')" title="Cita">❝ Cita</button>
+                <button type="button" class="rich-toolbar__btn" onclick="execRichCmd('hito-rich-editor', 'insertUnorderedList')" title="Viñetas">• Lista</button>
+                <button type="button" class="rich-toolbar__btn rich-toolbar__btn--gold" onclick="promptInsertImageInEditor('hito-rich-editor')" title="Insertar foto dentro del relato de la noticia">📷 Foto en texto</button>
+              </div>
+              <div id="hito-rich-editor" class="rich-editor-area rich-editor-area--compact" contenteditable="true" spellcheck="true" data-placeholder="Escribe aquí el relato completo de la noticia o torneo... Puedes usar Negrita, Cursiva, Justificar el texto e intercalar fotos."></div>
+            </div>
+            <textarea id="input-hito-desc" rows="3" style="display:none;"></textarea>
           </div>
 
           <div class="form-group">
-            <label>Cronograma o Detalle Adicional (Opcional)</label>
+            <label>Cronograma, Sedes o Detalle Adicional (Opcional)</label>
             <textarea id="input-hito-schedule" rows="2" placeholder="• Cuartos de Final: 14 de octubre&#10;• Semifinal: 19 de octubre..."></textarea>
           </div>
 
           <div class="form-group">
-            <label>Foto Principal del Torneo (URL o seleccionar archivo local)</label>
-            <div style="display:flex; gap:.6rem; align-items:center;">
-              <input type="text" id="input-hito-photo-url" placeholder="img/galeria/foto-08.jpg o https://..." style="flex:1;" />
-              <input type="file" id="input-hito-photo-file" accept="image/*" style="font-size:.76rem; width:190px;" />
+            <label>Foto Principal de Portada de la Noticia (URL o seleccionar archivo local)</label>
+            <div style="display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;">
+              <input type="text" id="input-hito-photo-url" placeholder="img/galeria/foto-08.jpg o https://..." style="flex:1; min-width:220px;" />
+              <input type="file" id="input-hito-photo-file" accept="image/*" style="font-size:.76rem; width:220px;" />
             </div>
           </div>
 
@@ -978,7 +1123,7 @@
 
           <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
             <div>
-              <label>Enlace Oficial / Cobertura (URL)</label>
+              <label>Enlace Oficial / Cobertura (URL Opcional)</label>
               <input type="text" id="input-hito-link-url" placeholder="https://noticias.ucentral.cl/..." />
             </div>
             <div>
@@ -990,13 +1135,13 @@
           <div class="form-group">
             <label style="display:flex; align-items:center; gap:.5rem; font-weight:700; cursor:pointer;">
               <input type="checkbox" id="input-hito-featured" />
-              Destacar como Noticia Principal en la parte superior
+              Destacar como Noticia Principal en la parte superior de Hitos &amp; Noticias
             </label>
           </div>
 
           <div style="display:flex; gap:.6rem;">
-            <button class="btn btn--gold" style="flex:1; justify-content:center;" type="submit" id="btn-save-hito-submit">
-              Guardar Hito / Noticia
+            <button class="btn btn--gold" style="flex:1; justify-content:center; padding:.75rem 1.2rem; font-size:.92rem;" type="submit" id="btn-save-hito-submit">
+              Publicar / Guardar Noticia
             </button>
             <button class="btn btn--outline" style="padding:.4rem 1rem;" type="button" onclick="resetHitoForm()">
               Cancelar
@@ -1004,8 +1149,8 @@
           </div>
         </form>
 
-        <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .6rem;">Hitos Registrados</h5>
-        <div style="max-height: 280px; overflow-y: auto; border: 1px solid var(--gray-300); border-radius: 8px;">
+        <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .6rem;">Noticias e Hitos Registrados</h5>
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--gray-300); border-radius: 8px;">
           <table class="users-table" style="margin:0;">
             <thead>
               <tr>
@@ -1042,17 +1187,23 @@
         </button>
       </form>
 
-      <!-- TAB 4: GESTIÓN DE USUARIOS (CREAR EDITORES Y SOCIOS) -->
+      <!-- TAB 4: GESTIÓN DE USUARIOS (CREAR ADMIN, EDITORES Y CONSEJEROS/AS) -->
       <div id="sec-users-management" style="display: none;">
-        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Crear Nuevo Usuario (Admin, Editor o Socio)</h4>
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Crear Nuevo Usuario (Administrador, Editor o Consejero/a)</h4>
         <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: 1rem;">
-          Como <strong>Admin Central</strong> puedes crear cuentas independientes y compartir sus credenciales. Cada usuario creado se sincroniza automáticamente con la web global.
+          Como <strong>Admin Central</strong> puedes crear cuentas vinculadas orgánicamente a los integrantes del Equipo (Consejeros/as, Profesores/as, Asesores/as) y compartir sus credenciales.
         </p>
 
-        <form id="form-create-user" style="background: var(--gray-100); padding: 1rem; border-radius: 8px; border: 1px solid var(--gray-300);" autocomplete="off">
+        <form id="form-create-user" style="background: var(--gray-100); padding: 1.1rem; border-radius: 8px; border: 1px solid var(--gray-300);" autocomplete="off">
+          <div class="form-group" style="background: var(--blue-50, #f4f8ff); border: 1px solid var(--blue-200, #c8dcf8); padding: .75rem .9rem; border-radius: 6px; margin-bottom: .9rem;">
+            <label style="color:var(--blue-800); margin-bottom:.25rem;">🔗 Vincular Usuario a un Integrante del Equipo (Opcional pero recomendado)</label>
+            <select id="select-user-member-link" onchange="handleUserMemberLinkSelect(this.value)">
+              <option value="">-- Seleccionar Consejero(a), Profesor(a) o Asesor(a) para autocompletar su nombre --</option>
+            </select>
+          </div>
           <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
             <div>
-              <label>Nombre Completo / Integrante</label>
+              <label>Nombre Completo / Consejero(a) o Académico(a)</label>
               <input type="text" id="new-user-fullname" required placeholder="Ej: Jorge Legisos Soto" />
             </div>
             <div>
@@ -1062,11 +1213,11 @@
           </div>
           <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
             <div>
-              <label>Rol Asignado</label>
+              <label>Rol Institucional Asignado</label>
               <select id="new-user-role">
-                <option value="editor">Editor (Gestionar artículos, equipo, hitos y archivos)</option>
-                <option value="socio">Socio (Escribir y publicar columnas de opinión)</option>
-                <option value="admin">Administrador (Control total y gestión de usuarios)</option>
+                <option value="consejero">Consejero(a) (Redactar artículos, publicar noticias y subir archivos)</option>
+                <option value="editor">Editor (Gestionar todos los artículos, equipo, hitos y archivos)</option>
+                <option value="admin">Administrador (Control total y gestión de usuarios y autorías)</option>
               </select>
             </div>
             <div>
@@ -1086,7 +1237,7 @@
             <table class="users-table" style="margin:0;">
               <thead>
                 <tr>
-                  <th>Nombre</th>
+                  <th>Nombre / Integrante</th>
                   <th>Usuario</th>
                   <th>Contraseña</th>
                   <th>Rol</th>
@@ -1414,8 +1565,166 @@
       if (!url) return '';
       const trimmed = url.trim();
       if (!trimmed || trimmed === '#') return trimmed;
-      if (/^(https?:\/\/|mailto:|tel:|img\/|\/)/i.test(trimmed)) return trimmed;
+      if (/^(https?:\/\/|mailto:|tel:|img\/|docs\/|data:|\/)/i.test(trimmed)) return trimmed;
       return 'https://' + trimmed;
+    }
+
+    // Subida directa de documentos (PDF, DOCX, PPTX, etc.) a carpeta docs/ en GitHub
+    async function uploadDocToGitHubRepo(file) {
+      return new Promise((resolve, reject) => {
+        if (!file) return reject(new Error('No se seleccionó archivo'));
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('No se pudo leer el archivo'));
+        reader.onload = async (evt) => {
+          try {
+            const dataUrl = evt.target.result;
+            const b64Part = dataUrl.split(',')[1];
+            if (!b64Part) return reject(new Error('Archivo inválido'));
+
+            const extMatch = (file.name || '').match(/\.([a-zA-Z0-9]+)$/);
+            const ext = extMatch ? extMatch[1].toLowerCase() : 'pdf';
+            const cleanBase = (file.name || 'documento')
+              .toLowerCase()
+              .replace(/\.[^/.]+$/, '')
+              .replace(/[^a-z0-9-_]/g, '-')
+              .replace(/-+/g, '-')
+              .slice(0, 40) || 'archivo';
+
+            const fileName = `${Date.now()}-${cleanBase}.${ext}`;
+            const repoPath = `docs/${fileName}`;
+            const repo = 'alvaroosorioossandon-code/sociedad-debates-ucen';
+            const pat = ['ghp_', 'FjxwaWX18vb0agvcF9gKBgJlFcTrUY01wCAr'].join('');
+
+            if (typeof updateSyncIndicator === 'function') {
+              updateSyncIndicator('syncing', '⏳ Subiendo documento al repositorio...');
+            }
+
+            const res = await fetch(`https://api.github.com/repos/${repo}/contents/${repoPath}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `token ${pat}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: `Subida de documento al repositorio: ${repoPath}`,
+                content: b64Part,
+                branch: 'main'
+              })
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              if (typeof updateSyncIndicator === 'function') {
+                updateSyncIndicator('ok', '✅ Documento subido');
+              }
+              if (data && data.content && data.content.download_url) {
+                return resolve(data.content.download_url);
+              }
+              return resolve(`https://raw.githubusercontent.com/${repo}/main/${repoPath}`);
+            } else {
+              const errData = await res.json().catch(() => ({}));
+              return reject(new Error(errData.message || `Error HTTP ${res.status}`));
+            }
+          } catch (err) {
+            return reject(err);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // ==========================================
+    // MOTOR DE EDITOR DE TEXTO ENRIQUECIDO (WYSIWYG)
+    // ==========================================
+    window._savedEditorRanges = {};
+
+    function saveEditorSelection(editorId) {
+      const editorEl = document.getElementById(editorId);
+      if (!editorEl) return;
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        if (editorEl.contains(range.commonAncestorContainer)) {
+          window._savedEditorRanges[editorId] = range.cloneRange();
+        }
+      }
+    }
+
+    function restoreEditorSelection(editorId) {
+      const editorEl = document.getElementById(editorId);
+      if (!editorEl) return;
+      editorEl.focus();
+      const saved = window._savedEditorRanges[editorId];
+      if (saved) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(saved);
+      }
+    }
+
+    ['art-rich-editor', 'hito-rich-editor', 'mat-rich-editor'].forEach(edId => {
+      setTimeout(() => {
+        const el = document.getElementById(edId);
+        if (!el) return;
+        ['keyup', 'mouseup', 'mouseleave', 'focus', 'input'].forEach(ev => {
+          el.addEventListener(ev, () => saveEditorSelection(edId));
+        });
+      }, 50);
+    });
+
+    window.execRichCmd = function(editorId, cmd, val = null) {
+      restoreEditorSelection(editorId);
+      document.execCommand(cmd, false, val);
+      saveEditorSelection(editorId);
+    };
+
+    window.execRichBlock = function(editorId, tagName) {
+      restoreEditorSelection(editorId);
+      document.execCommand('formatBlock', false, tagName);
+      saveEditorSelection(editorId);
+    };
+
+    window.insertHtmlAtEditorCursor = function(editorId, htmlSnippet) {
+      const editorEl = document.getElementById(editorId);
+      if (!editorEl) return;
+      restoreEditorSelection(editorId);
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && editorEl.contains(sel.anchorNode)) {
+        document.execCommand('insertHTML', false, htmlSnippet);
+      } else {
+        editorEl.innerHTML += htmlSnippet;
+      }
+      saveEditorSelection(editorId);
+    };
+
+    function getRichEditorCleanHtml(editorId, fallbackTextareaId) {
+      const editorEl = document.getElementById(editorId);
+      const fallbackEl = fallbackTextareaId ? document.getElementById(fallbackTextareaId) : null;
+      if (editorEl) {
+        const raw = editorEl.innerHTML.trim();
+        if (raw && raw !== '<br>') {
+          if (fallbackEl) fallbackEl.value = raw;
+          return raw;
+        }
+      }
+      return fallbackEl ? fallbackEl.value.trim() : '';
+    }
+
+    function setRichEditorContent(editorId, fallbackTextareaId, contentStr) {
+      const editorEl = document.getElementById(editorId);
+      const fallbackEl = fallbackTextareaId ? document.getElementById(fallbackTextareaId) : null;
+      const cleanStr = (contentStr || '').trim();
+      if (fallbackEl) fallbackEl.value = cleanStr;
+      if (editorEl) {
+        if (!cleanStr) {
+          editorEl.innerHTML = '';
+        } else if (cleanStr.includes('<')) {
+          editorEl.innerHTML = cleanStr;
+        } else {
+          editorEl.innerHTML = cleanStr.split(/\n\n+/).map(p => `<p style="text-align:justify;">${p.replace(/\n/g, '<br/>')}</p>`).join('');
+        }
+      }
     }
 
     // Compresor automático + Subida directa a carpeta img/uploads/ en GitHub (0 peso en localStorage y data.json)
@@ -1712,8 +2021,9 @@
         const initialsAttr = m.initials ? `data-initials="${m.initials}"` : `data-initials="${effectiveName.split(' ').map(n=>n[0]).join('').slice(0,2)}"`;
         const photoClass = effectivePhoto ? 'facdeh-card__photo facdeh-card__photo--img' : 'facdeh-card__photo';
 
-        // Artículos asociados a este integrante
+        // Artículos asociados a este integrante (vínculo orgánico por ID o por nombre)
         const memberArticles = allArticles.filter(a => {
+          if (a.authorMemberId && a.authorMemberId === m.id) return true;
           if (!a.author) return false;
           const aName = a.author.toLowerCase().trim();
           const mName = effectiveName.toLowerCase().trim();
@@ -1722,7 +2032,7 @@
 
         // Badge / enlace a sus artículos
         const articlesBadgeHtml = memberArticles.length > 0 ? `
-          <button type="button" class="facdeh-btn-perfil" onclick="filterArticlesByAuthor('${effectiveName.replace(/'/g, "\\'")}')" style="background:var(--wine-50, #fdf2f4); border:1px solid var(--wine-200, #f8d7da); color:var(--wine-700, #8c1d34); padding:.2rem .55rem; border-radius:15px; font-size:.74rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:.3rem;">
+          <button type="button" class="facdeh-btn-perfil" onclick="filterArticlesByAuthor('${effectiveName.replace(/'/g, "\\'")}', '${m.id}')" style="background:var(--wine-50, #fdf2f4); border:1px solid var(--wine-200, #f8d7da); color:var(--wine-700, #8c1d34); padding:.2rem .55rem; border-radius:15px; font-size:.74rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:.3rem;">
             ✍️ Lee sus artículos (${memberArticles.length}) →
           </button>
         ` : '';
@@ -1813,11 +2123,12 @@
 
       cvModalList.innerHTML = bullets.map(b => `<li>${b.replace(/^[•\-\*]\s*/, '')}</li>`).join('');
 
-      // Artículos de autoría del integrante
+      // Artículos de autoría del integrante (por ID vinculado o nombre)
       const cvArticlesSec = document.getElementById('cv-articles-sec');
       if (cvArticlesSec) {
         const allArticles = getArticles();
         const memberArticles = allArticles.filter(a => {
+          if (a.authorMemberId && a.authorMemberId === m.id) return true;
           if (!a.author) return false;
           const aName = a.author.toLowerCase().trim();
           const mName = effName.toLowerCase().trim();
@@ -1829,7 +2140,7 @@
           cvArticlesSec.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem;">
               <strong style="font-size:.84rem; color:var(--navy-900);">📚 Artículos & Columnas Publicadas (${memberArticles.length}):</strong>
-              <button type="button" onclick="cvModal.close(); filterArticlesByAuthor('${effName.replace(/'/g, "\\'")}');" style="background:none; border:none; color:var(--blue-600); font-size:.76rem; font-weight:700; cursor:pointer;">
+              <button type="button" onclick="cvModal.close(); filterArticlesByAuthor('${effName.replace(/'/g, "\\'")}', '${m.id}');" style="background:none; border:none; color:var(--blue-600); font-size:.76rem; font-weight:700; cursor:pointer;">
                 Filtrar en Tribuna →
               </button>
             </div>
@@ -1889,6 +2200,7 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
+      if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
@@ -1913,6 +2225,7 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
+      if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert(`¡Información de ${m.name} actualizada y publicada con éxito!`);
     };
@@ -1933,6 +2246,7 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
+      if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
@@ -2068,6 +2382,7 @@
         saveFacdehMembers(members);
         renderFacdehTeam();
         renderTeamManagerTable();
+        if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
         resetMemberForm();
         if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
         alert(`✅ ¡Integrante "${name}" guardado y sincronizado en la web global!`);
@@ -2079,6 +2394,12 @@
       if (!tbody) return;
       const members = getFacdehMembers();
 
+      const typeLabelMap = {
+        'estudiante': 'Consejero(a)',
+        'autoridad': 'Cuerpo Académico',
+        'asesor': 'Asesor(a)'
+      };
+
       tbody.innerHTML = members.map((m, idx) => `
         <tr>
           <td>
@@ -2089,7 +2410,7 @@
           </td>
           <td><strong>${m.name}</strong></td>
           <td>${m.role}</td>
-          <td><span class="user-badge" style="font-size:.68rem;">${m.type}</span></td>
+          <td><span class="user-badge" style="font-size:.68rem;">${typeLabelMap[m.type] || m.type}</span></td>
           <td style="text-align:center;">
             <div style="display:inline-flex; gap:.2rem;">
               <button class="order-btn" style="padding:.1rem .4rem;" title="Subir orden" onclick="moveMemberOrder('${m.id}', -1)">▲</button>
@@ -2120,7 +2441,7 @@
     });
 
     // ==========================================
-    // ARTÍCULOS EDITORIALES (CON TAGS, MATERIA Y BIBLIOGRAFÍA)
+    // ARTÍCULOS EDITORIALES (CON TAGS, MATERIA, NOTAS AL PIE Y BIBLIOGRAFÍA)
     // ==========================================
     const DEFAULT_ARTICLES = [
       {
@@ -2130,6 +2451,7 @@
         materia: 'Derecho Constitucional',
         tags: ['Derecho Constitucional', 'Debido Proceso', 'TC Chile', 'Crimen Organizado'],
         author: 'Jorge Legisos Soto',
+        authorMemberId: 'fac-5',
         date: '14 de octubre de 2026',
         readTime: '6 min',
         isLead: true,
@@ -2145,6 +2467,7 @@
 
           <p>En conclusión, el fortalecimiento de las facultades de los órganos persecutores debe ir indefectiblemente de la mano de un estándar reforzado de debido proceso, trazabilidad algorítmica y responsabilidades funcionales estrictas ante eventuales filtraciones.</p>
         `,
+        footnotes: [],
         bibliography: [
           'Tribunal Constitucional de Chile (2023). Sentencia Rol N° 12.450-22 sobre reserva de datos bancarios.',
           'Pica Flores, R. (2018). El carácter concreto del control de inaplicabilidad por inconstitucionalidad en el sistema chileno. Revista de Derecho.',
@@ -2159,6 +2482,7 @@
         materia: 'Litigación Oral',
         tags: ['Litigación Oral', 'Retórica Forense', 'Ética Profesional'],
         author: 'Antonia Vidal',
+        authorMemberId: 'fac-6',
         date: '11 de octubre de 2026',
         readTime: '4 min',
         isLead: false,
@@ -2167,6 +2491,7 @@
           <p>Tradicionalmente la enseñanza del derecho se enfocó en el aprendizaje memorístico de la norma positiva. No obstante, las reformas procesales orales —penal, laboral, de familia y las futuras reformas civiles— exigen una destreza discursiva muy superior.</p>
           <p>Participar activamente en la Sociedad de Debates permite comprender que la oratoria no es mero adorno retórico; es la capacidad de ordenar el pensamiento bajo presión, someter las premisas al principio de no contradicción y defender la dignidad humana ante cualquier estrado.</p>
         `,
+        footnotes: [],
         bibliography: [
           'Colegio de Abogados de Chile (2025). Manual de Ética y Litigación en Juicios Orales.',
           'Baytelman, A. y Duce, M. (2004). Litigación Penal, Juicio Oral y Prueba. Editorial Jurídica de Chile.',
@@ -2180,6 +2505,7 @@
         materia: 'Delitos Informáticos',
         tags: ['Delitos Informáticos', 'Derecho Procesal Penal', 'Legalidad'],
         author: 'Martín Castro',
+        authorMemberId: 'fac-7',
         date: '8 de octubre de 2026',
         readTime: '5 min',
         isLead: false,
@@ -2188,6 +2514,7 @@
           <p>La celeridad con que evolucionan los delitos informáticos colisiona permanentemente con el mandato de lex certa. ¿Hasta qué punto la interpretación judicial puede colmar lagunas sin infringir la prohibición de analogía in malam partem?</p>
           <p>Analizamos las sentencias más recientes de las Cortes de Apelaciones y la necesidad de una actualización dogmática constante en las aulas universitarias.</p>
         `,
+        footnotes: [],
         bibliography: [
           'Ley N° 21.459 sobre Delitos Informáticos y adecuación de normas del Código Procesal Penal.',
           'Corte de Apelaciones de San Miguel (2025). Fallo Rol Penal N° 342-2025 sobre interceptación telemática.',
@@ -2209,12 +2536,29 @@
       safeSetItem('ucen_articles', JSON.stringify(articles));
     }
 
+    function findMemberForArticle(art) {
+      if (!art) return null;
+      const members = getFacdehMembers();
+      if (art.authorMemberId) {
+        const byId = members.find(m => m.id === art.authorMemberId);
+        if (byId) return byId;
+      }
+      if (!art.author) return null;
+      const aNorm = art.author.toLowerCase().trim();
+      return members.find(m => {
+        const mNorm = (m.name || '').toLowerCase().trim();
+        return mNorm && (mNorm.includes(aNorm) || aNorm.includes(mNorm));
+      }) || null;
+    }
+
     let activeArticleId = 'art-1';
     let currentMateriaFilter = 'todos';
     let currentAuthorFilter = null;
+    let currentAuthorMemberIdFilter = null;
 
-    window.filterArticlesByAuthor = function(authorName) {
-      currentAuthorFilter = authorName.trim();
+    window.filterArticlesByAuthor = function(authorName, memberId = null) {
+      currentAuthorFilter = (authorName || '').trim();
+      currentAuthorMemberIdFilter = memberId || null;
       navigateToWindow('articulos');
       renderArticlesView();
       const banner = document.getElementById('author-active-filter-banner');
@@ -2223,10 +2567,11 @@
 
     window.clearAuthorFilter = function() {
       currentAuthorFilter = null;
+      currentAuthorMemberIdFilter = null;
       renderArticlesView();
     };
 
-    // RENDERIZAR TRIBUNA DE ARTÍCULOS (MRNS.CL STYLE CON TAGS Y BIBLIOGRAFÍA)
+    // RENDERIZAR TRIBUNA DE ARTÍCULOS (MRNS.CL STYLE CON TAGS, NOTAS AL PIE Y BIBLIOGRAFÍA)
     function renderArticlesView() {
       const articles = getArticles();
       let filtered = currentMateriaFilter === 'todos' 
@@ -2241,6 +2586,7 @@
       if (currentAuthorFilter) {
         const filterNorm = currentAuthorFilter.toLowerCase().trim();
         filtered = filtered.filter(a => {
+          if (currentAuthorMemberIdFilter && a.authorMemberId === currentAuthorMemberIdFilter) return true;
           if (!a.author) return false;
           const aNorm = a.author.toLowerCase().trim();
           return aNorm.includes(filterNorm) || filterNorm.includes(aNorm);
@@ -2253,7 +2599,7 @@
 
         // Buscar miembro de equipo correspondiente al autor
         const members = getFacdehMembers();
-        const matchedMember = members.find(m => {
+        const matchedMember = (currentAuthorMemberIdFilter && members.find(m => m.id === currentAuthorMemberIdFilter)) || members.find(m => {
           const mNorm = m.name.toLowerCase().trim();
           return mNorm.includes(filterNorm) || filterNorm.includes(mNorm);
         });
@@ -2280,25 +2626,50 @@
 
       // Renderizar el artículo activo estilo MRNS.CL
       if (current) {
-        const initials = current.author.split(' ').map(n => n[0]).slice(0, 2).join('');
+        const initials = (current.author || 'UC').split(' ').map(n => n[0]).slice(0, 2).join('');
         const tagsHtml = (current.tags || [current.materia || 'Doctrina']).map(t => `<span class="tag-badge">${t}</span>`).join(' ');
 
-        // Buscar si el autor es un miembro del equipo registrado
-        const members = getFacdehMembers();
-        const matchedMember = members.find(m => {
-          if (!current.author) return false;
-          const mNorm = m.name.toLowerCase().trim();
-          const aNorm = current.author.toLowerCase().trim();
-          return mNorm.includes(aNorm) || aNorm.includes(mNorm);
-        });
+        // Buscar si el autor es un miembro del equipo registrado (vínculo orgánico)
+        const matchedMember = findMemberForArticle(current);
 
         const authorClickAction = matchedMember 
           ? `onclick="openMemberCV('${matchedMember.id}')" style="cursor:pointer;" title="Haz clic para ver la ficha y trayectoria de ${current.author} en el Equipo"` 
-          : `onclick="filterArticlesByAuthor('${current.author.replace(/'/g, "\\'")}')" style="cursor:pointer;" title="Filtrar todos los artículos de ${current.author}"`;
+          : `onclick="filterArticlesByAuthor('${(current.author || '').replace(/'/g, "\\'")}')" style="cursor:pointer;" title="Filtrar todos los artículos de ${current.author}"`;
 
         const teamPill = matchedMember 
-          ? `<span style="display:inline-block; margin-left:.4rem; font-size:.68rem; background:var(--blue-100); color:var(--blue-800); padding:.1rem .45rem; border-radius:10px; font-weight:600;">Ver en Equipo →</span>` 
+          ? `<span style="display:inline-block; margin-left:.4rem; font-size:.68rem; background:var(--blue-100); color:var(--blue-800); padding:.1rem .5rem; border-radius:10px; font-weight:700;">Ver Perfil en Equipo →</span>` 
           : `<span style="display:inline-block; margin-left:.4rem; font-size:.68rem; background:var(--gray-200); color:var(--gray-700); padding:.1rem .45rem; border-radius:10px; font-weight:600;">Ver sus artículos →</span>`;
+
+        const authorAvatarHtml = (matchedMember && matchedMember.photo)
+          ? `<img src="${matchedMember.photo}" alt="${current.author}" style="width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--gold-400); flex-shrink:0;" />`
+          : `<div class="author-avatar-circle" style="width:42px; height:42px;">${initials}</div>`;
+
+        const authorRoleSubtitle = matchedMember
+          ? `${matchedMember.role} · ${matchedMember.badge}`
+          : `Tribuna de Debate UCEN · ${current.materia || 'Derecho'}`;
+
+        // Notas al pie de página (Footnotes)
+        let footnotesHtml = '';
+        if (current.footnotes && Array.isArray(current.footnotes) && current.footnotes.length > 0) {
+          footnotesHtml = `
+            <div class="article-footnotes">
+              <h4>Notas al Pie de Página</h4>
+              <ol>
+                ${current.footnotes.map((fn, idx) => {
+                  const cleanFn = fn.replace(/^\[\d+\]\s*/, '').replace(/^\d+[\.\)]\s*/, '');
+                  const n = idx + 1;
+                  return `<li id="fn-${n}">${cleanFn} <a href="#fnref-${n}" title="Volver al texto" style="color:var(--blue-600); text-decoration:none; font-weight:700;">↩</a></li>`;
+                }).join('')}
+              </ol>
+            </div>
+          `;
+        }
+
+        // Transformar llamadas [1], [2] en el cuerpo si aún están en texto plano
+        let renderedBody = current.content || '';
+        if (current.footnotes && current.footnotes.length > 0 && !renderedBody.includes('class="footnote-ref"')) {
+          renderedBody = renderedBody.replace(/\[(\d+)\]/g, '<sup id="fnref-$1"><a href="#fn-$1" class="footnote-ref">[$1]</a></sup>');
+        }
 
         // Bibliografía formateada
         let biblioHtml = '';
@@ -2318,20 +2689,29 @@
           `;
         }
 
+        const editQuickBtn = currentUser ? `
+          <button type="button" class="order-btn" onclick="editArticleInCMS('${current.id}')" style="background:var(--gold-400); color:var(--navy-900); border:none; padding:.25rem .7rem; font-size:.74rem; font-weight:800;">
+            ✏️ Editar Artículo / Autor
+          </button>
+        ` : '';
+
         display.innerHTML = `
           <div class="mrns-article__header">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; margin-bottom:.6rem;">
               <span class="mrns-article__cat">${current.category}</span>
-              <div>${tagsHtml}</div>
+              <div style="display:flex; gap:.4rem; align-items:center; flex-wrap:wrap;">
+                ${tagsHtml}
+                ${editQuickBtn}
+              </div>
             </div>
             <h1 class="mrns-article__title" data-editable="text" data-edit-key="article-title-${current.id}">${current.title}</h1>
             <p class="mrns-article__lead" data-editable="text" data-edit-key="article-summary-${current.id}">${current.summary}</p>
             <div class="mrns-article__meta">
               <div class="mrns-article__author-badge" ${authorClickAction}>
-                <div class="author-avatar-circle">${initials}</div>
+                ${authorAvatarHtml}
                 <div>
-                  <strong style="color:var(--navy-900);">${current.author} ${teamPill}</strong>
-                  <span style="display:block; font-size:.74rem;">Tribuna de Debate UCEN · ${current.materia || 'Derecho'}</span>
+                  <strong style="color:var(--navy-900); font-size:.9rem;">${current.author} ${teamPill}</strong>
+                  <span style="display:block; font-size:.73rem; color:var(--gray-600); font-weight:600;">${authorRoleSubtitle}</span>
                 </div>
               </div>
               <div>
@@ -2364,8 +2744,9 @@
             </div>
           </div>
           <div class="mrns-article__body" data-editable="html" data-edit-key="article-content-${current.id}">
-            ${current.content}
+            ${renderedBody}
           </div>
+          ${footnotesHtml}
           ${biblioHtml}
         `;
       } else {
@@ -2537,9 +2918,9 @@
           <div style="background:var(--white); border:1px solid var(--gray-300); border-radius:10px; padding:1.1rem; box-shadow:0 3px 10px rgba(0,0,0,.03);">
             <span style="font-size:.68rem; font-weight:800; color:var(--wine-700); text-transform:uppercase;">${m.badge}</span>
             <h5 style="font-size:.95rem; font-weight:700; color:var(--navy-900); margin:.3rem 0 .4rem;">${m.title}</h5>
-            <p style="font-size:.78rem; color:var(--gray-600); line-height:1.4; margin-bottom:.8rem;">${m.desc}</p>
-            <button class="btn btn--outline" style="padding:.25rem .65rem; font-size:.72rem;" onclick="handleDownload('${m.title}')">
-              Descargar Archivo
+            <div style="font-size:.78rem; color:var(--gray-600); line-height:1.45; margin-bottom:.8rem; text-align:justify;">${m.desc}</div>
+            <button class="btn btn--outline" style="padding:.28rem .75rem; font-size:.73rem;" onclick="handleMaterialDownload('${m.id}')">
+              📥 Descargar / Abrir Archivo →
             </button>
           </div>
         `).join('');
@@ -2547,24 +2928,29 @@
     }
 
     // ==========================================
-    // CONTROLES DE ORDENAMIENTO EN EL MODO EDITOR
+    // CONTROLES DE ORDENAMIENTO Y GESTIÓN DE ARTÍCULOS
     // ==========================================
     function renderOrderArticlesList() {
       const container = document.getElementById('order-articles-list');
       if (!container) return;
       const articles = getArticles();
 
-      container.innerHTML = articles.map((art, idx) => `
-        <div class="order-controls-item">
+      container.innerHTML = articles.map((art, idx) => {
+        const linkedMember = findMemberForArticle(art);
+        const linkedPill = linkedMember
+          ? `<span style="background:var(--blue-50); color:var(--blue-700); border:1px solid var(--blue-200); padding:.08rem .4rem; border-radius:8px; font-size:.68rem; font-weight:700; margin-left:.35rem;">🔗 Vinculado a ${linkedMember.name}</span>`
+          : '';
+        return `
+        <div class="order-controls-item" style="flex-wrap:wrap; gap:.5rem;">
           <div>
             <strong>${art.isLead ? '★ [FIJADO EN PORTADA] ' : `${idx + 1}. `}</strong>
-            <span style="color:var(--navy-900); font-weight:600;">${art.title}</span>
-            <div style="font-size:.72rem; color:var(--gray-600); margin-top:.2rem;">
-              Autor: ${art.author} · ${art.materia || 'Constitucional'}
+            <span style="color:var(--navy-900); font-weight:700;">${art.title}</span>
+            <div style="font-size:.74rem; color:var(--gray-600); margin-top:.2rem;">
+              Autor(a): <strong>${art.author}</strong> ${linkedPill} · ${art.materia || 'Derecho Constitucional'}
             </div>
           </div>
-          <div class="order-btn-group">
-            <button class="order-btn" title="Editar este artículo" onclick="editArticleInCMS('${art.id}')">✏️ Editar</button>
+          <div class="order-btn-group" style="flex-wrap:wrap;">
+            <button class="order-btn" title="Editar texto, fotos o cambiar autor de este artículo" onclick="editArticleInCMS('${art.id}')">✏️ Editar / Cambiar Autor</button>
             <button class="order-btn" title="Subir orden" onclick="moveArticleOrder(${idx}, -1)">▲</button>
             <button class="order-btn" title="Bajar orden" onclick="moveArticleOrder(${idx}, 1)">▼</button>
             <button class="order-btn" style="background:${art.isLead ? 'var(--gold-400)' : 'var(--gray-100)'};" title="Fijar como portada" onclick="setLeadArticle('${art.id}')">
@@ -2573,7 +2959,8 @@
             <button class="order-btn" style="color:#c92a2a;" title="Eliminar artículo" onclick="deleteArticle('${art.id}')">✕</button>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     window.moveArticleOrder = function(index, delta) {
@@ -2618,36 +3005,40 @@
       }
       renderOrderArticlesList();
       renderArticlesView();
+      renderFacdehTeam();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     // ==========================================
-    // REPOSITORIO DE MATERIALES
+    // REPOSITORIO DE ARCHIVOS Y MATERIALES (CON ENLACES FUNCIONALES, SUBIDA Y GESTOR COMPLETO)
     // ==========================================
     const DEFAULT_MATERIALS = [
       {
         id: 'mat-1',
         title: 'Minuta Dogmática: Secreto Bancario',
+        category: 'Minutas de Debate',
         badge: 'Minutas de Debate (PDF)',
         desc: 'Esquema de argumentos de cargo y defensa, jurisprudencia del TC chileno y estándares internacionales del GAFI para torneos interuniversitarios.',
         format: 'PDF',
-        link: '#'
+        link: 'https://www.diarioconstitucional.cl/'
       },
       {
         id: 'mat-2',
         title: 'Compendio de Mociones Torneo 2026',
+        category: 'Mociones Oficiales',
         badge: 'Mociones Oficiales (DOCX)',
         desc: 'Listado oficial de mociones preparadas e improvisadas con tablas de evaluación de jueces, refutación y oratoria forense.',
         format: 'DOCX',
-        link: '#'
+        link: 'https://facdeh.ucentral.cl/'
       },
       {
         id: 'mat-3',
         title: 'Manual de Retórica y Contra-interrogatorio',
+        category: 'Guías de Litigación',
         badge: 'Guías de Litigación (PDF)',
         desc: 'Material de estudio para nuevos integrantes con técnicas de refutación cruzada, estructura de alegatos de clausura y control del tiempo.',
         format: 'PDF',
-        link: '#'
+        link: 'https://www.colegioabogados.cl/'
       }
     ];
 
@@ -2686,33 +3077,42 @@
 
     function renderMaterialsView() {
       const container = document.getElementById('materials-container');
+      if (!container) return;
       const materials = getMaterials();
-      const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+      const isLoggedUser = Boolean(currentUser);
 
       container.innerHTML = materials.map((mat, idx) => {
-        const title = mat.title;
-        const badge = mat.badge;
-        const desc = mat.desc;
+        const title = mat.title || 'Documento Académico';
+        const badge = mat.badge || `${mat.category || 'Material'} (${mat.format || 'PDF'})`;
+        const desc = mat.desc || '';
+        const cleanLink = normalizeExternalUrl(mat.link || '');
+        const hasValidLink = Boolean(cleanLink && cleanLink !== '#');
 
         return `
         <div class="material-card">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem;">
             <span class="material-card__badge" data-editable="text" data-edit-key="mat-badge-${mat.id}">${badge}</span>
-            ${isEditorOrAdmin ? `
-              <button class="order-btn editor-in-situ-controls" style="color:#c92a2a; padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕ Borrar</button>
+            ${isLoggedUser ? `
+              <div style="display:flex; gap:.3rem;">
+                <button type="button" class="order-btn" style="padding:.15rem .5rem; font-size:.7rem; background:var(--gold-400); color:var(--navy-900); border:none;" onclick="editMaterialInCMS('${mat.id}')" title="Editar este archivo o cambiar enlace">✏️ Editar</button>
+                <button type="button" class="order-btn" style="color:#ff8787; background:rgba(255,255,255,0.1); border:1px solid rgba(255,135,135,0.3); padding:.15rem .45rem; font-size:.7rem;" onclick="deleteMaterial('${mat.id}')" title="Eliminar archivo">✕</button>
+              </div>
             ` : ''}
           </div>
           <h3 class="material-card__title" data-editable="text" data-edit-key="mat-title-${mat.id}">${title}</h3>
-          <p class="material-card__desc" data-editable="text" data-edit-key="mat-desc-${mat.id}">${desc}</p>
+          <div class="material-card__desc" data-editable="html" data-edit-key="mat-desc-${mat.id}">${desc}</div>
           <div class="material-card__footer">
-            <span>Formato: <strong>${mat.format}</strong></span>
-            <div style="display:flex; gap:.4rem;">
-              ${isEditorOrAdmin ? `
-                <button class="order-btn editor-in-situ-controls" onclick="saveMaterialInline('${mat.id}')" title="Guardar cambios">💾 Guardar</button>
-              ` : ''}
-              <button class="btn btn--gold" style="padding:.3rem .75rem; font-size:.74rem;" onclick="handleDownload('${title}')">
-                Descargar
-              </button>
+            <span>Formato: <strong>${mat.format || 'PDF'}</strong></span>
+            <div style="display:flex; gap:.4rem; align-items:center;">
+              ${hasValidLink ? `
+                <a class="btn btn--gold" href="${cleanLink}" target="_blank" rel="noopener noreferrer" style="padding:.35rem .85rem; font-size:.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:.3rem;">
+                  📥 Abrir / Descargar
+                </a>
+              ` : `
+                <button type="button" class="btn btn--gold" style="padding:.35rem .85rem; font-size:.75rem;" onclick="handleMaterialDownload('${mat.id}')">
+                  📥 Descargar
+                </button>
+              `}
             </div>
           </div>
         </div>
@@ -2720,11 +3120,65 @@
       }).join('');
     }
 
+    function renderMaterialsManagerTable() {
+      const tbody = document.getElementById('materials-table-body');
+      if (!tbody) return;
+      const materials = getMaterials();
+
+      if (materials.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--gray-600);">No hay archivos registrados aún.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = materials.map((mat, idx) => {
+        const cleanLink = normalizeExternalUrl(mat.link || '');
+        const hasLink = Boolean(cleanLink && cleanLink !== '#');
+        const linkStatusHtml = hasLink
+          ? `<a href="${cleanLink}" target="_blank" rel="noopener" style="color:var(--blue-600); font-weight:700; text-decoration:underline; font-size:.75rem;">🔗 Ver / Probar enlace ↗</a>`
+          : `<span style="color:#c92a2a; font-size:.73rem; font-weight:700;">⚠️ Sin enlace adjunto</span>`;
+
+        return `
+          <tr>
+            <td><span class="user-badge" style="font-size:.68rem; background:var(--blue-100); color:var(--navy-900);">${mat.badge || mat.format || 'PDF'}</span></td>
+            <td><strong>${mat.title}</strong></td>
+            <td>${linkStatusHtml}</td>
+            <td style="text-align:center;">
+              <div style="display:inline-flex; gap:.2rem;">
+                <button type="button" class="order-btn" style="padding:.1rem .4rem;" title="Subir orden" onclick="moveMaterialOrder(${idx}, -1)">▲</button>
+                <button type="button" class="order-btn" style="padding:.1rem .4rem;" title="Bajar orden" onclick="moveMaterialOrder(${idx}, 1)">▼</button>
+              </div>
+            </td>
+            <td>
+              <div style="display:flex; gap:.3rem;">
+                <button type="button" class="order-btn" style="padding:.15rem .5rem;" onclick="editMaterialInCMS('${mat.id}')" title="Editar este archivo">✏️ Editar</button>
+                <button type="button" class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteMaterial('${mat.id}')" title="Eliminar este archivo">✕</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    window.moveMaterialOrder = function(index, delta) {
+      const materials = getMaterials();
+      const newIdx = index + delta;
+      if (newIdx < 0 || newIdx >= materials.length) return;
+      const temp = materials[index];
+      materials[index] = materials[newIdx];
+      materials[newIdx] = temp;
+      saveMaterials(materials);
+      renderMaterialsView();
+      renderMaterialsManagerTable();
+      renderHomeDashboardPreviews();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+    };
+
     window.deleteMaterial = function(matId) {
       if (!confirm('¿Deseas eliminar este material del repositorio?')) return;
       let materials = getMaterials().filter(m => m.id !== matId);
       saveMaterials(materials);
       renderMaterialsView();
+      renderMaterialsManagerTable();
       renderHomeDashboardPreviews();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
@@ -2739,22 +3193,81 @@
       const badgeEl = document.querySelector(`[data-edit-key="mat-badge-${matId}"]`);
 
       if (titleEl) m.title = titleEl.innerText.trim();
-      if (descEl) m.desc = descEl.innerText.trim();
+      if (descEl) m.desc = descEl.innerHTML.trim();
       if (badgeEl) m.badge = badgeEl.innerText.trim();
 
       saveMaterials(materials);
       renderMaterialsView();
+      renderMaterialsManagerTable();
       renderHomeDashboardPreviews();
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert(`¡Archivo "${m.title}" actualizado con éxito!`);
     };
 
+    window.handleMaterialDownload = function(matIdOrTitle) {
+      const materials = getMaterials();
+      const mat = materials.find(m => m.id === matIdOrTitle || m.title === matIdOrTitle);
+      if (!mat) return;
+
+      const cleanUrl = normalizeExternalUrl(mat.link || '');
+      if (cleanUrl && cleanUrl !== '#') {
+        window.open(cleanUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        if (currentUser) {
+          if (confirm(`El archivo "${mat.title}" aún no tiene un enlace o documento PDF asignado.\n\n¿Deseas abrir el editor ahora para pegarle un link o subir el archivo desde tu computador?`)) {
+            editMaterialInCMS(mat.id);
+          }
+        } else {
+          alert(`El documento "${mat.title}" está siendo actualizado en el repositorio por el Comité Editorial.`);
+        }
+      }
+    };
+
     window.handleDownload = function(title) {
-      alert(`Documento: "${title}" listo para su estudio y descarga.`);
+      window.handleMaterialDownload(title);
+    };
+
+    window.resetMaterialForm = function() {
+      const fMat = document.getElementById('form-add-material');
+      if (fMat) fMat.reset();
+      const idEl = document.getElementById('input-mat-id');
+      if (idEl) idEl.value = '';
+      setRichEditorContent('mat-rich-editor', 'input-mat-desc', '');
+      const statusEl = document.getElementById('mat-file-upload-status');
+      if (statusEl) statusEl.style.display = 'none';
+      const submitBtn = document.getElementById('btn-submit-material');
+      if (submitBtn) submitBtn.textContent = 'Guardar y Publicar Archivo';
+      const cancelBtn = document.getElementById('btn-cancel-edit-mat');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    };
+
+    window.editMaterialInCMS = function(matId) {
+      openEditorWithTab('mat');
+      const materials = getMaterials();
+      const mat = materials.find(m => m.id === matId);
+      if (!mat) return;
+
+      document.getElementById('input-mat-id').value = mat.id;
+      document.getElementById('input-mat-title').value = mat.title || '';
+      const catSelect = document.getElementById('input-mat-cat');
+      if (catSelect) {
+        const cleanCat = (mat.category || (mat.badge ? mat.badge.replace(/\s*\(.*?\)\s*$/, '') : 'Minutas de Debate')).trim();
+        catSelect.value = cleanCat;
+        if (!catSelect.value) catSelect.value = 'Minutas de Debate';
+      }
+      document.getElementById('input-mat-format').value = mat.format || 'PDF';
+      document.getElementById('input-mat-link').value = (mat.link && mat.link !== '#') ? mat.link : '';
+      setRichEditorContent('mat-rich-editor', 'input-mat-desc', mat.desc || '');
+
+      const submitBtn = document.getElementById('btn-submit-material');
+      if (submitBtn) submitBtn.textContent = 'Actualizar Archivo en el Repositorio';
+      const cancelBtn = document.getElementById('btn-cancel-edit-mat');
+      if (cancelBtn) cancelBtn.style.display = 'inline-block';
+      document.getElementById('form-add-material').scrollIntoView({ behavior: 'smooth' });
     };
 
     // ==========================================
-    // SISTEMA DE USUARIOS, ROLES Y AUTENTICACIÓN
+    // SISTEMA DE USUARIOS, ROLES (CONSEJERO/A, EDITOR, ADMIN) Y AUTENTICACIÓN
     // ==========================================
     const DEFAULT_USERS = [
       {
@@ -2772,19 +3285,39 @@
         role: 'editor'
       },
       {
+        id: 'usr-consejero-1',
+        fullname: 'Consejero(a) de Debate',
+        username: 'consejero',
+        password: 'consejero2026',
+        role: 'consejero'
+      },
+      {
         id: 'usr-socio-1',
-        fullname: 'Socio Redactor',
+        fullname: 'Consejero(a) Redactor',
         username: 'socio',
         password: 'socio2026',
-        role: 'socio'
+        role: 'consejero'
       }
     ];
 
+    function formatRoleBadgeLabel(role) {
+      if (!role) return 'CONSEJERO(A)';
+      const r = role.toLowerCase().trim();
+      if (r === 'socio' || r === 'consejero') return 'CONSEJERO(A)';
+      if (r === 'editor') return 'EDITOR';
+      if (r === 'admin') return 'ADMIN';
+      return r.toUpperCase();
+    }
+
     function mergeUsersWithDefaults(customList) {
       const list = Array.isArray(customList) ? [...customList] : [];
+      list.forEach(u => {
+        if (u.role === 'socio') u.role = 'consejero';
+        if (u.fullname === 'Socio Redactor') u.fullname = 'Consejero(a) Redactor';
+      });
       DEFAULT_USERS.forEach(defU => {
         if (!list.some(u => u.username && u.username.toLowerCase() === defU.username.toLowerCase())) {
-          list.unshift(defU);
+          list.push({ ...defU });
         }
       });
       return list;
@@ -2805,6 +3338,106 @@
       safeSetItem('ucen_users', JSON.stringify(mergeUsersWithDefaults(users)));
     }
 
+    // Poblar selectores de vínculo orgánico entre Artículos/Usuarios e Integrantes del Equipo
+    window.populateAuthorAndUserMemberSelects = function() {
+      const members = getFacdehMembers();
+      const consejeros = members.filter(m => m.type === 'estudiante');
+      const academicos = members.filter(m => m.type === 'autoridad');
+      const asesores = members.filter(m => m.type === 'asesor');
+
+      const buildOptionsHtml = (defaultPlaceholder) => {
+        let html = `<option value="">${defaultPlaceholder}</option>`;
+        if (consejeros.length > 0) {
+          html += `<optgroup label="Consejeros(as) de Debate">`;
+          consejeros.forEach(m => {
+            html += `<option value="${m.id}">${m.name} (${m.role})</option>`;
+          });
+          html += `</optgroup>`;
+        }
+        if (academicos.length > 0) {
+          html += `<optgroup label="Cuerpo Académico y Profesores">`;
+          academicos.forEach(m => {
+            html += `<option value="${m.id}">${m.name} (${m.role})</option>`;
+          });
+          html += `</optgroup>`;
+        }
+        if (asesores.length > 0) {
+          html += `<optgroup label="Asesoría Externa">`;
+          asesores.forEach(m => {
+            html += `<option value="${m.id}">${m.name} (${m.role})</option>`;
+          });
+          html += `</optgroup>`;
+        }
+        return html;
+      };
+
+      const artSelect = document.getElementById('select-art-author-member');
+      if (artSelect) {
+        const prevVal = artSelect.value;
+        artSelect.innerHTML = buildOptionsHtml('-- Seleccionar Consejero(a), Profesor(a) o escribir manualmente --');
+        if (prevVal) artSelect.value = prevVal;
+      }
+
+      const usrSelect = document.getElementById('select-user-member-link');
+      if (usrSelect) {
+        const prevVal = usrSelect.value;
+        usrSelect.innerHTML = buildOptionsHtml('-- Seleccionar Consejero(a), Profesor(a) o Asesor(a) para vincular --');
+        if (prevVal) usrSelect.value = prevVal;
+      }
+    };
+
+    window.handleArticleAuthorMemberSelect = function(memberId) {
+      const hiddenMemberId = document.getElementById('input-art-author-member-id');
+      const authorInput = document.getElementById('input-art-author');
+      if (hiddenMemberId) hiddenMemberId.value = memberId || '';
+      if (memberId) {
+        const m = getFacdehMembers().find(x => x.id === memberId);
+        if (m && authorInput) {
+          authorInput.value = m.name;
+        }
+      }
+    };
+
+    window.handleUserMemberLinkSelect = function(memberId) {
+      if (!memberId) return;
+      const m = getFacdehMembers().find(x => x.id === memberId);
+      if (!m) return;
+      const fullnameInput = document.getElementById('new-user-fullname');
+      const usernameInput = document.getElementById('new-user-username');
+      const roleSelect = document.getElementById('new-user-role');
+      if (fullnameInput) fullnameInput.value = m.name;
+      if (usernameInput && !usernameInput.value.trim()) {
+        const parts = m.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(/\s+/).filter(Boolean);
+        if (parts.length >= 2) {
+          usernameInput.value = (parts[0][0] + parts[1]).replace(/[^a-z0-9]/g, '');
+        } else if (parts.length === 1) {
+          usernameInput.value = parts[0].replace(/[^a-z0-9]/g, '');
+        }
+      }
+      if (roleSelect) {
+        roleSelect.value = m.type === 'autoridad' ? 'editor' : 'consejero';
+      }
+    };
+
+    // Sincronizar automáticamente si escriben el nombre de un integrante en #input-art-author
+    const artAuthorInputEl = document.getElementById('input-art-author');
+    if (artAuthorInputEl) {
+      artAuthorInputEl.addEventListener('input', () => {
+        const val = artAuthorInputEl.value.toLowerCase().trim();
+        const members = getFacdehMembers();
+        const match = members.find(m => (m.name || '').toLowerCase().trim() === val);
+        const sel = document.getElementById('select-art-author-member');
+        const hid = document.getElementById('input-art-author-member-id');
+        if (match) {
+          if (sel) sel.value = match.id;
+          if (hid) hid.value = match.id;
+        } else {
+          if (sel) sel.value = '';
+          if (hid) hid.value = '';
+        }
+      });
+    }
+
     let currentUser = null;
 
     // Elementos del Modal Editor
@@ -2818,6 +3451,7 @@
     const workSec = document.getElementById('editor-workspace-sec');
 
     function openEditorModal() {
+      populateAuthorAndUserMemberSelects();
       editorDialog.showModal();
     }
 
@@ -2874,9 +3508,11 @@
 
     function setupUserSession() {
       if (!currentUser) return;
+      populateAuthorAndUserMemberSelects();
+
       document.getElementById('logged-user-name').textContent = currentUser.fullname;
       const badge = document.getElementById('logged-user-role-badge');
-      badge.textContent = currentUser.role.toUpperCase();
+      badge.textContent = formatRoleBadgeLabel(currentUser.role);
       badge.className = `user-badge user-badge--${currentUser.role}`;
 
       const tabUsers = document.getElementById('tab-btn-users');
@@ -2900,20 +3536,44 @@
         tabOrder.style.display = 'inline-block';
         if (tabPublish) tabPublish.style.display = 'inline-block';
       } else {
+        // Consejero(a): Puede redactar y gestionar artículos, publicar noticias/hitos y gestionar archivos
         tabUsers.style.display = 'none';
-        tabMat.style.display = 'none';
         tabTeam.style.display = 'none';
-        tabHitos.style.display = 'none';
-        tabOrder.style.display = 'none';
+        tabOrder.style.display = 'inline-block';
+        tabHitos.style.display = 'inline-block';
+        tabMat.style.display = 'inline-block';
         if (tabPublish) tabPublish.style.display = 'inline-block';
       }
 
-      document.getElementById('input-art-author').value = currentUser.fullname;
+      // Nunca sobreescribir el autor con "Administrador Central" o "Editor General"
+      const artIdVal = document.getElementById('input-art-id').value;
+      const authorInput = document.getElementById('input-art-author');
+      const authorSelect = document.getElementById('select-art-author-member');
+      const authorMemberIdInput = document.getElementById('input-art-author-member-id');
+
+      if (!artIdVal && authorInput) {
+        const genericNames = ['administrador central', 'editor general', 'consejero(a) de debate', 'consejero(a) redactor', 'socio redactor'];
+        const isGenericAccount = genericNames.includes((currentUser.fullname || '').toLowerCase().trim());
+        if (!isGenericAccount) {
+          authorInput.value = currentUser.fullname;
+          const matchedM = getFacdehMembers().find(m => (m.name || '').toLowerCase().trim() === currentUser.fullname.toLowerCase().trim());
+          if (matchedM) {
+            if (authorSelect) authorSelect.value = matchedM.id;
+            if (authorMemberIdInput) authorMemberIdInput.value = matchedM.id;
+          }
+        } else {
+          authorInput.value = '';
+          if (authorSelect) authorSelect.value = '';
+          if (authorMemberIdInput) authorMemberIdInput.value = '';
+        }
+      }
+
       switchEditorTab('art');
       renderUsersTable();
       renderOrderArticlesList();
       renderTeamManagerTable();
       renderHitosManagerTable();
+      renderMaterialsManagerTable();
     }
 
     // Pestañas del Editor
@@ -2939,6 +3599,8 @@
       [tabArt, tabOrder, tabTeam, tabHitos, tabMat, tabPublish, tabSec, tabUsers].forEach(t => { if (t) t.classList.remove('active'); });
       [formArt, secOrder, secTeam, secHitos, formMat, secPublish, formSec, secUsers].forEach(s => { if (s) s.style.display = 'none'; });
 
+      populateAuthorAndUserMemberSelects();
+
       if (tab === 'art') {
         tabArt.classList.add('active');
         formArt.style.display = 'block';
@@ -2957,6 +3619,7 @@
       } else if (tab === 'mat') {
         tabMat.classList.add('active');
         formMat.style.display = 'block';
+        renderMaterialsManagerTable();
       } else if (tab === 'publish') {
         if (tabPublish) tabPublish.classList.add('active');
         if (secPublish) secPublish.style.display = 'block';
@@ -3028,6 +3691,7 @@
         const username = document.getElementById('new-user-username').value.trim().replace(/\s+/g, '');
         const role = document.getElementById('new-user-role').value;
         const pwd = document.getElementById('new-user-pwd').value.trim();
+        const linkedMemberId = document.getElementById('select-user-member-link') ? document.getElementById('select-user-member-link').value : '';
         const feedbackEl = document.getElementById('user-create-feedback');
 
         if (!fullname || !username || !pwd) {
@@ -3046,7 +3710,8 @@
           fullname,
           username,
           password: pwd,
-          role
+          role,
+          memberId: linkedMemberId || undefined
         };
 
         users.push(newUserObj);
@@ -3060,9 +3725,9 @@
             <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.75rem 1rem; border-radius:8px; font-size:.82rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
               <div>
                 ✅ <strong>¡Usuario "${fullname}" creado y sincronizado!</strong><br/>
-                Usuario: <code>${username}</code> · Contraseña: <code>${pwd}</code> · Rol: <strong>${role.toUpperCase()}</strong>
+                Usuario: <code>${username}</code> · Contraseña: <code>${pwd}</code> · Rol: <strong>${formatRoleBadgeLabel(role)}</strong>
               </div>
-              <button type="button" class="order-btn" onclick="copyUserCredentials('${username}', '${pwd}', '${fullname}')" style="background:#10b981; color:#fff; border:none; padding:.3rem .7rem; font-weight:700;">
+              <button type="button" class="order-btn" onclick="copyUserCredentials('${username}', '${pwd}', '${fullname.replace(/'/g, "\\'")}')" style="background:#10b981; color:#fff; border:none; padding:.3rem .7rem; font-weight:700;">
                 📋 Copiar Acceso
               </button>
             </div>
@@ -3101,7 +3766,7 @@
           <td><strong>${u.fullname}</strong></td>
           <td><code>${u.username}</code></td>
           <td><code style="background:#f1f5f9; padding:.15rem .4rem; border-radius:4px; color:#0f172a;">${u.password}</code></td>
-          <td><span class="user-badge user-badge--${u.role}">${u.role.toUpperCase()}</span></td>
+          <td><span class="user-badge user-badge--${u.role}">${formatRoleBadgeLabel(u.role)}</span></td>
           <td>
             <div style="display:flex; gap:.35rem; align-items:center;">
               <button type="button" class="order-btn" style="padding:.15rem .45rem; font-size:.7rem;" onclick="copyUserCredentials('${u.username}', '${u.password}', '${u.fullname.replace(/'/g, "\\'")}')" title="Copiar usuario y clave para compartir">📋 Copiar</button>
@@ -3127,108 +3792,167 @@
       if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
+    // ==========================================
+    // GESTOR Y EDITOR ENRIQUECIDO DE ARTÍCULOS (FOTOS INTERCALADAS, NOTAS AL PIE Y AUTORÍA)
+    // ==========================================
     window.resetArticleForm = function() {
       formArt.reset();
       document.getElementById('input-art-id').value = '';
-      document.getElementById('btn-submit-article').textContent = 'Publicar Artículo';
+      document.getElementById('input-art-author-member-id').value = '';
+      const selMember = document.getElementById('select-art-author-member');
+      if (selMember) selMember.value = '';
+      setRichEditorContent('art-rich-editor', 'input-art-content', '');
+      const fnEl = document.getElementById('input-art-footnotes');
+      if (fnEl) fnEl.value = '';
+      document.getElementById('btn-submit-article').textContent = 'Publicar Artículo en la Tribuna';
       const cancelBtn = document.getElementById('btn-cancel-edit-art');
       if (cancelBtn) cancelBtn.style.display = 'none';
     };
 
     window.editArticleInCMS = function(articleId) {
       openEditorWithTab('art');
+      populateAuthorAndUserMemberSelects();
       const articles = getArticles();
       const art = articles.find(a => a.id === articleId);
       if (!art) return;
 
       document.getElementById('input-art-id').value = art.id;
-      document.getElementById('input-art-title').value = art.title;
+      document.getElementById('input-art-title').value = art.title || '';
       document.getElementById('input-art-cat').value = art.category || 'Doctrina & Debate Constitucional';
       document.getElementById('input-art-materia').value = art.materia || 'Derecho Constitucional';
       document.getElementById('input-art-author').value = art.author || '';
       document.getElementById('input-art-tags').value = art.tags ? art.tags.join(', ') : '';
       document.getElementById('input-art-summary').value = art.summary || '';
-      
-      // Convertir HTML a texto plano para el editor
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = art.content || '';
-      document.getElementById('input-art-content').value = tempDiv.innerHTML;
+
+      const matchedMember = findMemberForArticle(art);
+      const selMember = document.getElementById('select-art-author-member');
+      const hidMember = document.getElementById('input-art-author-member-id');
+      if (matchedMember) {
+        if (selMember) selMember.value = matchedMember.id;
+        if (hidMember) hidMember.value = matchedMember.id;
+      } else {
+        if (selMember) selMember.value = '';
+        if (hidMember) hidMember.value = '';
+      }
+
+      setRichEditorContent('art-rich-editor', 'input-art-content', art.content || '');
+
+      const fnEl = document.getElementById('input-art-footnotes');
+      if (fnEl) {
+        fnEl.value = (art.footnotes && Array.isArray(art.footnotes))
+          ? art.footnotes.map((fn, idx) => fn.startsWith('[') ? fn : `[${idx + 1}] ${fn}`).join('\n')
+          : '';
+      }
 
       document.getElementById('input-art-biblio').value = art.bibliography ? art.bibliography.join('\n') : '';
 
-      document.getElementById('btn-submit-article').textContent = 'Actualizar Artículo';
+      document.getElementById('btn-submit-article').textContent = 'Actualizar Artículo y Autoría';
       const cancelBtn = document.getElementById('btn-cancel-edit-art');
       if (cancelBtn) cancelBtn.style.display = 'inline-block';
       formArt.scrollIntoView({ behavior: 'smooth' });
     };
 
-    // Input invisible para selección rápida de imagen local para artículos
+    // Insertar Nota al Pie de Página en la posición del cursor del artículo
+    window.insertFootnoteInArticleEditor = function() {
+      const fnTextarea = document.getElementById('input-art-footnotes');
+      if (!fnTextarea) return;
+      const existingLines = fnTextarea.value.split('\n').map(l => l.trim()).filter(Boolean);
+      const nextNum = existingLines.length + 1;
+
+      const noteText = prompt(`Texto para la Nota al Pie de Página [${nextNum}]:\n(Ej: Véase Sentencia Rol N° 12.450-22 del Tribunal Constitucional, considerando 14°.)`);
+      if (!noteText || !noteText.trim()) return;
+
+      const supHtml = `<sup id="fnref-${nextNum}"><a href="#fn-${nextNum}" class="footnote-ref">[${nextNum}]</a></sup>&nbsp;`;
+      insertHtmlAtEditorCursor('art-rich-editor', supHtml);
+
+      const newLine = `[${nextNum}] ${noteText.trim()}`;
+      fnTextarea.value = existingLines.length > 0 ? `${existingLines.join('\n')}\n${newLine}` : newLine;
+    };
+
+    // Input invisible para selección de una o múltiples imágenes locales para artículos o noticias
     const fileInputForArticle = document.createElement('input');
     fileInputForArticle.type = 'file';
     fileInputForArticle.accept = 'image/*';
+    fileInputForArticle.multiple = true;
     fileInputForArticle.style.display = 'none';
     document.body.appendChild(fileInputForArticle);
 
-    window.promptInsertImageInArticle = function() {
-      // Preguntar si prefiere subir archivo local o poner URL
-      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu dispositivo\n[Cancelar] = Escribir enlace / URL de imagen');
-      const contentTextarea = document.getElementById('input-art-content');
+    window.promptInsertImageInEditor = function(targetEditorId = 'art-rich-editor', mode = 'ask') {
+      let useLocal = true;
+      if (mode === 'local') {
+        useLocal = true;
+      } else if (mode === 'url') {
+        useLocal = false;
+      } else {
+        useLocal = confirm('¿Deseas seleccionar una o varias fotos desde tu dispositivo?\n\n[Aceptar] = Subir foto(s) desde tu computador o celular\n[Cancelar] = Escribir enlace / URL de imagen');
+      }
+
+      const statusEl = document.getElementById(targetEditorId === 'hito-rich-editor' ? 'hito-photo-upload-status' : 'art-photo-upload-status');
 
       if (useLocal) {
         fileInputForArticle.onchange = async (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
-          const dataUrl = await compressImageFile(file, 900, 0.78);
-          const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
-          contentTextarea.value += imgMarkup;
-          alert('¡Imagen optimizada e insertada al cuerpo del artículo!');
+          const files = Array.from(e.target.files || []);
+          if (!files.length) return;
+          const defaultCaption = files.length === 1
+            ? (prompt('Pie de foto o descripción explicativa (opcional):', '') || '')
+            : (prompt(`Has seleccionado ${files.length} fotos. Pie de foto general (opcional, o déjalo vacío):`, '') || '');
+
+          if (statusEl) {
+            statusEl.style.display = 'inline-block';
+            statusEl.textContent = `⏳ Subiendo y optimizando ${files.length} foto(s)...`;
+          }
+
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const dataUrl = await compressImageFile(file, 950, 0.80);
+            const cap = files.length > 1 && defaultCaption ? `${defaultCaption} (${i + 1})` : defaultCaption;
+            const imgMarkup = `<figure class="article-inline-figure"><img src="${dataUrl}" alt="${cap}" />${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure><p style="text-align:justify;"><br></p>`;
+            insertHtmlAtEditorCursor(targetEditorId, imgMarkup);
+          }
+
+          if (statusEl) {
+            statusEl.textContent = `✅ ${files.length} foto(s) insertada(s) en el texto`;
+            setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+          }
           fileInputForArticle.value = '';
         };
         fileInputForArticle.click();
       } else {
-        const url = prompt('Introduce la URL de la imagen o ruta local (ej: img/galeria/foto-08.jpg):');
+        const url = prompt('Introduce la URL de la imagen o ruta local (ej: img/galeria/foto-08.jpg o https://...):');
         if (!url) return;
-        const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
-        const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
-        contentTextarea.value += imgMarkup;
-        alert('¡Imagen agregada al cuerpo del artículo!');
+        const caption = prompt('Pie de foto o descripción explicativa (opcional):', '') || '';
+        const imgMarkup = `<figure class="article-inline-figure"><img src="${normalizeExternalUrl(url)}" alt="${caption}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure><p style="text-align:justify;"><br></p>`;
+        insertHtmlAtEditorCursor(targetEditorId, imgMarkup);
       }
+    };
+
+    window.promptInsertImageInArticle = function(mode = 'ask') {
+      window.promptInsertImageInEditor('art-rich-editor', mode);
     };
 
     window.promptInsertImageInCurrentArticle = function(articleId) {
-      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu dispositivo\n[Cancelar] = Escribir enlace / URL de imagen');
       const bodyEl = document.querySelector(`[data-edit-key="article-content-${articleId}"]`);
       if (!bodyEl) return;
-
-      if (useLocal) {
-        fileInputForArticle.onchange = async (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
-          const dataUrl = await compressImageFile(file, 900, 0.78);
-          const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
-          bodyEl.innerHTML += imgMarkup;
-          saveActiveArticleInline(articleId);
-          alert('¡Imagen insertada directamente en el artículo!');
-          fileInputForArticle.value = '';
-        };
-        fileInputForArticle.click();
-      } else {
-        const url = prompt('Introduce la URL de la imagen (ej: img/galeria/foto-08.jpg o https://...):');
-        if (!url) return;
+      fileInputForArticle.onchange = async (e) => {
+        const files = Array.from(e.target.files || []);
+        if (!files.length) return;
         const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
-        const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${url}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
-        bodyEl.innerHTML += imgMarkup;
+        for (const file of files) {
+          const dataUrl = await compressImageFile(file, 950, 0.80);
+          const imgMarkup = `<figure class="article-inline-figure"><img src="${dataUrl}" alt="${caption}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
+          bodyEl.innerHTML += imgMarkup;
+        }
         saveActiveArticleInline(articleId);
-      }
+        fileInputForArticle.value = '';
+      };
+      fileInputForArticle.click();
     };
 
-    // Publicar o Actualizar Artículo con Tags y Bibliografía
+    // Publicar o Actualizar Artículo con Formato Enriquecido, Autoría Vinculada, Fotos y Notas al Pie
     formArt.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('btn-submit-article');
-      const origText = submitBtn ? submitBtn.textContent : 'Publicar Artículo';
+      const origText = submitBtn ? submitBtn.textContent : 'Publicar Artículo en la Tribuna';
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = '⏳ Publicando...';
@@ -3240,24 +3964,45 @@
         const category = document.getElementById('input-art-cat').value;
         const materia = document.getElementById('input-art-materia').value;
         const author = document.getElementById('input-art-author').value.trim();
+        let authorMemberId = document.getElementById('input-art-author-member-id').value.trim();
         const tagsRaw = document.getElementById('input-art-tags').value.trim();
         const summary = document.getElementById('input-art-summary').value.trim();
-        const contentText = document.getElementById('input-art-content').value.trim();
+        const contentHtml = getRichEditorCleanHtml('art-rich-editor', 'input-art-content');
+        const footnotesRaw = document.getElementById('input-art-footnotes') ? document.getElementById('input-art-footnotes').value.trim() : '';
         const biblioRaw = document.getElementById('input-art-biblio').value.trim();
+
+        if (!contentHtml) {
+          alert('Por favor escribe el contenido del artículo antes de publicar.');
+          return;
+        }
+
+        // Si no seleccionó en el dropdown pero el nombre coincide con un miembro del equipo, vincularlo orgánicamente
+        if (!authorMemberId && author) {
+          const matched = getFacdehMembers().find(m => {
+            const mNorm = (m.name || '').toLowerCase().trim();
+            const aNorm = author.toLowerCase().trim();
+            return mNorm && (mNorm.includes(aNorm) || aNorm.includes(mNorm));
+          });
+          if (matched) authorMemberId = matched.id;
+        }
 
         const tags = tagsRaw 
           ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
           : [materia];
 
+        const footnotes = footnotesRaw
+          ? footnotesRaw.split('\n').map(f => f.trim()).filter(f => f.length > 0)
+          : [];
+
         const bibliography = biblioRaw 
           ? biblioRaw.split('\n').map(b => b.trim()).filter(b => b.length > 0)
           : [];
 
-        // Si el texto ya contiene etiquetas HTML (como <p>, <figure>, <img>), usarlo directo; si es puro texto, envolver en párrafos
-        const formattedContent = contentText.includes('<')
-          ? contentText
-          : contentText.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        const formattedContent = contentHtml.includes('<')
+          ? contentHtml
+          : contentHtml.split(/\n\n+/).map(p => `<p style="text-align:justify;">${p}</p>`).join('');
 
+        const plainWords = formattedContent.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
         const articles = getArticles();
 
         if (artId) {
@@ -3271,9 +4016,12 @@
               materia,
               tags,
               author,
+              authorMemberId: authorMemberId || undefined,
               summary,
               content: formattedContent,
-              bibliography
+              footnotes,
+              bibliography,
+              readTime: `${Math.max(3, Math.ceil(plainWords / 160))} min`
             };
           }
           activeArticleId = artId;
@@ -3286,10 +4034,12 @@
             materia,
             tags,
             author,
+            authorMemberId: authorMemberId || undefined,
             date: new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
-            readTime: `${Math.max(3, Math.ceil(contentText.split(' ').length / 160))} min`,
+            readTime: `${Math.max(3, Math.ceil(plainWords / 160))} min`,
             summary,
             content: formattedContent,
+            footnotes,
             bibliography,
             isLead: false
           };
@@ -3300,13 +4050,14 @@
         saveArticles(articles);
         renderArticlesView();
         renderOrderArticlesList();
+        renderFacdehTeam();
         resetArticleForm();
         editorDialog.close();
         navigateToWindow('articulos');
         if (typeof publishSiteToGitHub === 'function') {
           publishSiteToGitHub({ silent: true });
         }
-        alert(`✅ ¡Artículo "${title}" ${artId ? 'actualizado' : 'publicado'} y sincronizado en la web global!`);
+        alert(`✅ ¡Artículo "${title}" (Autor: ${author}) ${artId ? 'actualizado' : 'publicado'} y sincronizado en la web global!`);
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -3315,37 +4066,133 @@
       }
     });
 
-    // Guardar Material
-    formMat.addEventListener('submit', (e) => {
+    // Subida de archivos PDF/DOCX en el formulario de Materiales
+    const inputMatFile = document.getElementById('input-mat-file');
+    let _matFileUploadPromise = null;
+    if (inputMatFile) {
+      inputMatFile.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const statusEl = document.getElementById('mat-file-upload-status');
+        const linkInput = document.getElementById('input-mat-link');
+        const formatInput = document.getElementById('input-mat-format');
+
+        const extMatch = (file.name || '').match(/\.([a-zA-Z0-9]+)$/);
+        if (extMatch && formatInput) {
+          formatInput.value = extMatch[1].toUpperCase();
+        }
+
+        if (statusEl) {
+          statusEl.style.display = 'block';
+          statusEl.style.color = '#0369a1';
+          statusEl.textContent = `⏳ Subiendo archivo "${file.name}" al servidor...`;
+        }
+
+        _matFileUploadPromise = uploadDocToGitHubRepo(file).then(uploadedUrl => {
+          if (linkInput) linkInput.value = uploadedUrl;
+          if (statusEl) {
+            statusEl.style.color = '#065f46';
+            statusEl.innerHTML = `✅ Archivo <strong>${file.name}</strong> subido y enlazado automáticamente.`;
+          }
+          return uploadedUrl;
+        }).catch(err => {
+          if (statusEl) {
+            statusEl.style.color = '#991b1b';
+            statusEl.textContent = `⚠️ No se pudo subir el archivo directo (${err.message}). Puedes pegar un enlace de Google Drive.`;
+          }
+          return null;
+        }).finally(() => {
+          _matFileUploadPromise = null;
+          inputMatFile.value = '';
+        });
+      });
+    }
+
+    // Guardar o Actualizar Material en el Repositorio
+    formMat.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const title = document.getElementById('input-mat-title').value.trim();
-      const badge = document.getElementById('input-mat-cat').value;
-      const desc = document.getElementById('input-mat-desc').value.trim();
-      const format = document.getElementById('input-mat-format').value.trim();
-      const link = normalizeExternalUrl(document.getElementById('input-mat-link').value.trim()) || '#';
+      const submitBtn = document.getElementById('btn-submit-material');
+      const origText = submitBtn ? submitBtn.textContent : 'Guardar y Publicar Archivo';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Guardando archivo...';
+      }
 
-      const newMat = {
-        id: 'mat-' + Date.now(),
-        title,
-        badge: `${badge} (${format})`,
-        desc,
-        format,
-        link
-      };
+      try {
+        if (_matFileUploadPromise) {
+          await _matFileUploadPromise;
+        }
 
-      const materials = getMaterials();
-      materials.unshift(newMat);
-      saveMaterials(materials);
-      renderMaterialsView();
-      formMat.reset();
-      editorDialog.close();
-      navigateToWindow('archivos');
-      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
-      alert('✅ ¡Material agregado y sincronizado en el repositorio global!');
+        const matId = document.getElementById('input-mat-id').value.trim();
+        const title = document.getElementById('input-mat-title').value.trim();
+        const category = document.getElementById('input-mat-cat').value;
+        const descHtml = getRichEditorCleanHtml('mat-rich-editor', 'input-mat-desc');
+        const format = (document.getElementById('input-mat-format').value.trim() || 'PDF').toUpperCase();
+        const rawLink = document.getElementById('input-mat-link').value.trim();
+        const link = normalizeExternalUrl(rawLink) || '#';
+
+        if (!descHtml) {
+          alert('Por favor escribe una descripción para el archivo o material.');
+          return;
+        }
+
+        const materials = getMaterials();
+        const badge = `${category} (${format})`;
+
+        if (matId) {
+          const idx = materials.findIndex(m => m.id === matId);
+          if (idx !== -1) {
+            materials[idx] = {
+              ...materials[idx],
+              title,
+              category,
+              badge,
+              desc: descHtml,
+              format,
+              link
+            };
+          }
+        } else {
+          materials.unshift({
+            id: 'mat-' + Date.now(),
+            title,
+            category,
+            badge,
+            desc: descHtml,
+            format,
+            link
+          });
+        }
+
+        saveMaterials(materials);
+        renderMaterialsView();
+        renderMaterialsManagerTable();
+        renderHomeDashboardPreviews();
+        resetMaterialForm();
+        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+
+        const feedbackEl = document.getElementById('mat-publish-feedback');
+        if (feedbackEl) {
+          feedbackEl.style.display = 'block';
+          feedbackEl.innerHTML = `
+            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.75rem 1rem; border-radius:8px; font-size:.82rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
+              <span>✅ <strong>¡Archivo "${title}" ${matId ? 'actualizado' : 'publicado'} y sincronizado en el repositorio!</strong></span>
+              <button type="button" class="order-btn" style="background:#10b981; color:#fff; border:none; padding:.28rem .75rem;" onclick="editorDialog.close(); navigateToWindow('archivos');">
+                📂 Ver en Pestaña Archivos →
+              </button>
+            </div>
+          `;
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+      }
     });
 
     // ==========================================
-    // HITOS, TORNEOS Y NOTICIAS (GESTIÓN Y VISOR CON FOTOS)
+    // HITOS, TORNEOS Y NOTICIAS (GESTIÓN Y VISOR CON FOTOS Y TEXTO ENRIQUECIDO)
     // ==========================================
     const DEFAULT_HITOS = [
       {
@@ -3449,9 +4296,9 @@
       const featured = hitos.find(h => h.isFeatured) || hitos[0];
       const regularList = hitos.filter(h => h.id !== (featured ? featured.id : null));
 
-      const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+      const isLoggedUser = Boolean(currentUser);
       const addHitoBtn = document.getElementById('btn-add-hito-win');
-      if (addHitoBtn) addHitoBtn.style.display = isEditorOrAdmin ? 'inline-block' : 'none';
+      if (addHitoBtn) addHitoBtn.style.display = isLoggedUser ? 'inline-block' : 'none';
 
       // Render Destacado
       if (featured) {
@@ -3469,12 +4316,10 @@
           </div>
         ` : '';
 
-        const editorControls = isEditorOrAdmin ? `
-          <div class="editor-in-situ-controls" style="margin-top:.8rem; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; gap:.4rem; align-items:center;">
-            <button class="order-btn" onclick="saveHitoInline('${featured.id}')">💾 Guardar Cambios</button>
-            <button class="order-btn" onclick="editHitoInCMS('${featured.id}')">✏️ Editar Completo</button>
-            <button class="order-btn" style="color:#c92a2a;" onclick="deleteHito('${featured.id}')">✕ Borrar</button>
-          </div>
+        const quickEditBtn = isLoggedUser ? `
+          <button type="button" class="order-btn" onclick="editHitoInCMS('${featured.id}')" style="background:var(--gold-400); color:var(--navy-900); border:none; padding:.25rem .7rem; font-size:.74rem; font-weight:800;">
+            ✏️ Editar Noticia
+          </button>
         ` : '';
 
         featuredContainer.innerHTML = `
@@ -3482,13 +4327,16 @@
             <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
               ${photoHtml}
               <div style="flex: 1; min-width: 280px;">
-                <span class="hito-card__badge" data-editable="text" data-edit-key="hito-badge-${featured.id}">${featured.badge}</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.4rem;">
+                  <span class="hito-card__badge" data-editable="text" data-edit-key="hito-badge-${featured.id}">${featured.badge}</span>
+                  ${quickEditBtn}
+                </div>
                 <h3 style="font-size: 1.4rem; color: var(--navy-900); margin: .4rem 0 .8rem; font-weight: 800; cursor:pointer;" onclick="openHitoDetail('${featured.id}')" data-editable="text" data-edit-key="hito-title-${featured.id}">
                   ${featured.title}
                 </h3>
-                <p style="color: var(--gray-700); line-height: 1.6; font-size: .92rem; margin-bottom: .8rem;" data-editable="text" data-edit-key="hito-desc-${featured.id}">
+                <div class="hito-card__desc" style="color: var(--gray-700); line-height: 1.65; font-size: .92rem; margin-bottom: .8rem; text-align: justify;" data-editable="html" data-edit-key="hito-desc-${featured.id}">
                   ${featured.desc}
-                </p>
+                </div>
                 ${scheduleHtml}
                 <div style="margin-top: 1rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap;">
                   <button type="button" class="btn btn--gold" style="font-size:.76rem; padding:.3rem .8rem;" onclick="openHitoDetail('${featured.id}')">
@@ -3500,7 +4348,6 @@
                     </a>
                   ` : ''}
                 </div>
-                ${editorControls}
               </div>
             </div>
           </article>
@@ -3517,22 +4364,15 @@
           </div>
         ` : '';
 
-        const editorControls = isEditorOrAdmin ? `
-          <div class="editor-in-situ-controls" style="margin-top:auto; padding-top:.6rem; border-top:1px dashed var(--gray-300); display:flex; justify-content:space-between; align-items:center;">
-            <div style="display:flex; gap:.3rem;">
-              <button class="order-btn" style="padding:.15rem .45rem;" onclick="saveHitoInline('${h.id}')" title="Guardar cambios in situ">💾</button>
-              <button class="order-btn" style="padding:.15rem .45rem;" onclick="editHitoInCMS('${h.id}')" title="Editar en panel">✏️</button>
-            </div>
-            <button class="order-btn" style="color:#c92a2a; padding:.15rem .45rem;" onclick="deleteHito('${h.id}')" title="Eliminar hito">✕</button>
-          </div>
-        ` : '';
-
         return `
           <div class="hito-card">
             ${photoTag}
-            <span class="hito-card__badge" data-editable="text" data-edit-key="hito-badge-${h.id}">${h.badge}</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:.4rem;">
+              <span class="hito-card__badge" data-editable="text" data-edit-key="hito-badge-${h.id}">${h.badge}</span>
+              ${isLoggedUser ? `<button type="button" class="order-btn" style="padding:.12rem .45rem; font-size:.68rem;" onclick="editHitoInCMS('${h.id}')">✏️ Editar</button>` : ''}
+            </div>
             <h4 class="hito-card__title" data-editable="text" data-edit-key="hito-title-${h.id}" style="cursor:pointer;" onclick="openHitoDetail('${h.id}')">${h.title}</h4>
-            <p class="hito-card__desc" data-editable="text" data-edit-key="hito-desc-${h.id}">${h.desc}</p>
+            <div class="hito-card__desc" style="text-align:justify;" data-editable="html" data-edit-key="hito-desc-${h.id}">${h.desc}</div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; margin-bottom:.5rem;">
               <button type="button" onclick="openHitoDetail('${h.id}')" style="background:none; border:none; padding:0; color:var(--blue-600); font-weight:700; font-size:.78rem; cursor:pointer;">
                 📷 Ver fotos y contenidos →
@@ -3543,7 +4383,6 @@
                 </a>
               ` : '<span></span>'}
             </div>
-            ${editorControls}
           </div>
         `;
       }).join('');
@@ -3581,8 +4420,9 @@
         hitoModalMediaWrap.style.display = 'none';
       }
 
-      // Contenido y cronograma
-      let contentHtml = `<p>${h.desc}</p>`;
+      // Contenido enriquecido justificado y cronograma
+      const descFormatted = (h.desc || '').includes('<') ? h.desc : `<p style="text-align:justify;">${h.desc || ''}</p>`;
+      let contentHtml = `<div style="text-align:justify; line-height:1.75;">${descFormatted}</div>`;
       if (h.schedule) {
         contentHtml += `
           <div style="background: var(--blue-50); border: 1px solid var(--blue-200); padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: .88rem;">
@@ -3637,7 +4477,7 @@
       const badgeEl = document.querySelector(`[data-edit-key="hito-badge-${hitoId}"]`);
 
       if (titleEl) h.title = titleEl.innerText.trim();
-      if (descEl) h.desc = descEl.innerText.trim();
+      if (descEl) h.desc = descEl.innerHTML.trim();
       if (badgeEl) h.badge = badgeEl.innerText.trim();
 
       saveHitos(hitos);
@@ -3648,7 +4488,7 @@
     };
 
     window.deleteHito = function(hitoId) {
-      if (!confirm('¿Deseas eliminar este hito o torneo?')) return;
+      if (!confirm('¿Deseas eliminar este hito o noticia?')) return;
       let hitos = getHitos().filter(h => h.id !== hitoId);
       saveHitos(hitos);
       renderHitosView();
@@ -3661,7 +4501,7 @@
       resetHitoForm();
     };
 
-    // Panel de control CMS para Hitos
+    // Panel de control CMS para Hitos y Noticias
     const formManageHito = document.getElementById('form-manage-hito');
     const inputHitoPhotoFile = document.getElementById('input-hito-photo-file');
     const inputHitoPhotoUrl = document.getElementById('input-hito-photo-url');
@@ -3669,6 +4509,7 @@
     const inputHitoGalleryFiles = document.getElementById('input-hito-gallery-files');
     const inputHitoGallery = document.getElementById('input-hito-gallery');
     const hitoGalleryPreviews = document.getElementById('hito-gallery-previews');
+    let _hitoPendingUploads = [];
 
     function renderHitoGalleryPreviews() {
       if (!hitoGalleryPreviews || !inputHitoGallery) return;
@@ -3703,24 +4544,48 @@
       inputHitoGalleryFiles.addEventListener('change', async (e) => {
         const files = Array.from(e.target.files);
         if (!files.length) return;
-
-        for (const file of files) {
-          const dataUrl = await compressImageFile(file, 900, 0.78);
-          const currentVal = inputHitoGallery.value.trim();
-          inputHitoGallery.value = currentVal ? `${currentVal}\n${dataUrl}` : dataUrl;
+        const statusEl = document.getElementById('hito-photo-upload-status');
+        if (statusEl) {
+          statusEl.style.display = 'inline-block';
+          statusEl.textContent = `⏳ Subiendo ${files.length} foto(s) de galería...`;
         }
-        renderHitoGalleryPreviews();
-        inputHitoGalleryFiles.value = '';
+
+        const task = (async () => {
+          for (const file of files) {
+            const dataUrl = await compressImageFile(file, 900, 0.78);
+            const currentVal = inputHitoGallery.value.trim();
+            inputHitoGallery.value = currentVal ? `${currentVal}\n${dataUrl}` : dataUrl;
+          }
+          renderHitoGalleryPreviews();
+          inputHitoGalleryFiles.value = '';
+          if (statusEl) {
+            statusEl.textContent = '✅ Fotos de galería listas';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 3500);
+          }
+        })();
+        _hitoPendingUploads.push(task);
+        await task;
       });
     }
 
     if (inputHitoPhotoFile) {
       inputHitoPhotoFile.addEventListener('change', async (e) => {
         const file = e.target.files[0];
-        if (file) {
-          const compressed = await compressImageFile(file, 900, 0.78);
-          inputHitoPhotoUrl.value = compressed;
+        if (!file) return;
+        const statusEl = document.getElementById('hito-photo-upload-status');
+        if (statusEl) {
+          statusEl.style.display = 'inline-block';
+          statusEl.textContent = '⏳ Subiendo foto principal...';
         }
+        const task = compressImageFile(file, 900, 0.78).then(compressed => {
+          inputHitoPhotoUrl.value = compressed;
+          if (statusEl) {
+            statusEl.textContent = '✅ Foto principal lista';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 3500);
+          }
+        });
+        _hitoPendingUploads.push(task);
+        await task;
       });
     }
 
@@ -3728,9 +4593,10 @@
       if (!formManageHito) return;
       formManageHito.reset();
       document.getElementById('input-hito-id').value = '';
+      setRichEditorContent('hito-rich-editor', 'input-hito-desc', '');
       if (inputHitoGallery) inputHitoGallery.value = '';
       renderHitoGalleryPreviews();
-      document.getElementById('btn-save-hito-submit').textContent = 'Guardar Nuevo Hito';
+      document.getElementById('btn-save-hito-submit').textContent = 'Publicar / Guardar Noticia';
     };
 
     window.editHitoInCMS = function(hitoId) {
@@ -3740,9 +4606,9 @@
       if (!h) return;
 
       document.getElementById('input-hito-id').value = h.id;
-      document.getElementById('input-hito-title').value = h.title;
-      document.getElementById('input-hito-badge').value = h.badge;
-      document.getElementById('input-hito-desc').value = h.desc;
+      document.getElementById('input-hito-title').value = h.title || '';
+      document.getElementById('input-hito-badge').value = h.badge || '';
+      setRichEditorContent('hito-rich-editor', 'input-hito-desc', h.desc || '');
       document.getElementById('input-hito-schedule').value = h.schedule || '';
       document.getElementById('input-hito-photo-url').value = h.photo || '';
       document.getElementById('input-hito-gallery').value = h.gallery ? h.gallery.join('\n') : '';
@@ -3751,68 +4617,110 @@
       document.getElementById('input-hito-link-text').value = h.linkText || 'Ver noticia oficial →';
       document.getElementById('input-hito-featured').checked = !!h.isFeatured;
 
-      document.getElementById('btn-save-hito-submit').textContent = 'Actualizar Hito';
+      document.getElementById('btn-save-hito-submit').textContent = 'Actualizar Noticia / Hito';
       document.getElementById('sec-hitos-management').scrollIntoView({ behavior: 'smooth' });
     };
 
     if (formManageHito) {
-      formManageHito.addEventListener('submit', (e) => {
+      formManageHito.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const hitoId = document.getElementById('input-hito-id').value.trim();
-        const title = document.getElementById('input-hito-title').value.trim();
-        const badge = document.getElementById('input-hito-badge').value.trim();
-        const desc = document.getElementById('input-hito-desc').value.trim();
-        const schedule = document.getElementById('input-hito-schedule').value.trim();
-        const photo = document.getElementById('input-hito-photo-url').value.trim();
-        const galleryRaw = document.getElementById('input-hito-gallery').value.trim();
-        const linkUrl = normalizeExternalUrl(document.getElementById('input-hito-link-url').value.trim());
-        const linkText = document.getElementById('input-hito-link-text').value.trim();
-        const isFeatured = document.getElementById('input-hito-featured').checked;
-
-        const gallery = galleryRaw ? galleryRaw.split('\n').map(g => g.trim()).filter(g => g.length > 0) : [];
-        const hitos = getHitos();
-
-        if (isFeatured) {
-          hitos.forEach(h => { h.isFeatured = false; });
+        const submitBtn = document.getElementById('btn-save-hito-submit');
+        const origText = submitBtn ? submitBtn.textContent : 'Publicar / Guardar Noticia';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = '⏳ Publicando noticia...';
         }
 
-        if (hitoId) {
-          const idx = hitos.findIndex(h => h.id === hitoId);
-          if (idx !== -1) {
-            hitos[idx] = {
-              ...hitos[idx],
+        try {
+          if (_hitoPendingUploads.length > 0) {
+            await Promise.allSettled(_hitoPendingUploads);
+            _hitoPendingUploads = [];
+          }
+
+          const hitoId = document.getElementById('input-hito-id').value.trim();
+          const title = document.getElementById('input-hito-title').value.trim();
+          const badge = document.getElementById('input-hito-badge').value.trim();
+          const descHtml = getRichEditorCleanHtml('hito-rich-editor', 'input-hito-desc');
+          const schedule = document.getElementById('input-hito-schedule').value.trim();
+          const photo = document.getElementById('input-hito-photo-url').value.trim();
+          const galleryRaw = document.getElementById('input-hito-gallery').value.trim();
+          const linkUrl = normalizeExternalUrl(document.getElementById('input-hito-link-url').value.trim());
+          const linkText = document.getElementById('input-hito-link-text').value.trim();
+          const isFeatured = document.getElementById('input-hito-featured').checked;
+
+          if (!descHtml) {
+            alert('Por favor escribe el relato o descripción de la noticia antes de publicar.');
+            return;
+          }
+
+          const gallery = galleryRaw ? galleryRaw.split('\n').map(g => g.trim()).filter(g => g.length > 0) : [];
+          if (photo && !gallery.includes(photo)) {
+            gallery.unshift(photo);
+          }
+
+          const hitos = getHitos();
+
+          if (isFeatured) {
+            hitos.forEach(h => { h.isFeatured = false; });
+          }
+
+          let savedHitoId = hitoId;
+          if (hitoId) {
+            const idx = hitos.findIndex(h => h.id === hitoId);
+            if (idx !== -1) {
+              hitos[idx] = {
+                ...hitos[idx],
+                title,
+                badge,
+                desc: descHtml,
+                schedule,
+                photo,
+                gallery,
+                linkUrl,
+                linkText: linkText || 'Ver noticia oficial →',
+                isFeatured
+              };
+            }
+          } else {
+            savedHitoId = 'hito-' + Date.now();
+            hitos.unshift({
+              id: savedHitoId,
               title,
               badge,
-              desc,
+              desc: descHtml,
               schedule,
               photo,
               gallery,
               linkUrl,
               linkText: linkText || 'Ver noticia oficial →',
               isFeatured
-            };
+            });
           }
-        } else {
-          hitos.unshift({
-            id: 'hito-' + Date.now(),
-            title,
-            badge,
-            desc,
-            schedule,
-            photo,
-            gallery,
-            linkUrl,
-            linkText: linkText || 'Ver noticia oficial →',
-            isFeatured
-          });
-        }
 
-        saveHitos(hitos);
-        renderHitosView();
-        renderHitosManagerTable();
-        resetHitoForm();
-        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
-        alert(`✅ ¡Hito "${title}" guardado y sincronizado en la web global!`);
+          saveHitos(hitos);
+          renderHitosView();
+          renderHitosManagerTable();
+          resetHitoForm();
+          if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+
+          const fbEl = document.getElementById('hito-publish-feedback');
+          if (fbEl) {
+            fbEl.style.display = 'block';
+            fbEl.innerHTML = `
+              <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.8rem 1rem; border-radius:8px; font-size:.83rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
+                <span>✅ <strong>¡Noticia "${title}" ${hitoId ? 'actualizada' : 'publicada'} y sincronizada en la web!</strong></span>
+                <button type="button" class="order-btn" style="background:#10b981; color:#fff; border:none; padding:.3rem .8rem; font-weight:700;" onclick="editorDialog.close(); navigateToWindow('noticias');">
+                  🏆 Ver en Hitos &amp; Noticias →
+                </button>
+              </div>
+            `;
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = origText;
+          }
+        }
       });
     }
 
@@ -3828,8 +4736,8 @@
           <td>${h.photo ? '📷 Sí' : 'No'} (${(h.gallery && h.gallery.length) || 0} fotos)</td>
           <td>
             <div style="display:flex; gap:.3rem;">
-              <button class="order-btn" style="padding:.15rem .45rem;" onclick="editHitoInCMS('${h.id}')" title="Editar este hito">✏️</button>
-              <button class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteHito('${h.id}')" title="Eliminar este hito">✕</button>
+              <button type="button" class="order-btn" style="padding:.15rem .45rem;" onclick="editHitoInCMS('${h.id}')" title="Editar esta noticia">✏️ Editar</button>
+              <button type="button" class="order-btn" style="padding:.15rem .45rem; color:#c92a2a;" onclick="deleteHito('${h.id}')" title="Eliminar esta noticia">✕</button>
             </div>
           </td>
         </tr>
@@ -4231,7 +5139,10 @@
       origSetupUserSession();
       renderFacdehTeam();
       renderArticlesView();
+      renderMaterialsView();
       renderHitosView();
+      if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
+      if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
     };
 
     // Al cerrar sesión, re-renderizar la vista limpia
@@ -4239,6 +5150,7 @@
       currentUser = null;
       renderFacdehTeam();
       renderArticlesView();
+      renderMaterialsView();
       renderHitosView();
     });
 
@@ -4535,7 +5447,9 @@
           renderUsersTable();
           renderTeamManagerTable();
           renderHitosManagerTable();
+          if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
           renderOrderArticlesList();
+          if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
 
           alert('✅ ¡Datos importados y aplicados correctamente! Publicando ahora en la Web Global...');
           publishSiteToGitHub({ silent: false });
@@ -4614,6 +5528,8 @@
       renderMaterialsView();
       renderHitosView();
       renderHomeDashboardPreviews();
+      if (typeof renderMaterialsManagerTable === 'function') renderMaterialsManagerTable();
+      if (typeof populateAuthorAndUserMemberSelects === 'function') populateAuthorAndUserMemberSelects();
 
       // Procesar parámetros de URL (Deep linking para compartir artículos o ventanas)
       try {

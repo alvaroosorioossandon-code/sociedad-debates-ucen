@@ -418,11 +418,34 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 }
 .mrns-article__body {
   font-family: var(--serif);
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   line-height: 1.85;
   color: var(--gray-800);
+  text-align: justify;
+  hyphens: auto;
 }
-.mrns-article__body p { margin-bottom: 1.4rem; }
+.mrns-article__body p {
+  margin-bottom: 1.4rem;
+  text-align: justify;
+}
+.mrns-article__body h2,
+.mrns-article__body h3,
+.mrns-article__body h4 {
+  font-family: var(--serif);
+  color: var(--navy-900);
+  font-weight: 700;
+  margin: 1.8rem 0 .8rem;
+  line-height: 1.3;
+  text-align: left;
+}
+.mrns-article__body ul,
+.mrns-article__body ol {
+  margin: 1rem 0 1.4rem 1.6rem;
+  text-align: justify;
+}
+.mrns-article__body li {
+  margin-bottom: .45rem;
+}
 .mrns-article__body blockquote {
   border-left: 4px solid var(--wine-700);
   background: var(--blue-50);
@@ -430,6 +453,71 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   margin: 1.8rem 0;
   font-style: italic;
   color: var(--navy-900);
+  text-align: justify;
+}
+.mrns-article__body figure,
+.article-inline-figure {
+  margin: 1.8rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+.mrns-article__body figure img,
+.article-inline-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(6, 17, 31, 0.12);
+  margin: 0 auto;
+  display: block;
+}
+.mrns-article__body figure figcaption,
+.article-inline-figure figcaption {
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--gray-600);
+  margin-top: .55rem;
+  font-style: italic;
+  text-align: center;
+}
+.footnote-ref {
+  font-family: var(--sans);
+  font-size: .74rem;
+  font-weight: 800;
+  color: var(--blue-600);
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 .15rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footnote-ref:hover {
+  color: var(--wine-700);
+  text-decoration: underline;
+}
+.article-footnotes {
+  margin-top: 2.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--gray-300);
+  font-family: var(--sans);
+  font-size: .84rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+.article-footnotes h4 {
+  font-size: .82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--navy-900);
+  margin-bottom: .65rem;
+}
+.article-footnotes ol {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+.article-footnotes li {
+  margin-bottom: .45rem;
+  text-align: justify;
 }
 
 /* Barra de Compartir Columna de Opinión */
@@ -798,30 +886,37 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 }
 
 /* ==========================================================================
-   PANEL EDITOR / CMS MULTI-USUARIO
+   PANEL EDITOR / CMS MULTI-USUARIO (PORTAL DE EDICIÓN PANTALLA AMPLIA)
    ========================================================================== */
 .editor-modal {
   margin: auto;
   border: 0;
   border-radius: 16px;
   padding: 0;
-  width: min(680px, 94vw);
-  max-height: 90vh;
+  width: min(1240px, 96vw);
+  max-height: 94vh;
   overflow: auto;
   display: none;
   background: var(--white);
   color: var(--navy-900);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, .5);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .55);
+  transition: width .22s ease;
+}
+.editor-modal:has(#editor-workspace-sec[style*="display: none"]) {
+  width: min(580px, 94vw);
 }
 .editor-modal[open] { display: block; }
 .editor-modal::backdrop { background: rgba(6, 17, 31, .85); }
 .editor-modal__head {
   background: var(--navy-900);
   color: var(--white);
-  padding: 1.2rem 1.6rem;
+  padding: 1.1rem 1.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 25;
 }
 .editor-modal__title {
   font-family: var(--display);
@@ -829,7 +924,7 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   text-transform: uppercase;
   letter-spacing: .05em;
 }
-.editor-modal__body { padding: 1.6rem; }
+.editor-modal__body { padding: 1.6rem 2rem; }
 
 .user-status-bar {
   display: flex;
@@ -844,7 +939,7 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 }
 .user-badge {
   display: inline-block;
-  padding: .2rem .5rem;
+  padding: .2rem .55rem;
   font-size: .7rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -852,16 +947,20 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 }
 .user-badge--admin { background: var(--wine-700); color: var(--white); }
 .user-badge--editor { background: var(--blue-600); color: var(--white); }
-.user-badge--socio { background: var(--gold-400); color: var(--navy-900); }
+.user-badge--socio,
+.user-badge--consejero { background: var(--gold-400); color: var(--navy-900); }
 
 .editor-tabs-bar {
   display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
   border-bottom: 2px solid var(--gray-300);
   margin-bottom: 1.5rem;
 }
 .editor-tab-btn {
   flex: 1;
-  padding: .6rem;
+  min-width: 120px;
+  padding: .65rem .75rem;
   text-align: center;
   background: none;
   border: none;
@@ -874,6 +973,7 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 .editor-tab-btn.active {
   color: var(--navy-900);
   border-bottom: 3px solid var(--wine-700);
+  background: var(--gray-50);
 }
 
 .form-group { margin-bottom: 1.1rem; }
@@ -892,6 +992,117 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   border-radius: 6px;
   font-family: var(--sans);
   font-size: .9rem;
+}
+
+/* EDITOR ACADÉMICO DE TEXTO ENRIQUECIDO (WYSIWYG) */
+.rich-editor-wrap {
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(6, 17, 31, 0.04);
+}
+.rich-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  align-items: center;
+  padding: .55rem .75rem;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--gray-300);
+}
+.rich-toolbar__sep {
+  width: 1px;
+  height: 20px;
+  background: var(--gray-300);
+  margin: 0 .2rem;
+}
+.rich-toolbar__btn {
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  padding: .28rem .55rem;
+  font-family: var(--sans);
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  transition: all .15s ease;
+}
+.rich-toolbar__btn:hover {
+  background: var(--navy-900);
+  color: var(--white);
+  border-color: var(--navy-900);
+}
+.rich-toolbar__btn--accent {
+  background: var(--blue-50);
+  border-color: var(--blue-200);
+  color: var(--blue-700);
+}
+.rich-toolbar__btn--gold {
+  background: rgba(223, 181, 75, 0.18);
+  border-color: var(--gold-400);
+  color: var(--navy-900);
+}
+.rich-editor-area {
+  min-height: 360px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--serif);
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: var(--gray-800);
+  text-align: justify;
+  outline: none;
+  background: #ffffff;
+}
+.rich-editor-area--compact {
+  min-height: 160px;
+  max-height: 340px;
+  padding: .9rem 1.1rem;
+  font-family: var(--sans);
+  font-size: .94rem;
+  line-height: 1.65;
+}
+.rich-editor-area:empty::before {
+  content: attr(data-placeholder);
+  color: var(--gray-500);
+  font-style: italic;
+  pointer-events: none;
+}
+.rich-editor-area p {
+  margin-bottom: 1.1rem;
+  text-align: justify;
+}
+.rich-editor-area blockquote {
+  border-left: 4px solid var(--wine-700);
+  background: var(--blue-50);
+  padding: .85rem 1.2rem;
+  margin: 1.2rem 0;
+  font-style: italic;
+}
+.rich-editor-area figure {
+  margin: 1.2rem auto;
+  text-align: center;
+  background: var(--gray-50);
+  padding: .6rem;
+  border-radius: 8px;
+  border: 1px dashed var(--gray-300);
+}
+.rich-editor-area figure img {
+  max-width: 100%;
+  max-height: 340px;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+.hito-card__desc,
+#hito-modal-content,
+.material-card__desc {
+  text-align: justify;
 }
 
 .users-table {

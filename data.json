@@ -204,6 +204,7 @@
         "Crimen Organizado"
       ],
       "author": "Jorge Legisos Soto",
+      "authorMemberId": "fac-5",
       "date": "14 de octubre de 2026",
       "readTime": "6 min",
       "isLead": true,
@@ -227,6 +228,7 @@
         "Ética Profesional"
       ],
       "author": "Antonia Vidal",
+      "authorMemberId": "fac-6",
       "date": "11 de octubre de 2026",
       "readTime": "4 min",
       "isLead": false,
@@ -243,26 +245,29 @@
     {
       "id": "mat-1",
       "title": "Minuta Dogmática: Secreto Bancario",
+      "category": "Minutas de Debate",
       "badge": "Minutas de Debate (PDF)",
       "desc": "Esquema de argumentos de cargo y defensa, jurisprudencia del TC chileno y estándares internacionales del GAFI para torneos interuniversitarios.",
       "format": "PDF",
-      "link": "#"
+      "link": "https://www.diarioconstitucional.cl/"
     },
     {
       "id": "mat-2",
       "title": "Compendio de Mociones Torneo 2026",
+      "category": "Mociones Oficiales",
       "badge": "Mociones Oficiales (DOCX)",
       "desc": "Listado oficial de mociones preparadas e improvisadas con tablas de evaluación de jueces, refutación y oratoria forense.",
       "format": "DOCX",
-      "link": "#"
+      "link": "https://facdeh.ucentral.cl/"
     },
     {
       "id": "mat-3",
       "title": "Manual de Retórica y Contra-interrogatorio",
+      "category": "Guías de Litigación",
       "badge": "Guías de Litigación (PDF)",
       "desc": "Material de estudio para nuevos integrantes con técnicas de refutación cruzada, estructura de alegatos de clausura y control del tiempo.",
       "format": "PDF",
-      "link": "#"
+      "link": "https://www.colegioabogados.cl/"
     }
   ],
   "hitos": [
@@ -501,11 +506,18 @@
       "role": "editor"
     },
     {
+      "id": "usr-consejero-1",
+      "fullname": "Consejero(a) de Debate",
+      "username": "consejero",
+      "password": "consejero2026",
+      "role": "consejero"
+    },
+    {
       "id": "usr-socio-1",
-      "fullname": "Socio Redactor",
+      "fullname": "Consejero(a) Redactor",
       "username": "socio",
       "password": "socio2026",
-      "role": "socio"
+      "role": "consejero"
     }
   ]
 }
