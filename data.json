@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-18T23:16:10.046Z",
+  "updatedAt": "2026-10-18T23:18:27.832Z",
   "publishedBy": "Administrador Central",
   "users": [
     {
@@ -325,6 +325,22 @@
     }
   ],
   "hitos": [
+    {
+      "id": "hito-1792365507828",
+      "title": "prueba",
+      "badge": "prueba",
+      "desc": "<figure class=\"article-inline-figure\"><br></figure><div><span style=\"font-size: 0.94rem;\">asss</span></div><div><div>aaa</div><div>s</div></div>",
+      "schedule": "proximo lunes lo matan",
+      "photo": "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365477873-descarga.jpg",
+      "gallery": [
+        "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365477873-descarga.jpg",
+        "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365485948-images-1-.jpg",
+        "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792365487135-images.jpg"
+      ],
+      "linkUrl": "https://noticias.ucentral.cl/noticias/prestigioso-ranking-chambers-latin-america-2027-destaca-a-seis-profesionales-de-la-facultad-de-derecho-y-humanidades/",
+      "linkText": "Ver noticia oficial →",
+      "isFeatured": false
+    },
     {
       "id": "hito-1",
       "title": "Sociedad de Debates UCEN vs Sociedad de Litigación USACH",
