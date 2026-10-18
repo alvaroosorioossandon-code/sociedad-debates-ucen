@@ -681,12 +681,16 @@
     <div class="editor-modal__body" id="editor-workspace-sec" style="display: none;">
       
       <!-- BARRA DE ESTADO DEL USUARIO -->
-      <div class="user-status-bar">
-        <div>
+      <div class="user-status-bar" style="flex-wrap: wrap; gap: .6rem;">
+        <div style="display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;">
           <span>Conectado como: <strong id="logged-user-name">Admin Central</strong></span>
           <span class="user-badge user-badge--admin" id="logged-user-role-badge">ADMIN</span>
+          <span id="cms-sync-indicator" style="font-size:.72rem; color:#065f46; background:#ecfdf5; border:1px solid #a7f3d0; padding:.15rem .55rem; border-radius:12px; font-weight:600; display:none;">✅ Sincronizado</span>
         </div>
-        <div style="display:flex; align-items:center; gap:.8rem;">
+        <div style="display:flex; align-items:center; gap:.6rem; flex-wrap:wrap;">
+          <button id="btn-bar-publish-web" type="button" class="btn btn--gold" style="padding:.32rem .85rem; font-size:.76rem; font-weight:800; border-radius:6px; cursor:pointer;">
+            🚀 Publicar en Vivo
+          </button>
           <button id="btn-logout" type="button" style="background:none; border:none; color: #c92a2a; font-weight:700; cursor:pointer; font-size:.78rem;">
             Cerrar Sesión
           </button>
@@ -1040,51 +1044,60 @@
 
       <!-- TAB 4: GESTIÓN DE USUARIOS (CREAR EDITORES Y SOCIOS) -->
       <div id="sec-users-management" style="display: none;">
-        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Crear Nuevo Usuario (Editor o Socio)</h4>
+        <h4 style="font-size: .95rem; color: var(--navy-900); margin-bottom: .4rem;">Crear Nuevo Usuario (Admin, Editor o Socio)</h4>
         <p style="font-size: .8rem; color: var(--gray-600); margin-bottom: 1rem;">
-          Como <strong>Admin Central</strong> puedes habilitar cuentas independientes para socios redactores y editores de contenido.
+          Como <strong>Admin Central</strong> puedes crear cuentas independientes y compartir sus credenciales. Cada usuario creado se sincroniza automáticamente con la web global.
         </p>
 
         <form id="form-create-user" style="background: var(--gray-100); padding: 1rem; border-radius: 8px; border: 1px solid var(--gray-300);" autocomplete="off">
-          <div class="form-group">
-            <label>Nombre Completo / Socio</label>
-            <input type="text" id="new-user-fullname" required placeholder="Ej: Jorge Legisos" />
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+            <div>
+              <label>Nombre Completo / Integrante</label>
+              <input type="text" id="new-user-fullname" required placeholder="Ej: Jorge Legisos Soto" />
+            </div>
+            <div>
+              <label>Nombre de Usuario (Login)</label>
+              <input type="text" id="new-user-username" required autocomplete="off" placeholder="Ej: jlegisos" />
+            </div>
           </div>
-          <div class="form-group">
-            <label>Nombre de Usuario (Login)</label>
-            <input type="text" id="new-user-username" required autocomplete="off" placeholder="Ej: jlegisos" />
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+            <div>
+              <label>Rol Asignado</label>
+              <select id="new-user-role">
+                <option value="editor">Editor (Gestionar artículos, equipo, hitos y archivos)</option>
+                <option value="socio">Socio (Escribir y publicar columnas de opinión)</option>
+                <option value="admin">Administrador (Control total y gestión de usuarios)</option>
+              </select>
+            </div>
+            <div>
+              <label>Contraseña de Acceso</label>
+              <input type="text" id="new-user-pwd" autocomplete="off" required placeholder="Ej: debate2026" />
+            </div>
           </div>
-          <div class="form-group">
-            <label>Rol Asignado</label>
-            <select id="new-user-role">
-              <option value="editor">Editor (Publicar artículos y materiales)</option>
-              <option value="socio">Socio (Escribir columnas de opinión)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Contraseña Inicial</label>
-            <input type="password" id="new-user-pwd" autocomplete="new-password" required placeholder="Contraseña de acceso..." />
-          </div>
-          <button class="btn btn--gold" style="width: 100%; justify-content: center;" type="submit">
-            + Crear Usuario
+          <button class="btn btn--gold" id="btn-create-user-submit" style="width: 100%; justify-content: center;" type="submit">
+            + Crear Usuario y Sincronizar en la Web
           </button>
+          <div id="user-create-feedback" style="display:none; margin-top:.8rem; padding:.75rem 1rem; border-radius:6px; font-size:.82rem;"></div>
         </form>
 
         <div style="margin-top: 1.5rem;">
-          <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .4rem;">Usuarios Existentes</h5>
-          <table class="users-table">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Usuario</th>
-                <th>Rol</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody id="users-table-body">
-              <!-- Renderizado dinámico -->
-            </tbody>
-          </table>
+          <h5 style="font-size: .85rem; text-transform: uppercase; color: var(--navy-800); margin-bottom: .4rem;">Usuarios Activos (Credenciales para Compartir)</h5>
+          <div style="overflow-x: auto; border: 1px solid var(--gray-300); border-radius: 8px;">
+            <table class="users-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Usuario</th>
+                  <th>Contraseña</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <!-- Renderizado dinámico -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -1354,17 +1367,108 @@
     });
 
     // ==========================================
+    // ALMACENAMIENTO SEGURO (ANTI QUOTA-EXCEEDED) & COMPRESIÓN DE IMÁGENES
+    // ==========================================
+    window._ucenMemStore = window._ucenMemStore || {};
+
+    // Limpiar automáticamente datos antiguos que superen el límite de localStorage (> 450 KB)
+    (function cleanupLegacyBloatedStorage() {
+      try {
+        ['ucen_facdeh_members', 'ucen_site_visual_content', 'ucen_hitos', 'ucen_articles'].forEach(k => {
+          const val = localStorage.getItem(k);
+          if (val && val.length > 450000) {
+            localStorage.removeItem(k);
+          }
+        });
+      } catch (e) {}
+    })();
+
+    function safeGetItem(key) {
+      if (window._ucenMemStore[key] !== undefined) {
+        return window._ucenMemStore[key];
+      }
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function safeSetItem(key, strValue) {
+      window._ucenMemStore[key] = strValue;
+      try {
+        localStorage.setItem(key, strValue);
+      } catch (e) {
+        try {
+          // Liberar espacio de claves pesadas o redundantes y reintentar
+          localStorage.removeItem('ucen_site_visual_content');
+          localStorage.removeItem(key);
+          localStorage.setItem(key, strValue);
+        } catch (e2) {
+          console.warn('Almacenamiento en memoria activo para:', key);
+        }
+      }
+    }
+
+    function normalizeExternalUrl(url) {
+      if (!url) return '';
+      const trimmed = url.trim();
+      if (!trimmed || trimmed === '#') return trimmed;
+      if (/^(https?:\/\/|mailto:|tel:|img\/|\/)/i.test(trimmed)) return trimmed;
+      return 'https://' + trimmed;
+    }
+
+    // Compresor automático de imágenes en cliente vía HTML5 Canvas (evita archivos de varios MB)
+    function compressImageFile(file, maxDim = 600, quality = 0.78) {
+      return new Promise((resolve, reject) => {
+        if (!file) return reject(new Error('No file'));
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Error leyendo archivo'));
+        reader.onload = (evt) => {
+          const img = new Image();
+          img.onerror = () => resolve(evt.target.result);
+          img.onload = () => {
+            try {
+              let w = img.width;
+              let h = img.height;
+              if (w > maxDim || h > maxDim) {
+                if (w >= h) {
+                  h = Math.round((h * maxDim) / w);
+                  w = maxDim;
+                } else {
+                  w = Math.round((w * maxDim) / h);
+                  h = maxDim;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+              resolve(compressedDataUrl);
+            } catch (err) {
+              resolve(evt.target.result);
+            }
+          };
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // ==========================================
     // DATOS DE CUERPO ACADÉMICO & EQUIPO (FACDEH)
     // ==========================================
     const DEFAULT_MEMBERS = [
       {
         id: 'fac-1',
         name: 'Macarena Fernández Undurraga',
-        role: 'Directora Depto. Derecho Público',
+        role: 'DIRECTORA DEPTO. DERECHO PÚBLICO',
         type: 'autoridad',
-        badge: 'Cuerpo Académico',
+        badge: 'CUERPO ACADÉMICO',
         initials: 'MF',
-        photo: '',
+        photo: 'img/equipo/macarena-fernandez.jpg',
         bio: 'Licenciada en Derecho por la PUC, Máster en Tecnología Educativa (UNED). Profesora de Derecho Internacional Público y Coordinadora de Vinculación con el Medio FACDEH-UCEN.',
         bulletPoints: [
           'Licenciada en Derecho por la Pontificia Universidad Católica de Chile (PUC).',
@@ -1373,18 +1477,18 @@
           'Directora del Departamento de Derecho Público y Coordinadora de Vinculación con el Medio de la FACDEH.'
         ],
         links: [
-          { text: 'Perfil Oficial FACDEH', url: 'https://facdeh.ucentral.cl/perfil-academico/macarena-fernandez-undurraga/' },
+          { text: 'Perfil Oficial', url: 'https://facdeh.ucentral.cl/perfil-academico/macarena-fernandez-undurraga/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Macarena%20Fern%C3%A1ndez%20Undurraga' }
         ]
       },
       {
         id: 'fac-2',
         name: 'María Luisa Sotomayor Duarte',
-        role: 'Directora Depto. Derecho Privado',
+        role: 'DIRECTORA DEPTO. DERECHO PRIVADO',
         type: 'autoridad',
-        badge: 'Cuerpo Académico',
+        badge: 'CUERPO ACADÉMICO',
         initials: 'MS',
-        photo: '',
+        photo: 'img/equipo/maria-luisa-sotomayor.jpg',
         bio: 'Abogada y Licenciada en Ciencias Jurídicas y Sociales, con estudios de posgrado y amplia trayectoria docente y de gestión académica en la Universidad Central de Chile.',
         bulletPoints: [
           'Abogada y Licenciada en Ciencias Jurídicas y Sociales.',
@@ -1392,76 +1496,57 @@
           'Extensa trayectoria docente e investigativa en derecho civil y patrimonial.'
         ],
         links: [
-          { text: 'Autoridades FACDEH', url: 'https://facdeh.ucentral.cl/autoridades/' },
+          { text: 'Perfil Oficial', url: 'https://facdeh.ucentral.cl/autoridades/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Mar%C3%ADa%20Luisa%20Sotomayor%20Duarte' }
-        ]
-      },
-      {
-        id: 'fac-3',
-        name: 'Héctor Vargas Ferrer',
-        role: 'Coordinador Sociedad de Debates',
-        type: 'autoridad',
-        badge: 'Coordinación',
-        initials: 'HV',
-        photo: '',
-        bio: 'Licenciado en Filosofía por la Universidad de Chile, Egresado de Derecho de la Universidad Central de Chile y Mediador Familiar (UBO). Magíster en Gestión y Liderazgo Educacional con tres diplomados de postítulo por la UCEN.',
-        bulletPoints: [
-          'Egresado de Derecho, Universidad Central de Chile.',
-          'Licenciado en Filosofía, Universidad de Chile.',
-          'Mediador Familiar (UBO).',
-          'Magíster en Gestión y Liderazgo Educacional con postítulos por la UCEN.'
-        ],
-        links: [
-          { text: 'Currículum Oficial', url: 'https://www.hectorvargasferrer.cl/experiencia-academica' },
-          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=H%C3%A9ctor%20Vargas%20Ferrer' }
         ]
       },
       {
         id: 'fac-4',
         name: 'Álvaro Osorio Ossandón',
-        role: 'Asesor Externo',
+        role: 'ASESOR EXTERNO',
         type: 'asesor',
-        badge: 'Universidad de Leiden',
+        badge: 'UNIVERSITEIT LEIDEN',
         initials: 'ÁO',
-        photo: '',
-        bio: 'Estudiante avanzado de Derecho en la FACDEH-UCEN y ex bombero voluntario. Beneficiario de la beca DRI de movilidad internacional cursando estudios en Leiden University (Países Bajos). Mejor orador del Torneo de Litigación ACHILIT (2024).',
+        photo: 'img/equipo/alvaro-osorio.jpg',
+        bio: 'Estudiante de Derecho en la FACDEH-UCEN. Beneficiario de la beca DRI de movilidad internacional cursando estudios en Leiden University (Países Bajos). Mejor orador del Torneo de Litigación ACHILIT (2024).',
         bulletPoints: [
-          'Estudiante avanzado de Derecho, Universidad Central de Chile.',
-          'Actualmente cursando estudios internacionales en Leiden University, Países Bajos (Beca DRI).',
-          'Mejor orador del Torneo de Litigación de la Asociación Chilena de Litigación - ACHILIT (2024).',
+          'Estudiante de Derecho, Universidad Central de Chile.',
+          'Actualmente cursando estudios internacionales en Universiteit Leiden, Países Bajos (Beca DRI).',
+          'Mejor orador del Torneo de Litigación de la Asociación Chilena de Litigación - ACHILIT (2025).',
           'Ex bombero voluntario y asesor estratégico en oratoria y litigación forense.'
         ],
         links: [
-          { text: 'Beca Internacional UCEN', url: 'https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/' },
+          { text: 'Perfil Oficial', url: 'https://noticias.ucentral.cl/noticias/dri-entrego-becas-a-estudiantes-docentes-e-integrantes-de-programas-doctorales-para-realizar-experiencias-internacionales-durante-el-2-semestre-de-2026/' },
           { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=%C3%81lvaro%20Osorio%20Ossand%C3%B3n' }
         ]
       },
       {
         id: 'fac-5',
         name: 'Jorge Legisos Soto',
-        role: 'Consejero & Articulista Doctrina',
+        role: 'CONSEJERO & ARTICULISTA DOCTRINA',
         type: 'estudiante',
-        badge: 'Mejor Orador 2026',
+        badge: 'PASANTE VILLASECA ABOGADOS',
         initials: 'JL',
-        photo: 'img/equipo/jorge-legisos.jpg',
-        bio: 'Estudiante de Derecho UCEN, investigador en derecho procesal penal y garantías constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo "Prof. Rodrigo Pica".',
+        photo: 'img/equipo/jorge-legisos-2026.jpg',
+        bio: 'Estudiante de Derecho UCEN, investigador en derecho procesal penal y propiedad intelectual. Actualmente realiza una pasantía en el estudio jurídico Villaseca. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo "Prof. Rodrigo Pica".',
         bulletPoints: [
           'Estudiante de 3° año de Derecho, Universidad Central de Chile.',
+          'Pasante en Villaseca Abogados.',
           'Cuenta con especialización en Propiedad Intelectual por la Universidad del Desarrollo.',
           'Ayudante del Electivo de Propiedad Industrial y en las cátedras de Derecho Penal en la Universidad Central de Chile.',
           'Mejor orador y subcampeón del Torneo de debates jurídicos "Prof. Rodrigo Pica" (2026).',
           'Mejor orador interuniversitario vs Sociedad de Litigación USACH (octubre 2026).'
         ],
         links: [
-          { text: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto' }
+          { text: 'LinkedIn', url: 'https://www.linkedin.com/in/jorge-legisos-soto-782540363' }
         ]
       },
       {
         id: 'fac-6',
         name: 'Antonia Vidal',
-        role: 'Consejera & Columnista de Opinión',
+        role: 'CONSEJERA & COLUMNISTA DE OPINIÓN',
         type: 'estudiante',
-        badge: 'Campeona Oratoria',
+        badge: 'CAMPEONA ORATORIA',
         initials: 'AV',
         photo: 'img/equipo/antonia-vidal.jpg',
         bio: 'Estudiante de Derecho UCEN, integrante del equipo titular de litigación y debate interfacultades. Campeona y mejor oradora del torneo de debate de la FACDEH, especializada en argumentación penal y ética procesal.',
@@ -1478,9 +1563,9 @@
       {
         id: 'fac-7',
         name: 'Martín Castro',
-        role: 'Consejero & Analista Jurisprudencia',
+        role: 'CONSEJERO & ANALISTA JURISPRUDENCIA',
         type: 'estudiante',
-        badge: 'Derecho Público',
+        badge: 'DERECHO PÚBLICO',
         initials: 'MC',
         photo: 'img/equipo/martin-castro.jpg',
         bio: 'Estudiante de Derecho UCEN, ayudante del departamento de Derecho Público de la Universidad Central de Chile, desempeñándose en las áreas de Derecho Internacional Público y Derecho Procesal.',
@@ -1497,9 +1582,9 @@
       {
         id: 'fac-8',
         name: 'Camilo Gatica',
-        role: 'Consejero de Debates',
+        role: 'CONSEJERO DE DEBATES',
         type: 'estudiante',
-        badge: 'Subcampeón 2026',
+        badge: 'SUBCAMPEÓN 2026',
         initials: 'CG',
         photo: 'img/equipo/camilo-gatica.jpg',
         bio: 'Estudiante de Derecho UCEN e integrante activo del consejo organizador y de representación interuniversitaria.',
@@ -1515,9 +1600,9 @@
       {
         id: 'fac-9',
         name: 'Matías Gioia',
-        role: 'Consejero de Debates',
+        role: 'CONSEJERO DE DEBATES',
         type: 'estudiante',
-        badge: 'Equipo Titular',
+        badge: 'EQUIPO TITULAR',
         initials: 'MG',
         photo: 'img/equipo/matias-gioia.jpg',
         bio: 'Estudiante de Derecho UCEN y miembro del equipo representativo que enfrentó a la Sociedad de Litigación de la USACH en octubre de 2026.',
@@ -1534,7 +1619,7 @@
 
     function getFacdehMembers() {
       try {
-        const stored = localStorage.getItem('ucen_facdeh_members');
+        const stored = safeGetItem('ucen_facdeh_members');
         return stored ? JSON.parse(stored) : DEFAULT_MEMBERS;
       } catch (e) {
         return DEFAULT_MEMBERS;
@@ -1542,16 +1627,18 @@
     }
 
     function saveFacdehMembers(members) {
-      localStorage.setItem('ucen_facdeh_members', JSON.stringify(members));
+      safeSetItem('ucen_facdeh_members', JSON.stringify(members));
     }
 
     function renderFacdehTeam(filter = 'todos') {
       const grid = document.getElementById('facdeh-team-grid');
+      if (!grid) return;
       const allMembers = getFacdehMembers();
       const filtered = filter === 'todos' ? allMembers : allMembers.filter(m => m.type === filter);
       const allArticles = getArticles();
 
-      document.getElementById('members-count-label').textContent = `${filtered.length} Integrantes`;
+      const countLbl = document.getElementById('members-count-label');
+      if (countLbl) countLbl.textContent = `${filtered.length} Integrantes`;
 
       const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
       const addBtnWin = document.getElementById('btn-add-member-win');
@@ -1561,11 +1648,11 @@
 
       grid.innerHTML = filtered.map(m => {
         const visualPhotoKey = `member-photo-${m.id}`;
-        const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
-        const effectiveName = (visualData[`member-name-${m.id}`] && visualData[`member-name-${m.id}`].value) ? visualData[`member-name-${m.id}`].value : m.name;
-        const effectiveRole = (visualData[`member-role-${m.id}`] && visualData[`member-role-${m.id}`].value) ? visualData[`member-role-${m.id}`].value : m.role;
-        const effectiveBadge = (visualData[`member-badge-${m.id}`] && visualData[`member-badge-${m.id}`].value) ? visualData[`member-badge-${m.id}`].value : m.badge;
-        const effectiveBio = (visualData[`member-bio-${m.id}`] && visualData[`member-bio-${m.id}`].value) ? visualData[`member-bio-${m.id}`].value : m.bio;
+        const effectivePhoto = m.photo || ((visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : '');
+        const effectiveName = m.name || '';
+        const effectiveRole = m.role || '';
+        const effectiveBadge = m.badge || '';
+        const effectiveBio = m.bio || '';
 
         const photoStyle = effectivePhoto ? `background-image: url('${effectivePhoto}'); cursor: pointer;` : 'cursor: pointer;';
         const linkedinLink = m.links ? m.links.find(l => l.text === 'LinkedIn') : null;
@@ -1610,9 +1697,9 @@
               </div>
 
               <div class="facdeh-card__footer" style="margin-top:.8rem;">
-                ${perfilLink ? `<a class="facdeh-btn-perfil" href="${perfilLink.url}" target="_blank" rel="noopener">${perfilLink.text} ↗</a>` : '<span></span>'}
+                ${perfilLink ? `<a class="facdeh-btn-perfil" href="${normalizeExternalUrl(perfilLink.url)}" target="_blank" rel="noopener">${perfilLink.text} ↗</a>` : '<span></span>'}
                 ${linkedinLink ? `
-                  <a class="facdeh-btn-linkedin" href="${linkedinLink.url}" target="_blank" rel="noopener">
+                  <a class="facdeh-btn-linkedin" href="${normalizeExternalUrl(linkedinLink.url)}" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     LinkedIn
                   </a>
@@ -1623,7 +1710,6 @@
         `;
       }).join('');
 
-      // Si el modo edición está activo, habilitar contenteditable en las tarjetas renderizadas
       if (typeof visualEditingEnabled !== 'undefined' && visualEditingEnabled) {
         setTimeout(enableContentEditable, 30);
       }
@@ -1647,11 +1733,11 @@
 
       const visualData = getVisualContent();
       const visualPhotoKey = `member-photo-${m.id}`;
-      const effectivePhoto = (visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : m.photo;
-      const effName = (visualData[`member-name-${m.id}`] && visualData[`member-name-${m.id}`].value) ? visualData[`member-name-${m.id}`].value : m.name;
-      const effRole = (visualData[`member-role-${m.id}`] && visualData[`member-role-${m.id}`].value) ? visualData[`member-role-${m.id}`].value : m.role;
-      const effBadge = (visualData[`member-badge-${m.id}`] && visualData[`member-badge-${m.id}`].value) ? visualData[`member-badge-${m.id}`].value : (m.badge || '');
-      const effBio = (visualData[`member-bio-${m.id}`] && visualData[`member-bio-${m.id}`].value) ? visualData[`member-bio-${m.id}`].value : m.bio;
+      const effectivePhoto = m.photo || ((visualData[visualPhotoKey] && visualData[visualPhotoKey].value) ? visualData[visualPhotoKey].value : '');
+      const effName = m.name || '';
+      const effRole = m.role || '';
+      const effBadge = m.badge || '';
+      const effBio = m.bio || '';
 
       if (effectivePhoto) {
         cvModalPhoto.style.backgroundImage = `url('${effectivePhoto}')`;
@@ -1716,7 +1802,7 @@
       // Enlaces
       if (m.links && m.links.length > 0) {
         cvModalLinks.innerHTML = m.links.map(l => `
-          <a href="${l.url}" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:.78rem; padding:.3rem .75rem;">
+          <a href="${normalizeExternalUrl(l.url)}" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:.78rem; padding:.3rem .75rem;">
             ${l.text} ↗
           </a>
         `).join('');
@@ -1751,6 +1837,7 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     // ==========================================
@@ -1774,7 +1861,8 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
-      alert(`¡Información de ${m.name} actualizada y guardada con éxito!`);
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+      alert(`¡Información de ${m.name} actualizada y publicada con éxito!`);
     };
 
     window.editMemberPhoto = function(memberId) {
@@ -1793,6 +1881,7 @@
       saveFacdehMembers(members);
       renderFacdehTeam();
       renderTeamManagerTable();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     // ==========================================
@@ -1817,16 +1906,13 @@
     }
 
     if (inputMemberPhotoFile) {
-      inputMemberPhotoFile.addEventListener('change', (e) => {
+      inputMemberPhotoFile.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (file) {
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            inputMemberPhotoUrl.value = evt.target.result;
-            memberPhotoPreview.src = evt.target.result;
-            memberPhotoPreviewWrap.style.display = 'flex';
-          };
-          reader.readAsDataURL(file);
+          const compressed = await compressImageFile(file, 600, 0.78);
+          inputMemberPhotoUrl.value = compressed;
+          memberPhotoPreview.src = compressed;
+          memberPhotoPreviewWrap.style.display = 'flex';
         }
       });
     }
@@ -1883,8 +1969,8 @@
         const photo = document.getElementById('input-member-photo-url').value.trim();
         const bio = document.getElementById('input-member-bio').value.trim();
         const bulletsRaw = document.getElementById('input-member-bullets').value.trim();
-        const linkOff = document.getElementById('input-member-link-official').value.trim();
-        const linkIn = document.getElementById('input-member-link-linkedin').value.trim();
+        const linkOff = normalizeExternalUrl(document.getElementById('input-member-link-official').value.trim());
+        const linkIn = normalizeExternalUrl(document.getElementById('input-member-link-linkedin').value.trim());
 
         const bulletPoints = bulletsRaw ? bulletsRaw.split('\n').map(l => l.trim()).filter(l => l.length > 0) : [];
         const links = [];
@@ -1931,7 +2017,8 @@
         renderFacdehTeam();
         renderTeamManagerTable();
         resetMemberForm();
-        alert(`¡Integrante "${name}" guardado exitosamente!`);
+        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+        alert(`✅ ¡Integrante "${name}" guardado y sincronizado en la web global!`);
       });
     }
 
@@ -2059,7 +2146,7 @@
 
     function getArticles() {
       try {
-        const stored = localStorage.getItem('ucen_articles');
+        const stored = safeGetItem('ucen_articles');
         return stored ? JSON.parse(stored) : DEFAULT_ARTICLES;
       } catch (e) {
         return DEFAULT_ARTICLES;
@@ -2067,7 +2154,7 @@
     }
 
     function saveArticles(articles) {
-      localStorage.setItem('ucen_articles', JSON.stringify(articles));
+      safeSetItem('ucen_articles', JSON.stringify(articles));
     }
 
     let activeArticleId = 'art-1';
@@ -2449,6 +2536,7 @@
       saveArticles(articles);
       renderOrderArticlesList();
       renderArticlesView();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     window.setLeadArticle = function(id) {
@@ -2466,6 +2554,7 @@
       activeArticleId = id;
       renderOrderArticlesList();
       renderArticlesView();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     window.deleteArticle = function(id) {
@@ -2477,6 +2566,7 @@
       }
       renderOrderArticlesList();
       renderArticlesView();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     // ==========================================
@@ -2511,7 +2601,7 @@
 
     function getMaterials() {
       try {
-        const stored = localStorage.getItem('ucen_materials');
+        const stored = safeGetItem('ucen_materials');
         return stored ? JSON.parse(stored) : DEFAULT_MATERIALS;
       } catch (e) {
         return DEFAULT_MATERIALS;
@@ -2519,7 +2609,7 @@
     }
 
     function saveMaterials(materials) {
-      localStorage.setItem('ucen_materials', JSON.stringify(materials));
+      safeSetItem('ucen_materials', JSON.stringify(materials));
     }
 
     window.saveActiveArticleInline = function(articleId) {
@@ -2538,6 +2628,7 @@
       saveArticles(articles);
       renderOrderArticlesList();
       renderHomeDashboardPreviews();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert(`¡Artículo "${art.title}" guardado y actualizado con éxito!`);
     };
 
@@ -2545,12 +2636,11 @@
       const container = document.getElementById('materials-container');
       const materials = getMaterials();
       const isEditorOrAdmin = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
-      const visualData = getVisualContent();
 
       container.innerHTML = materials.map((mat, idx) => {
-        const title = (visualData[`mat-title-${mat.id}`] && visualData[`mat-title-${mat.id}`].value) ? visualData[`mat-title-${mat.id}`].value : mat.title;
-        const badge = (visualData[`mat-badge-${mat.id}`] && visualData[`mat-badge-${mat.id}`].value) ? visualData[`mat-badge-${mat.id}`].value : mat.badge;
-        const desc = (visualData[`mat-desc-${mat.id}`] && visualData[`mat-desc-${mat.id}`].value) ? visualData[`mat-desc-${mat.id}`].value : mat.desc;
+        const title = mat.title;
+        const badge = mat.badge;
+        const desc = mat.desc;
 
         return `
         <div class="material-card">
@@ -2584,6 +2674,7 @@
       saveMaterials(materials);
       renderMaterialsView();
       renderHomeDashboardPreviews();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     window.saveMaterialInline = function(matId) {
@@ -2602,6 +2693,7 @@
       saveMaterials(materials);
       renderMaterialsView();
       renderHomeDashboardPreviews();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert(`¡Archivo "${m.title}" actualizado con éxito!`);
     };
 
@@ -2636,17 +2728,29 @@
       }
     ];
 
+    function mergeUsersWithDefaults(customList) {
+      const list = Array.isArray(customList) ? [...customList] : [];
+      DEFAULT_USERS.forEach(defU => {
+        if (!list.some(u => u.username && u.username.toLowerCase() === defU.username.toLowerCase())) {
+          list.unshift(defU);
+        }
+      });
+      return list;
+    }
+
     function getUsers() {
       try {
-        const stored = localStorage.getItem('ucen_users');
-        return stored ? JSON.parse(stored) : DEFAULT_USERS;
+        const stored = safeGetItem('ucen_users');
+        if (!stored) return [...DEFAULT_USERS];
+        const parsed = JSON.parse(stored);
+        return mergeUsersWithDefaults(parsed);
       } catch (e) {
-        return DEFAULT_USERS;
+        return [...DEFAULT_USERS];
       }
     }
 
     function saveUsers(users) {
-      localStorage.setItem('ucen_users', JSON.stringify(users));
+      safeSetItem('ucen_users', JSON.stringify(mergeUsersWithDefaults(users)));
     }
 
     let currentUser = null;
@@ -2677,12 +2781,27 @@
     if (editorClose) editorClose.addEventListener('click', () => editorDialog.close());
     editorDialog.addEventListener('click', (e) => { if (e.target === editorDialog) editorDialog.close(); });
 
-    formLoginClean.addEventListener('submit', (e) => {
+    formLoginClean.addEventListener('submit', async (e) => {
       e.preventDefault();
       const uName = document.getElementById('login-username').value.trim();
       const pwd = document.getElementById('editor-password').value.trim();
-      const users = getUsers();
-      const match = users.find(u => u.username.toLowerCase() === uName.toLowerCase() && u.password === pwd);
+      let users = getUsers();
+      let match = users.find(u => u.username && u.username.toLowerCase() === uName.toLowerCase() && u.password === pwd);
+
+      // Si no coincide localmente, consultar data.json remoto por si el usuario fue creado recientemente en otro dispositivo
+      if (!match) {
+        try {
+          const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+          if (res.ok) {
+            const remoteData = await res.json();
+            if (remoteData.users && Array.isArray(remoteData.users)) {
+              saveUsers(remoteData.users);
+              users = getUsers();
+              match = users.find(u => u.username && u.username.toLowerCase() === uName.toLowerCase() && u.password === pwd);
+            }
+          }
+        } catch (err) {}
+      }
 
       if (match) {
         currentUser = match;
@@ -2691,7 +2810,7 @@
         workSec.style.display = 'block';
         formLoginClean.reset();
       } else {
-        alert('Credenciales incorrectas. Verifica tu usuario y contraseña.');
+        alert('Credenciales incorrectas. Verifica tu nombre de usuario y contraseña.');
       }
     });
 
@@ -2734,7 +2853,7 @@
         tabTeam.style.display = 'none';
         tabHitos.style.display = 'none';
         tabOrder.style.display = 'none';
-        if (tabPublish) tabPublish.style.display = 'none';
+        if (tabPublish) tabPublish.style.display = 'inline-block';
       }
 
       document.getElementById('input-art-author').value = currentUser.fullname;
@@ -2795,6 +2914,7 @@
       } else if (tab === 'users') {
         tabUsers.classList.add('active');
         secUsers.style.display = 'block';
+        renderUsersTable();
       }
     }
 
@@ -2830,49 +2950,94 @@
       }
 
       const users = getUsers();
-      const idx = users.findIndex(u => u.id === currentUser.id);
+      const idx = users.findIndex(u => u.id === currentUser.id || u.username === currentUser.username);
       if (idx !== -1) {
         users[idx].password = newPwd;
         currentUser.password = newPwd;
         saveUsers(users);
+        renderUsersTable();
         formSec.reset();
-        alert('¡Tu contraseña ha sido actualizada con éxito!');
+        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+        alert('✅ ¡Tu contraseña ha sido actualizada y sincronizada globalmente con éxito!');
       }
     });
 
     // Crear usuarios (Admin Central)
     const formCreateUser = document.getElementById('form-create-user');
-    formCreateUser.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!currentUser || currentUser.role !== 'admin') {
-        alert('Solo el Administrador Central puede crear usuarios.');
-        return;
-      }
+    if (formCreateUser) {
+      formCreateUser.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!currentUser || currentUser.role !== 'admin') {
+          alert('Solo un usuario con rol Administrador puede crear usuarios.');
+          return;
+        }
 
-      const fullname = document.getElementById('new-user-fullname').value.trim();
-      const username = document.getElementById('new-user-username').value.trim();
-      const role = document.getElementById('new-user-role').value;
-      const pwd = document.getElementById('new-user-pwd').value.trim();
+        const fullname = document.getElementById('new-user-fullname').value.trim();
+        const username = document.getElementById('new-user-username').value.trim().replace(/\s+/g, '');
+        const role = document.getElementById('new-user-role').value;
+        const pwd = document.getElementById('new-user-pwd').value.trim();
+        const feedbackEl = document.getElementById('user-create-feedback');
 
-      const users = getUsers();
-      if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-        alert('Ese nombre de usuario ya existe.');
-        return;
-      }
+        if (!fullname || !username || !pwd) {
+          alert('Por favor completa todos los campos del nuevo usuario.');
+          return;
+        }
 
-      users.push({
-        id: 'usr-' + Date.now(),
-        fullname,
-        username,
-        password: pwd,
-        role
+        const users = getUsers();
+        if (users.some(u => u.username && u.username.toLowerCase() === username.toLowerCase())) {
+          alert(`El nombre de usuario "${username}" ya existe. Elige uno distinto.`);
+          return;
+        }
+
+        const newUserObj = {
+          id: 'usr-' + Date.now(),
+          fullname,
+          username,
+          password: pwd,
+          role
+        };
+
+        users.push(newUserObj);
+        saveUsers(users);
+        renderUsersTable();
+        formCreateUser.reset();
+
+        if (feedbackEl) {
+          feedbackEl.style.display = 'block';
+          feedbackEl.innerHTML = `
+            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.75rem 1rem; border-radius:8px; font-size:.82rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;">
+              <div>
+                ✅ <strong>¡Usuario "${fullname}" creado y sincronizado!</strong><br/>
+                Usuario: <code>${username}</code> · Contraseña: <code>${pwd}</code> · Rol: <strong>${role.toUpperCase()}</strong>
+              </div>
+              <button type="button" class="order-btn" onclick="copyUserCredentials('${username}', '${pwd}', '${fullname}')" style="background:#10b981; color:#fff; border:none; padding:.3rem .7rem; font-weight:700;">
+                📋 Copiar Acceso
+              </button>
+            </div>
+          `;
+        }
+
+        if (typeof publishSiteToGitHub === 'function') {
+          publishSiteToGitHub({ silent: true });
+        }
       });
+    }
 
-      saveUsers(users);
-      renderUsersTable();
-      formCreateUser.reset();
-      alert(`¡Usuario "${fullname}" creado con rol de ${role.toUpperCase()}!`);
-    });
+    window.copyUserCredentials = function(username, password, fullname) {
+      const siteUrl = (window.location.origin && window.location.origin !== 'null')
+        ? window.location.origin + window.location.pathname
+        : 'https://sociedad-debates-ucen.netlify.app/';
+      const text = `Acceso Portal Sociedad de Debates UCEN\nIntegrante: ${fullname}\nEnlace: ${siteUrl}\nUsuario: ${username}\nContraseña: ${password}`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert(`📋 ¡Credenciales de ${fullname} copiadas al portapapeles! Ya puedes pegarlas en WhatsApp o correo.`);
+        }).catch(() => {
+          prompt('Copia las credenciales de acceso:', text);
+        });
+      } else {
+        prompt('Copia las credenciales de acceso:', text);
+      }
+    };
 
     function renderUsersTable() {
       const tbody = document.getElementById('users-table-body');
@@ -2883,22 +3048,31 @@
         <tr>
           <td><strong>${u.fullname}</strong></td>
           <td><code>${u.username}</code></td>
+          <td><code style="background:#f1f5f9; padding:.15rem .4rem; border-radius:4px; color:#0f172a;">${u.password}</code></td>
           <td><span class="user-badge user-badge--${u.role}">${u.role.toUpperCase()}</span></td>
           <td>
-            ${u.role === 'admin' 
-              ? '<span style="color:var(--gray-600); font-size:.7rem;">Principal</span>' 
-              : `<button class="btn-delete-user" onclick="deleteUser('${u.id}')">✕ Eliminar</button>`
-            }
+            <div style="display:flex; gap:.35rem; align-items:center;">
+              <button type="button" class="order-btn" style="padding:.15rem .45rem; font-size:.7rem;" onclick="copyUserCredentials('${u.username}', '${u.password}', '${u.fullname.replace(/'/g, "\\'")}')" title="Copiar usuario y clave para compartir">📋 Copiar</button>
+              ${u.id === 'usr-admin' 
+                ? '<span style="color:var(--gray-600); font-size:.7rem;">Principal</span>' 
+                : `<button type="button" class="btn-delete-user" onclick="deleteUser('${u.id}')">✕</button>`
+              }
+            </div>
           </td>
         </tr>
       `).join('');
     }
 
     window.deleteUser = function(id) {
+      if (id === 'usr-admin') {
+        alert('La cuenta de Administrador Principal no puede ser eliminada.');
+        return;
+      }
       if (!confirm('¿Seguro que deseas eliminar este usuario?')) return;
       let users = getUsers().filter(u => u.id !== id);
       saveUsers(users);
       renderUsersTable();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     window.resetArticleForm = function() {
@@ -2945,22 +3119,18 @@
 
     window.promptInsertImageInArticle = function() {
       // Preguntar si prefiere subir archivo local o poner URL
-      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu Mac\n[Cancelar] = Escribir enlace / URL de imagen');
+      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu dispositivo\n[Cancelar] = Escribir enlace / URL de imagen');
       const contentTextarea = document.getElementById('input-art-content');
 
       if (useLocal) {
-        fileInputForArticle.onchange = (e) => {
+        fileInputForArticle.onchange = async (e) => {
           const file = e.target.files[0];
           if (!file) return;
           const caption = prompt('Pie de foto o descripción (opcional):', '') || '';
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            const dataUrl = evt.target.result;
-            const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
-            contentTextarea.value += imgMarkup;
-            alert('¡Imagen cargada e insertada al cuerpo del artículo!');
-          };
-          reader.readAsDataURL(file);
+          const dataUrl = await compressImageFile(file, 900, 0.78);
+          const imgMarkup = `\n<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>\n`;
+          contentTextarea.value += imgMarkup;
+          alert('¡Imagen optimizada e insertada al cuerpo del artículo!');
           fileInputForArticle.value = '';
         };
         fileInputForArticle.click();
@@ -2975,24 +3145,20 @@
     };
 
     window.promptInsertImageInCurrentArticle = function(articleId) {
-      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu Mac\n[Cancelar] = Escribir enlace / URL de imagen');
+      const useLocal = confirm('¿Deseas seleccionar una imagen desde tu dispositivo?\n\n[Aceptar] = Seleccionar archivo local de tu dispositivo\n[Cancelar] = Escribir enlace / URL de imagen');
       const bodyEl = document.querySelector(`[data-edit-key="article-content-${articleId}"]`);
       if (!bodyEl) return;
 
       if (useLocal) {
-        fileInputForArticle.onchange = (e) => {
+        fileInputForArticle.onchange = async (e) => {
           const file = e.target.files[0];
           if (!file) return;
           const caption = prompt('Pie de foto descriptivo (opcional):', '') || '';
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            const dataUrl = evt.target.result;
-            const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
-            bodyEl.innerHTML += imgMarkup;
-            saveActiveArticleInline(articleId);
-            alert('¡Imagen insertada directamente en el artículo!');
-          };
-          reader.readAsDataURL(file);
+          const dataUrl = await compressImageFile(file, 900, 0.78);
+          const imgMarkup = `<figure style="margin: 1.5rem 0; text-align: center;"><img src="${dataUrl}" alt="${caption}" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 0 auto;" />${caption ? `<figcaption style="font-size: .8rem; color: #5a6472; margin-top: .4rem; font-style: italic;">${caption}</figcaption>` : ''}</figure>`;
+          bodyEl.innerHTML += imgMarkup;
+          saveActiveArticleInline(articleId);
+          alert('¡Imagen insertada directamente en el artículo!');
           fileInputForArticle.value = '';
         };
         fileInputForArticle.click();
@@ -3007,77 +3173,94 @@
     };
 
     // Publicar o Actualizar Artículo con Tags y Bibliografía
-    formArt.addEventListener('submit', (e) => {
+    formArt.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const artId = document.getElementById('input-art-id').value.trim();
-      const title = document.getElementById('input-art-title').value.trim();
-      const category = document.getElementById('input-art-cat').value;
-      const materia = document.getElementById('input-art-materia').value;
-      const author = document.getElementById('input-art-author').value.trim();
-      const tagsRaw = document.getElementById('input-art-tags').value.trim();
-      const summary = document.getElementById('input-art-summary').value.trim();
-      const contentText = document.getElementById('input-art-content').value.trim();
-      const biblioRaw = document.getElementById('input-art-biblio').value.trim();
+      const submitBtn = document.getElementById('btn-submit-article');
+      const origText = submitBtn ? submitBtn.textContent : 'Publicar Artículo';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Publicando...';
+      }
 
-      const tags = tagsRaw 
-        ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
-        : [materia];
+      try {
+        const artId = document.getElementById('input-art-id').value.trim();
+        const title = document.getElementById('input-art-title').value.trim();
+        const category = document.getElementById('input-art-cat').value;
+        const materia = document.getElementById('input-art-materia').value;
+        const author = document.getElementById('input-art-author').value.trim();
+        const tagsRaw = document.getElementById('input-art-tags').value.trim();
+        const summary = document.getElementById('input-art-summary').value.trim();
+        const contentText = document.getElementById('input-art-content').value.trim();
+        const biblioRaw = document.getElementById('input-art-biblio').value.trim();
 
-      const bibliography = biblioRaw 
-        ? biblioRaw.split('\n').map(b => b.trim()).filter(b => b.length > 0)
-        : [];
+        const tags = tagsRaw 
+          ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
+          : [materia];
 
-      // Si el texto ya contiene etiquetas HTML (como <p>, <figure>, <img>), usarlo directo; si es puro texto, envolver en párrafos
-      const formattedContent = contentText.includes('<')
-        ? contentText
-        : contentText.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        const bibliography = biblioRaw 
+          ? biblioRaw.split('\n').map(b => b.trim()).filter(b => b.length > 0)
+          : [];
 
-      const articles = getArticles();
+        // Si el texto ya contiene etiquetas HTML (como <p>, <figure>, <img>), usarlo directo; si es puro texto, envolver en párrafos
+        const formattedContent = contentText.includes('<')
+          ? contentText
+          : contentText.split('\n\n').map(p => `<p>${p}</p>`).join('');
 
-      if (artId) {
-        // Actualizar artículo existente
-        const idx = articles.findIndex(a => a.id === artId);
-        if (idx !== -1) {
-          articles[idx] = {
-            ...articles[idx],
+        const articles = getArticles();
+
+        if (artId) {
+          // Actualizar artículo existente
+          const idx = articles.findIndex(a => a.id === artId);
+          if (idx !== -1) {
+            articles[idx] = {
+              ...articles[idx],
+              title,
+              category,
+              materia,
+              tags,
+              author,
+              summary,
+              content: formattedContent,
+              bibliography
+            };
+          }
+          activeArticleId = artId;
+        } else {
+          // Crear nuevo artículo
+          const newArticle = {
+            id: 'art-' + Date.now(),
             title,
             category,
             materia,
             tags,
             author,
+            date: new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
+            readTime: `${Math.max(3, Math.ceil(contentText.split(' ').length / 160))} min`,
             summary,
             content: formattedContent,
-            bibliography
+            bibliography,
+            isLead: false
           };
+          articles.unshift(newArticle);
+          activeArticleId = newArticle.id;
         }
-        activeArticleId = artId;
-      } else {
-        // Crear nuevo artículo
-        const newArticle = {
-          id: 'art-' + Date.now(),
-          title,
-          category,
-          materia,
-          tags,
-          author,
-          date: new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
-          readTime: `${Math.max(3, Math.ceil(contentText.split(' ').length / 160))} min`,
-          summary,
-          content: formattedContent,
-          bibliography,
-          isLead: false
-        };
-        articles.unshift(newArticle);
-        activeArticleId = newArticle.id;
-      }
 
-      saveArticles(articles);
-      renderArticlesView();
-      renderOrderArticlesList();
-      resetArticleForm();
-      editorDialog.close();
-      navigateToWindow('articulos');
-      alert(`¡Artículo "${title}" ${artId ? 'actualizado' : 'publicado'} exitosamente!`);
+        saveArticles(articles);
+        renderArticlesView();
+        renderOrderArticlesList();
+        resetArticleForm();
+        editorDialog.close();
+        navigateToWindow('articulos');
+        if (typeof publishSiteToGitHub === 'function') {
+          publishSiteToGitHub({ silent: true });
+        }
+        alert(`✅ ¡Artículo "${title}" ${artId ? 'actualizado' : 'publicado'} y sincronizado en la web global!`);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+      }
     });
 
     // Guardar Material
@@ -3087,7 +3270,7 @@
       const badge = document.getElementById('input-mat-cat').value;
       const desc = document.getElementById('input-mat-desc').value.trim();
       const format = document.getElementById('input-mat-format').value.trim();
-      const link = document.getElementById('input-mat-link').value.trim() || '#';
+      const link = normalizeExternalUrl(document.getElementById('input-mat-link').value.trim()) || '#';
 
       const newMat = {
         id: 'mat-' + Date.now(),
@@ -3105,7 +3288,8 @@
       formMat.reset();
       editorDialog.close();
       navigateToWindow('archivos');
-      alert('¡Material agregado con éxito al repositorio!');
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+      alert('✅ ¡Material agregado y sincronizado en el repositorio global!');
     });
 
     // ==========================================
@@ -3193,7 +3377,7 @@
 
     function getHitos() {
       try {
-        const stored = localStorage.getItem('ucen_hitos');
+        const stored = safeGetItem('ucen_hitos');
         return stored ? JSON.parse(stored) : DEFAULT_HITOS;
       } catch (e) {
         return DEFAULT_HITOS;
@@ -3201,7 +3385,7 @@
     }
 
     function saveHitos(hitos) {
-      localStorage.setItem('ucen_hitos', JSON.stringify(hitos));
+      safeSetItem('ucen_hitos', JSON.stringify(hitos));
     }
 
     function renderHitosView() {
@@ -3259,7 +3443,7 @@
                     📷 Ver Fotos y Relato Completo →
                   </button>
                   ${featured.linkUrl ? `
-                    <a class="hito-card__link" href="${featured.linkUrl}" target="_blank" rel="noopener" style="font-size:.8rem;">
+                    <a class="hito-card__link" href="${normalizeExternalUrl(featured.linkUrl)}" target="_blank" rel="noopener" style="font-size:.8rem;">
                       ${featured.linkText || 'Ver registro oficial →'}
                     </a>
                   ` : ''}
@@ -3302,7 +3486,7 @@
                 📷 Ver fotos y contenidos →
               </button>
               ${h.linkUrl ? `
-                <a class="hito-card__link" href="${h.linkUrl}" target="_blank" rel="noopener">
+                <a class="hito-card__link" href="${normalizeExternalUrl(h.linkUrl)}" target="_blank" rel="noopener">
                   ${h.linkText || 'Ver noticia →'}
                 </a>
               ` : '<span></span>'}
@@ -3371,7 +3555,7 @@
 
       // Enlace
       if (h.linkUrl) {
-        hitoModalLink.href = h.linkUrl;
+        hitoModalLink.href = normalizeExternalUrl(h.linkUrl);
         hitoModalLink.textContent = `${h.linkText || 'Ver registro oficial'} ↗`;
         hitoModalLink.style.display = 'inline-flex';
       } else {
@@ -3407,6 +3591,7 @@
       saveHitos(hitos);
       renderHitosView();
       renderHitosManagerTable();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert(`¡Hito "${h.title}" actualizado con éxito!`);
     };
 
@@ -3416,6 +3601,7 @@
       saveHitos(hitos);
       renderHitosView();
       renderHitosManagerTable();
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
     };
 
     window.promptAddHito = function() {
@@ -3462,37 +3648,26 @@
     }
 
     if (inputHitoGalleryFiles) {
-      inputHitoGalleryFiles.addEventListener('change', (e) => {
+      inputHitoGalleryFiles.addEventListener('change', async (e) => {
         const files = Array.from(e.target.files);
         if (!files.length) return;
 
-        let loadedCount = 0;
-        files.forEach(file => {
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            const dataUrl = evt.target.result;
-            const currentVal = inputHitoGallery.value.trim();
-            inputHitoGallery.value = currentVal ? `${currentVal}\n${dataUrl}` : dataUrl;
-            loadedCount++;
-            if (loadedCount === files.length) {
-              renderHitoGalleryPreviews();
-              inputHitoGalleryFiles.value = ''; // Reset file input so user can add more files
-            }
-          };
-          reader.readAsDataURL(file);
-        });
+        for (const file of files) {
+          const dataUrl = await compressImageFile(file, 900, 0.78);
+          const currentVal = inputHitoGallery.value.trim();
+          inputHitoGallery.value = currentVal ? `${currentVal}\n${dataUrl}` : dataUrl;
+        }
+        renderHitoGalleryPreviews();
+        inputHitoGalleryFiles.value = '';
       });
     }
 
     if (inputHitoPhotoFile) {
-      inputHitoPhotoFile.addEventListener('change', (e) => {
+      inputHitoPhotoFile.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (file) {
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            inputHitoPhotoUrl.value = evt.target.result;
-          };
-          reader.readAsDataURL(file);
+          const compressed = await compressImageFile(file, 900, 0.78);
+          inputHitoPhotoUrl.value = compressed;
         }
       });
     }
@@ -3538,7 +3713,7 @@
         const schedule = document.getElementById('input-hito-schedule').value.trim();
         const photo = document.getElementById('input-hito-photo-url').value.trim();
         const galleryRaw = document.getElementById('input-hito-gallery').value.trim();
-        const linkUrl = document.getElementById('input-hito-link-url').value.trim();
+        const linkUrl = normalizeExternalUrl(document.getElementById('input-hito-link-url').value.trim());
         const linkText = document.getElementById('input-hito-link-text').value.trim();
         const isFeatured = document.getElementById('input-hito-featured').checked;
 
@@ -3584,7 +3759,8 @@
         renderHitosView();
         renderHitosManagerTable();
         resetHitoForm();
-        alert(`¡Hito "${title}" guardado exitosamente!`);
+        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
+        alert(`✅ ¡Hito "${title}" guardado y sincronizado en la web global!`);
       });
     }
 
@@ -3615,10 +3791,15 @@
     let currentImageTargetElement = null;
     let currentImageKey = null;
 
-    // Obtener y guardar configuraciones visuales del sitio (textos e imágenes)
+    function isDynamicEntityEditKey(key) {
+      if (!key) return false;
+      return key.startsWith('member-') || key.startsWith('article-') || key.startsWith('hito-') || key.startsWith('mat-');
+    }
+
+    // Obtener y guardar configuraciones visuales del sitio (textos e imágenes estáticas)
     function getVisualContent() {
       try {
-        const stored = localStorage.getItem('ucen_site_visual_content');
+        const stored = safeGetItem('ucen_site_visual_content');
         return stored ? JSON.parse(stored) : {};
       } catch (e) {
         return {};
@@ -3626,16 +3807,25 @@
     }
 
     function saveVisualContent(content) {
-      localStorage.setItem('ucen_site_visual_content', JSON.stringify(content));
+      const clean = {};
+      if (content && typeof content === 'object') {
+        Object.keys(content).forEach(k => {
+          if (!isDynamicEntityEditKey(k)) {
+            clean[k] = content[k];
+          }
+        });
+      }
+      safeSetItem('ucen_site_visual_content', JSON.stringify(clean));
     }
 
-    // Cargar contenido visual guardado al DOM
+    // Cargar contenido visual guardado al DOM (solo bloques estáticos, sin pisar entidades del CMS)
     function applySavedVisualContent() {
       const visualData = getVisualContent();
       Object.keys(visualData).forEach(key => {
+        if (isDynamicEntityEditKey(key)) return;
         const data = visualData[key];
         const el = document.querySelector(`[data-edit-key="${key}"]`);
-        if (!el) return;
+        if (!el || !data) return;
 
         if (data.type === 'text') {
           el.innerText = data.value;
@@ -3709,7 +3899,7 @@
       document.querySelectorAll('[data-editable]').forEach(el => {
         const key = el.getAttribute('data-edit-key');
         const type = el.getAttribute('data-editable');
-        if (!key) return;
+        if (!key || isDynamicEntityEditKey(key)) return;
 
         if (type === 'text') {
           visualData[key] = { type: 'text', value: el.innerText.trim() };
@@ -3795,6 +3985,7 @@
           }
         }, 4000);
       }
+      if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       alert('¡Excelente! Todos los cambios visuales, artículos, hitos, integrantes del equipo, archivos y fotos han sido guardados y sincronizados.');
     }
 
@@ -3854,16 +4045,13 @@
       }
     });
 
-    imgEditorFile.addEventListener('change', (e) => {
+    imgEditorFile.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (file) {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          imgEditorUrl.value = evt.target.result;
-          imgEditorPreview.src = evt.target.result;
-          imgEditorPreview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
+        const compressed = await compressImageFile(file, 900, 0.78);
+        imgEditorUrl.value = compressed;
+        imgEditorPreview.src = compressed;
+        imgEditorPreview.style.display = 'block';
       }
     });
 
@@ -3887,12 +4075,22 @@
           if (innerImg) innerImg.src = newUrl;
         }
 
-        // Guardar inmediatamente
-        if (currentImageKey) {
+        // Si corresponde a foto de miembro, actualizar la entidad directamente
+        if (currentImageKey && currentImageKey.startsWith('member-photo-')) {
+          const mId = currentImageKey.replace('member-photo-', '');
+          const members = getFacdehMembers();
+          const m = members.find(x => x.id === mId);
+          if (m) {
+            m.photo = newUrl;
+            saveFacdehMembers(members);
+            renderTeamManagerTable();
+          }
+        } else if (currentImageKey) {
           const visualData = getVisualContent();
           visualData[currentImageKey] = { type, value: newUrl };
           saveVisualContent(visualData);
         }
+        if (typeof publishSiteToGitHub === 'function') publishSiteToGitHub({ silent: true });
       }
 
       closeImageEditorModal();
@@ -3944,7 +4142,7 @@
       pickerPrimary.value = palette.primary;
       pickerGold.value = palette.gold;
 
-      localStorage.setItem('ucen_site_theme_colors', JSON.stringify(palette));
+      safeSetItem('ucen_site_theme_colors', JSON.stringify(palette));
       closeColorModal();
     };
 
@@ -3955,7 +4153,7 @@
       document.documentElement.style.setProperty('--blue-600', primary);
       document.documentElement.style.setProperty('--gold-400', gold);
 
-      localStorage.setItem('ucen_site_theme_colors', JSON.stringify({
+      safeSetItem('ucen_site_theme_colors', JSON.stringify({
         primary,
         gold
       }));
@@ -3964,7 +4162,7 @@
 
     function applySavedThemeColors() {
       try {
-        const stored = localStorage.getItem('ucen_site_theme_colors');
+        const stored = safeGetItem('ucen_site_theme_colors');
         if (stored) {
           const palette = JSON.parse(stored);
           if (palette.primary) document.documentElement.style.setProperty('--blue-600', palette.primary);
@@ -3991,40 +4189,135 @@
       renderArticlesView();
       renderHitosView();
     });
+
     // ========================================================
     // SINCRONIZACIÓN Y PUBLICACIÓN GLOBAL (GITHUB API & DATA.JSON)
     // ========================================================
     const GITHUB_REPO = 'alvaroosorioossandon-code/sociedad-debates-ucen';
     // Token configurado para publicación directa autorizada
     const GITHUB_PAT = ['ghp_', 'FjxwaWX18vb0agvcF9gKBgJlFcTrUY01wCAr'].join('');
+    window._lastKnownDataJsonSha = null;
+    window._publishInProgress = false;
+    window._publishQueued = false;
 
-    // Función para obtener el estado completo unificado del sitio
+    function updateSyncIndicator(state, message) {
+      const ind = document.getElementById('cms-sync-indicator');
+      if (!ind) return;
+      ind.style.display = 'inline-block';
+      if (state === 'syncing') {
+        ind.style.background = '#e0f2fe';
+        ind.style.color = '#0369a1';
+        ind.style.border = '1px solid #38bdf8';
+        ind.textContent = message || '⏳ Sincronizando web...';
+      } else if (state === 'ok') {
+        ind.style.background = '#ecfdf5';
+        ind.style.color = '#065f46';
+        ind.style.border = '1px solid #10b981';
+        ind.textContent = message || '✅ Publicado en Vivo';
+      } else if (state === 'error') {
+        ind.style.background = '#fef2f2';
+        ind.style.color = '#991b1b';
+        ind.style.border = '1px solid #ef4444';
+        ind.textContent = message || '⚠️ Error al sincronizar';
+      }
+    }
+
+    // Función para obtener el estado completo unificado del sitio (incluyendo usuarios)
     function getFullSiteExportPayload() {
       return {
         version: 2,
         updatedAt: new Date().toISOString(),
         publishedBy: currentUser ? currentUser.fullname : 'Editor Web UCEN',
+        users: getUsers(),
         members: getFacdehMembers(),
         articles: getArticles(),
         materials: getMaterials(),
         hitos: getHitos(),
         visualContent: getVisualContent(),
-        themeColors: JSON.parse(localStorage.getItem('ucen_site_theme_colors') || '{}')
+        themeColors: JSON.parse(safeGetItem('ucen_site_theme_colors') || '{}')
       };
     }
 
+    async function fetchLatestDataJsonSha(forceTreeFallback = false) {
+      if (!forceTreeFallback && window._lastKnownDataJsonSha) {
+        return window._lastKnownDataJsonSha;
+      }
+      if (!forceTreeFallback) {
+        try {
+          const checkRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json?t=${Date.now()}`, {
+            cache: 'no-store',
+            headers: {
+              'Authorization': `token ${GITHUB_PAT}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (checkRes.ok) {
+            const fileData = await checkRes.json();
+            if (fileData && fileData.sha) {
+              window._lastKnownDataJsonSha = fileData.sha;
+              return fileData.sha;
+            }
+          }
+        } catch (e) {
+          console.warn('Error consultando contents/data.json:', e);
+        }
+      }
+      // Fallback al árbol Git de la rama main (sin caché de 60s de contents)
+      try {
+        const treeRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/git/trees/main?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Authorization': `token ${GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (treeRes.ok) {
+          const treeData = await treeRes.json();
+          if (treeData && Array.isArray(treeData.tree)) {
+            const entry = treeData.tree.find(item => item.path === 'data.json');
+            if (entry && entry.sha) {
+              window._lastKnownDataJsonSha = entry.sha;
+              return entry.sha;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Error consultando git/trees/main:', e);
+      }
+      return window._lastKnownDataJsonSha;
+    }
+
     // Publicar todo el estado a data.json en GitHub directamente
-    async function publishSiteToGitHub() {
+    async function publishSiteToGitHub(options = {}) {
+      const isSilent = Boolean(options && typeof options === 'object' && options.silent === true);
+
+      if (window._publishInProgress) {
+        window._publishQueued = true;
+        return;
+      }
+      window._publishInProgress = true;
+
       const statusDiv = document.getElementById('github-publish-status');
       const btnPublish = document.getElementById('btn-github-publish');
       const btnBarPublish = document.getElementById('btn-bar-publish-web');
 
+      const origBtnText = btnPublish ? btnPublish.innerHTML : '🚀 Publicar Todo a la Web Global Ahora';
+      const origBarText = btnBarPublish ? btnBarPublish.innerHTML : '🚀 Publicar en Vivo';
+
+      updateSyncIndicator('syncing', '⏳ Sincronizando web...');
+
       if (statusDiv) {
         statusDiv.style.display = 'block';
-        statusDiv.innerHTML = '<span style="color:#0053D5;">⏳ Preparando datos y conectando con GitHub...</span>';
+        statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">⏳ Preparando datos y conectando con el servidor global...</span>';
       }
-      if (btnPublish) btnPublish.disabled = true;
-      if (btnBarPublish) btnBarPublish.disabled = true;
+      if (btnPublish) {
+        btnPublish.disabled = true;
+        btnPublish.innerHTML = '⏳ Publicando en la Web Global...';
+      }
+      if (btnBarPublish) {
+        btnBarPublish.disabled = true;
+        btnBarPublish.innerHTML = '⏳ Publicando...';
+      }
 
       try {
         const payload = getFullSiteExportPayload();
@@ -4040,80 +4333,98 @@
         const b64Content = btoa(binary);
 
         if (statusDiv) {
-          statusDiv.innerHTML = '<span style="color:#0053D5;">⏳ Obteniendo estado actual del repositorio en GitHub...</span>';
+          statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">⏳ Verificando versión actual en GitHub...</span>';
         }
 
-        // Obtener el SHA actual de data.json si existe
-        let currentSha = null;
-        try {
-          const checkRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json`, {
-            headers: {
-              'Authorization': `token ${GITHUB_PAT}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
-          if (checkRes.ok) {
-            const fileData = await checkRes.json();
-            currentSha = fileData.sha;
-          }
-        } catch (e) {
-          console.warn('No se pudo obtener SHA previo (primer commit de data.json):', e);
-        }
+        let currentSha = await fetchLatestDataJsonSha(false);
 
         if (statusDiv) {
-          statusDiv.innerHTML = '<span style="color:#0053D5;">🚀 Transfiriendo actualización oficial a GitHub y activando Netlify...</span>';
+          statusDiv.innerHTML = '<span style="color:#0053D5; font-weight:700;">🚀 Subiendo cambios a GitHub y activando despliegue en Netlify...</span>';
         }
 
-        const putBody = {
-          message: `Publicación global del sitio: ${new Date().toLocaleString('es-CL')}`,
-          content: b64Content,
-          branch: 'main'
+        const sendPutRequest = async (shaToUse) => {
+          const putBody = {
+            message: `Publicación global CMS (${currentUser ? currentUser.username : 'web'}): ${new Date().toLocaleString('es-CL')}`,
+            content: b64Content,
+            branch: 'main'
+          };
+          if (shaToUse) putBody.sha = shaToUse;
+
+          return fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${GITHUB_PAT}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(putBody)
+          });
         };
-        if (currentSha) {
-          putBody.sha = currentSha;
-        }
 
-        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data.json`, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${GITHUB_PAT}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(putBody)
-        });
+        let putRes = await sendPutRequest(currentSha);
+
+        // Si hubo conflicto de SHA (409 o 422 por caché de GitHub), obtener SHA fresco desde git/trees/main y reintentar automáticamente
+        if (!putRes.ok && (putRes.status === 409 || putRes.status === 422)) {
+          window._lastKnownDataJsonSha = null;
+          const freshSha = await fetchLatestDataJsonSha(true);
+          putRes = await sendPutRequest(freshSha);
+        }
 
         if (!putRes.ok) {
           const errData = await putRes.json().catch(() => ({}));
           throw new Error(errData.message || `Error HTTP ${putRes.status}`);
         }
 
+        const putData = await putRes.json().catch(() => ({}));
+        if (putData && putData.content && putData.content.sha) {
+          window._lastKnownDataJsonSha = putData.content.sha;
+        }
+
+        const timeStr = new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+        updateSyncIndicator('ok', `✅ Publicado (${timeStr})`);
+
         if (statusDiv) {
           statusDiv.innerHTML = `
-            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.8rem; border-radius:6px; margin-top:.5rem;">
-              <strong>✅ ¡PUBLICACIÓN GLOBAL EXITOSA!</strong><br>
-              Tus cambios han sido guardados en el repositorio oficial de GitHub. Netlify actualizará la web en ~30 segundos y <strong>será visible para todo el mundo en cualquier celular, tablet o navegador</strong>.
+            <div style="background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:.85rem; border-radius:8px; margin-top:.5rem;">
+              <strong>✅ ¡PUBLICACIÓN GLOBAL EXITOSA (${timeStr})!</strong><br>
+              Todos los artículos, usuarios, integrantes, hitos y archivos han quedado guardados en el servidor oficial. En ~25 segundos estarán visibles en cualquier celular, tablet o computador.
             </div>
           `;
         }
 
-        alert('🎉 ¡PUBLICACIÓN GLOBAL EXITOSA!\n\nLos cambios fueron enviados a GitHub y Netlify. En aproximadamente 30 segundos estarán visibles en vivo para todas las personas en cualquier celular y navegador.');
+        if (!isSilent) {
+          alert('🎉 ¡PUBLICACIÓN GLOBAL EXITOSA!\n\nTodos tus cambios (artículos, usuarios, equipo, hitos y archivos) fueron enviados a GitHub y Netlify.\nEn ~25 segundos estarán activos para todas las personas en cualquier dispositivo.');
+        }
 
       } catch (err) {
         console.error('Error publicando a GitHub:', err);
+        updateSyncIndicator('error', '⚠️ Error de red');
         if (statusDiv) {
           statusDiv.innerHTML = `
-            <div style="background:#fef2f2; border:1px solid #ef4444; color:#991b1b; padding:.8rem; border-radius:6px; margin-top:.5rem;">
-              <strong>⚠️ No se pudo completar la publicación automática directa:</strong><br>
+            <div style="background:#fef2f2; border:1px solid #ef4444; color:#991b1b; padding:.85rem; border-radius:8px; margin-top:.5rem;">
+              <strong>⚠️ No se pudo completar la sincronización automática:</strong><br>
               ${err.message}<br><br>
-              <em>Solución alternativa:</em> Puedes usar el botón <strong>"Descargar data.json de Respaldo"</strong> abajo para guardar tus datos y compartirlos para incorporarlos al repositorio.
+              <em>Puedes volver a pulsar "Publicar Todo a la Web Global Ahora" o descargar el respaldo JSON abajo.</em>
             </div>
           `;
         }
-        alert('⚠️ Hubo un inconveniente al conectar con la API de GitHub: ' + err.message + '\n\nPuedes descargar el respaldo en archivo JSON con el botón inferior.');
+        if (!isSilent) {
+          alert('⚠️ Hubo un inconveniente al conectar con el servidor: ' + err.message + '\n\nPor favor intenta pulsar nuevamente el botón de Publicar.');
+        }
       } finally {
-        if (btnPublish) btnPublish.disabled = false;
-        if (btnBarPublish) btnBarPublish.disabled = false;
+        if (btnPublish) {
+          btnPublish.disabled = false;
+          btnPublish.innerHTML = origBtnText;
+        }
+        if (btnBarPublish) {
+          btnBarPublish.disabled = false;
+          btnBarPublish.innerHTML = origBarText;
+        }
+        window._publishInProgress = false;
+        if (window._publishQueued) {
+          window._publishQueued = false;
+          setTimeout(() => publishSiteToGitHub({ silent: true }), 400);
+        }
       }
     }
 
@@ -4152,13 +4463,14 @@
       reader.onload = (evt) => {
         try {
           const data = JSON.parse(evt.target.result);
+          if (data.users && Array.isArray(data.users)) saveUsers(data.users);
           if (data.members && Array.isArray(data.members)) saveFacdehMembers(data.members);
           if (data.articles && Array.isArray(data.articles)) saveArticles(data.articles);
           if (data.materials && Array.isArray(data.materials)) saveMaterials(data.materials);
           if (data.hitos && Array.isArray(data.hitos)) saveHitos(data.hitos);
           if (data.visualContent && typeof data.visualContent === 'object') saveVisualContent(data.visualContent);
           if (data.themeColors && typeof data.themeColors === 'object') {
-            localStorage.setItem('ucen_site_theme_colors', JSON.stringify(data.themeColors));
+            safeSetItem('ucen_site_theme_colors', JSON.stringify(data.themeColors));
             applySavedThemeColors();
           }
 
@@ -4168,11 +4480,13 @@
           renderMaterialsView();
           renderHitosView();
           renderHomeDashboardPreviews();
+          renderUsersTable();
           renderTeamManagerTable();
           renderHitosManagerTable();
           renderOrderArticlesList();
 
-          alert('✅ ¡Datos importados y aplicados correctamente en tu navegador! Si deseas que sean visibles para todo el mundo, presiona "Publicar Todo a la Web Global".');
+          alert('✅ ¡Datos importados y aplicados correctamente! Publicando ahora en la Web Global...');
+          publishSiteToGitHub({ silent: false });
         } catch (err) {
           alert('❌ Archivo JSON no válido o dañado: ' + err.message);
         }
@@ -4182,13 +4496,15 @@
 
     // Enlazar eventos de publicación y respaldo
     const btnGithubPublish = document.getElementById('btn-github-publish');
-    if (btnGithubPublish) btnGithubPublish.addEventListener('click', publishSiteToGitHub);
+    if (btnGithubPublish) {
+      btnGithubPublish.addEventListener('click', () => publishSiteToGitHub({ silent: false }));
+    }
 
     const btnBarPublish = document.getElementById('btn-bar-publish-web');
     if (btnBarPublish) {
       btnBarPublish.addEventListener('click', () => {
-        openEditorWithTab('publish');
-        publishSiteToGitHub();
+        switchEditorTab('publish');
+        publishSiteToGitHub({ silent: false });
       });
     }
 
@@ -4204,29 +4520,31 @@
     // Cargar data.json oficial publicado desde el servidor si existe
     async function loadOfficialRemoteData() {
       try {
-        const res = await fetch('data.json?t=' + Date.now());
+        const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
         if (res.ok) {
           const remoteData = await res.json();
-          // Actualizar datos si no hay sesión activa de edición, o si remoteData es más reciente
           const isEditing = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
           if (!isEditing) {
+            if (remoteData.users && Array.isArray(remoteData.users)) {
+              saveUsers(remoteData.users);
+            }
             if (remoteData.members && Array.isArray(remoteData.members)) {
-              localStorage.setItem('ucen_facdeh_members', JSON.stringify(remoteData.members));
+              saveFacdehMembers(remoteData.members);
             }
             if (remoteData.articles && Array.isArray(remoteData.articles)) {
-              localStorage.setItem('ucen_articles', JSON.stringify(remoteData.articles));
+              saveArticles(remoteData.articles);
             }
             if (remoteData.materials && Array.isArray(remoteData.materials)) {
-              localStorage.setItem('ucen_materials', JSON.stringify(remoteData.materials));
+              saveMaterials(remoteData.materials);
             }
             if (remoteData.hitos && Array.isArray(remoteData.hitos)) {
-              localStorage.setItem('ucen_hitos', JSON.stringify(remoteData.hitos));
+              saveHitos(remoteData.hitos);
             }
             if (remoteData.visualContent && typeof remoteData.visualContent === 'object') {
-              localStorage.setItem('ucen_site_visual_content', JSON.stringify(remoteData.visualContent));
+              saveVisualContent(remoteData.visualContent);
             }
             if (remoteData.themeColors && typeof remoteData.themeColors === 'object') {
-              localStorage.setItem('ucen_site_theme_colors', JSON.stringify(remoteData.themeColors));
+              safeSetItem('ucen_site_theme_colors', JSON.stringify(remoteData.themeColors));
             }
           }
         }
