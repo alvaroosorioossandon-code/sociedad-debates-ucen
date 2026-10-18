@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-18T20:38:09.379Z",
-  "publishedBy": "Editor General",
+  "updatedAt": "2026-10-18T20:42:31.184Z",
+  "publishedBy": "Administrador Central",
   "members": [
     {
       "id": "fac-1",
@@ -55,29 +55,6 @@
       ]
     },
     {
-      "id": "fac-5",
-      "name": "Jorge Legisos Soto",
-      "role": "CONSEJERO & ARTICULISTA DOCTRINA",
-      "type": "estudiante",
-      "badge": "MEJOR ORADOR 2026",
-      "initials": "JL",
-      "photo": "img/equipo/jorge-legisos.jpg",
-      "bio": "Estudiante de Derecho UCEN, investigador en derecho procesal penal y garantías constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo \"Prof. Rodrigo Pica\".",
-      "bulletPoints": [
-        "Estudiante de 3° año de Derecho, Universidad Central de Chile.",
-        "Cuenta con especialización en Propiedad Intelectual por la Universidad del Desarrollo.",
-        "Ayudante del Electivo de Propiedad Industrial y en las cátedras de Derecho Penal en la Universidad Central de Chile.",
-        "Mejor orador y subcampeón del Torneo de debates jurídicos \"Prof. Rodrigo Pica\" (2026).",
-        "Mejor orador interuniversitario vs Sociedad de Litigación USACH (octubre 2026)."
-      ],
-      "links": [
-        {
-          "text": "LinkedIn",
-          "url": "https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto"
-        }
-      ]
-    },
-    {
       "id": "fac-4",
       "name": "Álvaro Osorio Ossandón",
       "role": "ASESOR EXTERNO",
@@ -100,6 +77,29 @@
         {
           "text": "LinkedIn",
           "url": "https://www.linkedin.com/search/results/all/?keywords=%C3%81lvaro%20Osorio%20Ossand%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "fac-5",
+      "name": "Jorge Legisos Soto",
+      "role": "CONSEJERO & ARTICULISTA DOCTRINA",
+      "type": "estudiante",
+      "badge": "MEJOR ORADOR 2026",
+      "initials": "JL",
+      "photo": "img/equipo/jorge-legisos.jpg",
+      "bio": "Estudiante de Derecho UCEN, investigador en derecho procesal penal y garantías constitucionales. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo \"Prof. Rodrigo Pica\".",
+      "bulletPoints": [
+        "Estudiante de 3° año de Derecho, Universidad Central de Chile.",
+        "Cuenta con especialización en Propiedad Intelectual por la Universidad del Desarrollo.",
+        "Ayudante del Electivo de Propiedad Industrial y en las cátedras de Derecho Penal en la Universidad Central de Chile.",
+        "Mejor orador y subcampeón del Torneo de debates jurídicos \"Prof. Rodrigo Pica\" (2026).",
+        "Mejor orador interuniversitario vs Sociedad de Litigación USACH (octubre 2026)."
+      ],
+      "links": [
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/search/results/all/?keywords=Jorge%20Legisos%20Soto"
         }
       ]
     },
