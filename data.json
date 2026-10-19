@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-19T00:57:39.882Z",
-  "publishedBy": "Administrador Central",
+  "updatedAt": "2026-10-19T01:04:18.709Z",
+  "publishedBy": "Editor General",
   "users": [
     {
       "id": "usr-admin",
@@ -117,7 +117,7 @@
       "type": "estudiante",
       "badge": "PASANTE VILLASECA ABOGADOS",
       "initials": "JL",
-      "photo": "img/equipo/jorge-legisos-2026.jpg",
+      "photo": "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/img/uploads/1792371853178-img_7712.jpg",
       "bio": "Estudiante de Derecho UCEN, investigador en derecho procesal penal y propiedad intelectual. Actualmente realiza una pasantía en el estudio jurídico Villaseca. Escogido Mejor Debatiente en el encuentro interuniversitario frente a la USACH (octubre 2026) y subcampeón del torneo \"Prof. Rodrigo Pica\".",
       "bulletPoints": [
         "Estudiante de 3° año de Derecho, Universidad Central de Chile.",
