@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-19T00:57:34.503Z",
+  "updatedAt": "2026-10-19T00:57:37.719Z",
   "publishedBy": "Administrador Central",
   "users": [
     {
@@ -223,31 +223,6 @@
   ],
   "articles": [
     {
-      "id": "art-1",
-      "title": "Flexibilización del Secreto Bancario: Entre la eficacia persecutoria y las garantías de la vida privada",
-      "category": "Doctrina & Debate Constitucional",
-      "materia": "Derecho Constitucional",
-      "tags": [
-        "Derecho Constitucional",
-        "Debido Proceso",
-        "TC Chile",
-        "Crimen Organizado"
-      ],
-      "author": "Jorge Legisos Soto",
-      "authorMemberId": "fac-5",
-      "date": "14 de octubre de 2026",
-      "readTime": "6 min",
-      "isLead": true,
-      "summary": "Análisis dogmático a partir del debate interfacultades frente a la USACH. La tensión entre el deber estatal de persecución penal del crimen organizado y la protección constitucional de las comunicaciones y datos privados.",
-      "content": "<p>El debate en torno a la apertura o flexibilización del secreto bancario ha dejado de ser una simple discusión técnica de derecho financiero para convertirse en uno de los nudos más sensibles del derecho público contemporáneo.</p>\n          \n          <blockquote>\"No se trata únicamente de facilitar la persecución de delitos económicos complejos, sino de ponderar si el umbral de control jurisdiccional previo constituye una garantía esencial del Estado de Derecho o un obstáculo procesal dispensable.\"</blockquote>\n\n          <p>En el marco de la reciente jornada de debates interfacultades de la Universidad Central frente a la Sociedad de Litigación de la USACH, se contrastaron los dos polos dogmáticos: por un lado, el deber de tutela estatal consagrado en el artículo 1° de la Constitución, que exige herramientas eficaces para desarticular el lavado de activos; por el otro, la inviolabilidad del hogar y de toda forma de comunicación privada (art. 19 N° 5 CPR).</p>\n\n          <p>La dogmática constitucional moderna nos enseña que ningún derecho fundamental es absoluto, pero cualquier restricción debe satisfacer con rigor los subprincipios de idoneidad, necesidad y proporcionalidad en sentido estricto. La mera agilización administrativa no puede erigirse como fundamento suficiente para sortear el escrutinio de un juez de garantía.</p>\n\n          <p>En conclusión, el fortalecimiento de las facultades de los órganos persecutores debe ir indefectiblemente de la mano de un estándar reforzado de debido proceso, trazabilidad algorítmica y responsabilidades funcionales estrictas ante eventuales filtraciones.</p>",
-      "bibliography": [
-        "Tribunal Constitucional de Chile (2023). Sentencia Rol N° 12.450-22 sobre reserva de datos bancarios.",
-        "Pica Flores, R. (2018). El carácter concreto del control de inaplicabilidad por inconstitucionalidad en el sistema chileno. Revista de Derecho.",
-        "Grupo de Acción Financiera Internacional (GAFI). Estándares Internacionales sobre la Lucha contra el Lavado de Activos.",
-        "https://www.diarioconstitucional.cl/2026/10/14/debate-ucen-flexibilizacion-secreto-bancario/"
-      ]
-    },
-    {
       "id": "art-1792371044760",
       "title": "Parte I: Más allá del accidente del 6 de octubre. La constatación empírica de que el prompt se usa, se ha usado y corona una cadena de automatización",
       "category": "Jurisprudencia Comentada",
@@ -274,7 +249,32 @@
         "Corte de Apelaciones de Santiago, Novena Sala, Sentencia Rol Amparo-4442-2026 (Duarte Chantry), 6 de octubre de 2026 (admisibilidad revocada previamente en Corte Suprema, 30 de septiembre de 2026).",
         "Corte de Apelaciones de Santiago, Novena Sala, Sentencia Rol Amparo-4460-2026 (Zuluaga Guisao), 6 de octubre de 2026 (admisibilidad revocada previamente en Corte Suprema Rol N° 52.651-2026, 30 de septiembre de 2026)."
       ],
-      "isLead": false
+      "isLead": true
+    },
+    {
+      "id": "art-1",
+      "title": "Flexibilización del Secreto Bancario: Entre la eficacia persecutoria y las garantías de la vida privada",
+      "category": "Doctrina & Debate Constitucional",
+      "materia": "Derecho Constitucional",
+      "tags": [
+        "Derecho Constitucional",
+        "Debido Proceso",
+        "TC Chile",
+        "Crimen Organizado"
+      ],
+      "author": "Jorge Legisos Soto",
+      "authorMemberId": "fac-5",
+      "date": "14 de octubre de 2026",
+      "readTime": "6 min",
+      "isLead": false,
+      "summary": "Análisis dogmático a partir del debate interfacultades frente a la USACH. La tensión entre el deber estatal de persecución penal del crimen organizado y la protección constitucional de las comunicaciones y datos privados.",
+      "content": "<p>El debate en torno a la apertura o flexibilización del secreto bancario ha dejado de ser una simple discusión técnica de derecho financiero para convertirse en uno de los nudos más sensibles del derecho público contemporáneo.</p>\n          \n          <blockquote>\"No se trata únicamente de facilitar la persecución de delitos económicos complejos, sino de ponderar si el umbral de control jurisdiccional previo constituye una garantía esencial del Estado de Derecho o un obstáculo procesal dispensable.\"</blockquote>\n\n          <p>En el marco de la reciente jornada de debates interfacultades de la Universidad Central frente a la Sociedad de Litigación de la USACH, se contrastaron los dos polos dogmáticos: por un lado, el deber de tutela estatal consagrado en el artículo 1° de la Constitución, que exige herramientas eficaces para desarticular el lavado de activos; por el otro, la inviolabilidad del hogar y de toda forma de comunicación privada (art. 19 N° 5 CPR).</p>\n\n          <p>La dogmática constitucional moderna nos enseña que ningún derecho fundamental es absoluto, pero cualquier restricción debe satisfacer con rigor los subprincipios de idoneidad, necesidad y proporcionalidad en sentido estricto. La mera agilización administrativa no puede erigirse como fundamento suficiente para sortear el escrutinio de un juez de garantía.</p>\n\n          <p>En conclusión, el fortalecimiento de las facultades de los órganos persecutores debe ir indefectiblemente de la mano de un estándar reforzado de debido proceso, trazabilidad algorítmica y responsabilidades funcionales estrictas ante eventuales filtraciones.</p>",
+      "bibliography": [
+        "Tribunal Constitucional de Chile (2023). Sentencia Rol N° 12.450-22 sobre reserva de datos bancarios.",
+        "Pica Flores, R. (2018). El carácter concreto del control de inaplicabilidad por inconstitucionalidad en el sistema chileno. Revista de Derecho.",
+        "Grupo de Acción Financiera Internacional (GAFI). Estándares Internacionales sobre la Lucha contra el Lavado de Activos.",
+        "https://www.diarioconstitucional.cl/2026/10/14/debate-ucen-flexibilizacion-secreto-bancario/"
+      ]
     },
     {
       "id": "art-1792365804645",
