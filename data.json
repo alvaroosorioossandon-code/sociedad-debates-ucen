@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-19T00:54:01.781Z",
-  "publishedBy": "Editor General",
+  "updatedAt": "2026-10-19T00:56:59.156Z",
+  "publishedBy": "Administrador Central",
   "users": [
     {
       "id": "usr-admin",
@@ -500,7 +500,7 @@
     },
     "stat-3-num": {
       "type": "text",
-      "value": "2024"
+      "value": "DESDE 2024"
     },
     "stat-3-lbl": {
       "type": "text",
@@ -508,7 +508,7 @@
     },
     "stat-4-num": {
       "type": "text",
-      "value": "TC"
+      "value": "UCEN"
     },
     "stat-4-lbl": {
       "type": "text",
@@ -569,6 +569,138 @@
     "archivos-lead": {
       "type": "text",
       "value": "Minutas dogmáticas, pautas de evaluación de oratoria, compendios de mociones preparadas y manuales técnicos de litigación."
+    },
+    "ticker-tag": {
+      "type": "text",
+      "value": "ACTUALIDAD 2026"
+    },
+    "ticker-text": {
+      "type": "text",
+      "value": "I Torneo de Debates Interfacultades UCEN · Sala de Litigación y Sala de Licenciatura (Torre C, FACDEH)"
+    },
+    "radio-eyebrow": {
+      "type": "text",
+      "value": "ENTREVISTA EXCLUSIVA · 5 DE OCTUBRE DE 2026"
+    },
+    "radio-title": {
+      "type": "text",
+      "value": "SOCIEDAD DE DEBATES AL AIRE"
+    },
+    "radio-desc": {
+      "type": "text",
+      "value": "El equipo de la Sociedad de Debates \"Prof. Rodrigo Pica F.\" analiza en Radio U.Central el re-impulso de la oratoria forense, la preparación ante el torneo interfacultades y la importancia del pensamiento crítico en la formación universitaria."
+    },
+    "calendar-block-title": {
+      "type": "text",
+      "value": "CALENDARIO DE EVENTOS Y PRÓXIMAS REUNIONES"
+    },
+    "cal-1-day": {
+      "type": "text",
+      "value": "14"
+    },
+    "cal-1-month": {
+      "type": "text",
+      "value": "OCT"
+    },
+    "cal-1-title": {
+      "type": "text",
+      "value": "Cuartos de Final"
+    },
+    "cal-1-desc": {
+      "type": "text",
+      "value": "I Torneo de Debates Interfacultades UCEN (Torre C, FACDEH)."
+    },
+    "cal-2-day": {
+      "type": "text",
+      "value": "19"
+    },
+    "cal-2-month": {
+      "type": "text",
+      "value": "OCT"
+    },
+    "cal-2-title": {
+      "type": "text",
+      "value": "Semifinal Nacional"
+    },
+    "cal-2-desc": {
+      "type": "text",
+      "value": "Sala de Litigación (2° piso) y Sala de Licenciatura (4° piso)."
+    },
+    "cal-3-day": {
+      "type": "text",
+      "value": "23"
+    },
+    "cal-3-month": {
+      "type": "text",
+      "value": "OCT"
+    },
+    "cal-3-title": {
+      "type": "text",
+      "value": "Gran Final y Premiación"
+    },
+    "cal-3-desc": {
+      "type": "text",
+      "value": "Definición del campeonato y mejor orador individual."
+    },
+    "cal-4-day": {
+      "type": "text",
+      "value": "VIER"
+    },
+    "cal-4-month": {
+      "type": "text",
+      "value": "17:00"
+    },
+    "cal-4-title": {
+      "type": "text",
+      "value": "Reunión Ordinaria de Consejo"
+    },
+    "cal-4-desc": {
+      "type": "text",
+      "value": "Taller de contra-interrogatorio y preparación de mociones."
+    },
+    "hero-bg": {
+      "type": "img",
+      "value": "img/hero.jpg"
+    },
+    "hero-logo": {
+      "type": "img",
+      "value": "img/logo.jpg"
+    },
+    "rodrigo-pica-img": {
+      "type": "img",
+      "value": "img/rodrigo-pica.jpg"
+    },
+    "home-gal-1": {
+      "type": "img",
+      "value": "img/galeria/foto-01.jpg"
+    },
+    "home-gal-2": {
+      "type": "img",
+      "value": "img/galeria/foto-02.jpg"
+    },
+    "home-gal-3": {
+      "type": "img",
+      "value": "img/galeria/foto-03.jpg"
+    },
+    "home-gal-4": {
+      "type": "img",
+      "value": "img/galeria/foto-08.jpg"
+    },
+    "ig-img-1": {
+      "type": "bg-img",
+      "value": "img/galeria/foto-08.jpg"
+    },
+    "ig-img-2": {
+      "type": "bg-img",
+      "value": "img/jorge-legisos-mejor-debatiente.jpg"
+    },
+    "ig-img-3": {
+      "type": "bg-img",
+      "value": "img/hero.jpg"
+    },
+    "radio-youtube-url": {
+      "type": "url",
+      "value": "https://youtu.be/ri-sdSjdIjI"
     }
   },
   "themeColors": {}
