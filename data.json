@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-19T00:50:44.865Z",
+  "updatedAt": "2026-10-19T00:53:52.689Z",
   "publishedBy": "Editor General",
   "users": [
     {
@@ -329,9 +329,9 @@
       "title": "Minuta Dogmática: Secreto Bancario",
       "category": "Minutas de Debate",
       "badge": "Minutas de Debate (PDF)",
-      "desc": "Esquema de argumentos de cargo y defensa, jurisprudencia del TC chileno y estándares internacionales del GAFI para torneos interuniversitarios.",
+      "desc": "<p style=\"text-align:justify;\">Esquema de argumentos de cargo y defensa, jurisprudencia del TC chileno y estándares internacionales del GAFI para torneos interuniversitarios.</p>",
       "format": "PDF",
-      "link": "https://www.diarioconstitucional.cl/"
+      "link": "https://raw.githubusercontent.com/alvaroosorioossandon-code/sociedad-debates-ucen/main/docs/1792371230605-00-political-philosophy-i-ndice-1-.pdf"
     },
     {
       "id": "mat-2",
