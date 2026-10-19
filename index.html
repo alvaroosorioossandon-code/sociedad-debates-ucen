@@ -723,21 +723,14 @@
           <div>
             <label>Categoría Editorial</label>
             <select id="input-art-cat">
-              <option value="Doctrina & Debate Constitucional">Doctrina & Debate Constitucional</option>
-              <option value="Opinión & Columnas">Opinión & Columnas</option>
+              <option value="Debate">Debate</option>
+              <option value="Opinión & Columna">Opinión & Columna</option>
               <option value="Jurisprudencia Comentada">Jurisprudencia Comentada</option>
             </select>
           </div>
           <div>
             <label>Materia / Especialidad</label>
-            <select id="input-art-materia">
-              <option value="Derecho Constitucional">Derecho Constitucional</option>
-              <option value="Derecho Procesal Penal">Derecho Procesal Penal</option>
-              <option value="Litigación Oral">Litigación Oral</option>
-              <option value="Delitos Informáticos">Delitos Informáticos</option>
-              <option value="Derecho Internacional">Derecho Internacional</option>
-              <option value="Derecho Civil y Patrimonial">Derecho Civil y Patrimonial</option>
-            </select>
+            <input type="text" id="input-art-materia" required placeholder="Escribe la materia o especialidad (ej: Derecho Constitucional, Penal...)" value="" />
           </div>
           <div>
             <label>Etiquetas / Tags (separadas por coma)</label>
@@ -869,13 +862,7 @@
             </div>
             <div>
               <label>Categoría</label>
-              <select id="input-mat-cat">
-                <option value="Minutas de Debate">Minutas de Debate</option>
-                <option value="Mociones Oficiales">Mociones Oficiales</option>
-                <option value="Guías de Litigación">Guías de Litigación</option>
-                <option value="Jurisprudencia y Fallos">Jurisprudencia y Fallos</option>
-                <option value="Estatutos y Reglamentos">Estatutos y Reglamentos</option>
-              </select>
+              <input type="text" id="input-mat-cat" required placeholder="Escribe la categoría (ej: Minutas, Doctrina, Reglamentos...)" value="" />
             </div>
             <div>
               <label>Formato (PDF / DOCX / LINK)</label>
@@ -2903,9 +2890,46 @@
     // RENDERIZAR TRIBUNA DE ARTÍCULOS (MRNS.CL STYLE CON TAGS, NOTAS AL PIE Y BIBLIOGRAFÍA)
     function renderArticlesView() {
       const articles = getArticles();
+
+      // Actualizar dinámicamente la barra de filtros con las 3 Categorías Editoriales y las Materias personalizadas de los artículos
+      const tagsBar = document.getElementById('articles-tags-bar');
+      if (tagsBar) {
+        const dynamicFilters = [];
+        const addUniqueFilter = (val) => {
+          const clean = (val || '').trim();
+          if (clean && !dynamicFilters.some(x => x.toLowerCase() === clean.toLowerCase())) {
+            dynamicFilters.push(clean);
+          }
+        };
+        ['Debate', 'Opinión & Columna', 'Jurisprudencia Comentada'].forEach(addUniqueFilter);
+        articles.forEach(a => {
+          if (a.materia) addUniqueFilter(a.materia);
+        });
+
+        tagsBar.innerHTML = [
+          `<button class="facdeh-chip-btn ${currentMateriaFilter === 'todos' ? 'active' : ''}" data-tag="todos" type="button">Todas las Materias</button>`,
+          ...dynamicFilters.map(f => `<button class="facdeh-chip-btn ${currentMateriaFilter === f ? 'active' : ''}" data-tag="${f.replace(/"/g, '&quot;')}" type="button">${f}</button>`)
+        ].join('');
+
+        tagsBar.querySelectorAll('.facdeh-chip-btn').forEach(btn => {
+          btn.onclick = () => {
+            tagsBar.querySelectorAll('.facdeh-chip-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentMateriaFilter = btn.dataset.tag;
+            renderArticlesView();
+          };
+        });
+      }
+
       let filtered = currentMateriaFilter === 'todos' 
         ? articles 
-        : articles.filter(a => (a.materia === currentMateriaFilter) || (a.tags && a.tags.includes(currentMateriaFilter)));
+        : articles.filter(a => {
+            const fNorm = currentMateriaFilter.toLowerCase().trim();
+            const catMatch = (a.category || '').toLowerCase().trim() === fNorm || (fNorm === 'debate' && (a.category || '').toLowerCase().includes('debate')) || (fNorm === 'opinión & columna' && (a.category || '').toLowerCase().includes('opinión'));
+            const matMatch = (a.materia || '').toLowerCase().trim() === fNorm;
+            const tagMatch = Array.isArray(a.tags) && a.tags.some(t => (t || '').toLowerCase().trim() === fNorm);
+            return catMatch || matMatch || tagMatch;
+          });
 
       // Filtrar adicionalmente por autor si está activo
       const authorBanner = document.getElementById('author-active-filter-banner');
@@ -3561,6 +3585,8 @@
       if (fMat) fMat.reset();
       const idEl = document.getElementById('input-mat-id');
       if (idEl) idEl.value = '';
+      const catEl = document.getElementById('input-mat-cat');
+      if (catEl) catEl.value = '';
       setRichEditorContent('mat-rich-editor', 'input-mat-desc', '');
       const statusEl = document.getElementById('mat-file-upload-status');
       if (statusEl) statusEl.style.display = 'none';
@@ -3578,11 +3604,10 @@
 
       document.getElementById('input-mat-id').value = mat.id;
       document.getElementById('input-mat-title').value = mat.title || '';
-      const catSelect = document.getElementById('input-mat-cat');
-      if (catSelect) {
-        const cleanCat = (mat.category || (mat.badge ? mat.badge.replace(/\s*\(.*?\)\s*$/, '') : 'Minutas de Debate')).trim();
-        catSelect.value = cleanCat;
-        if (!catSelect.value) catSelect.value = 'Minutas de Debate';
+      const catInput = document.getElementById('input-mat-cat');
+      if (catInput) {
+        const cleanCat = (mat.category || (mat.badge ? mat.badge.replace(/\s*\(.*?\)\s*$/, '') : '')).trim();
+        catInput.value = cleanCat;
       }
       document.getElementById('input-mat-format').value = mat.format || 'PDF';
       document.getElementById('input-mat-link').value = (mat.link && mat.link !== '#') ? mat.link : '';
@@ -4140,6 +4165,8 @@
       formArt.reset();
       document.getElementById('input-art-id').value = '';
       document.getElementById('input-art-author-member-id').value = '';
+      const matInput = document.getElementById('input-art-materia');
+      if (matInput) matInput.value = '';
       const selMember = document.getElementById('select-art-author-member');
       if (selMember) selMember.value = '';
       setRichEditorContent('art-rich-editor', 'input-art-content', '');
@@ -4159,8 +4186,16 @@
 
       document.getElementById('input-art-id').value = art.id;
       document.getElementById('input-art-title').value = art.title || '';
-      document.getElementById('input-art-cat').value = art.category || 'Doctrina & Debate Constitucional';
-      document.getElementById('input-art-materia').value = art.materia || 'Derecho Constitucional';
+      const catEl = document.getElementById('input-art-cat');
+      if (catEl) {
+        let mappedCat = art.category || 'Debate';
+        if (mappedCat.toLowerCase().includes('debate')) mappedCat = 'Debate';
+        else if (mappedCat.toLowerCase().includes('opinión') || mappedCat.toLowerCase().includes('opinion')) mappedCat = 'Opinión & Columna';
+        else if (mappedCat.toLowerCase().includes('jurisprudencia')) mappedCat = 'Jurisprudencia Comentada';
+        catEl.value = mappedCat;
+        if (!catEl.value) catEl.value = 'Debate';
+      }
+      document.getElementById('input-art-materia').value = art.materia || '';
       document.getElementById('input-art-author').value = art.author || '';
       document.getElementById('input-art-tags').value = art.tags ? art.tags.join(', ') : '';
       document.getElementById('input-art-summary').value = art.summary || '';
@@ -4302,8 +4337,8 @@
       try {
         const artId = document.getElementById('input-art-id').value.trim();
         const title = document.getElementById('input-art-title').value.trim();
-        const category = document.getElementById('input-art-cat').value;
-        const materia = document.getElementById('input-art-materia').value;
+        const category = document.getElementById('input-art-cat').value.trim();
+        const materia = document.getElementById('input-art-materia').value.trim();
         const author = document.getElementById('input-art-author').value.trim();
         let authorMemberId = document.getElementById('input-art-author-member-id').value.trim();
         const tagsRaw = document.getElementById('input-art-tags').value.trim();
@@ -4329,7 +4364,7 @@
 
         const tags = tagsRaw 
           ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
-          : [materia];
+          : (materia ? [materia] : []);
 
         const footnotes = footnotesRaw
           ? footnotesRaw.split('\n').map(f => f.trim()).filter(f => f.length > 0)
@@ -4466,7 +4501,7 @@
 
         const matId = document.getElementById('input-mat-id').value.trim();
         const title = document.getElementById('input-mat-title').value.trim();
-        const category = document.getElementById('input-mat-cat').value;
+        const category = document.getElementById('input-mat-cat').value.trim() || 'General';
         const descHtml = getRichEditorCleanHtml('mat-rich-editor', 'input-mat-desc');
         const format = (document.getElementById('input-mat-format').value.trim() || 'PDF').toUpperCase();
         const rawLink = document.getElementById('input-mat-link').value.trim();
